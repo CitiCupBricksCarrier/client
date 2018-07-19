@@ -6,7 +6,9 @@ angular.module('myApp', [
     'ui.router',
     'myApp.version',
 
-    'myApp.microIndustryChain'
+    'myApp.microIndustryChain',
+    'myApp.macroIndustryDisplay',
+    'myApp.login'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -15,6 +17,18 @@ angular.module('myApp', [
                 url:'/microIndustryChain',
                 templateUrl: 'view/microIndustryChain/microIndustryChain.html',
                 controller: 'MicroIndustryChainCtrl'
+            })
+        $stateProvider
+            .state('macroIndustryDisplay',{
+                url:'/macroIndustryDisplay',
+                templateUrl: 'view/macroIndustryDisplay/macroIndustryDisplay.html',
+                controller: 'MacroIndustryDisplayCtrl'
+            })
+        $stateProvider
+            .state('login',{
+                url:'/login',
+                templateUrl: 'view/login/login.html',
+                controller: 'LoginCtrl'
             })
     })
 
