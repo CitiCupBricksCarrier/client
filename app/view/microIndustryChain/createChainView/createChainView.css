@@ -1,0 +1,80 @@
+#topElement{
+    -moz-user-select:-moz-none;
+}
+
+#canvas{
+    position: absolute;
+    display: block;
+    left: 100px;
+    top: 150px;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,0);
+    z-index: 1;
+}
+
+#netBackground{
+    position: absolute;
+    display: block;
+    left: 100px;
+    top: 150px;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,1);
+    z-index: 0;
+}
+
+.node{
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    width: 80px;
+    height: 40px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    background: whitesmoke;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.node-anchor-right{
+    position: absolute;
+    z-index: 3;
+    width: 12px;
+    height: 12px;
+    left: 72px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
+.node-anchor-left{
+    position: absolute;
+    z-index: 3;
+    width: 12px;
+    height: 12px;
+    left: -6px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
+.node-anchor-top{
+    position: absolute;
+    z-index: 3;
+    width: 12px;
+    height: 12px;
+    top: -6px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
+.node-anchor-bottom{
+    position: absolute;
+    z-index: 3;
+    width: 12px;
+    height: 12px;
+    top: 32px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
