@@ -13,15 +13,24 @@
     z-index: 1;
 }
 
+#connectionBackground{
+    position: absolute;
+    display: block;
+    left: 100px;
+    top: 150px;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,0);
+    z-index: 0;
+}
+
 #netBackground{
     position: absolute;
     display: block;
     left: 100px;
     top: 150px;
-    cursor: pointer;
     border: 1px solid #CCCCCC;
     background: rgba(255,255,255,1);
-    z-index: 0;
+    z-index: -1;
 }
 
 .node{
@@ -39,42 +48,82 @@
 }
 
 .node-anchor-right{
+    left: 72px;
     position: absolute;
     z-index: 3;
     width: 12px;
     height: 12px;
-    left: 72px;
     border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
+.node-anchor-right:hover{
+    left: 72px;
+    position: absolute;
+    z-index: 3;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
 .node-anchor-left{
+    left: -6px;
     position: absolute;
     z-index: 3;
     width: 12px;
     height: 12px;
-    left: -6px;
     border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
+.node-anchor-left:hover{
+    left: -6px;
+    position: absolute;
+    z-index: 3;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
 .node-anchor-top{
+    top: -6px;
     position: absolute;
     z-index: 3;
     width: 12px;
     height: 12px;
-    top: -6px;
     border-radius: 6px;
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
+.node-anchor-top:hover{
+    top: -6px;
+    position: absolute;
+    z-index: 3;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
 .node-anchor-bottom{
+    top: 32px;
     position: absolute;
     z-index: 3;
     width: 12px;
     height: 12px;
-    top: 32px;
     border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background: whitesmoke;
+}
+.node-anchor-bottom:hover{
+    top: 32px;
+    position: absolute;
+    z-index: 3;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
