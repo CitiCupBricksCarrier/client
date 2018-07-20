@@ -16,7 +16,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let canvasHeight = canvas.height;
         let nextNodePositionX = 100;
         let nextNodePositionY = 50;
-        let nodeID = [];
+        let nodePositionList = [];
+        let connectionList = [];
         let nextNodeID = 1;
 
         let mouseDownNodeID = "";//当前鼠标点击的node
@@ -35,6 +36,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
             node.id = "N" + nextNodeID;
             node.style.left = nextNodePositionX + "px";
             node.style.top = nextNodePositionY + "px";
+            node.style.width = 80 + "px";
+            node.style.height = 40 + "px";
+            nodePositionList[node.id] = {x:nextNodePositionX, y:nextNodePositionY}
             nodeAnchorTop.className = "node-anchor-top";
             nodeAnchorTop.id = "A" + nextNodeID + "1";
             nodeAnchorRight.className = "node-anchor-right";
@@ -56,6 +60,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             nextNodeID += 1;
             nextNodePositionX += 20;
             nextNodePositionY += 20;
+
         };
 
 
@@ -70,6 +75,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let canDragAnchor = false;
         let anchorBeginPositionCacheX = 0;
         let anchorBeginPositionCacheY = 0;
+        let connectionBeginNodeCache = "";
+        let connectionEndNodeCache = "";
         let saveStoragePositionWithScroll = function (ele) {//absolute型拖动
             storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
             storageClickPosition = {"x":window.event.clientX + document.documentElement.scrollLeft,"y":window.event.clientY + document.documentElement.scrollTop};
@@ -100,15 +107,17 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 mouseDownAnchorID = $(e.target).attr("id");
                 anchorBeginPositionCacheX = window.event.clientX - canvas.offsetLeft + document.documentElement.scrollLeft;
                 anchorBeginPositionCacheY = window.event.clientY - canvas.offsetTop + document.documentElement.scrollTop;
+                connectionBeginNodeCache = $(e.target).parent().attr("id");
                 canDragAnchor = true;
                 }
         };
-        topElement.onmousemove = function () {
+        topElement.onmousemove = function (e) {
             if(canDragNode) {
                 calculateOffsetWithScroll();
                 let node = document.getElementById(mouseDownNodeID);
                 node.style.left = windowEndX + "px";
                 node.style.top = windowEndY + "px";
+                connectionBackgroundRefresh();
             }
             else if(canDragAnchor) {
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -124,10 +133,20 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 context.stroke();
             }
         };
-        topElement.onmouseup = function () {
+        topElement.onmouseup = function (e) {
             if(canDragAnchor){
-                context.clearRect(0, 0, canvasWidth, canvasHeight);
                 canDragAnchor = false;
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+                if($(e.target).attr("id")[0] == 'A'){
+                    connectionEndNodeCache = $(e.target).parent().attr("id");
+                    connectionList.push
+                        ({
+                            type:"normal",
+                            begin:connectionBeginNodeCache,
+                            end:connectionEndNodeCache
+                        });
+                    connectionBackgroundRefresh();
+                }
             }
             else {
                 canDragNode = false;
@@ -139,10 +158,33 @@ angular.module('myApp.microIndustryChain.createChainView', [
         /**
          *根据数据生成连线背景的实现
          */
+        let connectionLineWidth = 5;
+        let connectionLineColor = "rgba(0,0,0,0.5)";
+
         let connectionBackground = document.getElementById("connectionBackground");
         let connectionContext = connectionBackground.getContext("2d");
         connectionBackground.width = canvasWidth;//初始化背景大小
         connectionBackground.height = canvasHeight;
+        connectionContext.lineWidth = connectionLineWidth;
+
+        let connectionBackgroundRefresh = function () {
+            connectionContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            connectionContext.beginPath();
+            for(let i=0; i<connectionList.length; i++){
+                let beginNode = document.getElementById(connectionList[i].begin);
+                let endNode = document.getElementById(connectionList[i].end);
+                connectionContext.moveTo(
+                    parseInt(beginNode.style.left) + parseInt(beginNode.style.width)/2 - canvas.offsetLeft + document.documentElement.scrollLeft,
+                    parseInt(beginNode.style.top) + parseInt(beginNode.style.height)/2 - canvas.offsetTop + document.documentElement.scrollTop
+                );
+                connectionContext.lineTo(
+                    parseInt(endNode.style.left) + parseInt(endNode.style.width)/2 - canvas.offsetLeft + document.documentElement.scrollLeft,
+                    parseInt(endNode.style.top) + parseInt(endNode.style.height)/2 - canvas.offsetTop + document.documentElement.scrollTop
+                );
+            }
+            connectionContext.strokeStyle = connectionLineColor;
+            connectionContext.stroke();
+        };
 
         /**
          *网格背景的实现
