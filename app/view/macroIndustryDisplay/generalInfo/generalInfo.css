@@ -1,0 +1,25 @@
+/*导航栏*/
+.navBar{
+    position: fixed;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.navBar .nav_item{
+
+}
+.navBar .nav_item.active{
+    color: #ff3333;
+}
+
+/*全景图*/
+.wholePic .partPic{
+    width: 20%;
+    min-width: 200px;
+}
+
+.wholePic .partPic:hover{
+    transform: scale(1.5);
+    transition: all 0.6s;
+}
+
