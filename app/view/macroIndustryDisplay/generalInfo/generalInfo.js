@@ -3,10 +3,9 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 ])
 
     .config(function($stateProvider, $urlRouterProvider){
-
     })
 
-    .controller('GeneralInfoCtrl',function($scope, $route, $http) {
+    .controller('GeneralInfoCtrl',function($scope, $route, $http, $state) {
         //点击定位到页面位置
         $('.nav_item').click(function (e) {
             e.preventDefault();
@@ -39,4 +38,22 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             }
         })
 
+        $scope.list_luntai = ['xxx1','xxx2','xxx3'];
+
+        $('.nameAndList .name_part').click(function (e) {
+            // console.log(this.parentNode)
+            console.log($(this.parentNode).children('.list_part'))
+            var listNode = $(this.parentNode).children('.list_part');
+            if(listNode.is(':hidden')){
+                listNode.show('fast');
+            }
+            else{
+                listNode.hide('fast');
+            }
+        })
+
+        $scope.goToCompanyDetails = function (item) {
+            console.log('1')
+            $state.go('macroIndustryDisplay.companyDetails')
+        }
     });

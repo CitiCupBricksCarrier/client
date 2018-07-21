@@ -1,5 +1,6 @@
 angular.module('myApp.macroIndustryDisplay', [
-    'myApp.macroIndustryDisplay.generalInfo'
+    'myApp.macroIndustryDisplay.generalInfo',
+    'myApp.macroIndustryDisplay.companyDetails'
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
@@ -8,6 +9,12 @@ angular.module('myApp.macroIndustryDisplay', [
                 url:'/generalInfo',
                 templateUrl: 'view/macroIndustryDisplay/generalInfo/generalInfo.html',
                 controller: 'GeneralInfoCtrl'
+            })
+        $stateProvider
+            .state('macroIndustryDisplay.companyDetails', {
+                url: '/companyDetails',
+                templateUrl: 'view/macroIndustryDisplay/companyDetails/companyDetails.html',
+                controller: 'CompanyDetailsCtrl'
             })
     })
 

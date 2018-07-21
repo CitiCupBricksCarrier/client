@@ -22,21 +22,29 @@
         <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_2.png"/>
         <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_3.png"/>
     </div>
+    <div id="luntai" class="nameAndList">
+        <label class="name_part">轮胎</label>
+        <div class="list_part" style="display: none;">
+            <ul>
+                <li ng-repeat="item in list_luntai"><a href="" ng-click="goToCompanyDetails(item)">{{item}}</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <div id="chain_car" class="part">
     <h3><a href="#chain_car">汽车产业链图</a></h3>
-    <img src="view/macroIndustryDisplay/generalInfo/pic/1_1.png"/>
+    <img src="view/macroIndustryDisplay/generalInfo/pic/汽车产业链.png"/>
 </div>
 
 <div id="flowPath_car" class="part">
     <h3><a href="#flowPath_car">汽车生产流程图</a></h3>
-    <img src="view/macroIndustryDisplay/generalInfo/pic/1_1.png"/>
+    <img src="view/macroIndustryDisplay/generalInfo/pic/汽车生产流程图.png"/>
 </div>
 
 <div id="atlas_car" class="part">
     <h3><a href="#atlas_car">中国汽车图谱</a></h3>
-    <img src="view/macroIndustryDisplay/generalInfo/pic/1_1.png"/>
+    <img src="view/macroIndustryDisplay/generalInfo/pic/中国汽车企业图谱.png"/>
 </div>
 
 <link rel="stylesheet" href="view/macroIndustryDisplay/generalInfo/generalInfo.css"/>
