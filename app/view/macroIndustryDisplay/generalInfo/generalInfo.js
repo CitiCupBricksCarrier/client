@@ -53,7 +53,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         })
 
         $scope.goToCompanyDetails = function (item) {
-            console.log('1')
-            $state.go('macroIndustryDisplay.companyDetails')
+            // console.log('1')
+            $state.go('macroIndustryDisplay.companyDetails', {companyName: item})
         }
     });

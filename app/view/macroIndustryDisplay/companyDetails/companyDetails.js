@@ -6,7 +6,9 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
 
     })
 
-    .controller('CompanyDetailsCtrl',function($scope, $route, $http) {
+    .controller('CompanyDetailsCtrl',function($scope, $route, $http, $stateParams) {
+        var companyName = $stateParams.companyName;
+        // console.log(companyName)
         $scope.companyDetails = {
             stkcd: 'xxx',
             compNanme: 'xxx',
