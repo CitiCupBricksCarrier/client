@@ -13,6 +13,9 @@
 }
 
 /*全景图*/
+.wholePic_container{
+    position: relative;
+}
 .wholePic .partPic{
     width: 20%;
     min-width: 200px;
@@ -21,6 +24,7 @@
     /*transform: scale(1.5);*/
     /*transition: all 0.6s;*/
 /*}*/
+/*全景图内名字和公司列表*/
 .nameAndList{
     width: 150px;
 }
@@ -28,4 +32,10 @@
     width: 150px;
     height: 30px;
     cursor: pointer;
+}
+/*单独每个的定位*/
+#luntai{
+    position: absolute;
+    top:50px;
+    left:100px;
 }

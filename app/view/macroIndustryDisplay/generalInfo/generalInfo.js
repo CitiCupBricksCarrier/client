@@ -40,9 +40,10 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
         $scope.list_luntai = ['xxx1','xxx2','xxx3'];
 
+        //公司列表的显示和隐藏
         $('.nameAndList .name_part').click(function (e) {
             // console.log(this.parentNode)
-            console.log($(this.parentNode).children('.list_part'))
+            // console.log($(this.parentNode).children('.list_part'))
             var listNode = $(this.parentNode).children('.list_part');
             if(listNode.is(':hidden')){
                 listNode.show('fast');
@@ -52,6 +53,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             }
         })
 
+        //点击后跳转到对应公司的信息界面
         $scope.goToCompanyDetails = function (item) {
             // console.log('1')
             $state.go('macroIndustryDisplay.companyDetails', {companyName: item})

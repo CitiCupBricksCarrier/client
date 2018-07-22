@@ -12,22 +12,24 @@
 
 <div id="wholePic" class="part">
     <h3><a href="#wholePic">全景图</a></h3>
-    <div class="wholePic">
-        <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_1.png"/>
-        <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_2.png"/>
-        <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_3.png"/>
-    </div>
-    <div class="wholePic">
-        <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_1.png"/>
-        <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_2.png"/>
-        <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_3.png"/>
-    </div>
-    <div id="luntai" class="nameAndList">
-        <label class="name_part">轮胎</label>
-        <div class="list_part" style="display: none;">
-            <ul>
-                <li ng-repeat="item in list_luntai"><a href="" ng-click="goToCompanyDetails(item)">{{item}}</a></li>
-            </ul>
+    <div class="wholePic_container">
+        <div class="wholePic">
+            <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_1.png"/>
+            <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_2.png"/>
+            <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_3.png"/>
+        </div>
+        <div class="wholePic">
+            <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_1.png"/>
+            <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_2.png"/>
+            <img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_3.png"/>
+        </div>
+        <div id="luntai" class="nameAndList">
+            <label class="name_part">轮胎</label>
+            <div class="list_part" style="display: none;">
+                <ul>
+                    <li ng-repeat="item in list_luntai"><a href="" ng-click="goToCompanyDetails(item)">{{item}}</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

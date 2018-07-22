@@ -6,12 +6,12 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
 
     })
 
-    .controller('CompanyDetailsCtrl',function($scope, $route, $http, $stateParams) {
+    .controller('CompanyDetailsCtrl',function($scope, $route, $http, $state,$stateParams) {
         var companyName = $stateParams.companyName;
         // console.log(companyName)
         $scope.companyDetails = {
             stkcd: 'xxx',
-            compNanme: 'xxx',
+            compName: 'xxx',
             compNameEng: 'xxx',
             nature: 'xxx',
             foundDate: 'xxx',
@@ -20,7 +20,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             fiscalDate: 'xxx',
             business: 'xxx',
             briefing: 'xxx',
-            majorProdutType: 'xxx',
+            majorProductType: 'xxx',
             majorProductName: 'xxx',
             employee: 'xxx',
             administrativeDivision: 'xxx',
@@ -35,7 +35,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             website: 'xxx',
             disclose: 'xxx',
             registerNumber: 'xxx',
-            orgnizationCode: 'xxx',
+            organizationCode: 'xxx',
             reportCur: 'xxx',
             listingOrNot: 'xxx',
             mainProduct: 'xxx',
@@ -46,5 +46,12 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             sar: 'xxx',
             crtinDPDirector: 'xxx',
             frminDPDirector: 'xxx'
+        }
+
+        /**
+         * 返回上一页（即行业信息界面）
+         */
+        $scope.goBack = function (){
+            history.back()
         }
     })
