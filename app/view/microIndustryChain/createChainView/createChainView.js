@@ -7,60 +7,57 @@ angular.module('myApp.microIndustryChain.createChainView', [
     })
 
     .controller('CreateChainViewCtrl',function($scope, $route, $http) {
-
+        //DOM对象化
         let canvas = document.getElementById("canvas");
         let context = canvas.getContext("2d");
         let topElement = document.getElementById("topElement");
         let nodeDiv = document.getElementById("nodeDiv");
-        let canvasWidth = canvas.width;
-        let canvasHeight = canvas.height;
-        let nextNodePositionX = 100;
-        let nextNodePositionY = 50;
-        let nodePositionList = [];
-        let connectionList = [];
-        let nextNodeID = 1;
+        let connectionBackground = document.getElementById("connectionBackground");
+        let connectionContext = connectionBackground.getContext("2d");
+        let netBackground = document.getElementById("netBackground");
+        let netContext = netBackground.getContext("2d");
 
+        //可调DOM参数
+        let canvasWidth = 1000;//三层的 宽和高
+        let canvasHeight = 500;
+        canvas.style.left = "100px";//三层的 页面边距
+        canvas.style.top = "150px";
+        let connectionLineWidth = 5;//连线层 连线宽度
+        let connectionLineColor = "rgba(0,0,0,0.5)";//连线层 连线颜色
+        let step = 15;//网格背景 网络间隔
+        let netColor = "rgba(0,0,0,0.1)";//网格背景 网络颜色
+        let nextNodePositionX = 100;//新增节点 位置
+        let nextNodePositionY = 50;
+        let nextNodeID = 1;//新增节点 ID
+
+        //DOM参数初始化
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        connectionBackground.width = canvas.width;//初始化 连线背景大小
+        connectionBackground.height = canvas.height;
+        connectionBackground.style.left = canvas.style.left;
+        connectionBackground.style.top = canvas.style.top;
+        connectionContext.lineWidth = connectionLineWidth;
+        netBackground.width = canvas.width;//初始化 网格背景大小
+        netBackground.height = canvas.height;
+        netBackground.style.left = canvas.style.left;
+        netBackground.style.top = canvas.style.top;
+
+        //高频更新变量
         let mouseDownNodeID = "";//当前鼠标点击的node
         let mouseDownAnchorID = "";
+        let nodeList = [];
+        let connectionList = [];
 
 
+        //DOM绑定方法
         $scope.addNewNode = function () {
-            let node = document.createElement("node");
-            let nodeText = document.createTextNode("新节点");
-            let nodeAnchorTop = document.createElement("nodeAnchorTop");
-            let nodeAnchorRight = document.createElement("nodeAnchorRight");
-            let nodeAnchorBottom = document.createElement("nodeAnchorBottom");
-            let nodeAnchorLeft = document.createElement("nodeAnchorLeft");
+            addNode();
+        };
 
-            node.className = "node";
-            node.id = "N" + nextNodeID;
-            node.style.left = nextNodePositionX + "px";
-            node.style.top = nextNodePositionY + "px";
-            node.style.width = 80 + "px";
-            node.style.height = 40 + "px";
-            nodePositionList[node.id] = {x:nextNodePositionX, y:nextNodePositionY}
-            nodeAnchorTop.className = "node-anchor-top";
-            nodeAnchorTop.id = "A" + nextNodeID + "1";
-            nodeAnchorRight.className = "node-anchor-right";
-            nodeAnchorRight.id = "A" + nextNodeID + "2";
-            nodeAnchorBottom.className = "node-anchor-bottom";
-            nodeAnchorBottom.id = "A" + nextNodeID + "3";
-            nodeAnchorLeft.className = "node-anchor-left";
-            nodeAnchorLeft.id = "A" + nextNodeID + "4";
-            node.appendChild(nodeText);
-            node.appendChild(nodeAnchorTop);
-            node.appendChild(nodeAnchorRight);
-            node.appendChild(nodeAnchorBottom);
-            node.appendChild(nodeAnchorLeft);
-            node.ondblclick = function () {
-            };
-
-            nodeDiv.appendChild(node);
-
-            nextNodeID += 1;
-            nextNodePositionX += 20;
-            nextNodePositionY += 20;
-
+        $scope.deleteNode = function () {
+            deleteNode(mouseDownNodeID);
+            refreshConnectionBackground();
         };
 
 
@@ -77,39 +74,29 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let anchorBeginPositionCacheY = 0;
         let connectionBeginNodeCache = "";
         let connectionEndNodeCache = "";
-        let saveStoragePositionWithScroll = function (ele) {//absolute型拖动
-            storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
-            storageClickPosition = {"x":window.event.clientX + document.documentElement.scrollLeft,"y":window.event.clientY + document.documentElement.scrollTop};
-        };
-        let calculateOffsetWithScroll = function () {
-            windowEndX = storageWindowPosition.x + window.event.clientX + document.documentElement.scrollLeft - storageClickPosition.x;
-            windowEndY = storageWindowPosition.y + window.event.clientY + document.documentElement.scrollTop - storageClickPosition.y;
-        };
-
-        let saveStoragePosition = function (ele) {//fix型拖动
-            storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
-            storageClickPosition = {"x":window.event.clientX ,"y":window.event.clientY};
-        };
-        let calculateOffset = function () {
-            windowEndX = storageWindowPosition.x + window.event.clientX - storageClickPosition.x;
-            windowEndY = storageWindowPosition.y + window.event.clientY - storageClickPosition.y;
-        };
         topElement.onmousedown = function (e) {
-            /**
-             * 如果鼠标的对象id以n开头，代表为node
-             */
-            if($(e.target).attr("id")[0] == 'N') {
+            //如果鼠标的对象id以n开头，代表为node
+            if ($(e.target).attr("id")[0] == 'N') {
                 mouseDownNodeID = $(e.target).attr("id");
-                saveStoragePositionWithScroll(document.getElementById(mouseDownNodeID));
-                canDragNode = true;
-            }
-            else if($(e.target).attr("id")[0] == 'A') {
-                mouseDownAnchorID = $(e.target).attr("id");
-                anchorBeginPositionCacheX = window.event.clientX - canvas.offsetLeft + document.documentElement.scrollLeft;
-                anchorBeginPositionCacheY = window.event.clientY - canvas.offsetTop + document.documentElement.scrollTop;
-                connectionBeginNodeCache = $(e.target).parent().attr("id");
-                canDragAnchor = true;
+                if (e.button == 0) {
+                    saveStoragePositionWithScroll(document.getElementById(mouseDownNodeID));
+                    canDragNode = true;
                 }
+                else if (e.button == 2) {
+                }
+            }
+
+            else if ($(e.target).attr("id")[0] == 'A') {
+                if(e.button == 0) {
+                    mouseDownAnchorID = $(e.target).attr("id");
+                    anchorBeginPositionCacheX = window.event.clientX - canvas.offsetLeft + document.documentElement.scrollLeft;
+                    anchorBeginPositionCacheY = window.event.clientY - canvas.offsetTop + document.documentElement.scrollTop;
+                    connectionBeginNodeCache = $(e.target).parent().attr("id");
+                    canDragAnchor = true;
+                }
+                else if(e.button == 2){
+                }
+            }
         };
         topElement.onmousemove = function (e) {
             if(canDragNode) {
@@ -117,7 +104,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 let node = document.getElementById(mouseDownNodeID);
                 node.style.left = windowEndX + "px";
                 node.style.top = windowEndY + "px";
-                connectionBackgroundRefresh();
+                refreshConnectionBackground();
             }
             else if(canDragAnchor) {
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -135,9 +122,18 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
         topElement.onmouseup = function (e) {
             if(canDragAnchor){
-                canDragAnchor = false;
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
-                if($(e.target).attr("id")[0] == 'A'){
+                if($(e.target).attr("id")[0] == 'N'){
+                    connectionEndNodeCache = $(e.target).attr("id");
+                    connectionList.push
+                    ({
+                        type:"normal",
+                        begin:connectionBeginNodeCache,
+                        end:connectionEndNodeCache
+                    });
+                    refreshConnectionBackground();
+                }
+                else if($(e.target).attr("id")[0] == 'A'){
                     connectionEndNodeCache = $(e.target).parent().attr("id");
                     connectionList.push
                         ({
@@ -145,29 +141,49 @@ angular.module('myApp.microIndustryChain.createChainView', [
                             begin:connectionBeginNodeCache,
                             end:connectionEndNodeCache
                         });
-                    connectionBackgroundRefresh();
+                    refreshConnectionBackground();
                 }
             }
-            else {
-                canDragNode = false;
-            }
+
+            canDragNode = false;
+            canDragAnchor = false;
+        };
+        let saveStoragePositionWithScroll = function (ele) {//absolute型拖动
+            storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
+            storageClickPosition = {"x":window.event.clientX + document.documentElement.scrollLeft,"y":window.event.clientY + document.documentElement.scrollTop};
+        };
+        let calculateOffsetWithScroll = function () {
+            windowEndX = storageWindowPosition.x + window.event.clientX + document.documentElement.scrollLeft - storageClickPosition.x;
+            windowEndY = storageWindowPosition.y + window.event.clientY + document.documentElement.scrollTop - storageClickPosition.y;
+        };
+        let saveStoragePosition = function (ele) {//fix型拖动
+            storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
+            storageClickPosition = {"x":window.event.clientX ,"y":window.event.clientY};
+        };
+        let calculateOffset = function () {
+            windowEndX = storageWindowPosition.x + window.event.clientX - storageClickPosition.x;
+            windowEndY = storageWindowPosition.y + window.event.clientY - storageClickPosition.y;
         };
 
 
-
         /**
-         *根据数据生成连线背景的实现
+         *网格背景的实现
          */
-        let connectionLineWidth = 5;
-        let connectionLineColor = "rgba(0,0,0,0.5)";
+        netContext.beginPath();
+        for (let i = step; i < netBackground.width; i += step){
+            netContext.moveTo(i, 0);
+            netContext.lineTo(i, netBackground.height);
+        }
+        for (let j = step; j < netBackground.height; j += step){
+            netContext.moveTo(0, j);
+            netContext.lineTo(netBackground.width, j);
+        }
+        netContext.strokeStyle = netColor;
+        netContext.stroke();
 
-        let connectionBackground = document.getElementById("connectionBackground");
-        let connectionContext = connectionBackground.getContext("2d");
-        connectionBackground.width = canvasWidth;//初始化背景大小
-        connectionBackground.height = canvasHeight;
-        connectionContext.lineWidth = connectionLineWidth;
 
-        let connectionBackgroundRefresh = function () {
+        //根据数据生成连线背景的实现
+        let refreshConnectionBackground = function () {
             connectionContext.clearRect(0, 0, canvasWidth, canvasHeight);
             connectionContext.beginPath();
             for(let i=0; i<connectionList.length; i++){
@@ -186,27 +202,59 @@ angular.module('myApp.microIndustryChain.createChainView', [
             connectionContext.stroke();
         };
 
-        /**
-         *网格背景的实现
-         */
-        let step = 15;//网络间隔
-        let netColor = "rgba(0,0,0,0.1)";//网络颜色
+        let addNode = function () {
+            let node = document.createElement("node");
+            let nodeText = document.createTextNode("新节点");
+            let nodeAnchorTop = document.createElement("nodeAnchorTop");
+            let nodeAnchorRight = document.createElement("nodeAnchorRight");
+            let nodeAnchorBottom = document.createElement("nodeAnchorBottom");
+            let nodeAnchorLeft = document.createElement("nodeAnchorLeft");
 
-        let netBackground = document.getElementById("netBackground");
-        let netContext = netBackground.getContext("2d");
+            node.className = "node";
+            node.id = "N" + nextNodeID;
+            node.setAttribute("data-toggle","context");
+            node.setAttribute("data-target","#node-menu");
+            node.style.left = nextNodePositionX + "px";
+            node.style.top = nextNodePositionY + "px";
+            node.style.width = 80 + "px";
+            node.style.height = 40 + "px";
+            nodeAnchorTop.className = "node-anchor-top";
+            nodeAnchorTop.id = "A" + nextNodeID + "1";
+            nodeAnchorRight.className = "node-anchor-right";
+            nodeAnchorRight.id = "A" + nextNodeID + "2";
+            nodeAnchorBottom.className = "node-anchor-bottom";
+            nodeAnchorBottom.id = "A" + nextNodeID + "3";
+            nodeAnchorLeft.className = "node-anchor-left";
+            nodeAnchorLeft.id = "A" + nextNodeID + "4";
+            node.appendChild(nodeText);
+            node.appendChild(nodeAnchorTop);
+            node.appendChild(nodeAnchorRight);
+            node.appendChild(nodeAnchorBottom);
+            node.appendChild(nodeAnchorLeft);
+            node.ondblclick = function () {
+            };
 
-        netBackground.width = canvasWidth;//初始化背景大小
-        netBackground.height = canvasHeight;
+            nodeList[node.id] = "新节点";//将node的id加入list
 
-        netContext.beginPath();
-        for (let i = step; i < netBackground.width; i += step){
-            netContext.moveTo(i, 0);
-            netContext.lineTo(i, netBackground.height);
-        }
-        for (let j = step; j < netBackground.height; j += step){
-            netContext.moveTo(0, j);
-            netContext.lineTo(netBackground.width, j);
-        }
-        netContext.strokeStyle = netColor;
-        netContext.stroke();
+            nodeDiv.appendChild(node);
+
+            nextNodeID += 1;
+            nextNodePositionX += 20;
+            nextNodePositionY += 20;
+        };
+
+        let deleteNode = function (nodeID) {
+            //删除页面元素
+            let nodeToDelete = document.getElementById(nodeID);
+            nodeToDelete.parentNode.removeChild(nodeToDelete);
+            //删除节点
+            delete nodeList[mouseDownNodeID];
+            //删除节点相关的联系
+            for(let i=0; i<connectionList.length; i++){
+                if(connectionList[i].begin == mouseDownNodeID || connectionList[i].end == mouseDownNodeID){
+                    connectionList.splice(i, 1);
+                    i--;
+                }
+            }
+        };
     });
