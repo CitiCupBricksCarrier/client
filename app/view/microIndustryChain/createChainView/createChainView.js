@@ -29,6 +29,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let nextNodePositionX = 100;//新增节点 位置
         let nextNodePositionY = 50;
         let nextNodeID = 1;//新增节点 ID
+        let nextConnectionID = 1;
 
         //DOM参数初始化
         canvas.width = canvasWidth;
@@ -46,8 +47,27 @@ angular.module('myApp.microIndustryChain.createChainView', [
         //高频更新变量
         let mouseDownNodeID = "";//当前鼠标点击的node
         let mouseDownAnchorID = "";
-        let nodeList = [];
+        let nodeList = [];//一个以ID为索引的字典
         let connectionList = [];
+        let undoList = [];
+        let redoList = [];
+        /**
+         *   connectionList格式：
+         *   ({
+                type:"normal",
+                begin:connectionBeginNodeCache,
+                end:connectionEndNodeCache
+             });
+         *
+         *
+         *   undoList格式：
+         *  ({
+                type: type, //操作类型，addNode,deleteNode,moveNode,addConnection ...(后续再增加）
+                id: id, //操作对象的ID
+                begin: begin, //操作前状态
+                end: end //操作后状态
+            })
+         */
 
 
         //DOM绑定方法
@@ -85,7 +105,6 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 else if (e.button == 2) {
                 }
             }
-
             else if ($(e.target).attr("id")[0] == 'A') {
                 if(e.button == 0) {
                     mouseDownAnchorID = $(e.target).attr("id");
@@ -121,27 +140,47 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
         };
         topElement.onmouseup = function (e) {
-            if(canDragAnchor){
+            if(canDragNode){
+                let node = document.getElementById(mouseDownNodeID);
+                let beginPosition = storageWindowPosition;
+                let endPosition = {
+                    x: parseInt(node.style.left),
+                    y: parseInt(node.style.top)
+                };
+                
+                pushUndoList("moveNode", mouseDownNodeID, beginPosition, endPosition);
+            }
+            else if(canDragAnchor){
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
                 if($(e.target).attr("id")[0] == 'N'){
                     connectionEndNodeCache = $(e.target).attr("id");
+                    let newConnectionID = "C" + nextConnectionID;
                     connectionList.push
                     ({
-                        type:"normal",
-                        begin:connectionBeginNodeCache,
-                        end:connectionEndNodeCache
+                        id: newConnectionID,
+                        type: "normal",
+                        begin: connectionBeginNodeCache,
+                        end: connectionEndNodeCache
                     });
+                    nextConnectionID ++;
                     refreshConnectionBackground();
+
+                    pushUndoList("addConnection", newConnectionID, "", "");
                 }
                 else if($(e.target).attr("id")[0] == 'A'){
                     connectionEndNodeCache = $(e.target).parent().attr("id");
+                    let newConnectionID = "C" + nextConnectionID;
                     connectionList.push
-                        ({
-                            type:"normal",
-                            begin:connectionBeginNodeCache,
-                            end:connectionEndNodeCache
-                        });
+                    ({
+                        id: newConnectionID,
+                        type: "normal",
+                        begin: connectionBeginNodeCache,
+                        end: connectionEndNodeCache
+                    });
+                    nextConnectionID ++;
                     refreshConnectionBackground();
+
+                    pushUndoList("addConnection", newConnectionID, "", "");
                 }
             }
 
@@ -149,16 +188,28 @@ angular.module('myApp.microIndustryChain.createChainView', [
             canDragAnchor = false;
         };
         let saveStoragePositionWithScroll = function (ele) {//absolute型拖动
-            storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
-            storageClickPosition = {"x":window.event.clientX + document.documentElement.scrollLeft,"y":window.event.clientY + document.documentElement.scrollTop};
+            storageWindowPosition = {
+                x: parseInt(ele.style.left),
+                y: parseInt(ele.style.top)
+            };
+            storageClickPosition = {
+                x: window.event.clientX + document.documentElement.scrollLeft,
+                y: window.event.clientY + document.documentElement.scrollTop
+            };
         };
         let calculateOffsetWithScroll = function () {
             windowEndX = storageWindowPosition.x + window.event.clientX + document.documentElement.scrollLeft - storageClickPosition.x;
             windowEndY = storageWindowPosition.y + window.event.clientY + document.documentElement.scrollTop - storageClickPosition.y;
         };
         let saveStoragePosition = function (ele) {//fix型拖动
-            storageWindowPosition = {"x":parseInt(ele.style.left),"y":parseInt(ele.style.top)};
-            storageClickPosition = {"x":window.event.clientX ,"y":window.event.clientY};
+            storageWindowPosition = {
+                x: parseInt(ele.style.left),
+                y: parseInt(ele.style.top)
+            };
+            storageClickPosition = {
+                x: window.event.clientX,
+                y: window.event.clientY
+            };
         };
         let calculateOffset = function () {
             windowEndX = storageWindowPosition.x + window.event.clientX - storageClickPosition.x;
@@ -180,6 +231,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         }
         netContext.strokeStyle = netColor;
         netContext.stroke();
+
 
 
         //根据数据生成连线背景的实现
@@ -241,6 +293,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
             nextNodeID += 1;
             nextNodePositionX += 20;
             nextNodePositionY += 20;
+
+            pushUndoList("addNode",node.id,"","");
         };
 
         let deleteNode = function (nodeID) {
@@ -250,11 +304,24 @@ angular.module('myApp.microIndustryChain.createChainView', [
             //删除节点
             delete nodeList[mouseDownNodeID];
             //删除节点相关的联系
+            let relativeConnectionList = [];
             for(let i=0; i<connectionList.length; i++){
                 if(connectionList[i].begin == mouseDownNodeID || connectionList[i].end == mouseDownNodeID){
+                    relativeConnectionList.push(connectionList[i]);//将这个联系加入相关联系队列，写入日志
                     connectionList.splice(i, 1);
                     i--;
                 }
             }
+
+            pushUndoList("deleteNode", nodeID, relativeConnectionList, "");
         };
+
+        let pushUndoList = function (type, id, begin, end) {
+            undoList.push({
+                type:type,
+                id:id,
+                begin:begin,
+                end:end
+            })
+        }
     });
