@@ -1,5 +1,4 @@
 <br>
-<script src="../../bower_components/echarts/dist/echarts.js"></script>
 
 <ul>
     <li><a ui-sref="macroIndustryDisplay.generalInfo">基本情况</a></li>
@@ -7,21 +6,20 @@
         <li><a ui-sref="" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()">行业指标</a></li>
         <div class="dataPane" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()" ng-show='toshowDataPane'>
             <a ui-sref="macroIndustryDisplay.sellNum">整车销量</a><br>
-            <a ui-sref="macroIndustryDisplay.industryData.holdNum">汽车保有量</a><br>
-            <a ui-sref="macroIndustryDisplay.industryData.capacity">行业产能</a><br>
-            <a ui-sref="macroIndustryDisplay.industryData.inventory">行业库存</a><br>
-            <a ui-sref="macroIndustryDisplay.industryData.price">价格</a><br>
-            <a ui-sref="macroIndustryDisplay.industryData.registerNum">汽车上牌量</a><br>
+            <a ui-sref="macroIndustryDisplay.holdNum">汽车保有量</a><br>
+            <a ui-sref="macroIndustryDisplay.capacity">行业产能</a><br>
+            <a ui-sref="macroIndustryDisplay.inventory">行业库存</a><br>
+            <a ui-sref="macroIndustryDisplay.price">价格</a><br>
+            <a ui-sref="macroIndustryDisplay.registerNum">汽车上牌量</a><br>
         </div>
 
         </div>
-    <li><a ui-sref="macroIndustryDisplay.sellNum">经济数据</a></li>
+    <li><a ui-sref="">经济数据</a></li>
     <li><a>财务数据</a></li>
     <li><a>行业地位</a></li>
     <li><a>主要上市公司</a></li>
     <li><a>行业资讯</a></li>
 </ul>
-<div id="main" style="width: 600px;height:400px;"></div>
 
 <ui-view></ui-view>
 
