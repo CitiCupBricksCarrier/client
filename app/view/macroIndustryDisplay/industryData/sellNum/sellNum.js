@@ -138,7 +138,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycxl'
+            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycfxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -514,7 +514,6 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             url: 'http://localhost:8080/industryData/sellNum/sycxl/sycfrllxxl'
         }).then(function successCallback(response) {
             var Data=response.data;
-            console.log(JSON.stringify(Data))
             var f1=[];
             var comdieselsaleschn =[];
             var comgassaleschn=[];
@@ -613,20 +612,19 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
         }).then(function successCallback(response) {
 
             var Data=response.data;
-            console.log(Data);
             var f1=[];
-            var coachsaleschn =[];
-            var imcomplcoachsaleschn=[];
-            var trucksaleschn=[];
-            var incompltrucksaleschn=[];
-            var semisaleschn=[];
+            var coachsalesmichn =[];
+            var imcomplcoachsalesmichn=[];
+            var trucksalesmichn=[];
+            var incompltrucksalesmichn=[];
+            var semisalesmichn=[];
             for(var i=0;i<Data.length;i++){
                 f1.push(Data[i].f1.substr(0,7));
-                coachsaleschn.push(Data[i].coachsaleschn);
-                imcomplcoachsaleschn.push(Data[i].imcomplcoachsaleschn);
-                trucksaleschn.push(Data[i].trucksaleschn);
-                incompltrucksaleschn.push(Data[i].incompltrucksaleschn);
-                semisaleschn.push(Data[i].semisaleschn);
+                coachsalesmichn.push(Data[i].coachsalesmichn);
+                imcomplcoachsalesmichn.push(Data[i].imcomplcoachsalesmichn);
+                trucksalesmichn.push(Data[i].trucksalesmichn);
+                incompltrucksalesmichn.push(Data[i].incompltrucksalesmichn);
+                semisalesmichn.push(Data[i].semisalesmichn);
             }
             var myChart11 = echarts.init(document.getElementById('zggnzzsycfcxxl'));
             // 指定图表的配置项和数据
@@ -647,33 +645,92 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 series: [{
                     name: '客车',
                     type: 'bar',
-                    data: coachsaleschn
+                    data: coachsalesmichn
                 },
                     {
                         name: '货车',
                         type: 'bar',
-                        data: trucksaleschn
+                        data: trucksalesmichn
                     },
                     {
                         name: '半挂牵引车',
                         type: 'bar',
-                        data: semisaleschn
+                        data: semisalesmichn
 
                     },
                     {
                         name: '客车非完整车辆',
                         type: 'bar',
-                        data: imcomplcoachsaleschn
+                        data: imcomplcoachsalesmichn
                     },
                     {
                         name: '货车非完整车辆',
                         type: 'bar',
-                        data: incompltrucksaleschn
+                        data: incompltrucksalesmichn
                     }]
             };
 
             // 使用刚指定的配置项和数据显示图表。
             myChart11.setOption(option);
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/industryData/sellNum/sycxl/gnzzsycfrllxxl'
+        }).then(function successCallback(response) {
+
+            var Data=response.data;
+            var f1=[];
+            var comdieselsalesmichn =[];
+            var comgassalesmichn=[];
+            var comotherfuelsalesmichn=[];
+
+            for(var i=0;i<Data.length;i++){
+                f1.push(Data[i].f1.substr(0,7));
+                comdieselsalesmichn.push(Data[i].comdieselsalesmichn);
+                comgassalesmichn.push(Data[i].comgassalesmichn);
+                comotherfuelsalesmichn.push(Data[i].comotherfuelsalesmichn);
+
+            }
+            var myChart12 = echarts.init(document.getElementById('zggnzzsycfrllxxl'));
+            // 指定图表的配置项和数据
+            var option = {
+                color:['#344996','#88A500','#FF7800'],
+                title: {
+                    text: '中国国内制造商用车分燃料类型销量'
+                },
+                tooltip: {},
+                legend: {
+                    data:['柴油','汽油','其他燃料'],
+                    y:'bottom'
+                },
+                xAxis: {
+                    data: f1
+                },
+                yAxis: {},
+                series: [{
+                    name: '柴油',
+                    type: 'bar',
+                    data: comdieselsalesmichn
+                },
+                    {
+                        name: '汽油',
+                        type: 'bar',
+                        data: comgassalesmichn
+                    },
+                    {
+                        name: '其他燃料',
+                        type: 'bar',
+                        data: comotherfuelsalesmichn
+
+                    }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart12.setOption(option);
 
         }, function errorCallback(response) {
             // 请求失败执行代码
