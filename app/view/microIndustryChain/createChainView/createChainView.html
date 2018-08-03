@@ -2,7 +2,7 @@
 this is create chain view
 <br>
 
-<div id="topElement" onselectstart="return false;">
+<div id="topElement" ng-mousedown="hideAllBoard()" onselectstart="return false;">
 
     <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
     <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
@@ -11,60 +11,64 @@ this is create chain view
     <div id="nodeDiv">
     </div>
 
+    <div id="leftToolBar">
+        <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
+    </div>
+
+    <div id="topToolBar">
+
+    </div>
+
+</div>
+
+
+
+<div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;">
     <div>
-        <button class="btn btn-success" ng-click="showAddNodeBoard()">add</button>
+        <p>节点名</p>
+        <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
     </div>
-
-    <div id="addNodeBoard" ng-show="isAddingNode">
-        <div>
-            <p>节点名</p>
-            <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
-        </div>
-        <div>
-            <p>股票代码</p>
-            <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
-        </div>
-        <div class="row center-block">
-            <button ng-click="hideAddNodeBoard()" class="btn btn-default">cancel</button>
-            <button ng-click="addNewNode()" class="btn btn-default">confirm</button>
-        </div>
+    <div>
+        <p>股票代码</p>
+        <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
-
-
-    <div id="editNodeBoard" ng-show="isEdittingNode">
-        <div>
-            <p>节点名</p>
-            <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
-        </div>
-        <div>
-            <p>股票代码</p>
-            <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
-        </div>
-        <div class="row center-block">
-            <button ng-click="hideEditNodeBoard()" class="btn btn-default">cancel</button>
-            <button ng-click="editNode()" class="btn btn-default">confirm</button>
-        </div>
+    <div class="row center-block">
+        <button ng-click="hideAddNodeBoard()" class="btn btn-default">取消</button>
+        <button ng-click="addNewNode()" class="btn btn-default">确认添加</button>
     </div>
+</div>
 
-
-
-    <div id="node-menu">
-        <ul class="dropdown-menu">
-            <li ng-click="showEditNodeBoard()"><a>修改</a></li>
-            <li class="divider"></li>
-            <li ng-click="deleteNode()"><a style="color: indianred">删除</a></li>
-        </ul>
+<div id="editNodeBoard" ng-show="isEdittingNode">
+    <div>
+        <p>节点名</p>
+        <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
     </div>
-
-    <div id="canvas-menu">
-        <ul class="dropdown-menu">
-            <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
-            <li class="divider"></li>
-            <li ng-click="undo()"><a>撤销</a></li>
-            <li ng-click="redo()"><a>重做</a></li>
-        </ul>
+    <div>
+        <p>股票代码</p>
+        <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
+    <div class="row center-block">
+        <button ng-click="hideEditNodeBoard()" class="btn btn-default">取消</button>
+        <button ng-click="editNode()" class="btn btn-default">确认修改</button>
+    </div>
+</div>
 
+<div id="node-menu">
+    <ul class="dropdown-menu">
+        <li ng-click="showEditNodeBoard()"><a>修改</a></li>
+        <li class="divider"></li>
+        <li ng-click="deleteNode()"><a style="color: indianred">删除</a></li>
+    </ul>
+</div>
+
+<div id="canvas-menu">
+    <ul class="dropdown-menu">
+        <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
+        <li ng-click="addEmptyNode()"><a>增加空节点</a></li>
+        <li class="divider"></li>
+        <li ng-click="undo()"><a>撤销</a></li>
+        <li ng-click="redo()"><a>重做</a></li>
+    </ul>
 </div>
 
 

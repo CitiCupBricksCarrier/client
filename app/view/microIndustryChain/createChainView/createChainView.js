@@ -16,28 +16,33 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let connectionContext = connectionBackground.getContext("2d");
         let netBackground = document.getElementById("netBackground");
         let netContext = netBackground.getContext("2d");
+        let leftToolBoard = document.getElementById("leftToolBoard");
+        let addNodeBoard = document.getElementById("addNodeBoard");
+        let editNodeBoard = document.getElementById("editNodeBoard");
         let addNodeNameInput = document.getElementById("addNodeNameInput");
         let addNodeStockInput = document.getElementById("addNodeStockInput");
         let editNodeNameInput = document.getElementById("editNodeNameInput");
         let editNodeStockInput = document.getElementById("editNodeStockInput");
 
         //可调DOM参数
-        let canvasWidth = 1000;//三层的 宽和高
-        let canvasHeight = 500;
-        canvas.style.left = "100px";//三层的 页面边距
-        canvas.style.top = "150px";
+        let canvasWidth = 2000;//三层的 宽和高
+        let canvasHeight = 1000;
+        let canvasLeft = 200;
+        let canvasTop = 150;
         let connectionLineWidth = 5;//连线层 连线宽度
         let connectionLineColor = "rgba(0,0,0,0.5)";//连线层 连线颜色
         let step = 15;//网格背景 网络间隔
         let netColor = "rgba(0,0,0,0.1)";//网格背景 网络颜色
-        let nextNodePositionX = 100;//新增节点 位置
-        let nextNodePositionY = 50;
+        let nextNodePositionX = canvasLeft + 10;//新增节点 位置
+        let nextNodePositionY = canvasTop + 10;
         let nextNodeID = 1;//新增节点 ID
         let nextConnectionID = 1;
 
         //DOM参数初始化
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
+        canvas.style.left = canvasLeft + "px";//三层的 页面边距
+        canvas.style.top = canvasTop + "px";
         connectionBackground.width = canvas.width;//初始化 连线背景大小
         connectionBackground.height = canvas.height;
         connectionBackground.style.left = canvas.style.left;
@@ -79,9 +84,13 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
 
         //DOM绑定方法
-        $scope.addNewNode = function () {
+        $scope.addNewNode = function () {//
             addNode(addNodeNameInput.value, addNodeStockInput.value);
             $scope.isAddingNode = false;
+        };
+
+        $scope.addEmptyNode = function () {
+            addNode("", "");
         };
 
         $scope.deleteNode = function () {
@@ -95,9 +104,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         $scope.showAddNodeBoard = function () {
+            window.event.stopPropagation();
             hideAllBoard();
             addNodeNameInput.value = "";
             addNodeStockInput.value = "";
+            addNodeBoard.style.left = window.event.clientX + "px";
+            addNodeBoard.style.top = window.event.clientY + "px";
             $scope.isAddingNode = true;
         };
         
@@ -106,15 +118,22 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         $scope.showEditNodeBoard = function () {
+            window.event.stopPropagation();
             hideAllBoard();
             let nodeCache = nodeList[mouseDownNodeID];
             editNodeNameInput.value = nodeCache.nodeName;
             editNodeStockInput.value = nodeCache.nodeStock;
+            editNodeBoard.style.left = window.event.clientX + "px";
+            editNodeBoard.style.top = window.event.clientY + "px";
             $scope.isEdittingNode = true;
         };
 
         $scope.hideEditNodeBoard = function () {
             $scope.isEdittingNode = false;
+        };
+
+        $scope.hideAllBoard = function () {
+            hideAllBoard();
         };
 
 
@@ -131,10 +150,16 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let anchorBeginPositionCacheY = 0;
         let connectionBeginNodeCache = "";
         let connectionEndNodeCache = "";
+        let mouseDownNode;
+        let mouseDownNodeWidth;
+        let mouseDownNodeHeight;
         topElement.onmousedown = function (e) {
             //如果鼠标的对象id以n开头，代表为node
             if ($(e.target).attr("id")[0] == 'N') {
                 mouseDownNodeID = $(e.target).attr("id");
+                mouseDownNode = document.getElementById(mouseDownNodeID);
+                mouseDownNodeWidth = parseInt(mouseDownNode.style.width);
+                mouseDownNodeHeight = parseInt(mouseDownNode.style.height);
                 if (e.button == 0) {
                     saveStoragePositionWithScroll(document.getElementById(mouseDownNodeID));
                     canDragNode = true;
@@ -157,9 +182,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
         topElement.onmousemove = function (e) {
             if(canDragNode) {
                 calculateOffsetWithScroll();
-                let node = document.getElementById(mouseDownNodeID);
-                node.style.left = windowEndX + "px";
-                node.style.top = windowEndY + "px";
+                if(windowEndX>canvasLeft && windowEndX<(canvasLeft+canvasWidth-mouseDownNodeWidth) && windowEndY>canvasTop && windowEndY<(canvasTop+canvasHeight-mouseDownNodeHeight) ) {
+                    mouseDownNode.style.left = windowEndX + "px";
+                    mouseDownNode.style.top = windowEndY + "px";
+                }
                 refreshConnectionBackground();
             }
             else if(canDragAnchor) {
