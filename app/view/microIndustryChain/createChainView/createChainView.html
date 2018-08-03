@@ -8,18 +8,49 @@ this is create chain view
     <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
     <canvas id="canvas" data-toggle="context" data-target="#canvas-menu" style="left: 0; top: 0;"></canvas>
 
+    <div id="nodeDiv">
+    </div>
 
     <div>
-        <button class="btn btn-success" ng-click="addNewNode()">add</button>
+        <button class="btn btn-success" ng-click="showAddNodeBoard()">add</button>
     </div>
 
-    <div id="nodeDiv">
-
+    <div id="addNodeBoard" ng-show="isAddingNode">
+        <div>
+            <p>节点名</p>
+            <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
+        </div>
+        <div>
+            <p>股票代码</p>
+            <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+        <div class="row center-block">
+            <button ng-click="hideAddNodeBoard()" class="btn btn-default">cancel</button>
+            <button ng-click="addNewNode()" class="btn btn-default">confirm</button>
+        </div>
     </div>
+
+
+    <div id="editNodeBoard" ng-show="isEdittingNode">
+        <div>
+            <p>节点名</p>
+            <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
+        </div>
+        <div>
+            <p>股票代码</p>
+            <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+        <div class="row center-block">
+            <button ng-click="hideEditNodeBoard()" class="btn btn-default">cancel</button>
+            <button ng-click="editNode()" class="btn btn-default">confirm</button>
+        </div>
+    </div>
+
+
 
     <div id="node-menu">
         <ul class="dropdown-menu">
-            <li><a>修改</a></li>
+            <li ng-click="showEditNodeBoard()"><a>修改</a></li>
             <li class="divider"></li>
             <li ng-click="deleteNode()"><a style="color: indianred">删除</a></li>
         </ul>
@@ -27,7 +58,10 @@ this is create chain view
 
     <div id="canvas-menu">
         <ul class="dropdown-menu">
-            <li ng-click="addNewNode()"><a>增加新的节点</a></li>
+            <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
+            <li class="divider"></li>
+            <li ng-click="undo()"><a>撤销</a></li>
+            <li ng-click="redo()"><a>重做</a></li>
         </ul>
     </div>
 

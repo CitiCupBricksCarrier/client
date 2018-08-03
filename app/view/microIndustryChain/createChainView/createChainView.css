@@ -12,7 +12,7 @@ a {
     cursor: auto;
     border: 1px solid #CCCCCC;
     background: rgba(255,255,255,0);
-    z-index: 1;
+    z-index: -1;
 }
 
 #connectionBackground{
@@ -20,7 +20,7 @@ a {
     display: block;
     border: 1px solid #CCCCCC;
     background: rgba(255,255,255,0);
-    z-index: 0;
+    z-index: -2;
 }
 
 #netBackground{
@@ -28,7 +28,45 @@ a {
     display: block;
     border: 1px solid #CCCCCC;
     background: rgba(255,255,255,1);
-    z-index: -1;
+    z-index: -3;
+}
+
+#addNodeBoard{
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 250px;
+    border: 1px solid #CCCCCC;
+    background: #FFF;
+    border-radius: 4px;
+    padding: 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+#addNodeBoard input{
+    width: 100%;
+}
+
+#editNodeBoard{
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 250px;
+    border: 1px solid #CCCCCC;
+    background: #FFF;
+    border-radius: 4px;
+    padding: 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+#editNodeBoard input{
+    width: 100%;
 }
 
 .node{
@@ -43,6 +81,9 @@ a {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+.node p{
+    pointer-events: none;
 }
 
 .node-anchor-right{
