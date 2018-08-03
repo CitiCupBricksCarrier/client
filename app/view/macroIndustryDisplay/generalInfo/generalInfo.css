@@ -1,9 +1,19 @@
 /*导航栏*/
 .navBar{
     position: fixed;
-    right: 5%;
+    /*right: 5%;*/
+    left: 3%;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 100;
+}
+.navBar li{
+    margin: 50px 0 50px 0;
+    transition: margin 1s;
+}
+.navBar li.active{
+    margin: 200px 0 200px 0;
+    /*transition: margin 0.5s;*/
 }
 .navBar .nav_item{
 
@@ -11,10 +21,32 @@
 .navBar .nav_item.active{
     color: #ff3333;
 }
+.navBar .vertical_line{
+    position: absolute;
+    width: 2px;
+    height: 80vh;
+    background: linear-gradient(rgba(70,70,70,0.1), rgba(160,160,160, 1), rgba(70,70,70,0.1)),
+                linear-gradient(to right, rgba(123, 123, 123, 0.1), rgba(160, 160, 160, 0.1));
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px;
+}
+
+/*各部分*/
+.part{
+    /*padding-left: 20%;*/
+    padding-left: 380px;
+}
 
 /*全景图*/
 .wholePic_container{
     position: relative;
+    min-width: 1230px;
+}
+.wholePic .wholeView{
+    width: 65%;
+    min-width: 800px;
 }
 .wholePic .partPic{
     width: 20%;
@@ -31,11 +63,26 @@
 .name_part{
     width: 150px;
     height: 30px;
+    /*cursor: pointer;*/
+}
+.companyList{
+    width: 35%;
+    /*display: inline-block;*/
+    position: absolute;
+    right: 0;
+    top:0;
+    min-width: 430px;
+    padding: 30px 0 0 50px;
+}
+.part_toTouch{
     cursor: pointer;
+    background: #00ccff;
 }
 /*单独每个的定位*/
 #luntai{
     position: absolute;
     top:50px;
     left:100px;
+    width: 150px;
+    height: 150px;
 }
