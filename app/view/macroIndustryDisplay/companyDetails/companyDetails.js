@@ -7,8 +7,8 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
     })
 
     .controller('CompanyDetailsCtrl',function($scope, $route, $http, $state,$stateParams) {
-        var companyName = $stateParams.companyName;
-        // console.log(companyName)
+        var stkcd_toShow = $stateParams.stkcd_toShow;
+        console.log(stkcd_toShow)
         $scope.companyDetails = {
             stkcd: 'xxx',
             compName: 'xxx',
@@ -54,4 +54,70 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
         $scope.goBack = function (){
             history.back()
         }
+
+        /**
+         * ------------------------------
+         * ------------------------------
+         * http请求
+         */
+        function getCompanyDetail() {
+            $http({
+                url: 'http://localhost:8080/generalInfo/companyDetail',
+                method: 'post',
+                // contentType: "application/json",
+                params: {
+                    stkid: stkcd_toShow
+                }
+            }).then(function successCallBack(response) {
+                console.log(response.data)
+                var data = response.data;
+                $scope.companyDetails = {
+                    stkcd: data.stkcd,
+                    compName: data.compname,
+                    compNameEng: data.compnameeng,
+                    nature: data.nature,
+                    foundDate: data.founddate,
+                    regCapital: data.regcapital,
+                    chairman: data.chairman,
+                    fiscalDate: data.fiscaldate,
+                    business: data.business,
+                    briefing: data.briefing,
+                    majorProductType: data.majorproducttype,
+                    majorProductName: data.majorproductname,
+                    employee: data.employee,
+                    administrativeDivision: data.administrativedivision,
+                    province: data.province,
+                    city: data.city,
+                    address: data.address,
+                    office: data.office,
+                    zipCode: data.zipcode,
+                    phone: data.phone,
+                    fax: data.fax,
+                    email: data.email,
+                    website: data.website,
+                    disclose: data.disclose,
+                    registerNumber: data.registernumber,
+                    organizationCode: data.orgnizationcode,
+                    reportCur: data.reportcur,
+                    listingOrNot: data.listingornot,
+                    mainProduct: data.mainproduct,
+                    compPrename: data.compprename,
+                    boardChairmen: data.boardchairmen,
+                    CEO: data.ceo,
+                    discloser: data.discloser,
+                    sar: data.sar,
+                    crtinDPDirector: data.crtindpdirector,
+                    frminDPDirector: data.frmindpdirector
+                }
+            },function errorCallBack(response) {
+                console.log(response);
+            });
+        }
+
+        /**
+         * ------------------------------
+         * ------------------------------
+         * 方法调用
+         */
+        getCompanyDetail();
     })

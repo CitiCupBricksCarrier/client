@@ -100,7 +100,8 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         //点击后跳转到对应公司的信息界面
         $scope.goToCompanyDetails = function (item) {
             // console.log('1')
-            $state.go('macroIndustryDisplay.companyDetails', {companyName: item})
+            var stkcd_toShow = item.stkcd;
+            $state.go('macroIndustryDisplay.companyDetails', {stkcd_toShow: stkcd_toShow})
         }
 
         /**

@@ -13,7 +13,7 @@ angular.module('myApp.macroIndustryDisplay', [
             })
         $stateProvider
             .state('macroIndustryDisplay.companyDetails', {
-                url: '/companyDetails/:companyName',
+                url: '/companyDetails/:stkcd_toShow',
                 templateUrl: 'view/macroIndustryDisplay/companyDetails/companyDetails.html',
                 controller: 'CompanyDetailsCtrl'
             })

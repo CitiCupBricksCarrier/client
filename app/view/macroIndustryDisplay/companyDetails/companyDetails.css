@@ -16,7 +16,7 @@ table tr td{
     /*background-color: #00ccff;*/
 }
 .td_value{
-    /*width: 300px;*/
-    /*min-width: 200px;*/
+    width: 300px;
+    min-width: 200px;
     /*background-color: #5bc0de;*/
 }
