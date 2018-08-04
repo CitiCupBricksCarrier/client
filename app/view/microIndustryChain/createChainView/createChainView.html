@@ -4,15 +4,24 @@ this is create chain view
 
 <div id="topElement" ng-mousedown="hideAllBoard()" onselectstart="return false;">
 
-    <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
-    <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
-    <canvas id="canvas" data-toggle="context" data-target="#canvas-menu" style="left: 0; top: 0;"></canvas>
+    <div>
+        <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="animeBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="canvas" data-toggle="context" data-target="#canvas-menu" style="left: 0; top: 0;"></canvas>
+    </div>
 
     <div id="nodeDiv">
     </div>
 
     <div id="leftToolBar">
-        <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
+        <div class="leftToolBarBlock">
+            <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
+            <button class="btn btn-default" ng-click="addEmptyNode()">addE</button>
+        </div>
+        <div class="leftToolBarBlock">
+
+        </div>
     </div>
 
     <div id="topToolBar">

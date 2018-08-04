@@ -16,7 +16,7 @@ a {
     z-index: -1;
 }
 
-#connectionBackground{
+#animeBackground{
     position: absolute;
     display: block;
     border: 1px solid #CCCCCC;
@@ -24,12 +24,20 @@ a {
     z-index: -2;
 }
 
+#connectionBackground{
+    position: absolute;
+    display: block;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,0);
+    z-index: -3;
+}
+
 #netBackground{
     position: absolute;
     display: block;
     border: 1px solid #CCCCCC;
     background: rgba(255,255,255,1);
-    z-index: -3;
+    z-index: -4;
 }
 
 #topToolBar{
@@ -51,8 +59,13 @@ a {
     border-right: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-#leftToolBar button{
+#leftToolBar .leftToolBarBlock{
+    display: flex;
+    flex-flow: row wrap;
     width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid #CCCCCC;
+    background: white;
 }
 
 #addNodeBoard{

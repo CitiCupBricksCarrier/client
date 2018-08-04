@@ -16,6 +16,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let connectionContext = connectionBackground.getContext("2d");
         let netBackground = document.getElementById("netBackground");
         let netContext = netBackground.getContext("2d");
+        let animeBackground = document.getElementById("animeBackground");
+        let animeContext = animeBackground.getContext("2d");
         let leftToolBoard = document.getElementById("leftToolBoard");
         let addNodeBoard = document.getElementById("addNodeBoard");
         let editNodeBoard = document.getElementById("editNodeBoard");
@@ -31,6 +33,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let canvasTop = 150;
         let connectionLineWidth = 5;//连线层 连线宽度
         let connectionLineColor = "rgba(0,0,0,0.5)";//连线层 连线颜色
+        let connectionLineAnimeWidth = 6;
+        let connectionLineAnimeColor = "rgba(255,215,0,1)";//连线层 动画颜色
         let step = 15;//网格背景 网络间隔
         let netColor = "rgba(0,0,0,0.1)";//网格背景 网络颜色
         let nextNodePositionX = canvasLeft + 10;//新增节点 位置
@@ -52,6 +56,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
         netBackground.height = canvas.height;
         netBackground.style.left = canvas.style.left;
         netBackground.style.top = canvas.style.top;
+        animeBackground.width = canvas.width;//初始化 动画背景大小
+        animeBackground.height = canvas.height;
+        animeBackground.style.left = canvas.style.left;
+        animeBackground.style.top = canvas.style.top;
+        animeContext.lineWidth = connectionLineAnimeWidth;
+        animeContext.strokeStyle = connectionLineAnimeColor;
 
         //$scope参数初始化
         $scope.isAddingNode = false;
@@ -156,10 +166,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
         topElement.onmousedown = function (e) {
             //如果鼠标的对象id以n开头，代表为node
             if ($(e.target).attr("id")[0] == 'N') {
+                stopAnimeBackground();
+                animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
                 mouseDownNodeID = $(e.target).attr("id");
                 mouseDownNode = document.getElementById(mouseDownNodeID);
-                mouseDownNodeWidth = parseInt(mouseDownNode.style.width);
-                mouseDownNodeHeight = parseInt(mouseDownNode.style.height);
+                mouseDownNodeWidth = parseFloat(mouseDownNode.style.width);
+                mouseDownNodeHeight = parseFloat(mouseDownNode.style.height);
                 if (e.button == 0) {
                     saveStoragePositionWithScroll(document.getElementById(mouseDownNodeID));
                     canDragNode = true;
@@ -190,16 +202,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
             else if(canDragAnchor) {
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
-                context.beginPath();
-                context.moveTo(
+                drawArrow(context,
                     anchorBeginPositionCacheX,
-                    anchorBeginPositionCacheY
-                );
-                context.lineTo(
+                    anchorBeginPositionCacheY,
                     window.event.clientX - canvas.offsetLeft + document.documentElement.scrollLeft,
-                    window.event.clientY - canvas.offsetTop + document.documentElement.scrollTop
-                );
-                context.stroke();
+                    window.event.clientY - canvas.offsetTop + document.documentElement.scrollTop,
+                    30, 12, 2, '#000');
             }
         };
         topElement.onmouseup = function (e) {
@@ -207,11 +215,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 let node = document.getElementById(mouseDownNodeID);
                 let beginPosition = storageWindowPosition;
                 let endPosition = {
-                    x: parseInt(node.style.left),
-                    y: parseInt(node.style.top)
+                    x: parseFloat(node.style.left),
+                    y: parseFloat(node.style.top)
                 };
 
                 pushUndoList("moveNode", mouseDownNodeID, beginPosition, endPosition);
+                startAnimeBackground();
             }
             else if(canDragAnchor){
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -252,8 +261,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
         let saveStoragePositionWithScroll = function (ele) {//absolute型拖动
             storageWindowPosition = {
-                x: parseInt(ele.style.left),
-                y: parseInt(ele.style.top)
+                x: parseFloat(ele.style.left),
+                y: parseFloat(ele.style.top)
             };
             storageClickPosition = {
                 x: window.event.clientX + document.documentElement.scrollLeft,
@@ -266,8 +275,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
         let saveStoragePosition = function (ele) {//fix型拖动
             storageWindowPosition = {
-                x: parseInt(ele.style.left),
-                y: parseInt(ele.style.top)
+                x: parseFloat(ele.style.left),
+                y: parseFloat(ele.style.top)
             };
             storageClickPosition = {
                 x: window.event.clientX,
@@ -283,17 +292,20 @@ angular.module('myApp.microIndustryChain.createChainView', [
         /**
          *网格背景的实现
          */
-        netContext.beginPath();
-        for (let i = step; i < netBackground.width; i += step){
-            netContext.moveTo(i, 0);
-            netContext.lineTo(i, netBackground.height);
-        }
-        for (let j = step; j < netBackground.height; j += step){
-            netContext.moveTo(0, j);
-            netContext.lineTo(netBackground.width, j);
-        }
-        netContext.strokeStyle = netColor;
-        netContext.stroke();
+        (function initializeNetBackground() {
+            netContext.beginPath();
+            for (let i = step; i < netBackground.width; i += step) {
+                netContext.moveTo(i, 0);
+                netContext.lineTo(i, netBackground.height);
+            }
+            for (let j = step; j < netBackground.height; j += step) {
+                netContext.moveTo(0, j);
+                netContext.lineTo(netBackground.width, j);
+            }
+            netContext.strokeStyle = netColor;
+            netContext.stroke();
+        })();
+
 
 
 
@@ -305,17 +317,57 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 let beginNode = document.getElementById(connectionList[i].begin);
                 let endNode = document.getElementById(connectionList[i].end);
                 connectionContext.moveTo(
-                    parseInt(beginNode.style.left) + parseInt(beginNode.style.width)/2 - canvas.offsetLeft + document.documentElement.scrollLeft,
-                    parseInt(beginNode.style.top) + parseInt(beginNode.style.height)/2 - canvas.offsetTop + document.documentElement.scrollTop
+                    parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft,
+                    parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop
                 );
                 connectionContext.lineTo(
-                    parseInt(endNode.style.left) + parseInt(endNode.style.width)/2 - canvas.offsetLeft + document.documentElement.scrollLeft,
-                    parseInt(endNode.style.top) + parseInt(endNode.style.height)/2 - canvas.offsetTop + document.documentElement.scrollTop
+                    parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft,
+                    parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop
                 );
             }
             connectionContext.strokeStyle = connectionLineColor;
             connectionContext.stroke();
         };
+
+
+
+        let animeI = 4.0;
+        let animeTime = 40.0;
+        let timeoutID;
+        function startAnimeBackground ()
+        {
+            animeI = animeI + 1.0;
+            if(animeI > animeTime){animeI = 4.0;}
+            animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            animeContext.beginPath();
+            for(let i=0; i<connectionList.length; i++){
+                let beginNode = document.getElementById(connectionList[i].begin);
+                let endNode = document.getElementById(connectionList[i].end);
+                let beginX = parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft;
+                let beginY = parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop;
+                let endX = parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft;
+                let endY = parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop;
+                animeContext.moveTo(
+                    beginX + ((animeI-4.0)/animeTime)*(endX - beginX),
+                    beginY + ((animeI-4.0)/animeTime)*(endY - beginY)
+                );
+                animeContext.lineTo(
+                    beginX + (animeI/animeTime)*(endX - beginX),
+                    beginY + (animeI/animeTime)*(endY - beginY)
+                );
+            }
+            animeContext.stroke();
+            timeoutID = setTimeout(startAnimeBackground, 50);
+        }
+
+        startAnimeBackground();
+
+        let stopAnimeBackground = function () {
+            clearTimeout(timeoutID);
+        };
+
+
+
 
         let addNode = function (name, stock) {
             let node = document.createElement("node");
@@ -348,8 +400,6 @@ angular.module('myApp.microIndustryChain.createChainView', [
             node.appendChild(nodeAnchorRight);
             node.appendChild(nodeAnchorBottom);
             node.appendChild(nodeAnchorLeft);
-            node.ondblclick = function () {
-            };
 
             nodeList[node.id] = {
                 nodeName: name,
@@ -406,5 +456,33 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let hideAllBoard = function () {
             $scope.isAddingNode = false;
             $scope.isEdittingNode = false;
+        };
+
+        let drawArrow = function(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
+            let angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+                angle1 = (angle + theta) * Math.PI / 180,
+                angle2 = (angle - theta) * Math.PI / 180,
+                topX = headlen * Math.cos(angle1),
+                topY = headlen * Math.sin(angle1),
+                botX = headlen * Math.cos(angle2),
+                botY = headlen * Math.sin(angle2);
+
+
+            ctx.beginPath();
+
+            ctx.moveTo(fromX, fromY);
+            ctx.lineTo(toX, toY);
+
+            // Reverse length on the other side
+            let arrowX = toX + topX;
+            let arrowY = toY + topY;
+            ctx.moveTo(arrowX, arrowY);
+            ctx.lineTo(toX, toY);
+            arrowX = toX + botX;
+            arrowY = toY + botY;
+            ctx.lineTo(arrowX, arrowY);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width;
+            ctx.stroke();
         }
     });
