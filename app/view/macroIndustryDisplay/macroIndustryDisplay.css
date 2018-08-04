@@ -1,11 +1,17 @@
-.bg_macro{
-    position: fixed;
-    top: 0;
-    background: radial-gradient(ellipse closest-corner at 55% 45%, rgb(92,92,92), rgb(62,62,62));
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+/*.bg_macro{*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*background: radial-gradient(ellipse closest-corner at 55% 45%, rgb(92,92,92), rgb(62,62,62));*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*z-index: -1;*/
+/*}*/
+body{
+    background: radial-gradient(ellipse closest-corner at 55% 45%, rgb(92,92,92), rgb(62,62,62)) no-repeat;
+    background-size: cover;
+    min-height: 100vh;
 }
+
 .dataPane{
     line-height: 20px;
     font-size: 10px;
@@ -41,6 +47,14 @@
     text-align: center;
     line-height: 60px;
     font-size: 14px;
-    color: #333;
+    color: rgb(156,156,156);
     cursor: pointer;
+    text-decoration: none;
+}
+.header_macro .module_nav .nav:active{
+    color: rgb(205,205,205);
+}
+.header_macro .module_nav .nav.active{
+    color: rgb(205,205,205);
+    font-weight: bold;
 }

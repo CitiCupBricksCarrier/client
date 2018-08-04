@@ -33,6 +33,15 @@ angular.module('myApp.macroIndustryDisplay', [
         $scope.hideDataPane=function () {
             $scope.toshowDataPane=false;
         }
+
+        //导航栏的点击效果
+        $('.header_macro .module_nav .nav').click(function (e) {
+            console.log($('.header_macro .module_nav .nav.active'))
+            $('.header_macro .module_nav .nav.active').removeClass('active');
+            $(this).addClass('active');
+            console.log($(this));
+        })
+
         //
         // var myChart = echarts.init(document.getElementById('main'));
         //
