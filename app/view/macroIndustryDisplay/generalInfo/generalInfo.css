@@ -10,16 +10,25 @@
 .navBar li{
     margin: 50px 0 50px 0;
     transition: margin 1s;
+    /*font-size: 15px;*/
+    color: rgba(140,140,140, 0.8);
 }
 .navBar li.active{
     margin: 200px 0 200px 0;
     /*transition: margin 0.5s;*/
+    font-size: 25px;
+    color: rgba(135,150,250, 0.8);
+    /*font-weight: bold;*/
+    transform: translateX(-1.5px);
 }
 .navBar .nav_item{
-
+    text-decoration: none;
+    transition: ease-in-out 0.5s;
+    color: rgba(140,140,140, 0.8);
+    padding-left: 15px;
 }
 .navBar .nav_item.active{
-    color: #ff3333;
+    color: rgba(135,150,250, 0.8);
 }
 .navBar .vertical_line{
     position: absolute;
