@@ -138,7 +138,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycfxl'
+            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -736,129 +736,283 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             // 请求失败执行代码
         });
 
-        var myChart8 = echarts.init(document.getElementById('zgsycxl'));
-        option = {
-            title: {
-                text: '中国商用车销量'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        myChart8.setOption(option);
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/qqcycxl'
+        }).then(function successCallback(response) {
+            var Data=response.data;
+            var f1=[];
+            var passsaleseur =[];
+            var passsalesworld=[];
 
-        var myChart9 = echarts.init(document.getElementById('zgsycfcxxl'));
-        option = {
-            title: {
-                text: '中国商用车分车型销量'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        myChart9.setOption(option);
+            for(var i=0;i<Data.length;i++){
+                f1.push(Data[i].f1.substr(0,4));
+                passsaleseur.push(Data[i].passsaleseur);
+                passsalesworld.push(Data[i].passsalesworld);
 
-        var myChart10 = echarts.init(document.getElementById('zgsycfrllxxl'));
-        option = {
-            title: {
-                text: '中国商用车分燃料类型销量'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        myChart10.setOption(option);
+            }
+            var myChart13 = echarts.init(document.getElementById('qqcycxl'));
+            // 指定图表的配置项和数据
+            var option = {
+                color:['#344996','#88A500'],
+                title: {
+                    text: '全球乘用车销量'
+                },
+                tooltip: {},
+                legend: {
+                    data:['全球','欧盟27国欧洲自由贸易区'],
+                    y:'bottom'
+                },
+                xAxis: {
+                    data: f1
+                },
+                yAxis: {},
+                series: [{
+                    name: '全球',
+                    type: 'bar',
+                    data: passsalesworld
+                },
+                    {
+                        name: '欧盟27国欧洲自由贸易区',
+                        type: 'bar',
+                        data: passsaleseur
+                    }]
+            };
 
-        var myChart11 = echarts.init(document.getElementById('zggnzzsycxl'));
-        option = {
-            title: {
-                text: '中国国内制造'+'\n'+'商用车销量'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        myChart11.setOption(option);
+            // 使用刚指定的配置项和数据显示图表。
+            myChart13.setOption(option);
 
-        var myChart12 = echarts.init(document.getElementById('zggnzzsycfcxxl'));
-        option = {
-            title: {
-                text: '中国国内制造'+'\n'+'商用车分车型销量'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        myChart12.setOption(option);
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
 
-        var myChart13 = echarts.init(document.getElementById('zggnzzsycfrllxxl'));
-        option = {
-            title: {
-                text: '中国国内制造'+'\n'+'商用车分燃料类型销量'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        myChart13.setOption(option);
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/qqsycxl'
+        }).then(function successCallback(response) {
+
+            var Data=response.data;
+            var f1=[];
+            var commersaleseur =[];
+            var commersalesworld=[];
+
+            for(var i=0;i<Data.length;i++){
+                f1.push(Data[i].f1.substr(0,4));
+                commersaleseur.push(Data[i].commersaleseur);
+                commersalesworld.push(Data[i].commersalesworld);
+
+            }
+            var myChart14 = echarts.init(document.getElementById('qqsycxl'));
+            // 指定图表的配置项和数据
+            var option = {
+                color:['#344996','#88A500'],
+                title: {
+                    text: '全球商用车销量'
+                },
+                tooltip: {},
+                legend: {
+                    data:['全球','欧盟27国欧洲自由贸易区'],
+                    y:'bottom'
+                },
+                xAxis: {
+                    data: f1
+                },
+                yAxis: {},
+                series: [{
+                    name: '全球',
+                    type: 'bar',
+                    data: commersalesworld
+                },
+                    {
+                        name: '欧盟27国欧洲自由贸易区',
+                        type: 'bar',
+                        data: commersaleseur
+                    }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart14.setOption(option);
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/mgqcxl'
+        }).then(function successCallback(response) {
+
+            var Data=response.data;
+            var f1=[];
+            var autosalesusa =[];
+            var basicsalesusa=[];
+            var trucksalesusa=[];
+
+            for(var i=0;i<Data.length;i++){
+                f1.push(Data[i].f1.substr(0,4));
+                autosalesusa.push(Data[i].autosalesusa);
+                basicsalesusa.push(Data[i].basicsalesusa);
+                trucksalesusa.push(Data[i].trucksalesusa);
+
+            }
+            var myChart15 = echarts.init(document.getElementById('mgqcxl'));
+            // 指定图表的配置项和数据
+            var option = {
+                color:['#344996','#88A500','#FF7800'],
+                title: {
+                    text: '美国汽车销量'
+                },
+                tooltip: {},
+                legend: {
+                    data:['汽车','基本型乘用车(轿车)','卡车'],
+                    y:'bottom'
+                },
+                xAxis: {
+                    data: f1
+                },
+                yAxis: {},
+                series: [{
+                    name: '汽车',
+                    type: 'bar',
+                    data: autosalesusa
+                },
+                    {
+                        name: '基本型乘用车(轿车)',
+                        type: 'bar',
+                        data: basicsalesusa
+                    },
+                    {
+                        name: '卡车',
+                        type: 'bar',
+                        data: trucksalesusa
+                    }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart15.setOption(option);
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/dgqcxl'
+        }).then(function successCallback(response) {
+
+            var Data=response.data;
+
+            var f1=[];
+            var passsalesger =[];
+            var commersalesger=[];
+
+            for(var i=0;i<Data.length;i++){
+                f1.push(Data[i].f1.substr(0,7));
+                passsalesger.push(Data[i].passsalesger);
+                commersalesger.push(Data[i].commersalesger);
+
+            }
+            var myChart16 = echarts.init(document.getElementById('dgqcxl'));
+            // 指定图表的配置项和数据
+            var option = {
+                color:['#344996','#88A500'],
+                title: {
+                    text: '德国汽车销量'
+                },
+                tooltip: {},
+                legend: {
+                    data:['乘用车','商用车'],
+                    y:'bottom'
+                },
+                xAxis: {
+                    data: f1
+                },
+                yAxis: {},
+                series: [{
+                    name: '乘用车',
+                    type: 'bar',
+                    data: passsalesger
+                },
+                    {
+                        name: '商用车',
+                        type: 'bar',
+                        data: commersalesger
+                    }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart16.setOption(option);
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/rbqcxl'
+        }).then(function successCallback(response) {
+
+            var Data=response.data;
+
+            var f1=[];
+            var autosalesjapan =[];
+            var coachsalesjapan=[];
+            var passsalesjapan=[];
+            var trucksalesjapan=[];
+
+            for(var i=0;i<Data.length;i++){
+                f1.push(Data[i].f1.substr(0,7));
+                autosalesjapan.push(Data[i].autosalesjapan);
+                coachsalesjapan.push(Data[i].coachsalesjapan);
+                passsalesjapan.push(Data[i].passsalesjapan);
+                trucksalesjapan.push(Data[i].trucksalesjapan);
+
+            }
+            var myChart17 = echarts.init(document.getElementById('rbqcxl'));
+            // 指定图表的配置项和数据
+            var option = {
+                color:['#344996','#88A500','#FF7800','#E52600'],
+                title: {
+                    text: '日本汽车销量'
+                },
+                tooltip: {},
+                legend: {
+                    data:['乘用车','货车','客车','汽车(右)'],
+                    y:'bottom'
+                },
+                xAxis: {
+                    data: f1
+                },
+                yAxis: {},
+                series: [{
+                    name: '乘用车',
+                    type: 'bar',
+                    data: passsalesjapan
+                },
+                    {
+                        name: '货车',
+                        type: 'bar',
+                        data: trucksalesjapan
+                    },
+                    {
+                        name: '客车',
+                        type: 'bar',
+                        data: coachsalesjapan
+                    },
+                    {
+                        name: '汽车(右)',
+                        type: 'bar',
+                        data: autosalesjapan
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart17.setOption(option);
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+
     });

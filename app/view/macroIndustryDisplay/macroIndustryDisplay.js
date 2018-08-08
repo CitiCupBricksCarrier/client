@@ -61,7 +61,7 @@ var app=angular.module('myApp.macroIndustryDisplay', [
         }
         $scope.hideDataPane=function () {
             $scope.toshowDataPane=false;
-        }
+        };
 
 
     });
