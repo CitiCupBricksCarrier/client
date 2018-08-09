@@ -9,7 +9,7 @@
 }
 .navBar li{
     margin: 50px 0 50px 0;
-    transition: margin 1s;
+    transition: margin 1s, color 1s;
     /*font-size: 15px;*/
     color: rgba(140,140,140, 0.8);
 }
@@ -19,7 +19,13 @@
     font-size: 25px;
     color: rgba(135,150,250, 0.8);
     /*font-weight: bold;*/
-    transform: translateX(-1.5px);
+    /*transform: translateX(-1.5px);*/
+    transform: translateX(-17px);
+    list-style: none;
+}
+.navBar li .icon_active{
+    width: 40px;
+    display: none;
 }
 .navBar .nav_item{
     text-decoration: none;
@@ -47,6 +53,9 @@
     /*padding-left: 20%;*/
     padding-left: 380px;
 }
+.part .blank{
+    height: 50px;
+}
 
 /*全景图*/
 .wholePic_container{
@@ -54,8 +63,28 @@
     min-width: 1230px;
 }
 .wholePic .wholeView{
-    width: 65%;
+    /*width: 65%;*/
+    /*height: 95vh;*/
+    height: 925px;
     min-width: 800px;
+    transition: all 0.3s;
+}
+.wholePic .wholeView.active{
+    transform: translateX(-15%);
+}
+.wholePic .wholeView.cover{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.touchDescription{
+    /*background: #255;*/
+    width: 210px;
+    height: 60px;
+    position: absolute;
+    left: 1000px;
+    top: 700px;
 }
 .wholePic .partPic{
     width: 20%;

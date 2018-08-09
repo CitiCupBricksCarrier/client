@@ -41,14 +41,16 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                     // console.log(part.offset().top + "  " + $(window).scrollTop())
                     var targetNav = $(".navBar a[href='#" + part.attr('id') + "']");
 
-                    if($('.nav_item.active').attr('href') == targetNav.attr('href')){
+                    if($('.nav_item.active').attr('href') == targetNav.attr('href')){           //如果未改变
                         // console.log('same')
                         break;
                     }
                     $('.nav_item.active').parent().removeClass('active');
+                    $('.nav_item.active').parent().children('.icon_active').hide();      //隐藏汽车icon
                     $('.nav_item.active').removeClass('active');
                     targetNav.addClass('active');
                     targetNav.parent().addClass('active');
+                    targetNav.parent().children('.icon_active').show();             //显示汽车icon
                     break;
                 }
             }
@@ -85,6 +87,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 listNode.hide('fast');
             }
         })
+        //点击对应部件
         $('.part_toTouch').click(function (e) {
             $scope.category_toShow = $(this).attr('name');
             console.log(dataArr[propArr.indexOf($scope.category_toShow)]);
@@ -93,6 +96,12 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             var listNode = $('.companyList');
             $scope.$apply();        //应用更改
 
+            //左移全景图
+            $('.wholePic .wholeView').addClass('active');
+            //点击提示文字消失
+            $('.wholePic .touchDescription').css('opacity', 0);
+
+            //显示公司列表
             if(listNode.is(':hidden')){
                 listNode.show('fast');
             }
@@ -100,6 +109,21 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 listNode.hide('fast');
             }
         })
+        //鼠标移到部件上,模糊，高亮等
+        $('.part_toTouch').mouseenter(function (e) {
+            // console.log($($('.wholePic .wholeView')[0]))
+            $($('.wholePic .wholeView')[0]).css('opacity', 0);
+            $($('.wholePic .wholeView.cover')[0]).css('opacity', 1);
+        })
+        //鼠标移出部件，恢复
+        $('.part_toTouch').mouseleave(function (e) {
+            // console.log($($('.wholePic .wholeView')[0]))
+            if(!$('.wholePic .wholeView').hasClass('active')){          //只有未点击部件的时候才恢复
+                $($('.wholePic .wholeView')[0]).css('opacity', 1);
+                $($('.wholePic .wholeView.cover')[0]).css('opacity', 0);
+            }
+        })
+
         //点击后跳转到对应公司的信息界面
         $scope.goToCompanyDetails = function (item) {
             // console.log('1')
