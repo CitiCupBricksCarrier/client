@@ -5,7 +5,6 @@ var app=angular.module('myApp.macroIndustryDisplay', [
     'myApp.macroIndustryDisplay.capacity',
     'myApp.macroIndustryDisplay.inventory',
     'myApp.macroIndustryDisplay.price',
-    'myApp.macroIndustryDisplay.registerNum',
 
 ])
 
@@ -25,33 +24,28 @@ var app=angular.module('myApp.macroIndustryDisplay', [
         $stateProvider
             .state('macroIndustryDisplay.holdNum',{
                 url:'/holdNum',
-                templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/holdNum.html',
+                templateUrl: 'view/macroIndustryDisplay/industryData/holdNum/holdNum.html',
                 controller: 'holdNumCtrl'
             });
         $stateProvider
             .state('macroIndustryDisplay.capacity',{
                 url:'/capacity',
-                templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/capacity.html',
+                templateUrl: 'view/macroIndustryDisplay/industryData/capacity/capacity.html',
                 controller: 'capacityCtrl'
             });
         $stateProvider
             .state('macroIndustryDisplay.inventory',{
                 url:'/inventory',
-                templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/inventory.html',
+                templateUrl: 'view/macroIndustryDisplay/industryData/inventory/inventory.html',
                 controller: 'inventoryCtrl'
             });
         $stateProvider
             .state('macroIndustryDisplay.price',{
                 url:'/price',
-                templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/price.html',
+                templateUrl: 'view/macroIndustryDisplay/industryData/price/price.html',
                 controller: 'priceCtrl'
             });
-        $stateProvider
-            .state('macroIndustryDisplay.registerNum',{
-                url:'/registerNum',
-                templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/registerNum.html',
-                controller: 'registerNumCtrl'
-            });
+
     })
 
     .controller('MacroIndustryDisplayCtrl',function($scope, $route, $http) {
