@@ -19,8 +19,26 @@ this is create chain view
             <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
             <button class="btn btn-default" ng-click="addEmptyNode()">addE</button>
         </div>
-        <div class="leftToolBarBlock">
 
+        <ul class="nav nav-tabs small">
+            <li class="active"><a href="#nodeHistory" data-toggle="tab">节点</a></li>
+            <li><a href="#connectionHistory" data-toggle="tab">联系</a></li>
+        </ul>
+        <div class="historyBlock">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="nodeHistory">
+                    <div class="historyBlockCell" ng-repeat="id in nodeIDList">
+                        <div>{{nodeList[id].nodeName}}</div>
+                        <button ng-click="deleteNodeByHistory(id)" class="btn-sm btn-default">删除</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="connectionHistory">
+                    <div class="historyBlockCell" ng-repeat="connection in connectionList">
+                        <div>{{connection.id}}</div>
+                        <button ng-click="deleteConnectionByHistory(connection.begin, connection.end)" class="btn-sm btn-default">删除</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -66,7 +84,7 @@ this is create chain view
     <ul class="dropdown-menu">
         <li ng-click="showEditNodeBoard()"><a>修改</a></li>
         <li class="divider"></li>
-        <li ng-click="deleteNode()"><a style="color: indianred">删除</a></li>
+        <li ng-click="deleteNodeByMenu()"><a style="color: indianred">删除</a></li>
     </ul>
 </div>
 

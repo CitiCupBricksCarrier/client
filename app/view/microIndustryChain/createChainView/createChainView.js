@@ -70,13 +70,15 @@ angular.module('myApp.microIndustryChain.createChainView', [
         //高频更新变量
         let mouseDownNodeID = "";//当前鼠标点击的node
         let mouseDownAnchorID = "";
-        let nodeList = [];//一个以ID为索引的字典
-        let connectionList = [];
+        $scope.nodeIDList = [];
+        $scope.nodeList = [];//一个以ID为索引的字典
+        $scope.connectionList = [];
         let undoList = [];
         let redoList = [];
         /**
-         *   connectionList格式：
+         *   $scope.connectionList格式：
          *   ({
+         *      id:
                 type:"normal",
                 begin:connectionBeginNodeCache,
                 end:connectionEndNodeCache
@@ -103,14 +105,24 @@ angular.module('myApp.microIndustryChain.createChainView', [
             addNode("", "");
         };
 
-        $scope.deleteNode = function () {
+        $scope.deleteNodeByMenu = function () {
             deleteNode(mouseDownNodeID);
+            refreshConnectionBackground();
+        };
+
+        $scope.deleteNodeByHistory = function (nodeID) {
+            deleteNode(nodeID);
             refreshConnectionBackground();
         };
 
         $scope.editNode = function () {
             editNode(mouseDownNodeID);
             $scope.isEdittingNode = false;
+        };
+
+        $scope.deleteConnectionByHistory = function (begin, end) {
+            deleteConnection(begin, end);
+            refreshConnectionBackground();
         };
 
         $scope.showAddNodeBoard = function () {
@@ -122,7 +134,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             addNodeBoard.style.top = window.event.clientY + "px";
             $scope.isAddingNode = true;
         };
-        
+
         $scope.hideAddNodeBoard = function () {
             $scope.isAddingNode = false;
         };
@@ -130,7 +142,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.showEditNodeBoard = function () {
             window.event.stopPropagation();
             hideAllBoard();
-            let nodeCache = nodeList[mouseDownNodeID];
+            let nodeCache = $scope.nodeList[mouseDownNodeID];
             editNodeNameInput.value = nodeCache.nodeName;
             editNodeStockInput.value = nodeCache.nodeStock;
             editNodeBoard.style.left = window.event.clientX + "px";
@@ -226,36 +238,19 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
                 if($(e.target).attr("id")[0] == 'N'){
                     connectionEndNodeCache = $(e.target).attr("id");
-                    let newConnectionID = "C" + nextConnectionID;
-                    connectionList.push
-                    ({
-                        id: newConnectionID,
-                        type: "normal",
-                        begin: connectionBeginNodeCache,
-                        end: connectionEndNodeCache
-                    });
-                    nextConnectionID ++;
-                    refreshConnectionBackground();
+                    addConnection("normal", connectionBeginNodeCache, connectionEndNodeCache);
 
-                    pushUndoList("addConnection", newConnectionID, "", "");
+                    refreshConnectionBackground();
                 }
                 else if($(e.target).attr("id")[0] == 'A'){
                     connectionEndNodeCache = $(e.target).parent().attr("id");
-                    let newConnectionID = "C" + nextConnectionID;
-                    connectionList.push
-                    ({
-                        id: newConnectionID,
-                        type: "normal",
-                        begin: connectionBeginNodeCache,
-                        end: connectionEndNodeCache
-                    });
-                    nextConnectionID ++;
-                    refreshConnectionBackground();
+                    addConnection("normal", connectionBeginNodeCache, connectionEndNodeCache);
 
-                    pushUndoList("addConnection", newConnectionID, "", "");
+                    refreshConnectionBackground();
                 }
             }
 
+            $scope.$apply();
             canDragNode = false;
             canDragAnchor = false;
         };
@@ -313,9 +308,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let refreshConnectionBackground = function () {
             connectionContext.clearRect(0, 0, canvasWidth, canvasHeight);
             connectionContext.beginPath();
-            for(let i=0; i<connectionList.length; i++){
-                let beginNode = document.getElementById(connectionList[i].begin);
-                let endNode = document.getElementById(connectionList[i].end);
+            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+                let beginNode = document.getElementById($scope.connectionList[i].begin);
+                let endNode = document.getElementById($scope.connectionList[i].end);
                 connectionContext.moveTo(
                     parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft,
                     parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop
@@ -331,18 +326,21 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
 
 
+        /**
+         *资金流动 动画实现
+         */
         let animeI = 4.0;
         let animeTime = 40.0;
-        let timeoutID;
+        let animeTimeoutID;
         function startAnimeBackground ()
         {
             animeI = animeI + 1.0;
             if(animeI > animeTime){animeI = 4.0;}
             animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
             animeContext.beginPath();
-            for(let i=0; i<connectionList.length; i++){
-                let beginNode = document.getElementById(connectionList[i].begin);
-                let endNode = document.getElementById(connectionList[i].end);
+            for(let i=0; i<$scope.connectionList.length; i++){
+                let beginNode = document.getElementById($scope.connectionList[i].begin);
+                let endNode = document.getElementById($scope.connectionList[i].end);
                 let beginX = parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft;
                 let beginY = parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop;
                 let endX = parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft;
@@ -357,14 +355,28 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 );
             }
             animeContext.stroke();
-            timeoutID = setTimeout(startAnimeBackground, 50);
+            animeTimeoutID = setTimeout(startAnimeBackground, 50);
         }
-
         startAnimeBackground();
 
         let stopAnimeBackground = function () {
-            clearTimeout(timeoutID);
+            clearTimeout(animeTimeoutID);
         };
+
+
+        /**
+         *定时刷新的实现（解决删除关联时，不能立刻反映到图上？）
+         */
+        let startAutoRefreshConnectionBackground = function () {
+            refreshConnectionBackground();
+            connectionTimeoutID = setTimeout(startAutoRefreshConnectionBackground, 500);
+        };
+        startAutoRefreshConnectionBackground();
+
+        let stopAutoRefreshConnectionBackground = function () {
+            clearTimeout(connectionTimeoutID);
+        };
+
 
 
 
@@ -401,10 +413,11 @@ angular.module('myApp.microIndustryChain.createChainView', [
             node.appendChild(nodeAnchorBottom);
             node.appendChild(nodeAnchorLeft);
 
-            nodeList[node.id] = {
+            $scope.nodeList[node.id] = {
                 nodeName: name,
                 nodeStock: stock,
             };
+            $scope.nodeIDList.push(node.id);
 
             nodeDiv.appendChild(node);
 
@@ -420,13 +433,19 @@ angular.module('myApp.microIndustryChain.createChainView', [
             let nodeToDelete = document.getElementById(nodeID);
             nodeToDelete.parentNode.removeChild(nodeToDelete);
             //删除节点
-            delete nodeList[mouseDownNodeID];
+            delete $scope.nodeList[nodeID];
+            for(let i=0, length=$scope.nodeIDList.length; i<length; i++){
+                if($scope.nodeIDList[i] == nodeID){
+                    $scope.nodeIDList.splice(i, 1);
+                    break;
+                }
+            }
             //删除节点相关的联系
             let relativeConnectionList = [];
-            for(let i=0; i<connectionList.length; i++){
-                if(connectionList[i].begin == mouseDownNodeID || connectionList[i].end == mouseDownNodeID){
-                    relativeConnectionList.push(connectionList[i]);//将这个联系加入相关联系队列，写入日志
-                    connectionList.splice(i, 1);
+            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+                if($scope.connectionList[i].begin == nodeID || $scope.connectionList[i].end == nodeID){
+                    relativeConnectionList.push($scope.connectionList[i]);//将这个联系加入相关联系队列，写入日志
+                    $scope.connectionList.splice(i, 1);
                     i--;
                 }
             }
@@ -435,13 +454,41 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         let editNode = function (nodeID) {
-            nodeList[nodeID] = {
+            $scope.nodeList[nodeID] = {
                 nodeName:editNodeNameInput.value,
                 nodeStock:editNodeStockInput.value,
             };
             let nodeToEdit = document.getElementById(nodeID);
             let nodeName = nodeToEdit.children[0];
             nodeName.innerText = editNodeNameInput.value;
+        };
+
+        let addConnection = function (type, begin, end) {
+            if(begin != end) {
+                for(let i=0, length=$scope.connectionList.length; i<length; i++){
+                    if( ($scope.connectionList[i].begin == begin) && ($scope.connectionList[i].end == end) ){
+                        return;
+                    }
+                }
+                let newConnectionID = "C" + nextConnectionID;
+                $scope.connectionList.push
+                ({
+                    id: newConnectionID,
+                    type: type,
+                    begin: begin,
+                    end: end
+                });
+                nextConnectionID++;
+            }
+        };
+
+        let deleteConnection = function (begin, end) {
+            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+                if($scope.connectionList[i].begin == begin && $scope.connectionList[i].end == end){
+                    $scope.connectionList.splice(i, 1);
+                    i--;
+                }
+            }
         };
 
         let pushUndoList = function (type, id, begin, end) {
