@@ -96,16 +96,38 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             var listNode = $('.companyList');
             $scope.$apply();        //应用更改
 
-            //左移全景图
-            $('.wholePic .wholeView').addClass('active');
-            //点击提示文字消失
-            $('.wholePic .touchDescription').css('opacity', 0);
+            //部件高亮
+            var oldToShow = $('.wholePic .wholeView'+'.isShow');
+            var newToShow = $('.wholePic .wholeView'+'.'+this.classList[1]);
+
+            if(oldToShow.attr('class') == newToShow.attr('class')){
+                oldToShow.css('opacity', 0);      //取消之前高亮
+                oldToShow.removeClass('isShow');
+
+                //右移全景图
+                $('.wholePic .wholeView').removeClass('active');
+                $('.wholePic .part_toTouch').removeClass('active');
+                //点击提示文字显示
+                $('.wholePic .touchDescription').css('opacity', 1);
+            }
+            else{
+                oldToShow.css('opacity', 0);      //取消之前高亮
+                oldToShow.removeClass('isShow');
+                newToShow.addClass('isShow');         //记录被点击后在显示高亮的
+                newToShow.css('opacity', 1);      //新的部件高亮
+
+                //左移全景图
+                $('.wholePic .wholeView').addClass('active');
+                $('.wholePic .part_toTouch').addClass('active');
+                //点击提示文字消失
+                $('.wholePic .touchDescription').css('opacity', 0);
+            }
 
             //显示公司列表
             if(listNode.is(':hidden')){
                 listNode.show('fast');
             }
-            else{
+            else if(oldToShow.attr('class') == newToShow.attr('class')){          //只有点击正在显示的部件才隐藏
                 listNode.hide('fast');
             }
         })
@@ -114,6 +136,12 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             // console.log($($('.wholePic .wholeView')[0]))
             $($('.wholePic .wholeView')[0]).css('opacity', 0);
             $($('.wholePic .wholeView.cover')[0]).css('opacity', 1);
+            // $($('.wholePic .wholeView.cover')[1]).css('opacity', 1);
+            // console.log($('.wholePic .wholeView.cover'+'.'+$(this).attr('id')))
+            // $('.wholePic .wholeView.cover'+'.'+$(this).attr('id')).css('opacity', 1);
+            // console.log(this.classList[1])
+            // console.log($('.wholePic .wholeView.cover'+'.'+this.classList[1]))
+            $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 1);
         })
         //鼠标移出部件，恢复
         $('.part_toTouch').mouseleave(function (e) {
@@ -121,6 +149,12 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             if(!$('.wholePic .wholeView').hasClass('active')){          //只有未点击部件的时候才恢复
                 $($('.wholePic .wholeView')[0]).css('opacity', 1);
                 $($('.wholePic .wholeView.cover')[0]).css('opacity', 0);
+                // $($('.wholePic .wholeView.cover')[1]).css('opacity', 0);
+                // $('.wholePic .wholeView.cover'+'.'+$(this).attr('id')).css('opacity', 0);
+                $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
+            }
+            if(!$('.wholePic .wholeView.cover'+'.'+this.classList[1]).hasClass('isShow')){      //如果点击部件后，恢复未点击的高亮部件
+                $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
             }
         })
 
