@@ -23,8 +23,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let editNodeBoard = document.getElementById("editNodeBoard");
         let addNodeNameInput = document.getElementById("addNodeNameInput");
         let addNodeStockInput = document.getElementById("addNodeStockInput");
+        let addNodeRoleInput = document.getElementById("addNodeRoleInput");
         let editNodeNameInput = document.getElementById("editNodeNameInput");
         let editNodeStockInput = document.getElementById("editNodeStockInput");
+        let editNodeRoleInput = document.getElementById("editNodeRoleInput");
 
         //可调DOM参数
         let canvasWidth = 2000;//三层的 宽和高
@@ -68,7 +70,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.isEdittingNode = false;
 
         //高频更新变量
-        let mouseDownNodeID = "";//当前鼠标点击的node
+        $scope.mouseDownNodeID = "";//当前鼠标点击的node
         let mouseDownAnchorID = "";
         $scope.nodeIDList = [];
         $scope.nodeList = [];//一个以ID为索引的字典
@@ -96,17 +98,22 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
 
         //DOM绑定方法
+        $scope.dblclickNodeHistoryBlockCell = function (id) {
+            $scope.mouseDownNodeID = id;
+            $scope.showEditNodeBoard();
+        };
+
         $scope.addNewNode = function () {//
-            addNode(addNodeNameInput.value, addNodeStockInput.value);
+            addNode(addNodeNameInput.value, addNodeStockInput.value, addNodeRoleInput.value);
             $scope.isAddingNode = false;
         };
 
         $scope.addEmptyNode = function () {
-            addNode("", "");
+            addNode("", "", "");
         };
 
         $scope.deleteNodeByMenu = function () {
-            deleteNode(mouseDownNodeID);
+            deleteNode($scope.mouseDownNodeID);
             refreshConnectionBackground();
         };
 
@@ -116,7 +123,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         $scope.editNode = function () {
-            editNode(mouseDownNodeID);
+            let name = editNodeNameInput.value,
+                stock = editNodeStockInput.value,
+                role = editNodeRoleInput.value;
+            editNode($scope.mouseDownNodeID, name, stock, role);
             $scope.isEdittingNode = false;
         };
 
@@ -142,9 +152,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.showEditNodeBoard = function () {
             window.event.stopPropagation();
             hideAllBoard();
-            let nodeCache = $scope.nodeList[mouseDownNodeID];
+            let nodeCache = $scope.nodeList[$scope.mouseDownNodeID];
             editNodeNameInput.value = nodeCache.nodeName;
             editNodeStockInput.value = nodeCache.nodeStock;
+            editNodeRoleInput.value = nodeCache.nodeRole;
             editNodeBoard.style.left = window.event.clientX + "px";
             editNodeBoard.style.top = window.event.clientY + "px";
             $scope.isEdittingNode = true;
@@ -158,6 +169,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
             hideAllBoard();
         };
 
+        $scope.setMouseDownNodeID = function (id) {
+            $scope.mouseDownNodeID = id;
+        };
 
         /**
          * 节点拖动的实现
@@ -180,12 +194,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
             if ($(e.target).attr("id")[0] == 'N') {
                 stopAnimeBackground();
                 animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
-                mouseDownNodeID = $(e.target).attr("id");
-                mouseDownNode = document.getElementById(mouseDownNodeID);
+                $scope.mouseDownNodeID = $(e.target).attr("id");
+                mouseDownNode = document.getElementById($scope.mouseDownNodeID);
                 mouseDownNodeWidth = parseFloat(mouseDownNode.style.width);
                 mouseDownNodeHeight = parseFloat(mouseDownNode.style.height);
                 if (e.button == 0) {
-                    saveStoragePositionWithScroll(document.getElementById(mouseDownNodeID));
+                    saveStoragePositionWithScroll(document.getElementById($scope.mouseDownNodeID));
                     canDragNode = true;
                 }
                 else if (e.button == 2) {
@@ -224,14 +238,14 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
         topElement.onmouseup = function (e) {
             if(canDragNode){
-                let node = document.getElementById(mouseDownNodeID);
+                let node = document.getElementById($scope.mouseDownNodeID);
                 let beginPosition = storageWindowPosition;
                 let endPosition = {
                     x: parseFloat(node.style.left),
                     y: parseFloat(node.style.top)
                 };
 
-                pushUndoList("moveNode", mouseDownNodeID, beginPosition, endPosition);
+                pushUndoList("moveNode", $scope.mouseDownNodeID, beginPosition, endPosition);
                 startAnimeBackground();
             }
             else if(canDragAnchor){
@@ -366,22 +380,23 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
         /**
          *定时刷新的实现（解决删除关联时，不能立刻反映到图上？）
-         */
+
         let startAutoRefreshConnectionBackground = function () {
             refreshConnectionBackground();
-            connectionTimeoutID = setTimeout(startAutoRefreshConnectionBackground, 500);
+            connectionTimeoutID = setTimeout(startAutoRefreshConnectionBackground, 100);
         };
-        startAutoRefreshConnectionBackground();
+        //startAutoRefreshConnectionBackground();
 
         let stopAutoRefreshConnectionBackground = function () {
             clearTimeout(connectionTimeoutID);
         };
+         */
 
 
 
 
 
-        let addNode = function (name, stock) {
+        let addNode = function (name, stock, role) {
             let node = document.createElement("node");
             let nodeName = document.createElement("p");
             let nodeAnchorTop = document.createElement("nodeAnchorTop");
@@ -416,6 +431,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             $scope.nodeList[node.id] = {
                 nodeName: name,
                 nodeStock: stock,
+                nodeRole: role
             };
             $scope.nodeIDList.push(node.id);
 
@@ -442,7 +458,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
             //删除节点相关的联系
             let relativeConnectionList = [];
-            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+            for(let i=0; i<$scope.connectionList.length; i++){
                 if($scope.connectionList[i].begin == nodeID || $scope.connectionList[i].end == nodeID){
                     relativeConnectionList.push($scope.connectionList[i]);//将这个联系加入相关联系队列，写入日志
                     $scope.connectionList.splice(i, 1);
@@ -453,10 +469,11 @@ angular.module('myApp.microIndustryChain.createChainView', [
             pushUndoList("deleteNode", nodeID, relativeConnectionList, "");
         };
 
-        let editNode = function (nodeID) {
+        let editNode = function (nodeID, name, stock, role) {
             $scope.nodeList[nodeID] = {
-                nodeName:editNodeNameInput.value,
-                nodeStock:editNodeStockInput.value,
+                nodeName: name,
+                nodeStock: stock,
+                nodeRole: role
             };
             let nodeToEdit = document.getElementById(nodeID);
             let nodeName = nodeToEdit.children[0];
@@ -483,7 +500,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         let deleteConnection = function (begin, end) {
-            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+            for(let i=0; i<$scope.connectionList.length; i++){
                 if($scope.connectionList[i].begin == begin && $scope.connectionList[i].end == end){
                     $scope.connectionList.splice(i, 1);
                     i--;

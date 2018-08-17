@@ -27,7 +27,8 @@ this is create chain view
         <div class="historyBlock">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="nodeHistory">
-                    <div class="historyBlockCell" ng-repeat="id in nodeIDList">
+                    <div class="historyBlockCell" ng-mousedown="setMouseDownNodeID(id)" ng-dblclick="dblclickNodeHistoryBlockCell(id)"
+                         ng-repeat="id in nodeIDList" data-toggle="context" data-target="#node-menu">
                         <div>{{nodeList[id].nodeName}}</div>
                         <button ng-click="deleteNodeByHistory(id)" class="btn-sm btn-default">删除</button>
                     </div>
@@ -59,6 +60,10 @@ this is create chain view
         <p>股票代码</p>
         <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
+    <div>
+        <p>角色</p>
+        <input id="addNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+    </div>
     <div class="row center-block">
         <button ng-click="hideAddNodeBoard()" class="btn btn-default">取消</button>
         <button ng-click="addNewNode()" class="btn btn-default">确认添加</button>
@@ -73,6 +78,10 @@ this is create chain view
     <div>
         <p>股票代码</p>
         <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
+    </div>
+    <div>
+        <p>节点名</p>
+        <input id="editNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
     </div>
     <div class="row center-block">
         <button ng-click="hideEditNodeBoard()" class="btn btn-default">取消</button>

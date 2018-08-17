@@ -86,6 +86,9 @@ a {
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
+#leftToolBar .historyBlock .historyBlockCell:hover{
+    background: white;
+}
 #leftToolBar .historyBlock .historyBlockCell div{
     display: block;
     width: 65%;
@@ -101,7 +104,7 @@ a {
     flex-flow: column;
     justify-content: space-between;
     width: 200px;
-    height: 250px;
+    height: 300px;
     border: 1px solid #CCCCCC;
     background: #FFF;
     border-radius: 4px;
@@ -120,7 +123,7 @@ a {
     flex-flow: column;
     justify-content: space-between;
     width: 200px;
-    height: 250px;
+    height: 300px;
     left: 150px;
     border: 1px solid #CCCCCC;
     background: #FFF;
