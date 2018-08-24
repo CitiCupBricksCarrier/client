@@ -30,6 +30,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let editNodeColorInput = document.getElementById("editNodeColorInput");
         let addConnectionBoard = document.getElementById("addConnectionBoard");
         let addConnectionFundExchangeInput = document.getElementById("addConnectionFundExchangeInput");
+        let editConnectionBoard = document.getElementById("editConnectionBoard");
+        let editConnectionFundExchangeInput = document.getElementById("editConnectionFundExchangeInput");
 
         //可调DOM参数
         let canvasWidth = 2000;//三层的 宽和高
@@ -74,6 +76,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.isAddingConnection = false;
         //高频更新变量
         $scope.mouseDownNodeID = "";//当前鼠标点击的node
+        $scope.mouseDownConnectionIndex = 0;
         let mouseDownAnchorID = "";
         let connectionBeginNodeCache = "";
         let connectionEndNodeCache = "";
@@ -86,9 +89,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
          *   $scope.connectionList格式：
          *   ({
          *      id:
-                type:"normal",
-                begin:connectionBeginNodeCache,
-                end:connectionEndNodeCache
+                begin:
+                end:
+                fund:
              });
          *
          *
@@ -106,6 +109,11 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.dblclickNodeHistoryBlockCell = function (id) {
             $scope.mouseDownNodeID = id;
             $scope.showEditNodeBoard();
+        };
+
+        $scope.dblclickConnectionHistoryBlockCell = function (index) {
+            $scope.mouseDownConnectionIndex = index;
+            $scope.showEditConnectionBoard();
         };
 
         $scope.addNewNode = function () {//
@@ -143,9 +151,14 @@ angular.module('myApp.microIndustryChain.createChainView', [
             refreshConnectionBackground();
         };
 
-        $scope.deleteConnectionByHistory = function (begin, end) {
-            deleteConnection(begin, end);
+        $scope.deleteConnectionByHistory = function (index) {
+            deleteConnectionByIndex(index);
             refreshConnectionBackground();
+        };
+
+        $scope.editConnection = function () {
+            editConnection($scope.mouseDownConnectionIndex, editConnectionFundExchangeInput.value);
+            $scope.isEdittingConnection = false;
         };
 
         $scope.showAddNodeBoard = function () {
@@ -166,11 +179,11 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.showEditNodeBoard = function () {
             window.event.stopPropagation();
             hideAllBoard();
-            let nodeCache = $scope.nodeList[$scope.mouseDownNodeID];
-            editNodeNameInput.value = nodeCache.nodeName;
-            editNodeStockInput.value = nodeCache.nodeStock;
-            editNodeRoleInput.value = nodeCache.nodeRole;
-            editNodeColorInput.value = nodeCache.nodeColor;
+            let nodePartialCache = $scope.nodeList[$scope.mouseDownNodeID];
+            editNodeNameInput.value = nodePartialCache.nodeName;
+            editNodeStockInput.value = nodePartialCache.nodeStock;
+            editNodeRoleInput.value = nodePartialCache.nodeRole;
+            editNodeColorInput.value = nodePartialCache.nodeColor;
             editNodeBoard.style.left = window.event.clientX + "px";
             editNodeBoard.style.top = window.event.clientY + "px";
             $scope.isEdittingNode = true;
@@ -193,12 +206,30 @@ angular.module('myApp.microIndustryChain.createChainView', [
             $scope.isAddingConnection = false;
         };
 
+        $scope.showEditConnectionBoard = function () {
+            window.event.stopPropagation();
+            hideAllBoard();
+            let connectionPartialCache = $scope.connectionList[$scope.mouseDownConnectionIndex];
+            editConnectionFundExchangeInput.value = connectionPartialCache.fund;
+            editConnectionBoard.style.left = window.event.clientX + "px";
+            editConnectionBoard.style.top = window.event.clientY + "px";
+            $scope.isEdittingConnection = true;
+        };
+
+        $scope.hideEditConnectionBoard = function () {
+            $scope.isEdittingConnection = false;
+        };
+
         $scope.hideAllBoard = function () {
             hideAllBoard();
         };
 
         $scope.setMouseDownNodeID = function (id) {
             $scope.mouseDownNodeID = id;
+        };
+
+        $scope.setMouseDownConnectionIndex = function (index) {
+            $scope.mouseDownConnectionIndex = index;
         };
 
         /**
@@ -526,11 +557,27 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
         };
 
-        let deleteConnection = function (begin, end) {
+        let deleteConnectionByIndex = function (index) {
+            $scope.connectionList.splice(index, 1);
+        };
+
+        let deleteConnectionByBeginAndEnd = function (begin, end) {
             for(let i=0; i<$scope.connectionList.length; i++){
                 if($scope.connectionList[i].begin == begin && $scope.connectionList[i].end == end){
                     $scope.connectionList.splice(i, 1);
                     i--;
+                }
+            }
+        };
+
+        let editConnection = function (index, fund) {
+            $scope.connectionList[index].fund = fund;
+        };
+
+        let getConnection = function (begin, end) {
+            for(let i=0; i<$scope.connectionList.length; i++){
+                if($scope.connectionList[i].begin == begin && $scope.connectionList[i].end == end){
+                    return $scope.connectionList[i];
                 }
             }
         };

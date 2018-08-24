@@ -1,6 +1,4 @@
-<br>
-this is create chain view
-<br>
+<link rel="stylesheet" href="view/microIndustryChain/createChainView/bootstrap-colorpicker.css">
 
 <div id="topElement" ng-mousedown="hideAllBoard()" onselectstart="return false;">
 
@@ -18,6 +16,7 @@ this is create chain view
         <div class="leftToolBarBlock">
             <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
             <button class="btn btn-default" ng-click="addEmptyNode()">addE</button>
+            <button class="btn btn-default" data-popover="popover" data-trigger="hover" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">popover</button>
         </div>
 
         <ul class="nav nav-tabs small">
@@ -34,12 +33,15 @@ this is create chain view
                     </div>
                 </div>
                 <div class="tab-pane fade" id="connectionHistory">
-                    <div class="historyBlockCell small" ng-repeat="connection in connectionList">
+                    <div class="historyBlockCell small" ng-mousedown="setMouseDownConnectionIndex($index)" ng-dblclick="dblclickConnectionHistoryBlockCell($index)"
+                         ng-repeat="connection in connectionList" data-toggle="context" data-target="#connection-menu">
                         <div>
-                            由 <span style="color:{{nodeList[connection.begin].nodeColor}}; font-weight:bold;">● {{nodeList[connection.begin].nodeName}}</span>
-                            至 <span style="color:{{nodeList[connection.end].nodeColor}}; font-weight:bold;">● {{nodeList[connection.end].nodeName}}</span>
+                            由<span style="color:{{nodeList[connection.begin].nodeColor}}; font-weight:bold;"> ● {{nodeList[connection.begin].nodeName}} </span>
+                            至<span style="color:{{nodeList[connection.end].nodeColor}}; font-weight:bold;"> ● {{nodeList[connection.end].nodeName}} </span>
+                            :<span style="font-weight:bold"> {{connection.fund}} </span>
+                            万元
                         </div>
-                        <button ng-click="deleteConnectionByHistory(connection.begin, connection.end)" class="btn-sm btn-default">删除</button>
+                        <button ng-click="deleteConnectionByHistory($index)" class="btn-sm btn-default">删除</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +73,10 @@ this is create chain view
         </div>
         <div>
             <p>标记颜色</p>
-            <input id="addNodeColorInput" class="form-control" type="color">
+            <div id="addNodeCP" class="input-group">
+                <input id="addNodeColorInput" class="form-control" type="text" value="#00AABB">
+                <span class="input-group-addon"><i></i></span>
+            </div>
         </div>
     </div>
     <div class="row center-block">
@@ -97,7 +102,10 @@ this is create chain view
         </div>
         <div>
             <p>标记颜色</p>
-            <input id="editNodeColorInput" class="form-control" type="color">
+            <div id="editNodeCP" class="input-group">
+                <input id="editNodeColorInput" class="form-control" type="text" value="#00AABB">
+                <span class="input-group-addon"><i></i></span>
+            </div>
         </div>
     </div>
     <div class="row center-block">
@@ -109,11 +117,22 @@ this is create chain view
 <div id="addConnectionBoard" ng-show="isAddingConnection"  style="left: 0; top: 0;">
     <div>
         <p>资金往来</p>
-        <input id="addConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量...">
+        <input id="addConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量(万元)...">
     </div>
     <div class="row center-block">
         <button ng-click="hideAddConnectionBoard()" class="btn btn-default">取消</button>
         <button ng-click="addNewConnection()" class="btn btn-default">确认修改</button>
+    </div>
+</div>
+
+<div id="editConnectionBoard" ng-show="isEdittingConnection"  style="left: 0; top: 0;">
+    <div>
+        <p>资金往来</p>
+        <input id="editConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量(万元)...">
+    </div>
+    <div class="row center-block">
+        <button ng-click="hideEditConnectionBoard()" class="btn btn-default">取消</button>
+        <button ng-click="editConnection()" class="btn btn-default">确认修改</button>
     </div>
 </div>
 
@@ -122,6 +141,14 @@ this is create chain view
         <li ng-click="showEditNodeBoard()"><a>修改</a></li>
         <li class="divider"></li>
         <li ng-click="deleteNodeByMenu()"><a style="color: indianred">删除</a></li>
+    </ul>
+</div>
+
+<div id="connection-menu" style="position: fixed">
+    <ul class="dropdown-menu">
+        <li ng-click="showEditConnectionBoard()"><a>修改</a></li>
+        <li class="divider"></li>
+        <li ng-click="deleteConnectionByHistory(mouseDownConnectionIndex)"><a style="color: indianred">删除</a></li>
     </ul>
 </div>
 
@@ -135,6 +162,18 @@ this is create chain view
     </ul>
 </div>
 
+<script src="view/microIndustryChain/createChainView/bootstrap-colorpicker.js"></script>
+<script>
+    $(function () {
+        // Basic instantiation:
+        $('#addNodeCP').colorpicker();
+        $('#editNodeCP').colorpicker();
 
 
+        $("[data-popover='popover']").popover({
+//            title: title(),
+            delay:{show:500, hide:100},
+        });
+    });
+</script>
 <link rel="stylesheet" href="view/microIndustryChain/createChainView/createChainView.css">

@@ -159,6 +159,27 @@ a {
     margin-bottom: 10px;
 }
 
+#editConnectionBoard{
+    position: fixed;
+    z-index: 10000;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 200px;
+    height: auto;
+    left: 150px;
+    border: 1px solid #CCCCCC;
+    background: #FFF;
+    border-radius: 4px;
+    padding: 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+#editConnectionBoard input{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
 .node{
     position: absolute;
     z-index: 1;
