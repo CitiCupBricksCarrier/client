@@ -53,7 +53,7 @@ a {
 #leftToolBar{
     position: fixed;
     z-index: 2;
-    width: 180px;
+    width: 220px;
     height: 100%;
     top: 100px;
     border-right: 1px solid #CCCCCC;
@@ -91,20 +91,20 @@ a {
 }
 #leftToolBar .historyBlock .historyBlockCell div{
     display: block;
-    width: 65%;
+    width: 75%;
 }
 #leftToolBar .historyBlock .historyBlockCell button{
-    width: 35%;
+    width: 25%;
 }
 
 #addNodeBoard{
-    position: absolute;
+    position: fixed;
     z-index: 10000;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     width: 200px;
-    height: 300px;
+    height: auto;
     border: 1px solid #CCCCCC;
     background: #FFF;
     border-radius: 4px;
@@ -114,16 +114,17 @@ a {
 }
 #addNodeBoard input{
     width: 100%;
+    margin-bottom: 10px;
 }
 
 #editNodeBoard{
-    position: absolute;
+    position: fixed;
     z-index: 10000;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     width: 200px;
-    height: 300px;
+    height: auto;
     left: 150px;
     border: 1px solid #CCCCCC;
     background: #FFF;
@@ -134,6 +135,28 @@ a {
 }
 #editNodeBoard input{
     width: 100%;
+    margin-bottom: 10px;
+}
+
+#addConnectionBoard{
+    position: fixed;
+    z-index: 10000;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 200px;
+    height: auto;
+    left: 150px;
+    border: 1px solid #CCCCCC;
+    background: #FFF;
+    border-radius: 4px;
+    padding: 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+#addConnectionBoard input{
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .node{

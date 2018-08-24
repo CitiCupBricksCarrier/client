@@ -18,20 +18,23 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let netContext = netBackground.getContext("2d");
         let animeBackground = document.getElementById("animeBackground");
         let animeContext = animeBackground.getContext("2d");
-        let leftToolBoard = document.getElementById("leftToolBoard");
         let addNodeBoard = document.getElementById("addNodeBoard");
-        let editNodeBoard = document.getElementById("editNodeBoard");
         let addNodeNameInput = document.getElementById("addNodeNameInput");
         let addNodeStockInput = document.getElementById("addNodeStockInput");
         let addNodeRoleInput = document.getElementById("addNodeRoleInput");
+        let addNodeColorInput = document.getElementById("addNodeColorInput");
+        let editNodeBoard = document.getElementById("editNodeBoard");
         let editNodeNameInput = document.getElementById("editNodeNameInput");
         let editNodeStockInput = document.getElementById("editNodeStockInput");
         let editNodeRoleInput = document.getElementById("editNodeRoleInput");
+        let editNodeColorInput = document.getElementById("editNodeColorInput");
+        let addConnectionBoard = document.getElementById("addConnectionBoard");
+        let addConnectionFundExchangeInput = document.getElementById("addConnectionFundExchangeInput");
 
         //可调DOM参数
         let canvasWidth = 2000;//三层的 宽和高
         let canvasHeight = 1000;
-        let canvasLeft = 200;
+        let canvasLeft = 260;
         let canvasTop = 150;
         let connectionLineWidth = 5;//连线层 连线宽度
         let connectionLineColor = "rgba(0,0,0,0.5)";//连线层 连线颜色
@@ -68,10 +71,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
         //$scope参数初始化
         $scope.isAddingNode = false;
         $scope.isEdittingNode = false;
-
+        $scope.isAddingConnection = false;
         //高频更新变量
         $scope.mouseDownNodeID = "";//当前鼠标点击的node
         let mouseDownAnchorID = "";
+        let connectionBeginNodeCache = "";
+        let connectionEndNodeCache = "";
         $scope.nodeIDList = [];
         $scope.nodeList = [];//一个以ID为索引的字典
         $scope.connectionList = [];
@@ -104,7 +109,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         $scope.addNewNode = function () {//
-            addNode(addNodeNameInput.value, addNodeStockInput.value, addNodeRoleInput.value);
+            addNode(addNodeNameInput.value, addNodeStockInput.value, addNodeRoleInput.value, addNodeColorInput.value);
             $scope.isAddingNode = false;
         };
 
@@ -125,9 +130,17 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.editNode = function () {
             let name = editNodeNameInput.value,
                 stock = editNodeStockInput.value,
-                role = editNodeRoleInput.value;
-            editNode($scope.mouseDownNodeID, name, stock, role);
+                role = editNodeRoleInput.value,
+                color = editNodeColorInput.value;
+            editNode($scope.mouseDownNodeID, name, stock, role, color);
             $scope.isEdittingNode = false;
+        };
+
+        $scope.addNewConnection = function () {
+            let fund = addConnectionFundExchangeInput.value;
+            addConnection(connectionBeginNodeCache, connectionEndNodeCache, fund);
+            $scope.isAddingConnection = false;
+            refreshConnectionBackground();
         };
 
         $scope.deleteConnectionByHistory = function (begin, end) {
@@ -140,6 +153,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             hideAllBoard();
             addNodeNameInput.value = "";
             addNodeStockInput.value = "";
+            addNodeRoleInput.value = "";
             addNodeBoard.style.left = window.event.clientX + "px";
             addNodeBoard.style.top = window.event.clientY + "px";
             $scope.isAddingNode = true;
@@ -156,6 +170,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             editNodeNameInput.value = nodeCache.nodeName;
             editNodeStockInput.value = nodeCache.nodeStock;
             editNodeRoleInput.value = nodeCache.nodeRole;
+            editNodeColorInput.value = nodeCache.nodeColor;
             editNodeBoard.style.left = window.event.clientX + "px";
             editNodeBoard.style.top = window.event.clientY + "px";
             $scope.isEdittingNode = true;
@@ -163,6 +178,19 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
         $scope.hideEditNodeBoard = function () {
             $scope.isEdittingNode = false;
+        };
+
+        $scope.showAddConnectionBoard = function () {
+            window.event.stopPropagation();
+            hideAllBoard();
+            addConnectionFundExchangeInput.value = null;
+            addConnectionBoard.style.left = window.event.clientX + "px";
+            addConnectionBoard.style.top = window.event.clientY + "px";
+            $scope.isAddingConnection = true;
+        };
+
+        $scope.hideAddConnectionBoard = function () {
+            $scope.isAddingConnection = false;
         };
 
         $scope.hideAllBoard = function () {
@@ -184,16 +212,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let canDragAnchor = false;
         let anchorBeginPositionCacheX = 0;
         let anchorBeginPositionCacheY = 0;
-        let connectionBeginNodeCache = "";
-        let connectionEndNodeCache = "";
         let mouseDownNode;
         let mouseDownNodeWidth;
         let mouseDownNodeHeight;
         topElement.onmousedown = function (e) {
             //如果鼠标的对象id以n开头，代表为node
             if ($(e.target).attr("id")[0] == 'N') {
-                stopAnimeBackground();
-                animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
                 $scope.mouseDownNodeID = $(e.target).attr("id");
                 mouseDownNode = document.getElementById($scope.mouseDownNodeID);
                 mouseDownNodeWidth = parseFloat(mouseDownNode.style.width);
@@ -219,6 +243,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
         topElement.onmousemove = function (e) {
             if(canDragNode) {
+                stopAnimeBackground();
                 calculateOffsetWithScroll();
                 if(windowEndX>canvasLeft && windowEndX<(canvasLeft+canvasWidth-mouseDownNodeWidth) && windowEndY>canvasTop && windowEndY<(canvasTop+canvasHeight-mouseDownNodeHeight) ) {
                     mouseDownNode.style.left = windowEndX + "px";
@@ -250,17 +275,14 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
             else if(canDragAnchor){
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
-                if($(e.target).attr("id")[0] == 'N'){
-                    connectionEndNodeCache = $(e.target).attr("id");
-                    addConnection("normal", connectionBeginNodeCache, connectionEndNodeCache);
-
-                    refreshConnectionBackground();
-                }
-                else if($(e.target).attr("id")[0] == 'A'){
-                    connectionEndNodeCache = $(e.target).parent().attr("id");
-                    addConnection("normal", connectionBeginNodeCache, connectionEndNodeCache);
-
-                    refreshConnectionBackground();
+                if($(e.target).attr("id")[0] == 'N' || $(e.target).attr("id")[0] == 'A'){
+                    if($(e.target).attr("id")[0] == 'N') {
+                        connectionEndNodeCache = $(e.target).attr("id");
+                    }
+                    else{
+                        connectionEndNodeCache = $(e.target).parent().attr("id")
+                    }
+                    $scope.showAddConnectionBoard();
                 }
             }
 
@@ -375,6 +397,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
         let stopAnimeBackground = function () {
             clearTimeout(animeTimeoutID);
+            animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
         };
 
 
@@ -396,7 +419,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
 
 
-        let addNode = function (name, stock, role) {
+        let addNode = function (name, stock, role, color) {
             let node = document.createElement("node");
             let nodeName = document.createElement("p");
             let nodeAnchorTop = document.createElement("nodeAnchorTop");
@@ -414,6 +437,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             node.style.height = 40 + "px";
             nodeName.id = "nodeName";
             nodeName.innerText = name;
+            nodeName.style.color = color;
             nodeAnchorTop.className = "node-anchor-top";
             nodeAnchorTop.id = "A" + nextNodeID + "1";
             nodeAnchorRight.className = "node-anchor-right";
@@ -431,7 +455,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
             $scope.nodeList[node.id] = {
                 nodeName: name,
                 nodeStock: stock,
-                nodeRole: role
+                nodeRole: role,
+                nodeColor: color
             };
             $scope.nodeIDList.push(node.id);
 
@@ -469,18 +494,20 @@ angular.module('myApp.microIndustryChain.createChainView', [
             pushUndoList("deleteNode", nodeID, relativeConnectionList, "");
         };
 
-        let editNode = function (nodeID, name, stock, role) {
+        let editNode = function (nodeID, name, stock, role, color) {
             $scope.nodeList[nodeID] = {
                 nodeName: name,
                 nodeStock: stock,
-                nodeRole: role
+                nodeRole: role,
+                nodeColor: color
             };
             let nodeToEdit = document.getElementById(nodeID);
             let nodeName = nodeToEdit.children[0];
             nodeName.innerText = editNodeNameInput.value;
+            nodeName.style.color = color;
         };
 
-        let addConnection = function (type, begin, end) {
+        let addConnection = function (begin, end, fund) {
             if(begin != end) {
                 for(let i=0, length=$scope.connectionList.length; i<length; i++){
                     if( ($scope.connectionList[i].begin == begin) && ($scope.connectionList[i].end == end) ){
@@ -491,9 +518,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 $scope.connectionList.push
                 ({
                     id: newConnectionID,
-                    type: type,
                     begin: begin,
-                    end: end
+                    end: end,
+                    fund: fund
                 });
                 nextConnectionID++;
             }
@@ -520,6 +547,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let hideAllBoard = function () {
             $scope.isAddingNode = false;
             $scope.isEdittingNode = false;
+            $scope.isAddingConnection = false;
         };
 
         let drawArrow = function(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {

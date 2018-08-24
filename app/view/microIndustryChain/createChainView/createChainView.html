@@ -29,13 +29,16 @@ this is create chain view
                 <div class="tab-pane fade in active" id="nodeHistory">
                     <div class="historyBlockCell" ng-mousedown="setMouseDownNodeID(id)" ng-dblclick="dblclickNodeHistoryBlockCell(id)"
                          ng-repeat="id in nodeIDList" data-toggle="context" data-target="#node-menu">
-                        <div>{{nodeList[id].nodeName}}</div>
+                        <div style="color:{{nodeList[id].nodeColor}}; font-weight:bold;">● {{nodeList[id].nodeName}}</div>
                         <button ng-click="deleteNodeByHistory(id)" class="btn-sm btn-default">删除</button>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="connectionHistory">
-                    <div class="historyBlockCell" ng-repeat="connection in connectionList">
-                        <div>{{connection.id}}</div>
+                    <div class="historyBlockCell small" ng-repeat="connection in connectionList">
+                        <div>
+                            由 <span style="color:{{nodeList[connection.begin].nodeColor}}; font-weight:bold;">● {{nodeList[connection.begin].nodeName}}</span>
+                            至 <span style="color:{{nodeList[connection.end].nodeColor}}; font-weight:bold;">● {{nodeList[connection.end].nodeName}}</span>
+                        </div>
                         <button ng-click="deleteConnectionByHistory(connection.begin, connection.end)" class="btn-sm btn-default">删除</button>
                     </div>
                 </div>
@@ -53,16 +56,23 @@ this is create chain view
 
 <div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;">
     <div>
-        <p>节点名</p>
-        <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
-    </div>
-    <div>
         <p>股票代码</p>
         <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
-    <div>
-        <p>角色</p>
-        <input id="addNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+    <a ng-click="showMoreAddNodeOptions = !showMoreAddNodeOptions">自定义...</a>
+    <div ng-show="showMoreAddNodeOptions">
+        <div>
+            <p>节点名</p>
+            <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
+        </div>
+        <div>
+            <p>角色</p>
+            <input id="addNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+        </div>
+        <div>
+            <p>标记颜色</p>
+            <input id="addNodeColorInput" class="form-control" type="color">
+        </div>
     </div>
     <div class="row center-block">
         <button ng-click="hideAddNodeBoard()" class="btn btn-default">取消</button>
@@ -70,18 +80,25 @@ this is create chain view
     </div>
 </div>
 
-<div id="editNodeBoard" ng-show="isEdittingNode">
-    <div>
-        <p>节点名</p>
-        <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
-    </div>
+<div id="editNodeBoard" ng-show="isEdittingNode"  style="left: 0; top: 0;">
     <div>
         <p>股票代码</p>
         <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
-    <div>
-        <p>节点名</p>
-        <input id="editNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+    <a ng-click="showMoreEditNodeOptions = !showMoreEditNodeOptions">自定义...</a>
+    <div ng-show="showMoreEditNodeOptions">
+        <div>
+            <p>节点名</p>
+            <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
+        </div>
+        <div>
+            <p>角色</p>
+            <input id="editNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+        </div>
+        <div>
+            <p>标记颜色</p>
+            <input id="editNodeColorInput" class="form-control" type="color">
+        </div>
     </div>
     <div class="row center-block">
         <button ng-click="hideEditNodeBoard()" class="btn btn-default">取消</button>
@@ -89,7 +106,18 @@ this is create chain view
     </div>
 </div>
 
-<div id="node-menu">
+<div id="addConnectionBoard" ng-show="isAddingConnection"  style="left: 0; top: 0;">
+    <div>
+        <p>资金往来</p>
+        <input id="addConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量...">
+    </div>
+    <div class="row center-block">
+        <button ng-click="hideAddConnectionBoard()" class="btn btn-default">取消</button>
+        <button ng-click="addNewConnection()" class="btn btn-default">确认修改</button>
+    </div>
+</div>
+
+<div id="node-menu" style="position: fixed">
     <ul class="dropdown-menu">
         <li ng-click="showEditNodeBoard()"><a>修改</a></li>
         <li class="divider"></li>
@@ -97,7 +125,7 @@ this is create chain view
     </ul>
 </div>
 
-<div id="canvas-menu">
+<div id="canvas-menu" style="position: fixed">
     <ul class="dropdown-menu">
         <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
         <li ng-click="addEmptyNode()"><a>增加空节点</a></li>
@@ -108,5 +136,5 @@ this is create chain view
 </div>
 
 
-<script src="view/microIndustryChain/createChainView/controller.js"></script>
+
 <link rel="stylesheet" href="view/microIndustryChain/createChainView/createChainView.css">
