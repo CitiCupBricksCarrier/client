@@ -313,6 +313,18 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     else{
                         connectionEndNodeCache = $(e.target).parent().attr("id")
                     }
+                    let beginNode = document.getElementById(connectionBeginNodeCache),
+                        endNode = document.getElementById(connectionEndNodeCache);
+                    connectionContext.beginPath();
+                    connectionContext.moveTo(
+                        parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft,
+                        parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop
+                    );
+                    connectionContext.lineTo(
+                        parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft,
+                        parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop
+                    );
+                    connectionContext.stroke();
                     $scope.showAddConnectionBoard();
                 }
             }
@@ -595,6 +607,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             $scope.isAddingNode = false;
             $scope.isEdittingNode = false;
             $scope.isAddingConnection = false;
+            $scope.isEdittingConnection = false;
         };
 
         let drawArrow = function(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
