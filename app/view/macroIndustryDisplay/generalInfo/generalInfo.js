@@ -90,8 +90,19 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         //点击对应部件
         $('.part_toTouch').click(function (e) {
             $scope.category_toShow = $(this).attr('name');
-            console.log(dataArr[propArr.indexOf($scope.category_toShow)]);
-            $scope.list_toShow = dataArr[propArr.indexOf($scope.category_toShow)];
+            // console.log(dataArr[propArr.indexOf($scope.category_toShow)]);
+            // $scope.list_toShow = dataArr[propArr.indexOf($scope.category_toShow)];
+            var categories_selected = $scope.category_toShow.split('+');
+            console.log(categories_selected)
+            var list_toShow = [];
+            for(var tempI in categories_selected){
+                console.log(categories_selected[tempI])
+                console.log(propArr.indexOf(categories_selected[tempI]))
+                console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
+                list_toShow = list_toShow.concat(dataArr[propArr.indexOf(categories_selected[tempI])]);
+            }
+            console.log(list_toShow)
+            $scope.list_toShow = list_toShow;
 
             var listNode = $('.companyList');
             $scope.$apply();        //应用更改
