@@ -85,6 +85,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.connectionList = [];
         let undoList = [];
         let redoList = [];
+        $scope.searchCache = [];
         /**
          *   $scope.connectionList格式：
          *   ({
@@ -231,6 +232,53 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.setMouseDownConnectionIndex = function (index) {
             $scope.mouseDownConnectionIndex = index;
         };
+
+        $scope.nodeDicToNodeArray = function () {
+            let nodeArray = [];
+            for(let i=0; i<$scope.nodeIDList.length; i++){
+                nodeArray.push($scope.nodeList[$scope.nodeIDList[i]]);
+                alert($scope.nodeList[$scope.nodeIDList[i]].name);
+            }
+            return nodeArray;
+        };
+
+
+        $scope.searchByStkcd = function (partStkcd) {
+            if(partStkcd != "" && partStkcd.length < 6) {
+                $http({
+                    method: 'post',
+                    url: 'http://localhost:8080/generalInfo/searchByStkcd',
+                    params: {
+                        "partStkcd": partStkcd,
+                    },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    //cache: true, //避免多次请求后台数据
+                }).then(function (response) {
+                    $scope.searchCache = response.data;
+                }, function () {
+                    alert("Link Failed: 404");
+                });
+            }
+        };
+
+        $scope.searchByCompName = function (partName) {
+            if(partName != ""){
+                $http({
+                    method: 'post',
+                    url: 'http://localhost:8080/generalInfo/searchByName',
+                    params: {
+                        "partName": partName,
+                    },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    //cache: true, //避免多次请求后台数据
+                }).then(function (response) {
+                    $scope.searchCache = response.data;
+                }, function () {
+                    alert("Link Failed: 404");
+                });
+            }
+        };
+
 
         /**
          * 节点拖动的实现
@@ -619,9 +667,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 botX = headlen * Math.cos(angle2),
                 botY = headlen * Math.sin(angle2);
 
-
             ctx.beginPath();
-
             ctx.moveTo(fromX, fromY);
             ctx.lineTo(toX, toY);
 
@@ -636,5 +682,6 @@ angular.module('myApp.microIndustryChain.createChainView', [
             ctx.strokeStyle = color;
             ctx.lineWidth = width;
             ctx.stroke();
-        }
+        };
+
     });

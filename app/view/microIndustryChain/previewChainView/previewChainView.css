@@ -1,0 +1,59 @@
+a {
+    cursor: pointer;
+}
+
+#topElement{
+    -moz-user-select:-moz-none;
+    overflow: auto;
+}
+
+#canvas{
+    position: absolute;
+    display: block;
+    cursor: auto;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,0);
+    z-index: -1;
+}
+
+#animeBackground{
+    position: absolute;
+    display: block;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,0);
+    z-index: -2;
+}
+
+#connectionBackground{
+    position: absolute;
+    display: block;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,0);
+    z-index: -3;
+}
+
+#netBackground{
+    position: absolute;
+    display: block;
+    border: 1px solid #CCCCCC;
+    background: rgba(255,255,255,1);
+    z-index: -4;
+}
+
+
+.node{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    width: 80px;
+    height: 40px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    background: #FFF;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.node p{
+    pointer-events: none;
+}

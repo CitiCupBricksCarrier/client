@@ -64,7 +64,7 @@
                         title="保存作品" data-content="将您的作品草稿【保存】到云端仓库">
                     保存
                 </button>
-                <button id="previewBtn" class="btn btn-default topToolBarBigBtn"
+                <button id="previewBtn" class="btn btn-default topToolBarBigBtn" ui-sref="microIndustryChain.previewChainView({'nodeIDList':nodeIDList, 'nodeList':nodeList, 'connectionList':connectionList})"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
                         title="预览作品" data-content="以阅读者的视角【查看】此产业链">
                     预览</button>
@@ -95,15 +95,24 @@
 <div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>股票代码</p>
-        <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
+        <input id="addNodeStockInput" ng-model="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..."
+               ng-keyup="searchByStkcd(addNodeStockInput)" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+               onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" list="addNodeStockInputList" maxlength="6">
+        <datalist id="addNodeStockInputList">
+            <option ng-repeat="item in searchCache">{{item.stkcd}}</option>
+        </datalist>
+    </div>
+    <div>
+        <p>公司名</p>
+        <input id="addNodeNameInput" ng-model="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名..."
+               ng-keyup="searchByCompName(addNodeNameInput)" list="addNodeNameInputList">
+        <datalist id="addNodeNameInputList">
+            <option ng-repeat="item in searchCache">{{item.compname}}</option>
+        </datalist>
     </div>
     <a ng-click="showMoreAddNodeOptions = !showMoreAddNodeOptions">自定义...</a>
     <div ng-show="showMoreAddNodeOptions">
         <hr>
-        <div>
-            <p>节点名</p>
-            <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
-        </div>
         <div>
             <p>角色</p>
             <input id="addNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
@@ -125,15 +134,24 @@
 <div id="editNodeBoard" ng-show="isEdittingNode"  style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>股票代码</p>
-        <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
+        <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..."
+               ng-keyup="searchByStkcd(editNodeStockInput)" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+               onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" list="editNodeStockInputList" maxlength="6">
+        <datalist id="editNodeStockInputList">
+            <option ng-repeat="item in searchCache">{{item.stkcd}}</option>
+        </datalist>
+    </div>
+    <div>
+        <p>公司名</p>
+        <input id="editNodeNameInput" ng-model="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名..."
+               ng-keyup="searchByCompName(editNodeNameInput)" list="editNodeNameInputList">
+        <datalist id="editNodeNameInputList">
+            <option ng-repeat="item in searchCache">{{item.compname}}</option>
+        </datalist>
     </div>
     <a ng-click="showMoreEditNodeOptions = !showMoreEditNodeOptions">自定义...</a>
     <div ng-show="showMoreEditNodeOptions">
         <hr>
-        <div>
-            <p>节点名</p>
-            <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
-        </div>
         <div>
             <p>角色</p>
             <input id="editNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">

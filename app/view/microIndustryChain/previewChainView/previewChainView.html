@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="view/microIndustryChain/previewChainView/previewChainView.css">
+
+<div id="topElement" onselectstart="return false;">
+
+    <div>
+        <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="animeBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="canvas" data-toggle="context" data-target="#canvas-menu" style="left: 0; top: 0;"></canvas>
+    </div>
+
+    <div id="nodeDiv">
+        <div class="node" ng-repeat="id in nodeIDList">
+            <p style="color: {{nodeList[id].nodeColor}}">{{nodeList[id].nodeName}}</p>
+        </div>
+    </div>
+</div>
