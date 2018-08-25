@@ -143,7 +143,7 @@
 				, boundsY = $(window).height()
 				, menuWidth = $menu.find('.dropdown-menu').outerWidth()
 				, menuHeight = $menu.find('.dropdown-menu').outerHeight()
-				, tp = {"position":"fixed","z-index":99}
+				, tp = {"position":"absolute","z-index":3}
 				, Y, X, parentOffset;
 
 			if (mouseY + menuHeight > boundsY) {

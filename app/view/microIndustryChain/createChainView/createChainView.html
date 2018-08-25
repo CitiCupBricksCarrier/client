@@ -16,7 +16,6 @@
         <div class="leftToolBarBlock">
             <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
             <button class="btn btn-default" ng-click="addEmptyNode()">addE</button>
-            <button class="btn btn-default" data-popover="popover" data-trigger="hover" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">popover</button>
         </div>
 
         <ul class="nav nav-tabs small">
@@ -52,13 +51,39 @@
         <div id="topToolBarMenu"></div>
         <div class="topToolBarBigBlock">
             <div class="topToolBarBigBlockCell">
-                <button id="addBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddNodeBoard()">新节点</button>
+                <button id="addBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddNodeBoard()"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="增加一个公司节点" data-content="输入【公司股票代码】来自动创建公司节点，或者【自定义】公司节点">
+                    新节点
+                </button>
                 <button class="btn btn-default topToolBarBigBtn"></button>
             </div>
             <div class="topToolBarBigBlockCell">
-                <button id="previewBtn" class="btn btn-default topToolBarBigBtn">预览</button>
-                <button class="btn btn-default topToolBarBigBtn"></button>
-                <button class="btn btn-default topToolBarBigBtn"></button>
+                <button id="saveBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="保存作品" data-content="将您的作品草稿【保存】到云端仓库">
+                    保存
+                </button>
+                <button id="previewBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="预览作品" data-content="以阅读者的视角【查看】此产业链">
+                    预览</button>
+                <button id="downloadBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="下载图片" data-content="将您的作品以图片格式【下载】到本地">
+                    下载</button>
+            </div>
+            <div class="topToolBarBigBlockCell">
+                <button id="publishBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="发布到社区" data-content="将您的作品【发布】到社区，赚取阅读赏金">
+                    发布
+                </button>
+                <button id="shareBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="分享到社交平台" data-content="将您的作品【分享】到社交平台">
+                    分享
+                </button>
             </div>
         </div>
     </div>
@@ -67,13 +92,14 @@
 
 
 
-<div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;">
+<div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>股票代码</p>
         <input id="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
     <a ng-click="showMoreAddNodeOptions = !showMoreAddNodeOptions">自定义...</a>
     <div ng-show="showMoreAddNodeOptions">
+        <hr>
         <div>
             <p>节点名</p>
             <input id="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
@@ -96,13 +122,14 @@
     </div>
 </div>
 
-<div id="editNodeBoard" ng-show="isEdittingNode"  style="left: 0; top: 0;">
+<div id="editNodeBoard" ng-show="isEdittingNode"  style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>股票代码</p>
         <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..." onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')">
     </div>
     <a ng-click="showMoreEditNodeOptions = !showMoreEditNodeOptions">自定义...</a>
     <div ng-show="showMoreEditNodeOptions">
+        <hr>
         <div>
             <p>节点名</p>
             <input id="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名...">
@@ -125,7 +152,7 @@
     </div>
 </div>
 
-<div id="addConnectionBoard" ng-show="isAddingConnection"  style="left: 0; top: 0;">
+<div id="addConnectionBoard" ng-show="isAddingConnection"  style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>资金往来</p>
         <input id="addConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量(万元)...">
@@ -136,7 +163,7 @@
     </div>
 </div>
 
-<div id="editConnectionBoard" ng-show="isEdittingConnection"  style="left: 0; top: 0;">
+<div id="editConnectionBoard" ng-show="isEdittingConnection"  style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>资金往来</p>
         <input id="editConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量(万元)...">
@@ -147,7 +174,7 @@
     </div>
 </div>
 
-<div id="node-menu">
+<div id="node-menu" onselectstart="return false;">
     <ul class="dropdown-menu">
         <li ng-click="showEditNodeBoard()"><a>修改</a></li>
         <li class="divider"></li>
@@ -155,7 +182,7 @@
     </ul>
 </div>
 
-<div id="connection-menu">
+<div id="connection-menu" onselectstart="return false;">
     <ul class="dropdown-menu">
         <li ng-click="showEditConnectionBoard()"><a>修改</a></li>
         <li class="divider"></li>
@@ -163,7 +190,7 @@
     </ul>
 </div>
 
-<div id="canvas-menu">
+<div id="canvas-menu" onselectstart="return false;">
     <ul class="dropdown-menu">
         <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
         <li ng-click="addEmptyNode()"><a>增加空节点</a></li>

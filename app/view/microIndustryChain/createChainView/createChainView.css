@@ -42,7 +42,7 @@ a {
 
 #topToolBar{
     position: fixed;
-    z-index: 2;
+    z-index: 10;
     width: 100%;
     height: 100px;
     top: 0;
@@ -86,12 +86,32 @@ a {
 }
 #addBtn{
     background: white url(icon/add.svg) no-repeat center;
-    background-size: 60%;
-    font-size: 6px;
+    background-size: 50%;
+    font-size: 8px;
 }
 #previewBtn{
     background: white url(icon/preview.svg) no-repeat center;
     background-size: 60%;
+    font-size: 8px;
+}
+#saveBtn{
+    background: white url(icon/save.svg) no-repeat center;
+    background-size: 50%;
+    font-size: 8px;
+}
+#downloadBtn{
+    background: white url(icon/download.svg) no-repeat center;
+    background-size: 50%;
+    font-size: 8px;
+}
+#publishBtn{
+    background: white url(icon/publish.svg) no-repeat center;
+    background-size: 50%;
+    font-size: 8px;
+}
+#shareBtn{
+    background: white url(icon/share.svg) no-repeat center;
+    background-size: 50%;
     font-size: 8px;
 }
 
@@ -163,8 +183,8 @@ a {
 }
 
 #editNodeBoard{
-    position: fixed;
-    z-index: 100;
+    position: absolute;
+    z-index: 4;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
