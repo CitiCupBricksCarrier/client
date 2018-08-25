@@ -70,13 +70,14 @@
   background-size: contain;
 }
 .colorpicker {
+  position: fixed;
   padding: 4px;
   min-width: 130px;
   margin-top: 1px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  z-index: 10001;
+  z-index: 101;
 }
 .colorpicker:before,
 .colorpicker:after {

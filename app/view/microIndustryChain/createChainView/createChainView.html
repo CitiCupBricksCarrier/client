@@ -49,7 +49,18 @@
     </div>
 
     <div id="topToolBar">
-
+        <div id="topToolBarMenu"></div>
+        <div class="topToolBarBigBlock">
+            <div class="topToolBarBigBlockCell">
+                <button id="addBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddNodeBoard()">新节点</button>
+                <button class="btn btn-default topToolBarBigBtn"></button>
+            </div>
+            <div class="topToolBarBigBlockCell">
+                <button id="previewBtn" class="btn btn-default topToolBarBigBtn">预览</button>
+                <button class="btn btn-default topToolBarBigBtn"></button>
+                <button class="btn btn-default topToolBarBigBtn"></button>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -103,7 +114,7 @@
         <div>
             <p>标记颜色</p>
             <div id="editNodeCP" class="input-group">
-                <input id="editNodeColorInput" class="form-control" type="text" value="#00AABB" style="width: 80%; height: 34px">
+                <input id="editNodeColorInput" class="form-control" type="text" style="width: 80%; height: 34px">
                 <span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>
             </div>
         </div>
@@ -136,7 +147,7 @@
     </div>
 </div>
 
-<div id="node-menu" style="position: fixed">
+<div id="node-menu">
     <ul class="dropdown-menu">
         <li ng-click="showEditNodeBoard()"><a>修改</a></li>
         <li class="divider"></li>
@@ -144,7 +155,7 @@
     </ul>
 </div>
 
-<div id="connection-menu" style="position: fixed">
+<div id="connection-menu">
     <ul class="dropdown-menu">
         <li ng-click="showEditConnectionBoard()"><a>修改</a></li>
         <li class="divider"></li>
@@ -152,7 +163,7 @@
     </ul>
 </div>
 
-<div id="canvas-menu" style="position: fixed">
+<div id="canvas-menu">
     <ul class="dropdown-menu">
         <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
         <li ng-click="addEmptyNode()"><a>增加空节点</a></li>
@@ -162,12 +173,35 @@
     </ul>
 </div>
 
+<script src="view/microIndustryChain/createChainView/bootstrap-contextmenu.js"></script>
 <script src="view/microIndustryChain/createChainView/bootstrap-colorpicker.js"></script>
 <script>
     $(function () {
         // Basic instantiation:
-        $('#addNodeCP').colorpicker();
-        $('#editNodeCP').colorpicker();
+        $('#addNodeCP').colorpicker({
+            colorSelectors: {
+                'black': '#000000',
+                'red': '#FF0000',
+                'default': '#777777',
+                'primary': '#337ab7',
+                'success': '#5cb85c',
+                'info': '#5bc0de',
+                'warning': '#f0ad4e',
+                'danger': '#d9534f'
+            }
+        });
+        $('#editNodeCP').colorpicker({
+            colorSelectors: {
+                'black': '#000000',
+                'red': '#FF0000',
+                'default': '#777777',
+                'primary': '#337ab7',
+                'success': '#5cb85c',
+                'info': '#5bc0de',
+                'warning': '#f0ad4e',
+                'danger': '#d9534f'
+            }
+        });
 
 
         $("[data-popover='popover']").popover({
