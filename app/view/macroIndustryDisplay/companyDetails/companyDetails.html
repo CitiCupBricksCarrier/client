@@ -1,0 +1,112 @@
+<br>
+
+<h2>公司信息</h2>
+
+<a href="" ng-click="goBack()">返回行业基本情况</a>
+<!--<div class="sidebar">-->
+    <!--<div class="sidebar-inner">-->
+        <!--<ul class="menu-root">-->
+            <!--<li>-->
+                <!--<a>基本信息</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!---->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
+
+<h3>公司介绍</h3>
+<table>
+    <tr>
+        <td class="td_name">公司中文名称</td><td class="td_value" colspan="5">{{companyDetails.compName}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">公司英文名称</td><td class="td_value" colspan="5">{{companyDetails.compNameEng}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">公司曾用名</td><td class="td_value" colspan="5">{{companyDetails.compPrename}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">公司简介</td><td class="td_value" colspan="5">{{companyDetails.briefing}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">公司代码</td><td class="td_value">{{companyDetails.stkcd}}</td>
+        <td class="td_name">公司属性</td><td class="td_value">{{companyDetails.nature}}</td>
+        <td class="td_name">是否上市</td><td class="td_value">{{companyDetails.listingOrNot}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">成立日期</td><td class="td_value">{{companyDetails.foundDate}}</td>
+        <td class="td_name">员工总数</td><td class="td_value">{{companyDetails.employee}}</td>
+        <td class="td_name"></td><td class="td_value"></td>
+    </tr>
+</table>
+<h3>经营范围</h3>
+<table>
+    <tr>
+        <td class="td_name">经营范围</td><td class="td_value">{{companyDetails.business}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">主营产品类型</td><td class="td_value">{{companyDetails.majorProductType}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">主营产品名称</td><td class="td_value">{{companyDetails.majorProductName}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">主要产品及业务</td><td class="td_value">{{companyDetails.mainProduct}}</td>
+    </tr>
+</table>
+<h3>地址</h3>
+<table>
+    <tr>
+        <td class="td_name">所属行政区</td><td class="td_value">{{companyDetails.administrativeDivision}}</td>
+        <td class="td_name">省份</td><td class="td_value">{{companyDetails.province}}</td>
+        <td class="td_name">城市</td><td class="td_value">{{companyDetails.city}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">注册地址</td><td class="td_value" colspan="5">{{companyDetails.address}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">办公地址</td><td class="td_value" colspan="5">{{companyDetails.office}}</td>
+    </tr>
+</table>
+<h3>联系方式</h3>
+<table>
+    <tr>
+        <td class="td_name">邮政编码</td><td class="td_value">{{companyDetails.zipCode}}</td>
+        <td class="td_name">公司电话</td><td class="td_value">{{companyDetails.phone}}</td>
+        <td class="td_name">公司传真</td><td class="td_value">{{companyDetails.fax}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">Email</td><td class="td_value">{{companyDetails.email}}</td>
+        <td class="td_name">公司网址</td><td class="td_value" colspan="3">{{companyDetails.website}}</td>
+    </tr>
+</table>
+<h3>其他</h3>
+<table>
+    <tr>
+        <td class="td_name">记账本位币</td><td class="td_value">{{companyDetails.reportCur}}</td>
+        <td class="td_name">统一社会信用代码</td><td class="td_value">{{companyDetails.registerNumber}}</td>
+        <td class="td_name">组织机构代码</td><td class="td_value">{{companyDetails.organizationCode}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">信息披露人</td><td class="td_value">{{companyDetails.disclose}}</td>
+        <td class="td_name"></td><td class="td_value"></td>
+        <td class="td_name"></td><td class="td_value"></td>
+    </tr>
+</table>
+<h3>主要人员</h3>
+<table>
+    <tr>
+        <td class="td_name">董事长</td><td class="td_value">{{companyDetails.boardChairmen}}</td>
+        <td class="td_name">总经理</td><td class="td_value">{{companyDetails.CEO}}</td>
+        <td class="td_name">董事会秘书</td><td class="td_value">{{companyDetails.discloser}}</td>
+    </tr>
+    <tr>
+        <td class="td_name">证券事务代表</td><td class="td_value">{{companyDetails.sar}}</td>
+        <td class="td_name">公司独立董事（现任）</td><td class="td_value">{{companyDetails.crtinDPDirector}}</td>
+        <td class="td_name">公司独立董事（历任）</td><td class="td_value">{{companyDetails.frminDPDirector}}</td>
+    </tr>
+</table>
+
+<link rel="stylesheet" href="view/macroIndustryDisplay/companyDetails/companyDetails.css"/>

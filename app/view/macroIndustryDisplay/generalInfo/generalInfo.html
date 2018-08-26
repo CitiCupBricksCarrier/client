@@ -1,3 +1,97 @@
 <br>
 
-<label>基本情况</label>
+<!--<label>基本情况</label>-->
+
+<!--跟随导航栏-->
+<div class="navBar">
+    <hr class="vertical_line">
+    <li class="active"><img class="icon_active" src="view/resource/汽车icon.png" style="display: initial"/><a class="nav_item active" href="#wholePic">汽车产业全景图</a></li>
+    <li><img class="icon_active" src="view/resource/汽车icon.png"/><a class="nav_item" href="#chain_car">汽车产业链图</a></li>
+    <li><img class="icon_active" src="view/resource/汽车icon.png"/><a class="nav_item" href="#flowPath_car">汽车生产流程图</a></li>
+    <li><img class="icon_active" src="view/resource/汽车icon.png"/><a class="nav_item" href="#atlas_car">中国汽车企业图谱</a></li>
+</div>
+
+<!--<a ng-click="test_ajax()">TEST</a>-->
+
+<div id="wholePic" class="part">
+    <!--<h3><a href="#wholePic">汽车产业全景图</a></h3>-->
+    <div class="blank"></div>
+    <div class="wholePic_container">
+        <!--<div class="wholePic">-->
+            <!--<img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_1.png"/>-->
+            <!--<img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_2.png"/>-->
+            <!--<img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/1_3.png"/>-->
+        <!--</div>-->
+        <!--<div class="wholePic">-->
+            <!--<img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_1.png"/>-->
+            <!--<img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_2.png"/>-->
+            <!--<img class="partPic" src="view/macroIndustryDisplay/generalInfo/pic/2_3.png"/>-->
+        <!--</div>-->
+        <div class="wholePic">
+            <!--<img class="wholeView" src="view/macroIndustryDisplay/generalInfo/pic/全景图.jpg"/>-->
+            <img class="wholeView" src="view/resource/全景图本体.png"/>
+            <img class="wholeView cover" src="view/resource/全景图本体-变暗.png"/>
+            <img class="wholeView cover part_009" src="view/resource/009.png"/>
+            <img class="wholeView cover part_008" src="view/resource/008.png"/>
+            <img class="wholeView cover part_007" src="view/resource/007.png"/>
+            <img class="wholeView cover part_006" src="view/resource/006.png"/>
+            <img class="wholeView cover part_005" src="view/resource/005.png"/>
+            <img class="wholeView cover part_004" src="view/resource/004.png"/>
+            <img class="wholeView cover part_003" src="view/resource/003.png"/>
+            <img class="wholeView cover part_002" src="view/resource/002.png"/>
+            <img class="wholeView cover part_001" src="view/resource/001.png"/>
+            <div class="touchDescription"><img src="view/resource/轻触部件.png"/></div>
+            <div class="companyList" style="display: none;">
+                <label class="name_part">{{category_toShow}}</label>
+                <div class="list_part">
+                    <ul>
+                        <li ng-repeat="item in list_toShow"><a href="" ng-click="goToCompanyDetails(item)">{{item.stkcd}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="part_009" name="金属" class="part_toTouch part_009" style="opacity: 0;"></div>
+            <div id="part_008" name="行驶底盘设备（含转向设备+制动设备+传动设备+行驶设备+发动机设备" class="part_toTouch part_008" style="opacity: 0;"></div>
+            <div id="part_007_1" name="轮胎+橡胶" class="part_toTouch part_007" style="opacity: 0;"></div>
+            <div id="part_007_2" name="轮胎+橡胶" class="part_toTouch part_007" style="opacity: 0;"></div>
+            <div id="part_007_3" name="轮胎+橡胶" class="part_toTouch part_007" style="opacity: 0;"></div>
+            <div id="part_007_4" name="轮胎+橡胶" class="part_toTouch part_007" style="opacity: 0;"></div>
+            <div id="part_006_1" name="车身及外观设备+金属" class="part_toTouch part_006" style="opacity: 0;"></div>
+            <div id="part_006_2" name="车身及外观设备+金属" class="part_toTouch part_006" style="opacity: 0;"></div>
+            <div id="part_006_3" name="车身及外观设备+金属" class="part_toTouch part_006" style="opacity: 0;"></div>
+            <div id="part_006_4" name="车身及外观设备+金属" class="part_toTouch part_006" style="opacity: 0;"></div>
+            <div id="part_005" name="玻璃" class="part_toTouch part_005" style="opacity: 0;"></div>
+            <div id="part_004_1" name="合成材料+车身及外观设备" class="part_toTouch part_004" style="opacity: 0;"></div>
+            <div id="part_004_2" name="合成材料+车身及外观设备" class="part_toTouch part_004" style="opacity: 0;"></div>
+            <div id="part_004_3" name="合成材料+车身及外观设备" class="part_toTouch part_004" style="opacity: 0;"></div>
+            <div id="part_004_4" name="合成材料+车身及外观设备" class="part_toTouch part_004" style="opacity: 0;"></div>
+            <div id="part_003" name="合成材料+车身及外观设备" class="part_toTouch part_003" style="opacity: 0;"></div>
+            <div id="part_002" name="纺织品" class="part_toTouch part_002" style="opacity: 0;"></div>
+            <div id="part_001" name="电气仪器仪表+转向设备" class="part_toTouch part_001" style="opacity: 0;"></div>
+        </div>
+        <!--<div id="luntai" class="nameAndList">-->
+            <!--<label class="name_part">轮胎</label>-->
+            <!--<div class="list_part" style="display: none;">-->
+                <!--<ul>-->
+                    <!--<li ng-repeat="item in list_luntai"><a href="" ng-click="goToCompanyDetails(item)">{{item}}</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<div id="chain_car" class="part">
+    <h3><a href="#chain_car">汽车产业链图</a></h3>
+    <img src="view/macroIndustryDisplay/generalInfo/pic/汽车产业链.png"/>
+</div>
+
+<div id="flowPath_car" class="part">
+    <h3><a href="#flowPath_car">汽车生产流程图</a></h3>
+    <img src="view/macroIndustryDisplay/generalInfo/pic/汽车生产流程图.png"/>
+</div>
+
+<div id="atlas_car" class="part">
+    <h3><a href="#atlas_car">中国汽车企业图谱</a></h3>
+    <img src="view/macroIndustryDisplay/generalInfo/pic/中国汽车企业图谱.png"/>
+</div>
+
+<link rel="stylesheet" href="view/macroIndustryDisplay/generalInfo/generalInfo.css"/>

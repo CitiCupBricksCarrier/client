@@ -17,6 +17,10 @@
     "bootstrap-colorpicker": "^2.5.3",
     "hover": "2.0.0",
     "angular-ui-router": "1.0.3",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "jquery-smooth-scroll": "2.2.0",
+    "echarts":"3.1.1"
+
+
   }
 }
