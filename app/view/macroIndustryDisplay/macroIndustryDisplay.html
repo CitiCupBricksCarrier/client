@@ -13,7 +13,18 @@
         </div>
 
         </div>
-    <li><a ui-sref="">经济数据</a></li>
+
+    <div style="display:flex">
+
+    <li><a ui-sref="" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a></li>
+        <div class="dataPane2" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()" ng-show='toshowDataPane2'>
+            <a ui-sref="macroIndustryDisplay.qyjx">企业绩效</a><br>
+            <a ui-sref="macroIndustryDisplay.hysxysj">行业上下游<br>数据</a><br>
+            <a ui-sref="macroIndustryDisplay.hycw">行业财务及固定资产投资</a><br>
+        </div>
+
+    </div>
+
     <li><a>财务数据</a></li>
     <li><a>行业地位</a></li>
     <li><a>主要上市公司</a></li>

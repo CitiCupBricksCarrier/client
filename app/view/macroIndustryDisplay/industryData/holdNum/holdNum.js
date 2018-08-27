@@ -124,7 +124,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
                 tooltip: {},
                 legend: {
                     y:'bottom',
-                    data:['民用客车','民用货车','民用其他汽车','民用汽车(右)'],
+                    data:['民用客车','民用货车','民用其他汽车','民用汽车'],
 
                 },
                 xAxis: {
@@ -153,7 +153,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
                         stack:'b'
                     },
                     {
-                        name: '民用汽车(右)',
+                        name: '民用汽车',
                         type: 'line',
                         data: civilcarchn,
                     }

@@ -42,10 +42,14 @@ angular.module('myApp.macroIndustryDisplay.inventory', [
                     data: f1
                 },
                 yAxis: [{    name:'进口/自主/合资汽车',
-                            type:'value'
+                            type:'value',
+                            max:8,
+                            splitNumber:10
                         },
                         {    name:'汽车',
                         type:'value',
+                            splitNumber:8,
+                            min:0.5
 
                         }
                 ],

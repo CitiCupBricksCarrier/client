@@ -983,7 +983,14 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 xAxis: {
                     data: f1
                 },
-                yAxis: {},
+                yAxis: [{    name:'乘用车/货车/客车',
+                              type:'value',
+                },
+                    {
+                             name:'汽车',
+                             type:'value',
+
+                    }],
                 series: [{
                     name: '乘用车',
                     type: 'bar',
@@ -1001,8 +1008,9 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                     },
                     {
                         name: '汽车(右)',
-                        type: 'bar',
-                        data: autosalesjapan
+                        type: 'line',
+                        data: autosalesjapan,
+                        yAxisIndex:1
                     }
                 ]
             };
