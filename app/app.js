@@ -4,6 +4,8 @@
 angular.module('myApp', [
     'ngRoute',
     'ui.router',
+    'angular-loading-bar',
+    'ngAnimate',
     'myApp.version',
 
     'myApp.microIndustryChain',

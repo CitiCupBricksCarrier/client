@@ -55,6 +55,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
 
         $scope.nodeIDList = $stateParams.nodeIDList;
         $scope.nodeList = $stateParams.nodeList;
+        $scope.nodeDisplayList = $stateParams.nodeDisplayList;
         $scope.connectionList = $stateParams.connectionList;
 
 
@@ -73,6 +74,30 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             }
             netContext.strokeStyle = netColor;
             netContext.stroke();
+        })();
+
+        (function initializeNodeDisplay() {
+            for(let i=0, length = $scope.nodeIDList.length; i<length; i++) {
+                let nodeIDCache = $scope.nodeIDList[i];
+
+                let node = document.createElement("node");
+                let nodeName = document.createElement("p");
+
+                node.className = "node";
+                node.id = nodeIDCache;
+                node.setAttribute("data-toggle","context");
+                node.setAttribute("data-target","#node-menu");
+                node.style.left = (canvas.offsetLeft + $scope.nodeDisplayList[nodeIDCache].x) + "px";
+                node.style.top = (canvas.offsetTop + $scope.nodeDisplayList[nodeIDCache].y) + "px";
+                node.style.width = 100 + "px";
+                node.style.height = 50 + "px";
+                nodeName.id = "nodeName";
+                nodeName.innerText = $scope.nodeList[nodeIDCache].nodeName;
+                nodeName.style.color = $scope.nodeList[nodeIDCache].nodeColor;
+                node.appendChild(nodeName);
+
+                nodeDiv.appendChild(node);
+            }
         })();
 
     });

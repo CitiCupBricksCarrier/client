@@ -18,6 +18,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let netContext = netBackground.getContext("2d");
         let animeBackground = document.getElementById("animeBackground");
         let animeContext = animeBackground.getContext("2d");
+        let addCompanyNodeBoard = document.getElementById("addCompanyNodeBoard");
         let addNodeBoard = document.getElementById("addNodeBoard");
         let addNodeNameInput = document.getElementById("addNodeNameInput");
         let addNodeStockInput = document.getElementById("addNodeStockInput");
@@ -44,8 +45,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let connectionLineAnimeColor = "rgba(255,215,0,1)";//连线层 动画颜色
         let step = 15;//网格背景 网络间隔
         let netColor = "rgba(0,0,0,0.1)";//网格背景 网络颜色
-        let nextNodePositionX = canvasLeft + 10;//新增节点 位置
-        let nextNodePositionY = canvasTop + 10;
+        let nextNodePositionX = canvasLeft + 200;//新增节点 位置
+        let nextNodePositionY = canvasTop + 30;
         let nextNodeID = 1;//新增节点 ID
         let nextConnectionID = 1;
 
@@ -82,6 +83,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let connectionEndNodeCache = "";
         $scope.nodeIDList = [];
         $scope.nodeList = [];//一个以ID为索引的字典
+        $scope.nodeDisplayList = [];//一个以ID为索引的字典
         $scope.connectionList = [];
         let undoList = [];
         let redoList = [];
@@ -105,6 +107,18 @@ angular.module('myApp.microIndustryChain.createChainView', [
             })
          */
 
+        //$http后端持久化参数初始化
+        $http({
+            method: 'post',
+            url: 'http://localhost:8080/generalInfo/companyDetailList',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            //cache: true, //避免多次请求后台数据
+        }).then(function (response) {
+            $scope.companyList = response.data;
+        }, function () {
+            console.error("Link Failed");
+        });
+
 
         //DOM绑定方法
         $scope.dblclickNodeHistoryBlockCell = function (id) {
@@ -120,6 +134,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.addNewNode = function () {//
             addNode(addNodeNameInput.value, addNodeStockInput.value, addNodeRoleInput.value, addNodeColorInput.value);
             $scope.isAddingNode = false;
+        };
+
+        $scope.addCompanyNode = function (company) {
+            addNode(company.compname, company.stkcd, "", "#000000");
         };
 
         $scope.addEmptyNode = function () {
@@ -160,6 +178,18 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.editConnection = function () {
             editConnection($scope.mouseDownConnectionIndex, editConnectionFundExchangeInput.value);
             $scope.isEdittingConnection = false;
+        };
+
+        $scope.showAddCompanyNodeBoard = function () {
+            window.event.stopPropagation();
+            hideAllBoard();
+            addCompanyNodeBoard.style.left = window.event.clientX + "px";
+            addCompanyNodeBoard.style.top = window.event.clientY + "px";
+            $scope.isAddingCompanyNode = true;
+        };
+
+        $scope.hideAddCompanyNodeBoard = function () {
+            $scope.isAddingCompanyNode = false;
         };
 
         $scope.showAddNodeBoard = function () {
@@ -205,6 +235,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
         $scope.hideAddConnectionBoard = function () {
             $scope.isAddingConnection = false;
+            refreshConnectionBackground();
         };
 
         $scope.showEditConnectionBoard = function () {
@@ -254,9 +285,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                     //cache: true, //避免多次请求后台数据
                 }).then(function (response) {
-                    $scope.searchCache = response.data;
+                    $scope.searchCache = response.data.slice(0,6);
                 }, function () {
-                    alert("Link Failed: 404");
+                    console.error("Link Failed");
                 });
             }
         };
@@ -272,9 +303,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                     //cache: true, //避免多次请求后台数据
                 }).then(function (response) {
-                    $scope.searchCache = response.data;
+                    $scope.searchCache = response.data.slice(0,6);
                 }, function () {
-                    alert("Link Failed: 404");
+                    console.error("Link Failed");
                 });
             }
         };
@@ -342,14 +373,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
         topElement.onmouseup = function (e) {
             if(canDragNode){
-                let node = document.getElementById($scope.mouseDownNodeID);
-                let beginPosition = storageWindowPosition;
-                let endPosition = {
-                    x: parseFloat(node.style.left),
-                    y: parseFloat(node.style.top)
-                };
-
-                pushUndoList("moveNode", $scope.mouseDownNodeID, beginPosition, endPosition);
+                refreshNodeDisplayList();
                 startAnimeBackground();
             }
             else if(canDragAnchor){
@@ -508,8 +532,6 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
 
 
-
-
         let addNode = function (name, stock, role, color) {
             let node = document.createElement("node");
             let nodeName = document.createElement("p");
@@ -524,8 +546,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
             node.setAttribute("data-target","#node-menu");
             node.style.left = nextNodePositionX + "px";
             node.style.top = nextNodePositionY + "px";
-            node.style.width = 80 + "px";
-            node.style.height = 40 + "px";
+            node.style.width = 100 + "px";
+            node.style.height = 50 + "px";
             nodeName.id = "nodeName";
             nodeName.innerText = name;
             nodeName.style.color = color;
@@ -533,8 +555,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
             nodeAnchorTop.id = "A" + nextNodeID + "1";
             nodeAnchorRight.className = "node-anchor-right";
             nodeAnchorRight.id = "A" + nextNodeID + "2";
+            nodeAnchorRight.style.left = (parseFloat(node.style.width) - 8) + "px";
             nodeAnchorBottom.className = "node-anchor-bottom";
             nodeAnchorBottom.id = "A" + nextNodeID + "3";
+            nodeAnchorBottom.style.top = (parseFloat(node.style.height) - 8) + "px";
             nodeAnchorLeft.className = "node-anchor-left";
             nodeAnchorLeft.id = "A" + nextNodeID + "4";
             node.appendChild(nodeName);
@@ -557,7 +581,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             nextNodePositionX += 20;
             nextNodePositionY += 20;
 
-            pushUndoList("addNode",node.id,"","");
+            refreshNodeDisplayList();
         };
 
         let deleteNode = function (nodeID) {
@@ -596,6 +620,16 @@ angular.module('myApp.microIndustryChain.createChainView', [
             let nodeName = nodeToEdit.children[0];
             nodeName.innerText = editNodeNameInput.value;
             nodeName.style.color = color;
+        };
+
+        let refreshNodeDisplayList = function () {
+            for(let i=0, length=$scope.nodeIDList.length; i<length; i++){
+                let nodePartialCache = document.getElementById($scope.nodeIDList[i]);
+                $scope.nodeDisplayList[$scope.nodeIDList[i]] = {
+                    x: parseFloat(nodePartialCache.style.left) - canvas.offsetLeft,
+                    y: parseFloat(nodePartialCache.style.top) - canvas.offsetTop
+                }
+            }
         };
 
         let addConnection = function (begin, end, fund) {
@@ -652,6 +686,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         let hideAllBoard = function () {
+            $scope.isAddingCompanyNode = false;
             $scope.isAddingNode = false;
             $scope.isEdittingNode = false;
             $scope.isAddingConnection = false;
