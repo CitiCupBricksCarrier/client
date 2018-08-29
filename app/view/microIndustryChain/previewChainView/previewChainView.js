@@ -76,6 +76,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             netContext.stroke();
         })();
 
+
         (function initializeNodeDisplay() {
             for(let i=0, length = $scope.nodeIDList.length; i<length; i++) {
                 let nodeIDCache = $scope.nodeIDList[i];
@@ -99,5 +100,65 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                 nodeDiv.appendChild(node);
             }
         })();
+
+
+        (function refreshConnectionBackground() {
+            connectionContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            connectionContext.beginPath();
+            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+                let beginNode = document.getElementById($scope.connectionList[i].begin);
+                let endNode = document.getElementById($scope.connectionList[i].end);
+                connectionContext.moveTo(
+                    parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft,
+                    parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop
+                );
+                connectionContext.lineTo(
+                    parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft,
+                    parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop
+                );
+            }
+            connectionContext.strokeStyle = connectionLineColor;
+            connectionContext.stroke();
+        })();
+
+        /**
+         *资金流动 动画实现
+         */
+        let animeI = 4.0;
+        let animeTime = 40.0;
+        let animeTimeoutID;
+        function startAnimeBackground ()
+        {
+            animeI = animeI + 1.0;
+            if(animeI > animeTime){animeI = 4.0;}
+            animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            animeContext.beginPath();
+            for(let i=0; i<$scope.connectionList.length; i++){
+                let beginNode = document.getElementById($scope.connectionList[i].begin);
+                let endNode = document.getElementById($scope.connectionList[i].end);
+                let beginX = parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft;
+                let beginY = parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop;
+                let endX = parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft;
+                let endY = parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop;
+                animeContext.moveTo(
+                    beginX + ((animeI-4.0)/animeTime)*(endX - beginX),
+                    beginY + ((animeI-4.0)/animeTime)*(endY - beginY)
+                );
+                animeContext.lineTo(
+                    beginX + (animeI/animeTime)*(endX - beginX),
+                    beginY + (animeI/animeTime)*(endY - beginY)
+                );
+            }
+            animeContext.stroke();
+            animeTimeoutID = setTimeout(startAnimeBackground, 50);
+        }
+        startAnimeBackground();
+
+        let stopAnimeBackground = function () {
+            clearTimeout(animeTimeoutID);
+            animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
+        };
+
+
 
     });

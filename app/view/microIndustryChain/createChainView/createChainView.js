@@ -8,9 +8,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
     .controller('CreateChainViewCtrl',function($scope, $route, $http) {
         //DOM对象化
+        let topElement = document.getElementById("topElement");
+        let displayDiv = document.getElementById("displayDiv");
         let canvas = document.getElementById("canvas");
         let context = canvas.getContext("2d");
-        let topElement = document.getElementById("topElement");
         let nodeDiv = document.getElementById("nodeDiv");
         let connectionBackground = document.getElementById("connectionBackground");
         let connectionContext = connectionBackground.getContext("2d");
@@ -308,6 +309,19 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     console.error("Link Failed");
                 });
             }
+        };
+
+        $scope.takeScreenshot = function () {
+            console.log('test');
+            html2canvas(displayDiv, {
+                onrendered: function(canvas2) {
+                    document.body.appendChild(canvas2);
+                    let dataURL =canvas2.toDataURL("image/png");
+                    console.log(dataURL);
+                },
+                width: 300,
+                height: 300
+            });
         };
 
 
