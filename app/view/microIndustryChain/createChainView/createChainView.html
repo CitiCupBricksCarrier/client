@@ -1,24 +1,293 @@
-<br>
-this is create chain view
-<br>
+<link rel="stylesheet" href="view/microIndustryChain/createChainView/bootstrap-colorpicker.css">
 
-<div id="topElement" onselectstart="return false;">
+<div id="topElement" ng-mousedown="hideAllBoard()" onselectstart="return false;">
 
-    <canvas id="netBackground"></canvas>
-    <canvas id="connectionBackground"></canvas>
-    <canvas id="canvas" width="1000" height="500"></canvas>
+    <div id="displayDiv" style="display: block; height: 2000px; width: 2000px;">
+        <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="animeBackground" style="left: 0; top: 0;"></canvas>
+        <canvas id="canvas" data-toggle="context" data-target="#canvas-menu" style="left: 0; top: 0;"></canvas>
 
-
-    <div>
-        <button class="btn btn-success" ng-click="addNewNode()">add</button>
+        <div id="nodeDiv">
+        </div>
     </div>
 
-    <div id="nodeDiv">
+    <div id="leftToolBar">
 
+        <ul class="nav nav-tabs small">
+            <li class="active"><a href="#nodeHistory" data-toggle="tab">节点</a></li>
+            <li><a href="#connectionHistory" data-toggle="tab">联系</a></li>
+        </ul>
+        <div class="historyBlock">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="nodeHistory">
+                    <div class="historyBlockCell small" ng-mousedown="setMouseDownNodeID(id)" ng-dblclick="dblclickNodeHistoryBlockCell(id)"
+                         ng-repeat="id in nodeIDList" data-toggle="context" data-target="#node-menu">
+                        <div style="color:{{nodeList[id].nodeColor}}; font-weight:bold;">● {{nodeList[id].nodeName}}</div>
+                        <button ng-click="deleteNodeByHistory(id)" class="btn-sm btn-default">删除</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="connectionHistory">
+                    <div class="historyBlockCell small" ng-mousedown="setMouseDownConnectionIndex($index)" ng-dblclick="dblclickConnectionHistoryBlockCell($index)"
+                         ng-repeat="connection in connectionList" data-toggle="context" data-target="#connection-menu">
+                        <div>
+                            由<span style="color:{{nodeList[connection.begin].nodeColor}}; font-weight:bold;"> ● {{nodeList[connection.begin].nodeName}} </span>
+                            至<span style="color:{{nodeList[connection.end].nodeColor}}; font-weight:bold;"> ● {{nodeList[connection.end].nodeName}} </span>
+                            :<span style="font-weight:bold"> {{connection.fund}} </span>
+                            万元
+                        </div>
+                        <button ng-click="deleteConnectionByHistory($index)" class="btn-sm btn-default">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="leftToolBarBlock">
+
+        </div>
+    </div>
+
+    <div id="topToolBar">
+        <div id="topToolBarMenu"></div>
+        <div class="topToolBarBigBlock">
+            <div class="topToolBarBigBlockCell">
+                <button id="addCompanyBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddCompanyNodeBoard()"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="增加一个公司节点" data-content="通过查询来【自动创建】公司节点">
+                    公司节点
+                </button>
+                <button id="addDiyBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddNodeBoard()"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="增加一个自定义节点" data-content="输入公司信息来【自定义】公司节点">
+                    自定义
+                </button>
+            </div>
+            <div class="topToolBarBigBlockCell">
+                <button id="saveBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="保存作品" data-content="将您的作品草稿【保存】到云端仓库">
+                    保存
+                </button>
+                <button id="previewBtn" class="btn btn-default topToolBarBigBtn" ui-sref="microIndustryChain.previewChainView({'nodeIDList':nodeIDList, 'nodeList':nodeList, 'nodeDisplayList':nodeDisplayList, 'connectionList':connectionList})"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="预览作品" data-content="以阅读者的视角【查看】此产业链">
+                    预览</button>
+                <button id="downloadBtn" class="btn btn-default topToolBarBigBtn" ng-click="takeScreenshot()"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="下载图片" data-content="将您的作品以图片格式【下载】到本地">
+                    下载</button>
+            </div>
+            <div class="topToolBarBigBlockCell">
+                <button id="publishBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="发布到社区" data-content="将您的作品【发布】到社区，赚取阅读赏金">
+                    发布
+                </button>
+                <button id="shareBtn" class="btn btn-default topToolBarBigBtn"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="分享到社交平台" data-content="将您的作品【分享】到社交平台">
+                    分享
+                </button>
+            </div>
+        </div>
     </div>
 
 </div>
 
 
-<script src="view/microIndustryChain/createChainView/controller.js"></script>
+
+
+<div id="addCompanyNodeBoard" ng-show="isAddingCompanyNode" style="left: 0; top: 0;" onselectstart="return false;">
+    <div>
+        <input ng-model="addCompanyNodeSearchInput" class="form-control" placeholder="公司信息模糊搜索...">
+    </div>
+    <div class="tableDiv">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>股票代码</th>
+                    <th>公司名称</th>
+                    <th>省份</th>
+                    <th>添加</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in companyList | filter: addCompanyNodeSearchInput">
+                    <td>{{company.stkcd}}</td>
+                    <td>{{company.compname}}</td>
+                    <td>{{company.province}}</td>
+                    <td><button class="btn btn-default" ng-click="addCompanyNode(company)">添加</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-default" ng-click="hideAddCompanyNodeBoard()" style="margin-top: 20px">关闭</button>
+</div>
+
+
+<div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;" onselectstart="return false;">
+    <div>
+        <p>股票代码</p>
+        <input id="addNodeStockInput" ng-model="addNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..."
+               ng-keyup="searchByStkcd(addNodeStockInput)" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+               onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" list="addNodeStockInputList" maxlength="6">
+        <datalist id="addNodeStockInputList">
+            <option ng-repeat="item in searchCache" label="{{item.compname}}">{{item.stkcd}}</option>
+        </datalist>
+    </div>
+    <div>
+        <p>公司名</p>
+        <input id="addNodeNameInput" ng-model="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名..."
+               ng-keyup="searchByCompName(addNodeNameInput)" list="addNodeNameInputList">
+        <datalist id="addNodeNameInputList">
+            <option ng-repeat="item in searchCache" label="{{item.stkcd}}">{{item.compname}}</option>
+        </datalist>
+    </div>
+    <a ng-click="showMoreAddNodeOptions = !showMoreAddNodeOptions">更多...</a>
+    <div ng-show="showMoreAddNodeOptions">
+        <hr>
+        <div>
+            <p>角色</p>
+            <input id="addNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+        </div>
+        <div>
+            <p>标记颜色</p>
+            <div id="addNodeCP" class="input-group">
+                <input id="addNodeColorInput" class="form-control" type="text" value="#000000" style="width: 80%; height: 34px">
+                <span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="row center-block">
+        <button ng-click="hideAddNodeBoard()" class="btn btn-default">取消</button>
+        <button ng-click="addNewNode()" class="btn btn-default">确认添加</button>
+    </div>
+</div>
+
+<div id="editNodeBoard" ng-show="isEdittingNode"  style="left: 0; top: 0;" onselectstart="return false;">
+    <div>
+        <p>股票代码</p>
+        <input id="editNodeStockInput" ng-model="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..."
+               ng-keyup="searchByStkcd(editNodeStockInput)" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+               onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" list="editNodeStockInputList" maxlength="6">
+        <datalist id="editNodeStockInputList">
+            <option ng-repeat="item in searchCache" label="{{item.compname}}">{{item.stkcd}}</option>
+        </datalist>
+    </div>
+    <div>
+        <p>公司名</p>
+        <input id="editNodeNameInput" ng-model="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名..."
+               ng-keyup="searchByCompName(editNodeNameInput)" list="editNodeNameInputList">
+        <datalist id="editNodeNameInputList">
+            <option ng-repeat="item in searchCache" label="{{item.stkcd}}">{{item.compname}}</option>
+        </datalist>
+    </div>
+    <a ng-click="showMoreEditNodeOptions = !showMoreEditNodeOptions">更多...</a>
+    <div ng-show="showMoreEditNodeOptions">
+        <hr>
+        <div>
+            <p>角色</p>
+            <input id="editNodeRoleInput" class="form-control" type="text" placeholder="请输入节点角色...">
+        </div>
+        <div>
+            <p>标记颜色</p>
+            <div id="editNodeCP" class="input-group">
+                <input id="editNodeColorInput" class="form-control" type="text" value="#000000" style="width: 80%; height: 34px">
+                <span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="row center-block">
+        <button ng-click="hideEditNodeBoard()" class="btn btn-default">取消</button>
+        <button ng-click="editNode()" class="btn btn-default">确认修改</button>
+    </div>
+</div>
+
+<div id="addConnectionBoard" ng-show="isAddingConnection"  style="left: 0; top: 0;" onselectstart="return false;">
+    <div>
+        <p>资金往来</p>
+        <input id="addConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量(万元)...">
+    </div>
+    <div class="row center-block">
+        <button ng-click="hideAddConnectionBoard()" class="btn btn-default">取消</button>
+        <button ng-click="addNewConnection()" class="btn btn-default">确认修改</button>
+    </div>
+</div>
+
+<div id="editConnectionBoard" ng-show="isEdittingConnection"  style="left: 0; top: 0;" onselectstart="return false;">
+    <div>
+        <p>资金往来</p>
+        <input id="editConnectionFundExchangeInput" class="form-control" type="number" placeholder="请输入资金量(万元)...">
+    </div>
+    <div class="row center-block">
+        <button ng-click="hideEditConnectionBoard()" class="btn btn-default">取消</button>
+        <button ng-click="editConnection()" class="btn btn-default">确认修改</button>
+    </div>
+</div>
+
+<div id="node-menu" onselectstart="return false;">
+    <ul class="dropdown-menu">
+        <li ng-click="showEditNodeBoard()"><a>修改</a></li>
+        <li class="divider"></li>
+        <li ng-click="deleteNodeByMenu()"><a style="color: indianred">删除</a></li>
+    </ul>
+</div>
+
+<div id="connection-menu" onselectstart="return false;">
+    <ul class="dropdown-menu">
+        <li ng-click="showEditConnectionBoard()"><a>修改</a></li>
+        <li class="divider"></li>
+        <li ng-click="deleteConnectionByHistory(mouseDownConnectionIndex)"><a style="color: indianred">删除</a></li>
+    </ul>
+</div>
+
+<div id="canvas-menu" onselectstart="return false;">
+    <ul class="dropdown-menu">
+        <li ng-click="showAddNodeBoard()"><a>增加新的节点...</a></li>
+        <li ng-click="addEmptyNode()"><a>增加空节点</a></li>
+        <li class="divider"></li>
+        <li ng-click="undo()"><a>撤销</a></li>
+        <li ng-click="redo()"><a>重做</a></li>
+    </ul>
+</div>
+
+<script src="view/microIndustryChain/createChainView/bootstrap-contextmenu.js"></script>
+<script src="view/microIndustryChain/createChainView/bootstrap-colorpicker.js"></script>
+<script src="view/microIndustryChain/createChainView/html2canvas.min.js"></script>
+<script>
+    $(function () {
+        // Basic instantiation:
+        $('#addNodeCP').colorpicker({
+            colorSelectors: {
+                'black': '#000000',
+                'red': '#FF0000',
+                'default': '#777777',
+                'primary': '#337ab7',
+                'success': '#5cb85c',
+                'info': '#5bc0de',
+                'warning': '#f0ad4e',
+                'danger': '#d9534f'
+            }
+        });
+        $('#editNodeCP').colorpicker({
+            colorSelectors: {
+                'black': '#000000',
+                'red': '#FF0000',
+                'default': '#777777',
+                'primary': '#337ab7',
+                'success': '#5cb85c',
+                'info': '#5bc0de',
+                'warning': '#f0ad4e',
+                'danger': '#d9534f'
+            }
+        });
+
+
+        $("[data-popover='popover']").popover({
+//            title: title(),
+            delay:{show:500, hide:100},
+        });
+    });
+
+</script>
 <link rel="stylesheet" href="view/microIndustryChain/createChainView/createChainView.css">
