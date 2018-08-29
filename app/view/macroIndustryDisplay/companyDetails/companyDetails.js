@@ -130,7 +130,14 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
 
         // 保存已划好的线
         let connectionList = [];
-        
+
+
+        let nodeList = [];
+
+        let linkList = [];
+
+        let categoryList = ['根公司'];
+
         function getSimilarRecommendation() {
             $http({
                 url: 'http://localhost:8080/similarRecommandation/',
@@ -142,12 +149,16 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             }).then(function successCallBack(response) {
                 console.log(response.data,2);
                 let similarData = response.data;
-                canvas = document.getElementById("canvas");
-                context = canvas.getContext("2d");
-                canvas.onmousemove = mousemove;
 
                 //添加公司节点
-                addCompany(similarData.company.compname,similarData.company.stkcd);
+                addCompany(similarData.company.compname,similarData.company.stkcd,0,0);
+
+
+                //添加行业节点
+                for(let i = 0; i<similarData.categories.length;i++){
+                    addIndustry(similarData.categories[i],i+1);
+                    categoryList.push(similarData.categories[i]);
+                }
 
                 let company_json_list = [];
                 for(let i = 0; i<similarData.categories.length;i++){
@@ -157,19 +168,16 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                         let company_json_str = JSON.stringify(company);
                         if($.inArray(company_json_str,company_json_list) == -1  ){
                             company_json_list.push(company_json_str);
+                            let company_json_temp = JSON.parse(company_json_str);
+                            addCompany(company_json_temp.compname,company_json_temp.stkcd,company_json_list.length+industryList.length,categoryList.indexOf(category_temp));
                         }
                     }
                 }
-                for(let i = 0 ; i<company_json_list.length;i++){
-                    company_json_list[i] = JSON.parse(company_json_list[i]);
-                    addCompany(company_json_list[i].compname,company_json_list[i].stkcd);
-                }
+                // for(let i = 0 ; i<company_json_list.length;i++){
+                //     company_json_list[i] = JSON.parse(company_json_list[i]);
+                //     addCompany(company_json_list[i].compname+"_"+company_json_list[i].stkcd,i+industryList.length+1);
+                // }
                 // console.log(22,company_json_list)
-
-                //添加行业节点
-                for(let i = 0; i<similarData.categories.length;i++){
-                    addIndustry(similarData.categories[i]);
-                }
 
                 //添加关系链接
                 for(let i = 0 ; i<industryList.length;i++){
@@ -180,7 +188,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                             // console.log(companyList[n].name,1,similarData[indistry_index][j].compname)
                             if(companyList[n].name == similarData[indistry_index][j].compname){
                                 // console.log(industryList[i],1,companyList[n]);
-
+                                console.log(111)
                                 addConnection(industryList[i],companyList[n]);
                                 // console.log(connectionList);
                                 break;
@@ -191,10 +199,18 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                 }
                 console.log(companyList)
                 console.log(industryList);
-                console.log(connectionList);
+                console.log("ww",connectionList);
                 relocate();
-                refreshAll();
+                transformNodes();
+                console.log("sss",nodeList)
+                transformLinks();
+                console.log(linkList);
 
+                let similarRecommendationData = {};
+                similarRecommendationData.nodes = nodeList;
+                similarRecommendationData.links = linkList;
+                initSimilarRecommendation(similarRecommendationData);
+                // console.log(JSON.stringify(similarRecommendationData))
             },function errorCallBack(response) {
                 console.log(response);
             });
@@ -204,71 +220,67 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
 
 
         // 用来储存每个公司对象
-        function CompanyNode(x, y, radius, color,name,id) {
-
-            this.x = x;
-            this.y = y;
-            this.radius = radius;
-            this.color = color;
-            this.isSelected = false;
+        function CompanyNode(name,stkcd,id,category_index) {
+            this.x = 0;
+            this.y = 0;
             this.name = name;
+            this.stkcd = stkcd;
             this.id = id;
-
+            this.category_index = category_index;
         }
 
-        function Industry(x,y,color,name) {
-            this.x = x;
-            this.y = y;
-            this.color = color;
-            this.isSelected = false;
+        function Industry(name,id) {
+            this.x = 0;
+            this.y = 0;
             this.name = name;
+            this.id = id;
         }
 
         // 用来存储连接对象
         function Connection(industry,company) {
             this.industry = industry;
             this.company = company;
-            this.isSelected = false;
+        }
+        
+        function chart_node(id,message,symbolSize,x,y,category_index) {
+            var node = {
+                "id": ""+id,
+                "name": message,
+                "itemStyle": null,
+                "symbolSize": symbolSize,
+                "x": x - chart_width/2,         //  jian
+                "y": y - chart_height/2,         //  jian
+                "attributes": {
+                    "modularity_class": category_index
+                },
+                "value": 0,
+                "label": {
+                    "normal": {
+                        "show": true
+                    }
+                },
+                "category": category_index
+            }
+            return node;
         }
 
-
-
-        let canvas;
-        let context;
-
-        let rect_width = 100;
-        let rect_height = 50;
-
-        let canvas_height = 600;
-        let canvas_width = 600;
-        let line_length = canvas_height/6;
-
-        function drawRoundRect(industryNode){
-            let x = industryNode.x-rect_width/2;
-            let y = industryNode.y-rect_height/2;
-            let radius = 10;
-            context.beginPath();
-            context.moveTo(x, y+radius);
-            context.lineTo(x, y+rect_height-radius);
-            context.quadraticCurveTo(x, y+rect_height, x+radius, y+rect_height);
-            context.lineTo(x+rect_width-radius, y+rect_height);
-            context.quadraticCurveTo(x+rect_width, y+rect_height, x+rect_width, y+rect_height-radius);
-            context.lineTo(x+rect_width, y+radius);
-            context.quadraticCurveTo(x+rect_width, y, x+rect_width-radius, y);
-            context.lineTo(x+radius, y);
-            context.quadraticCurveTo(x, y, x, y+radius);
-            context.closePath();
-            context.strokeStyle = "black";
-            if (industryNode.isSelected) {
-                context.lineWidth = 5;
+        function chart_link(id,source_index,target_index) {
+            var link = {
+                "id": ""+id,
+                "name": null,
+                "source": ""+source_index,
+                "target": ""+target_index,
+                "lineStyle": {
+                    "normal": {}
+                }
             }
-            else {
-                context.lineWidth = 1;
-            }
-            context.stroke();
-            context.fillStyle = "blue";
-            context.fill();
+            return link;
         }
+
+        let chart_height = 600;
+        let chart_width = 600;
+        let line_length = chart_height/6;
+
         /*
 
             function addNode() {
@@ -292,33 +304,16 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             }
         */
 
-        function addCompany(name,id) {
-            let radius = 30;
-            let x = randomFromTo(0, canvas.width);
-            let y = randomFromTo(0, canvas.height);
-
-            // 随机颜色
-            let colors = ["green", "blue", "red", "yellow", "magenta", "orange", "brown", "purple", "pink"];
-            let color = colors[randomFromTo(0, 8)];
-
+        function addCompany(name,stkcd,id,category_index) {
             // 创建一个新结点
-            let companyNode = new CompanyNode(x, y, radius, color,name,id);
-
+            let companyNode = new CompanyNode(name,stkcd,id,category_index);
             // 把它保存在数组中
             companyList.push(companyNode);
         }
 
-        function addIndustry(name) {
-            let x = randomFromTo(0, canvas.width);
-            let y = randomFromTo(0, canvas.height);
-
-            // 随机颜色
-            let colors = ["green", "blue", "red", "yellow", "magenta", "orange", "brown", "purple", "pink"];
-            let color = colors[randomFromTo(0, 8)];
-
-            let industryNode = new Industry(x,y,color,name);
+        function addIndustry(name,id) {
+            let industryNode = new Industry(name,id);
             industryList.push(industryNode);
-
         }
 
         function addConnection(industry,company) {
@@ -327,155 +322,31 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             connectionList.push(connection);
         }
 
-        //在某个范围内生成随机数
-        function randomFromTo(from, to) {
-            return Math.floor(Math.random() * (to - from + 1) + from);
+        function transformNodes() {
+            let node_root = chart_node(companyList[0].id,companyList[0].name+"_"+companyList[0].stkcd,150,companyList[0].x,companyList[0].y,companyList[0].category_index);
+            nodeList.push(node_root);
+            for(let i = 0;i<industryList.length;i++){
+                let node_category = chart_node(industryList[i].id,industryList[i].name,100,industryList[i].x,industryList[i].y,categoryList.indexOf(industryList[i].name));
+                nodeList.push(node_category);
+            }
+            for(let i = 0;i<companyList.length;i++){
+               if(i!=0){
+                    let node_leaf = chart_node(companyList[i].id,companyList[i].name+"_"+companyList[i].stkcd,50,companyList[i].x,companyList[i].y,companyList[i].category_index);
+                    nodeList.push(node_leaf);
+               }
+            }
         }
-
-
-        function refreshAll() {
-            // 清除画布，准备绘制
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
+        function transformLinks() {
             for(let i = 0;i<connectionList.length;i++){
-                let connection = connectionList[i];
-                context.moveTo(connection.industry.x,connection.industry.y);
-                context.lineTo(connection.company.x,connection.company.y)
-                context.lineWidth = 2;
-                context.strokeStyle ="black" ;
-                context.stroke();
+                let link_temp = chart_link(i,connectionList[i].company.id,connectionList[i].industry.id);
+                linkList.push(link_temp);
             }
-
-            // 遍历所有节点
-            for(let i=0; i<companyList.length; i++) {
-                let companyNode = companyList[i];
-
-                // 绘制圆圈
-                //         context.globalAlpha = 0.85;
-                context.beginPath(
-
-                );
-                context.arc(companyNode.x, companyNode.y, companyNode.radius, 0, Math.PI*2);
-                context.fillStyle = companyNode.color;
-                context.strokeStyle = "black";
-
-                if (companyNode.isSelected) {
-                    context.lineWidth = 5;
-                }
-                else {
-                    context.lineWidth = 1;
-                }
-                context.fill();
-                context.stroke();
-            }
-
-            for(let i=0; i<industryList.length; i++) {
-                let industryNode = industryList[i];
-                drawRoundRect(industryNode);
-            }
-
-
-        }
-
-        let previousNode;    //正在处理的上一个结点
-
-        function mousemove(e) {
-
-            let stop_node_type = "";
-
-            if (previousNode != null) {
-                previousNode.isSelected = false;
-                previousNode = null;
-            }
-
-            // 取得画布上被单击的点
-            var clickX = e.pageX - canvas.offsetLeft;
-            var clickY = e.pageY - canvas.offsetTop;
-
-            // 查找被单击的圆圈
-            for (var i = companyList.length - 1; i >= 0; i--) {
-                var circle = companyList[i];
-                //使用勾股定理计算这个点与圆心之间的距离
-                var distanceFromCenter = Math.sqrt(Math.pow(circle.x - clickX, 2) + Math.pow(circle.y - clickY, 2))
-                // 判断这个点是否在圆圈中
-                if (distanceFromCenter <= circle.radius) {
-                    previousNode = circle;
-
-                    //选择新圆圈
-                    circle.isSelected = true;
-
-                    stop_node_type = "company";
-
-                    //停止搜索
-                    break;
-                }
-            }
-            // 查找被单击的圆圈
-            for (var i = industryList.length - 1; i >= 0; i--) {
-                let industry_rect = industryList[i];
-                let x_left = industry_rect.x - rect_width / 2;
-                let x_right = industry_rect.x + rect_width / 2;
-                let y_up = industry_rect.y - rect_height / 2;
-                let y_down = industry_rect.y + rect_height / 2;
-                // 判断这个点是否在圆圈中
-                if (clickX >= x_left &&
-                    clickX <= x_right &&
-                    clickY >= y_up &&
-                    clickY <= y_down) {
-
-                    previousNode = industry_rect;
-
-                    //选择新圆圈
-                    industry_rect.isSelected = true;
-
-                    stop_node_type = "industry";
-
-                    //停止搜索
-                    break;
-                }
-            }
-
-            //更新显示，重绘圆圈
-            refreshAll();
-            //如果当前鼠标位置有圆圈，还要显示tip
-            if (previousNode != null) {
-                if(stop_node_type == 'company'){
-                    drawToolTip(previousNode.name+ "\n"+"id:"+previousNode.id, clickX-50, clickY);
-                }else {
-                    drawToolTip("行业：" + previousNode.name, clickX, clickY);
-                }
-
-            }
-
-        }
-
-
-
-
-        function drawToolTip(txtLoc, x, y) {
-            context.save();
-            var padding = 3;
-            var font = "16px arial";
-            context.font = font;
-            context.textBaseline = 'bottom';
-            context.fillStyle = 'white';
-
-            //绘制ToolTip背景
-            var width = context.measureText(txtLoc).width;
-            var height = parseInt(font, 10);
-            context.fillRect(x, y-height, width+padding*2, height+padding*2);
-
-            //绘制ToolTip文字
-            context.fillStyle = '#000';
-            context.fillText(txtLoc, x+padding, y+padding);
-
-            context.restore();
         }
 
 
         function relocate() {
-            let center_x = canvas_width/2;
-            let center_y = canvas_height/2;
+            let center_x = chart_width/2;
+            let center_y = chart_height/2;
 
             //根目录公司重定位
             companyList[0].x = center_x;
@@ -532,6 +403,90 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             }
 
             return result;
+        }
+
+        function initSimilarRecommendation(similarData) {
+            var dom = document.getElementById("similarRecommendChart");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+
+            var graph = similarData;
+            let categories = [];
+            for (var i = 0; i < categoryList.length; i++) {
+                categories[i] = {
+                    name: categoryList[i]
+                };
+            }
+            graph.nodes.forEach(function (node) {
+                node.itemStyle = null;
+                node.value = "";
+                node.symbolSize /= 1.5;
+                node.label = {
+                    normal: {
+                        show: node.symbolSize > 2
+                    }
+                };
+                node.category = node.attributes.modularity_class;
+            });
+            option = {
+                tooltip: {},
+                legend: [{
+                    // selectedMode: 'single',
+                    data: categories.map(function (a) {
+                        return a.name;
+                    })
+                }],
+                animationDuration: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                series : [
+                    {
+                        type: 'graph',
+                        layout: 'none',
+                        data: graph.nodes,
+                        links: graph.links,
+                        categories: categories,
+                        roam: true,
+                        focusNodeAdjacency: true,
+                        itemStyle: {
+                            normal: {
+                                borderColor: '#fff',
+                                borderWidth: 1,
+                                shadowBlur: 10,
+                                shadowColor: 'rgba(0, 0, 0, 0.3)'
+                            }
+                        },
+                        label: {
+                            position: 'right',
+                            formatter: '{b}'
+                        },
+                        lineStyle: {
+                            color: 'source',
+                            curveness: 0.3
+                        },
+                        emphasis: {
+                            lineStyle: {
+                                width: 10
+                            }
+                        }
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+            // console.log(JSON.stringify(graph));
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+
+            myChart.on('click', function (params) {
+                let stkcd = params.name.split("_")[1];
+                if(stkcd!=null){
+                    $state.go('macroIndustryDisplay.companyDetails',{stkcd_toShow:stkcd});
+                }
+            })
+
+
         }
 
 
