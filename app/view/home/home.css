@@ -16,9 +16,28 @@
 .go-to-macro{
     background: white url(icon/macro.svg) no-repeat center;
     background-size: 100%;
+    transition: background .5s;
 }
 .go-to-macro:hover{
     background: white url(icon/macro-hover.svg) no-repeat center;
+    background-size: 100%;
+}
+.go-to-micro{
+    background: white url(icon/micro.svg) no-repeat center;
+    background-size: 100%;
+    transition: background .5s;
+}
+.go-to-micro:hover{
+    background: white url(icon/micro-hover.svg) no-repeat center;
+    background-size: 100%;
+}
+.go-to-tendency{
+    background: white url(icon/tendency.svg) no-repeat center;
+    background-size: 100%;
+    transition: background .5s;
+}
+.go-to-tendency:hover{
+    background: white url(icon/tendency-hover.svg) no-repeat center;
     background-size: 100%;
 }
 
