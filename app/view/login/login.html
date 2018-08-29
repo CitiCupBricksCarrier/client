@@ -19,9 +19,9 @@
     <div id="login-right-block">
         <div id="login-cell">
             <p class="login-big-font">用户登录</p>
-            <input class="login-input" placeholder="请输入用户名" type="text">
-            <input class="login-input" placeholder="请输入密码" type="password">
-            <button class="login-btn">登录</button>
+            <input ng-model="username" class="login-input" placeholder="请输入用户名" type="text">
+            <input ng-model="password" class="login-input" placeholder="请输入密码" type="password">
+            <button ng-click="login()" class="login-btn">登录</button>
             <div class="login-sub">
                 <p class="small">注册新用户</p>
             </div>
