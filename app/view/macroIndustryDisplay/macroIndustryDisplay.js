@@ -11,13 +11,11 @@ angular.module('myApp.macroIndustryDisplay', [
                 templateUrl: 'view/macroIndustryDisplay/generalInfo/generalInfo.html',
                 controller: 'GeneralInfoCtrl'
             })
-        $stateProvider
             .state('macroIndustryDisplay.companyDetails', {
                 url: '/companyDetails/:stkcd_toShow',
                 templateUrl: 'view/macroIndustryDisplay/companyDetails/companyDetails.html',
                 controller: 'CompanyDetailsCtrl'
             })
-        $stateProvider
             .state('macroIndustryDisplay.sellNum',{
                 url:'/sellNum',
                 templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/sellNum.html',
@@ -29,10 +27,10 @@ angular.module('myApp.macroIndustryDisplay', [
         $scope.toshowDataPane=false;
         $scope.showDataPane=function () {
             $scope.toshowDataPane=true;
-        }
+        };
         $scope.hideDataPane=function () {
             $scope.toshowDataPane=false;
-        }
+        };
 
         //导航栏的点击效果
         $('.header_macro .module_nav .nav').click(function (e) {
