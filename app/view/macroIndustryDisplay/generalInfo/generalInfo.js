@@ -235,4 +235,43 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         //处理全景图上的公司列表
         loadCompanyList();
 
+
+        /**
+         * -------------------------------------------------
+         * -------------------------------------------------
+         * 自适应
+         */
+        // window.onload = function () {
+        //     resizeWholePic();
+        // }
+        $().ready(function () {
+            resizeWholePic();
+        })
+        $(window).resize(function () {
+            resizeWholePic();
+        })
+        function resizeWholePic() {
+            console.log($(window).height())
+            var windowHeight = $(window).height();
+            var windowWidth = $(window).width();
+            var scale = (windowHeight-50) / $('.wholePic .wholeView').height();            //缩放倍率
+            console.log(scale);
+            $('.wholePic .wholeView').css('height', windowHeight-50);
+
+            // $('.wholePic .part_toTouch').css('left', $('.wholePic .part_toTouch').css('left') * scale);
+
+            //每个定位组件的移动
+            var partList = $('.wholePic .part_toTouch');
+            for(var i = 0; i < partList.length; i++){
+                var part = partList[i];
+                // console.log(part);
+                // console.log($(part).position().left);
+                // console.log($(part).position().left * scale)
+                $(part).css('left', $(part).position().left * scale);
+                // console.log($(part).position().left);        //生效，但输出时未改变
+                $(part).css('top', $(part).position().top * scale);
+                $(part).css('width', $(part).width() * scale);
+                $(part).css('height', $(part).height() * scale);
+            }
+        }
     });
