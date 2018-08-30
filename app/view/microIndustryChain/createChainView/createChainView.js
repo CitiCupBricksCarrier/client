@@ -1,5 +1,4 @@
 angular.module('myApp.microIndustryChain.createChainView', [
-
 ])
 
     .config(function($stateProvider, $urlRouterProvider){
@@ -7,6 +6,10 @@ angular.module('myApp.microIndustryChain.createChainView', [
     })
 
     .controller('CreateChainViewCtrl',function($scope, $route, $http) {
+        $scope.tabs = [
+            { title: '标签页a', content: '标签页a的内容' },
+            { title: '标签页b', content: '标签页b的内容', disabled: true }
+        ];
         //DOM对象化
         let topElement = document.getElementById("topElement");
         let displayDiv = document.getElementById("displayDiv");
@@ -111,7 +114,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         //$http后端持久化参数初始化
         $http({
             method: 'post',
-            url: 'http://localhost:8080/generalInfo/companyDetailList',
+            url: urlHead + 'generalInfo/companyDetailList',
             headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
@@ -279,7 +282,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             if(partStkcd != "" && partStkcd.length < 6) {
                 $http({
                     method: 'post',
-                    url: 'http://localhost:8080/generalInfo/searchByStkcd',
+                    url: urlHead + 'generalInfo/searchByStkcd',
                     params: {
                         "partStkcd": partStkcd,
                     },
@@ -297,7 +300,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             if(partName != ""){
                 $http({
                     method: 'post',
-                    url: 'http://localhost:8080/generalInfo/searchByName',
+                    url: urlHead + 'generalInfo/searchByName',
                     params: {
                         "partName": partName,
                     },

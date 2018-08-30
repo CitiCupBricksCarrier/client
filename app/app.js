@@ -1,5 +1,7 @@
 'use strict';
 
+let urlHead = "http://localhost:8080/"
+
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
     'ngRoute',
@@ -42,5 +44,6 @@ angular.module('myApp', [
 
 
 .controller('MainCtrl', function($scope, $http, $state, $window){
+
 
 });
