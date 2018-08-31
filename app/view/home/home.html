@@ -5,7 +5,8 @@
         </div>
         <div>
             <ul class="david-navbar-right">
-                <li ui-sref="login"><a>登录</a></li>
+                <li ui-sref="login" ng-show="haslogined"><a>个人中心</a></li>
+                <li ui-sref="login" ng-hide="haslogined"><a>登录</a></li>
             </ul>
         </div>
     </div>

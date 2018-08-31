@@ -78,6 +78,9 @@
     color: #AAAAAA;
     cursor: pointer;
 }
+.login-notice{
+    color: firebrick;
+}
 .login-other{
     position: relative;
     width: 100%;
@@ -88,7 +91,7 @@
     float: left;
     color: black;
 }
-.login-other button{
+#citiBtn{
     width: 70px;
     height: 20px;
     background: white url(citi.svg) no-repeat center;
