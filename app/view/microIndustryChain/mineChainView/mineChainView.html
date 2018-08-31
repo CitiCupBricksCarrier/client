@@ -1,8 +1,12 @@
-mine
-<a ui-sref="microIndustryChain.createChainView">前往 create chain view</a>
 
-<button ng-click="addNewGraph()">addGraph</button>
+<div class="graphListBlock">
+    <div class="graphCell" ui-sref="microIndustryChain.createChainView" ng-repeat="graph in ownGraphList">
+        {{graph.graphid}}
+    </div>
+    <div class="graphCell" id="addGraphBtn" ng-click="addNewGraph()">
 
+    </div>
+</div>
 
 
 <link rel="stylesheet" href="view/microIndustryChain/mineChainView/mineChainView.css">

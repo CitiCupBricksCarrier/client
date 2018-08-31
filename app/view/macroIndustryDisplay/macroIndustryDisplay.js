@@ -80,7 +80,7 @@ angular.module('myApp.macroIndustryDisplay', [
 
         $scope.showDataPane=function () {
             $scope.toshowDataPane=true;
-        }
+        };
         $scope.hideDataPane=function () {
             $scope.toshowDataPane=false;
         };

@@ -45,10 +45,11 @@ angular.module('myApp.microIndustryChain', [
                 $scope.haslogined = true;
             }
             else{
+                $scope.haslogined = false;
                 //$state.go('login');
             }
         }, function () {
-            console.error("login error1");
+            console.error("session error");
         });
 
 
@@ -58,7 +59,12 @@ angular.module('myApp.microIndustryChain', [
         };
 
         $scope.clickMineTab = function () {
-            $('#mineTab').addClass('active');
-            $('#discoverTab').removeClass('active');
+            if($scope.haslogined) {
+                $('#mineTab').addClass('active');
+                $('#discoverTab').removeClass('active');
+            }
+            else{
+                $state.go('login')
+            }
         };
     });
