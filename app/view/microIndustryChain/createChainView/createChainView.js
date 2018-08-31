@@ -6,10 +6,6 @@ angular.module('myApp.microIndustryChain.createChainView', [
     })
 
     .controller('CreateChainViewCtrl',function($scope, $route, $http) {
-        $scope.tabs = [
-            { title: '标签页a', content: '标签页a的内容' },
-            { title: '标签页b', content: '标签页b的内容', disabled: true }
-        ];
         //DOM对象化
         let topElement = document.getElementById("topElement");
         let displayDiv = document.getElementById("displayDiv");
@@ -79,6 +75,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         $scope.isAddingNode = false;
         $scope.isEdittingNode = false;
         $scope.isAddingConnection = false;
+
+
         //高频更新变量
         $scope.mouseDownNodeID = "";//当前鼠标点击的node
         $scope.mouseDownConnectionIndex = 0;
@@ -324,6 +322,41 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 },
                 width: 300,
                 height: 300
+            });
+        };
+
+        $scope.save = function () {
+            let nodeListArray = [],
+                connectionListArray = [];
+
+            for(let i=0, length=$scope.nodeIDList.length; i<length; i++){
+                let id = $scope.nodeIDList[i];
+                nodeListArray.push({
+                    id: id,
+                    nodeName: $scope.nodeList[id].nodeName,
+                    nodeStock: $scope.nodeList[id].nodeStock,
+                    nodeRole: $scope.nodeList[id].nodeRole,
+                    nodeColor: $scope.nodeList[id].nodeColor,
+                    x: $scope.nodeDisplayList[id].x,
+                    y: $scope.nodeDisplayList[id].y
+                })
+            }
+            connectionListArray = $scope.connectionList;
+
+            $http({
+                method: 'post',
+                url: urlHead + 'addGraph',
+                params: {
+                    "username": "1",
+                    "linkList": connectionListArray,
+                    "companyList": nodeListArray
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                //cache: true, //避免多次请求后台数据
+            }).then(function (response) {
+                console.log(response.data);
+            }, function () {
+                console.error("Link Failed");
             });
         };
 

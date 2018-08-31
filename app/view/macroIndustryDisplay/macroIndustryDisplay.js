@@ -5,6 +5,8 @@ angular.module('myApp.macroIndustryDisplay', [
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
+        $urlRouterProvider.when('/macroIndustryDisplay', '/macroIndustryDisplay/generalInfo');
+
         $stateProvider
             .state('macroIndustryDisplay.generalInfo',{
                 url:'/generalInfo',
