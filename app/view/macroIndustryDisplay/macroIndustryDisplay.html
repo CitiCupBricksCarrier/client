@@ -17,7 +17,17 @@
                 <a ui-sref="macroIndustryDisplay.industryData.registerNum">汽车上牌量</a><br>
             </div>
         </div>
-        <a class="nav" ui-sref="macroIndustryDisplay.sellNum">经济数据</a>
+        <div style="display:flex">
+
+            <a class="nav" ui-sref="" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a>
+            <div class="dataPane2" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()" ng-show='toshowDataPane2'>
+                <a ui-sref="macroIndustryDisplay.qyjx">企业绩效</a><br>
+                <a ui-sref="macroIndustryDisplay.hysxysj">行业上下游<br>数据</a><br>
+                <a ui-sref="macroIndustryDisplay.hycw">行业财务及固定资产投资</a><br>
+            </div>
+
+        </div>
+        <!--<a class="nav" ui-sref="macroIndustryDisplay.sellNum">经济数据</a>-->
         <a class="nav">财务数据</a>
         <a class="nav">行业地位</a>
         <a class="nav">主要上市公司</a>
