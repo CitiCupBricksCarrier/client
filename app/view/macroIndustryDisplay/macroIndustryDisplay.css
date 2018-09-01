@@ -2,9 +2,11 @@
     position: fixed;
     top: 0;
     /*background: radial-gradient(ellipse closest-corner at 55% 45%, rgb(92,92,92), rgb(62,62,62));*/
-    background: url(/view/resource/背景.png) no-repeat;
-    -webkit-background-size: 100%;
+    background: url(../../view/resource/背景.png) no-repeat;
+    /*-webkit-background-size: 100%;*/
     /*background-size: 100%;*/
+    -webkit-background-size: 100vw 100vh;
+    background-size: 100vw 100vh;
     width: 100vw;
     height: 100vh;
     z-index: -1;
@@ -29,6 +31,20 @@ body{
     height: 120px;
     background-color:rgba(0, 0, 0, 0.7);
     z-index: 102;
+}
+
+.dataPane2{
+    line-height: 20px;
+    font-size: 10px;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    position: fixed;
+    top: 32px;
+    margin-left:64px;
+    width: 74px;
+    height: 120px;
+    background-color:rgba(0, 0, 0, 0.7);
 }
 
 .header_macro{

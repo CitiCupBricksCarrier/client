@@ -2,30 +2,26 @@
 
 <div id="topElement" ng-mousedown="hideAllBoard()" onselectstart="return false;">
 
-    <div>
+    <div id="displayDiv" style="display: block; height: 2000px; width: 2000px;">
         <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
         <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
         <canvas id="animeBackground" style="left: 0; top: 0;"></canvas>
         <canvas id="canvas" data-toggle="context" data-target="#canvas-menu" style="left: 0; top: 0;"></canvas>
-    </div>
 
-    <div id="nodeDiv">
+        <div id="nodeDiv">
+        </div>
     </div>
 
     <div id="leftToolBar">
-        <div class="leftToolBarBlock">
-            <button class="btn btn-default" ng-click="showAddNodeBoard()">add</button>
-            <button class="btn btn-default" ng-click="addEmptyNode()">addE</button>
-        </div>
 
         <ul class="nav nav-tabs small">
-            <li class="active"><a href="#nodeHistory" data-toggle="tab">节点</a></li>
-            <li><a href="#connectionHistory" data-toggle="tab">联系</a></li>
+            <li class="active"><a href="#nodeHistory" onclick="return false;" data-toggle="tab">节点</a></li>
+            <li><a href="#connectionHistory" onclick="return false;" data-toggle="tab">联系</a></li>
         </ul>
         <div class="historyBlock">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="nodeHistory">
-                    <div class="historyBlockCell" ng-mousedown="setMouseDownNodeID(id)" ng-dblclick="dblclickNodeHistoryBlockCell(id)"
+                    <div class="historyBlockCell small" ng-mousedown="setMouseDownNodeID(id)" ng-dblclick="dblclickNodeHistoryBlockCell(id)"
                          ng-repeat="id in nodeIDList" data-toggle="context" data-target="#node-menu">
                         <div style="color:{{nodeList[id].nodeColor}}; font-weight:bold;">● {{nodeList[id].nodeName}}</div>
                         <button ng-click="deleteNodeByHistory(id)" class="btn-sm btn-default">删除</button>
@@ -45,30 +41,38 @@
                 </div>
             </div>
         </div>
+
+        <div class="leftToolBarBlock">
+
+        </div>
     </div>
 
     <div id="topToolBar">
         <div id="topToolBarMenu"></div>
         <div class="topToolBarBigBlock">
             <div class="topToolBarBigBlockCell">
-                <button id="addBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddNodeBoard()"
+                <button id="addCompanyBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddCompanyNodeBoard()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
-                        title="增加一个公司节点" data-content="输入【公司股票代码】来自动创建公司节点，或者【自定义】公司节点">
-                    新节点
+                        title="增加一个公司节点" data-content="通过查询来【自动创建】公司节点">
+                    公司节点
                 </button>
-                <button class="btn btn-default topToolBarBigBtn"></button>
+                <button id="addDiyBtn" class="btn btn-default topToolBarBigBtn" ng-click="showAddNodeBoard()"
+                        data-popover="popover" data-trigger="hover" data-placement="bottom"
+                        title="增加一个自定义节点" data-content="输入公司信息来【自定义】公司节点">
+                    自定义
+                </button>
             </div>
             <div class="topToolBarBigBlockCell">
-                <button id="saveBtn" class="btn btn-default topToolBarBigBtn"
+                <button id="saveBtn" class="btn btn-default topToolBarBigBtn" ng-click="save()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
                         title="保存作品" data-content="将您的作品草稿【保存】到云端仓库">
                     保存
                 </button>
-                <button id="previewBtn" class="btn btn-default topToolBarBigBtn" ui-sref="microIndustryChain.previewChainView({'nodeIDList':nodeIDList, 'nodeList':nodeList, 'connectionList':connectionList})"
+                <button id="previewBtn" class="btn btn-default topToolBarBigBtn" ui-sref="microIndustryChain.previewChainView({'nodeIDList':nodeIDList, 'nodeList':nodeList, 'nodeDisplayList':nodeDisplayList, 'connectionList':connectionList})"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
                         title="预览作品" data-content="以阅读者的视角【查看】此产业链">
                     预览</button>
-                <button id="downloadBtn" class="btn btn-default topToolBarBigBtn"
+                <button id="downloadBtn" class="btn btn-default topToolBarBigBtn" ng-click="takeScreenshot()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
                         title="下载图片" data-content="将您的作品以图片格式【下载】到本地">
                     下载</button>
@@ -92,6 +96,35 @@
 
 
 
+
+<div id="addCompanyNodeBoard" ng-show="isAddingCompanyNode" style="left: 0; top: 0;" onselectstart="return false;">
+    <div>
+        <input ng-model="addCompanyNodeSearchInput" class="form-control" placeholder="公司信息模糊搜索...">
+    </div>
+    <div class="tableDiv">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>股票代码</th>
+                    <th>公司名称</th>
+                    <th>省份</th>
+                    <th>添加</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in companyList | filter: addCompanyNodeSearchInput">
+                    <td>{{company.stkcd}}</td>
+                    <td>{{company.compname}}</td>
+                    <td>{{company.province}}</td>
+                    <td><button class="btn btn-default" ng-click="addCompanyNode(company)">添加</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-default" ng-click="hideAddCompanyNodeBoard()" style="margin-top: 20px">关闭</button>
+</div>
+
+
 <div id="addNodeBoard" ng-show="isAddingNode" style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>股票代码</p>
@@ -99,7 +132,7 @@
                ng-keyup="searchByStkcd(addNodeStockInput)" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
                onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" list="addNodeStockInputList" maxlength="6">
         <datalist id="addNodeStockInputList">
-            <option ng-repeat="item in searchCache">{{item.stkcd}}</option>
+            <option ng-repeat="item in searchCache" label="{{item.compname}}">{{item.stkcd}}</option>
         </datalist>
     </div>
     <div>
@@ -107,10 +140,10 @@
         <input id="addNodeNameInput" ng-model="addNodeNameInput" class="form-control" type="text" placeholder="请输入节点名..."
                ng-keyup="searchByCompName(addNodeNameInput)" list="addNodeNameInputList">
         <datalist id="addNodeNameInputList">
-            <option ng-repeat="item in searchCache">{{item.compname}}</option>
+            <option ng-repeat="item in searchCache" label="{{item.stkcd}}">{{item.compname}}</option>
         </datalist>
     </div>
-    <a ng-click="showMoreAddNodeOptions = !showMoreAddNodeOptions">自定义...</a>
+    <a ng-click="showMoreAddNodeOptions = !showMoreAddNodeOptions">更多...</a>
     <div ng-show="showMoreAddNodeOptions">
         <hr>
         <div>
@@ -120,7 +153,7 @@
         <div>
             <p>标记颜色</p>
             <div id="addNodeCP" class="input-group">
-                <input id="addNodeColorInput" class="form-control" type="text" value="#00AABB" style="width: 80%; height: 34px">
+                <input id="addNodeColorInput" class="form-control" type="text" value="#000000" style="width: 80%; height: 34px">
                 <span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>
             </div>
         </div>
@@ -134,11 +167,11 @@
 <div id="editNodeBoard" ng-show="isEdittingNode"  style="left: 0; top: 0;" onselectstart="return false;">
     <div>
         <p>股票代码</p>
-        <input id="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..."
+        <input id="editNodeStockInput" ng-model="editNodeStockInput" class="form-control" type="text" placeholder="请输入股票代码..."
                ng-keyup="searchByStkcd(editNodeStockInput)" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
                onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" list="editNodeStockInputList" maxlength="6">
         <datalist id="editNodeStockInputList">
-            <option ng-repeat="item in searchCache">{{item.stkcd}}</option>
+            <option ng-repeat="item in searchCache" label="{{item.compname}}">{{item.stkcd}}</option>
         </datalist>
     </div>
     <div>
@@ -146,10 +179,10 @@
         <input id="editNodeNameInput" ng-model="editNodeNameInput" class="form-control" type="text" placeholder="请输入节点名..."
                ng-keyup="searchByCompName(editNodeNameInput)" list="editNodeNameInputList">
         <datalist id="editNodeNameInputList">
-            <option ng-repeat="item in searchCache">{{item.compname}}</option>
+            <option ng-repeat="item in searchCache" label="{{item.stkcd}}">{{item.compname}}</option>
         </datalist>
     </div>
-    <a ng-click="showMoreEditNodeOptions = !showMoreEditNodeOptions">自定义...</a>
+    <a ng-click="showMoreEditNodeOptions = !showMoreEditNodeOptions">更多...</a>
     <div ng-show="showMoreEditNodeOptions">
         <hr>
         <div>
@@ -159,7 +192,7 @@
         <div>
             <p>标记颜色</p>
             <div id="editNodeCP" class="input-group">
-                <input id="editNodeColorInput" class="form-control" type="text" style="width: 80%; height: 34px">
+                <input id="editNodeColorInput" class="form-control" type="text" value="#000000" style="width: 80%; height: 34px">
                 <span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>
             </div>
         </div>
@@ -220,6 +253,7 @@
 
 <script src="view/microIndustryChain/createChainView/bootstrap-contextmenu.js"></script>
 <script src="view/microIndustryChain/createChainView/bootstrap-colorpicker.js"></script>
+<script src="view/microIndustryChain/createChainView/html2canvas.min.js"></script>
 <script>
     $(function () {
         // Basic instantiation:
@@ -254,5 +288,6 @@
             delay:{show:500, hide:100},
         });
     });
+
 </script>
 <link rel="stylesheet" href="view/microIndustryChain/createChainView/createChainView.css">

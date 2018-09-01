@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="view/microIndustryChain/previewChainView/previewChainView.css">
 
-<div id="topElement" onselectstart="return false;">
+<div style="position:absolute; left:0; top:0; width:100%;height:100%;">
+    <div style="width: 40%;float: left;position: absolute">
+        <div id="topElement" onselectstart="return false;">
 
     <div>
         <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
@@ -10,8 +12,59 @@
     </div>
 
     <div id="nodeDiv">
-        <div class="node" ng-repeat="id in nodeIDList">
-            <p style="color: {{nodeList[id].nodeColor}}">{{nodeList[id].nodeName}}</p>
-        </div>
+
     </div>
 </div>
+
+        <div style="left: 50px;top: 700px;width: 1000px;position: absolute;text-align: center">
+            <h1 style="">新型产业链模式下的新契机</h1>
+            <div style="text-align: center;width: 800px;margin:0 auto">
+                    <p>随着技术的发展，迂回生产程度的提高，生产过程划分为一系列有关联的生产环节。分工与交易的复杂化\n
+                对使得在经济中通过什么样的形式联结不同的分工与交易活动成为日益突出的问题。企业组织结构随分工的发展而
+                呈递增式增加。因此，搜寻一种企业组织结构以节省交易费用并进一步促进分工的潜力，相对于生产中的潜力会大大增加(姚小
+                涛，席酉民，2002年)。企业难以应付越来越复杂的分工与交易活动，不得不依靠企业间的相互关联，这种搜寻最佳企业组织结构的动力与实践就成为产业链形成的条件。
+
+                如图所示，产业链的形成首先是由社会分工引起的，在交易机制的作用下不断引起产业链组织的深化。在图中，C1、C2、C3表示社会分工的程度，其中，C3>C2>C1表示社会分工程度的不断加深；A1、A2、A3表示市场交易的程度，A3>A2>A1表示市场交易程度的不断加深；B1、B2、B3表示产业链的发展程度，其中，B3>B2>B1表示产业链条的不断延伸和产业链形式的日益复杂化。三个坐标相交的原点0，表示既无社会分工也无市场交易更无产业链产生的初始状态。
+                从C1点开始，而不是从坐标原点开始，意味着社会分工是市场交易的起点，也是产业链产生的起点社会分工C1的存在促进了市场交易程度A1的产生，在A1作用下，需要B1的产业链形式与它对接B1这种产业链形式的产生又促进了社会分工的进一步发展，于是，社会分工就从C1演化到C2。相应地，在C2的作用下，市场交易程度从A1发展到A2，A2又促进了产业链形式从B1发展到B2。接着，按照同样的原理，B2促使C2发展到C3，C3又促使A2发展到A3，A3又促使产业链从B2发展到B3……如此周而复始，使产业链不断形成发展。
+                产业链形成的原因在于产业价值的实现和创造产业链是产业价值实现和增值的根本途径。任何产品只有通过最终消费才能实现，否则所有中间产品的生产就不能实现。同时，产业链也体现了产业价值的分割。随着产业链的发展，产业价值由在不同部门间的分割转变为在不同产业链节点上的分割产业链也是为了创造产业价值最大化，它的本质是体现“1+1>2”的价值增值效应。这种增值往往来自产业链的乘数效应，它是指产业链中的某一个节点的效益发生变化时，会导致产业链中的其他关联产业相应地发生倍增效应。产业链价值创造的内在要求是：生产效率≥内部企业生产效率之和(协作乘数效应)；同时，交易成本≤内部企业间的交易成本之和(分工的网络效应)。企业间的关系也能够创造价值。价值链创造的价值取决于该链中企业间的投资。不同企业间的关系将影响它们的投资，并进而影响被创造的价值。通过鼓励企业做出只有在关系持续情况下才有意义的投资，关系就可以创造出价值来。</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 35%;float: left;display: flex; -webkit-box-orient: vertical;
+-webkit-box-direction: normal;    flex-direction: column;    position: absolute;    right: 0px;    top: 50px;    height: 100%;    background-color: #f7f8fa;    border: solid 1px #eeeff2;
+    overflow-y: scroll;">
+        <div id="content" style="width: 100%; height: auto;">
+            <div class="wrap">
+                <div class="comment">
+                    <div class="head-face">
+                        <img src="view/microIndustryChain/previewChainView/images/头像.jpg">
+                        <p>我是鸟</p>
+                    </div>
+                    <div class="content">
+                        <div class="cont-box">
+                            <textarea class="text" placeholder="请输入..."></textarea>
+                        </div>
+                        <div class="tools-box">
+                            <div class="operator-box-btn"><span class="face-icon">☺</span><span class="img-icon">▧</span></div>
+                            <div   class="submit-btn"><input id = "subm" type="button" value="提交评论"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="info-show">
+                    <!--<ul>-->
+                        <!--<li ng-repeat="comment in commentList">-->
+                            <!--<div class="head-face">-->
+                                <!--<img src="view/microIndustryChain/previewChainView/images/头像.jpg"></div>-->
+                            <!--<div class="reply-cont">-->
+                                <!--<p class="username"></p>-->
+                                <!--<p class="comment-body">暗收</p>-->
+                                <!--<p class="comment-footer">2016年10月5日　回复　点赞54　转发12</p></div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+

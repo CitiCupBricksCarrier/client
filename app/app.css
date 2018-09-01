@@ -1,25 +1,96 @@
 /* app css stylesheet */
 
 .menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+    list-style: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
 }
 
 .menu:before {
-  content: "[";
+    content: "[";
 }
 
 .menu:after {
-  content: "]";
+    content: "]";
 }
 
 .menu > li {
-  display: inline;
+    display: inline;
 }
 
 .menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+    content: "|";
+    padding-right: 0.3em;
 }
+
+
+.david-container{
+    width: 100%;
+}
+@media screen and (max-width:767px){
+    .david-container {
+        width: 767px;
+    }
+}
+
+
+.david-navbar {
+    height: 55px;
+    background-color: #1B1E21;
+    transition: background-color .5s;
+}
+@media screen and (max-width:767px){
+    .david-navbar{
+        width: 767px;
+    }
+}
+.david-navbar:hover {
+    background-color: rgba(27, 30, 33, 1);
+}
+
+.david-navbar .nav-icon{
+    width: 100px;
+    height: 32px;
+}
+
+.david-navbar .navbar-brand {
+    color: #fff;
+    transition: .3s;
+}
+.david-navbar .navbar-brand:hover,
+.david-navbar .navbar-brand:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+
+.david-navbar-right > li > a {
+    color: #fff;
+    transition: color .3s;
+}
+.david-navbar-right > li > a:hover,
+.david-navbar-right > li > a:focus {
+    color: #21d8ff;
+    background-color: transparent;
+    text-decoration: none;
+}
+.david-navbar-right {
+    margin-bottom: 0;
+    list-style: none;
+    float: right;
+}
+.david-navbar-right > li {
+    position: relative;
+    display: block;
+    padding-right: 20px;
+}
+.david-navbar-right > li > a {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    padding: 15px 10px;
+}
+
+
+

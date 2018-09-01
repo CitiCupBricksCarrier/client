@@ -1,0 +1,60 @@
+<nav class="david-navbar" role="navigation">
+    <div>
+        <div>
+            <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="view/login/citi-white.svg" alt="花旗"></a>
+        </div>
+        <div>
+            <ul class="david-navbar-right">
+                <li ui-sref="login" ng-show="haslogined"><a>个人中心</a></li>
+                <li ui-sref="login" ng-hide="haslogined"><a>登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="swiper-container david-container" style="height: 500px">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img width="100%" height="500px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535544701948&di=57802c769b7051e5c6fea6dc77c68827&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D9af5cd545b0fd9f9b41a5d2a4d44be5f%2Fd62a6059252dd42a5939e383093b5bb5c9eab8e2.jpg"></div>
+        <div class="swiper-slide"><img width="100%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535545564908&di=8cfc49578f4b66f49213c8abd4699e9d&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3Dd3eeeb377bcf3bc7fc0dc5acb878dfcd%2F0824ab18972bd407811dc4c770899e510fb30935.jpg"></div>
+        <div class="swiper-slide"><img width="100%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535545717684&di=3ea466498d96fcd02b5e39dfa8f4f5cd&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F7acb0a46f21fbe09a8598ee261600c338644adc5.jpg"></div>
+    </div>
+    <!-- 分页器 -->
+    <div class="swiper-pagination"></div>
+
+    <!-- 导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+<div class="fast-go-btn-container">
+    <div ui-sref="macroIndustryDisplay" class="fast-go-btn go-to-macro"></div>
+    <div ui-sref="microIndustryChain" class="fast-go-btn go-to-micro"></div>
+    <div class="fast-go-btn go-to-tendency"></div>
+</div>
+
+<script src="bower_components/swiper/dist/js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: true,
+        autoplay: true,
+        delay: 5000,
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    })
+</script>
+<link rel="stylesheet" href="bower_components/swiper/dist/css/swiper.min.css">
+<link rel="stylesheet" href="view/home/home.css">

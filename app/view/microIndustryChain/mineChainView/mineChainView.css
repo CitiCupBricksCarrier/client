@@ -1,0 +1,36 @@
+.graphListBlock{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+}
+@media screen and (max-width:767px){
+    .graphListBlock {
+        width: 767px;
+    }
+}
+
+.graphCell{
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: whitesmoke;
+    cursor: pointer;
+    transition: background .2s;
+}
+.graphCell:hover{
+    background: #EEEEEE;
+}
+#addGraphBtn{
+    background: whitesmoke url(add.svg) no-repeat center;
+    background-size: 60%;
+}
+#addGraphBtn:hover{
+    background: #EEEEEE url(add.svg) no-repeat center;
+    background-size: 60%;
+}

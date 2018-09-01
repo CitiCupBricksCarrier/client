@@ -1,5 +1,29 @@
+<nav class="david-navbar" role="navigation">
+    <div>
+        <div>
+            <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="view/login/citi-white.svg" alt="花旗"></a>
+        </div>
+        <div>
+            <ul class="david-navbar-right">
+                <li ui-sref="login" ng-show="haslogined"><a>个人中心</a></li>
+                <li ui-sref="login" ng-hide="haslogined"><a>登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <br>
 
-<a ui-sref="microIndustryChain.createChainView">前往 create chain view</a>
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active" id="discoverTab" ng-click="clickDiscoverTab()">
+            <a ui-sref="microIndustryChain.discoverChainView">发现产业链</a>
+        </li>
+        <li id="mineTab" ng-click="clickMineTab()">
+            <a ui-sref="microIndustryChain.mineChainView">我的产业链</a>
+        </li>
+    </ul>
+</div>
+
 
 <ui-view></ui-view>

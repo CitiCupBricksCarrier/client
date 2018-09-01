@@ -70,7 +70,7 @@
   background-size: contain;
 }
 .colorpicker {
-  position: fixed;
+  position: absolute;
   padding: 4px;
   min-width: 130px;
   margin-top: 1px;
