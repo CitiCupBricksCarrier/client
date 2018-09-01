@@ -182,17 +182,47 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         console.log("asdsa")
         var sub = document.getElementById("subm");
         sub.onclick = function submit() {
-            console.log("ss");
-            var inputText = $('.text').val();
-            // $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
-            // console.log(inputText);
+            // console.log("ss");
+            // var inputText = $('.text').val();
+            // // $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
+            // // console.log(inputText);
+            // var data = {};
+            // data.graphid = 1;
+            // data.comment = inputText;
+            // var result = JSON.stringify(data);
+            //
+            // $http({
+            //     url:urlHead + 'addComment',
+            //     method: 'post',
+            //     // contentType: "application/json",
+            //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            //     withCredentials: true,
+            //     params:{
+            //         "data":result
+            //     }
+            // }).then(function successCallBack(response) {
+            //     console.log(response.data)
+            //     var data = response.data;
+            //     console.log(data);
+            // },function errorCallBack(response) {
+            //     console.log("erreor");
+            // });
+
+            var data ={
+                "grapgid":1,
+                "time":20180901225825,
+                "username":1
+            }
+            var result = JSON.stringify(data);
+
             $http({
-                url:urlHead + 'addComment',
+                url:urlHead + 'deleteComment',
                 method: 'post',
                 // contentType: "application/json",
-                params: {
-                    graphid:1,
-                    comment:inputText
+                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true,
+                params:{
+                    "data":result
                 }
             }).then(function successCallBack(response) {
                 console.log(response.data)
@@ -201,6 +231,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             },function errorCallBack(response) {
                 console.log("erreor");
             });
+
         }
 
 
@@ -219,20 +250,36 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             html += '</li>';
             return html;
         }
-
-        var data = {};
-        data.graphid = 1;
-        data.comment = inputText;
-        data = JSON.stringify(data);
-
+        //
+        // var data = {};
+        // data.graphid = 1;
+        // data.comment = inputText;
+        // var result = JSON.stringify(data);
+        //
+        // $http({
+        //     url:urlHead + 'addComment',
+        //     method: 'post',
+        //     contentType: "application/json",
+        //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        //     withCredentials: true,
+        //     params:{
+        //         "data":result
+        //     }
+        // }).then(function successCallBack(response) {
+        //     console.log(response.data)
+        //     var data = response.data;
+        //     console.log(data);
+        // },function errorCallBack(response) {
+        //     console.log("erreor");
+        // });
         $http({
-            url:urlHead + 'addComment',
+            url:urlHead + 'getComments',
             method: 'post',
             // contentType: "application/json",
             // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            withCredentials: true,
+            // withCredentials: true,
             params:{
-                "data":data
+                "graphid":1
             }
         }).then(function successCallBack(response) {
             console.log(response.data)
