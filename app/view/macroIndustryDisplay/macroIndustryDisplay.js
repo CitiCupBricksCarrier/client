@@ -25,7 +25,7 @@ angular.module('myApp.macroIndustryDisplay', [
                 controller: 'GeneralInfoCtrl'
             })
             .state('macroIndustryDisplay.companyDetails', {
-                url: '/companyDetails/:stkcd_toShow',
+                url: '/companyDetails?stkcd_toShow',
                 templateUrl: 'view/macroIndustryDisplay/companyDetails/companyDetails.html',
                 controller: 'CompanyDetailsCtrl'
             })
@@ -35,7 +35,7 @@ angular.module('myApp.macroIndustryDisplay', [
                 controller: 'sellNumCtrl'
             })
             .state('macroIndustryDisplay.industryData',{
-                url:'/industryData',
+                url:'/industryData?target',
                 templateUrl: 'view/macroIndustryDisplay/industryData/industryData.html',
                 controller: 'IndustryDataCtrl'
             })

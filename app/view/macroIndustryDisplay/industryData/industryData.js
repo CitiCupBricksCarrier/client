@@ -5,7 +5,16 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
     .config(function($stateProvider,$urlRouterProvider){
     })
 
-    .controller('IndustryDataCtrl',function($scope, $route, $http) {
+    .controller('IndustryDataCtrl',function($scope, $route, $http, $stateParams) {
+        $().ready(function () {
+            // console.log('111')
+            //通过地址传参定位
+            var link = $('#'+$stateParams.target);
+            console.log(link)
+            $.smoothScroll({
+                scrollTarget: link
+            });
+        })
         /**
          * -------------------------------
          * -------------------------------
