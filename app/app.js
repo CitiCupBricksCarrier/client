@@ -12,6 +12,7 @@ angular.module('myApp', [
 
     'myApp.login',
     'myApp.home',
+    'myApp.personal',
     'myApp.microIndustryChain',
     'myApp.macroIndustryDisplay'
 ])
@@ -30,6 +31,11 @@ angular.module('myApp', [
             templateUrl: 'view/home/home.html',
             controller: 'HomeCtrl'
         })
+        .state('personal',{
+            url:'/personal',
+            templateUrl: 'view/personal/personal.html',
+            controller: 'PersonalCtrl'
+        })
         .state('microIndustryChain',{
             url:'/microIndustryChain',
             templateUrl: 'view/microIndustryChain/microIndustryChain.html',
@@ -46,4 +52,24 @@ angular.module('myApp', [
 .controller('MainCtrl', function($scope, $http, $state, $window){
 
 
-});
+})
+
+
+    .directive("davidNav", function() {
+        return {
+            template : "<nav class=\"david-navbar\" role=\"navigation\">\n" +
+                "    <div>\n" +
+                "        <div>\n" +
+                "            <a ui-sref=\"home\" class=\"navbar-brand\"><img class=\"nav-icon\" src=\"citi-icon/citi-white.svg\" alt=\"花旗\"></a>\n" +
+                "        </div>\n" +
+                "        <div>\n" +
+                "            <ul class=\"david-navbar-right\">\n" +
+                "                <li ui-sref=\"personal\" ng-show=\"haslogined\"><a>个人中心</a></li>\n" +
+                "                <li ui-sref=\"login\" ng-hide=\"haslogined\"><a>登录</a></li>\n" +
+                "            </ul>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</nav>"
+        };
+    });
+

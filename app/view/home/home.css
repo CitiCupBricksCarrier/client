@@ -2,7 +2,6 @@
     display: flex;
     flex-flow: row;
     height: 200px;
-    width: 100%;
     padding: 50px;
     justify-content: space-around;
 }

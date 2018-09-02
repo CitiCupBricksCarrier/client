@@ -1,6 +1,6 @@
 
 <div class="graphListBlock">
-    <div class="graphCell" ui-sref="microIndustryChain.createChainView" ng-repeat="graph in ownGraphList">
+    <div class="graphCell" ui-sref="microIndustryChain.createChainView({'graphid':graph.graphid})" ng-repeat="graph in ownGraphList">
         {{graph.graphid}}
     </div>
     <div class="graphCell" id="addGraphBtn" ng-click="addNewGraph()">

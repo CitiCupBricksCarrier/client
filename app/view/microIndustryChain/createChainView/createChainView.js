@@ -5,7 +5,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
     })
 
-    .controller('CreateChainViewCtrl',function($scope, $route, $http) {
+    .controller('CreateChainViewCtrl',function($scope, $route, $http, $stateParams, $state) {
         //DOM对象化
         let topElement = document.getElementById("topElement");
         let displayDiv = document.getElementById("displayDiv");
@@ -90,24 +90,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let undoList = [];
         let redoList = [];
         $scope.searchCache = [];
-        /**
-         *   $scope.connectionList格式：
-         *   ({
-         *      id:
-                begin:
-                end:
-                fund:
-             });
-         *
-         *
-         *   undoList格式：
-         *  ({
-                type: type, //操作类型，addNode,deleteNode,moveNode,addConnection ...(后续再增加）
-                id: id, //操作对象的ID
-                begin: begin, //操作前状态
-                end: end //操作后状态
-            })
-         */
+
+        //路由参数获取
+        $scope.graphID = $stateParams.graphid;
 
         //$http后端持久化参数初始化
         $http({
@@ -119,6 +104,48 @@ angular.module('myApp.microIndustryChain.createChainView', [
             $scope.companyList = response.data;
         }, function () {
             console.error("Link Failed");
+        });
+
+
+        $http({
+            method: 'post',
+            url: urlHead + 'getGraphByID',
+            params: {
+                "graghid": $scope.graphID,
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            withCredentials: true
+            //cache: true, //避免多次请求后台数据
+        }).then(function (response) {
+            let partialNodeArray = response.data.nodeList,
+                partialConnectionArray = response.data.connectionList;
+            for(let i=0, length=partialNodeArray.length; i<length; i++){
+                let particalNodeCache = partialNodeArray[i];
+                $scope.nodeIDList.push(particalNodeCache.id);
+                $scope.nodeList[particalNodeCache.id] = {
+                    nodeName: particalNodeCache.name,
+                    nodeStock: particalNodeCache.stkcd,
+                    nodeRole: particalNodeCache.role,
+                    nodeColor: particalNodeCache.color
+                };
+                $scope.nodeDisplayList[particalNodeCache.id] = {
+                    x: particalNodeCache.posx,
+                    y: particalNodeCache.posy
+                };
+            }
+
+            for(let i=0, length=partialConnectionArray.length; i<length; i++){
+                let partialConnectionCache = partialConnectionArray[i];
+                $scope.connectionList.push({
+                    id: partialConnectionCache.id,
+                    begin: partialConnectionCache.begin,
+                    end: partialConnectionCache.end,
+                    fund: partialConnectionCache.fund
+                });
+            }
+
+        }, function () {
+            console.error("get graph error");
         });
 
 

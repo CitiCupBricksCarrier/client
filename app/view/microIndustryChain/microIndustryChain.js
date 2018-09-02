@@ -20,7 +20,8 @@ angular.module('myApp.microIndustryChain', [
                 controller: 'MineChainViewCtrl'
             })
             .state('microIndustryChain.createChainView',{
-                url:'/createChainView',
+                params:{"graphid":null},
+                url:'/createChainView/?:graphid',
                 templateUrl: 'view/microIndustryChain/createChainView/createChainView.html',
                 controller: 'CreateChainViewCtrl'
             })
