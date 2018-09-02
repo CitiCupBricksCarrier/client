@@ -232,9 +232,12 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
          * -------------------------------------------------
          * 方法调用
          */
-        //处理全景图上的公司列表
-        loadCompanyList();
+        $().ready(function () {
+            resizeWholePic();
 
+            //处理全景图上的公司列表
+            loadCompanyList();
+        })
 
         /**
          * -------------------------------------------------
@@ -244,9 +247,6 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         // window.onload = function () {
         //     resizeWholePic();
         // }
-        $().ready(function () {
-            resizeWholePic();
-        })
         $(window).resize(function () {
             resizeWholePic();
         })
