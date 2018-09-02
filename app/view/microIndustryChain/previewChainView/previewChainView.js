@@ -159,40 +159,107 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
         };
 
-        /*
+        /**
          * 评论区
+         * @type {HTMLElement | null}
          */
 
-        function AnalyticEmotion(s) {
-            if(typeof (s) != "undefined") {
-                var sArr = s.match(/\[.*?\]/g);
-                if(null!=sArr && '' != sArr){
-                    for(var i = 0; i < sArr.length; i++){
-                        if(uSinaEmotionsHt.containsKey(sArr[i])) {
-                            var reStr = "<img src=\"" + uSinaEmotionsHt.get(sArr[i]) + "\" height=\"22\" width=\"22\" />";
-                            s = s.replace(sArr[i], reStr);
-                        }
-                    }
-                }
+        /**
+         * 得到用户登录的session
+         *
+         */
+        var username = "";
+        $http({
+            url:urlHead + 'getSession',
+            method: 'post',
+            // contentType: "application/json",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            withCredentials: true
+        }).then(function successCallBack(response) {
+            // console.log(response.data)
+            var data = response.data;
+            username = data;
+            console.log(111,response,data);
+        },function errorCallBack(response) {
+            console.log("erreor");
+        });
 
-            }
-            return s;
-        }
 
-        console.log("asdsa")
+
+        /**
+         * 提交评论
+         * @type {HTMLElement | null}
+         */
         var sub = document.getElementById("subm");
         sub.onclick = function submit() {
             // console.log("ss");
-            // var inputText = $('.text').val();
-            // // $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
-            // // console.log(inputText);
-            // var data = {};
-            // data.graphid = 1;
-            // data.comment = inputText;
+            var inputText = $('.text').val();
+            // $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
+            // console.log(inputText);
+            var data = {};
+            data.graphid = 1;
+            data.comment = inputText;
+            var result = JSON.stringify(data);
+
+            $http({
+                url:urlHead + 'addComment',
+                method: 'post',
+                // contentType: "application/json",
+                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true,
+                params:{
+                    "data":result
+                }
+            }).then(function successCallBack(response) {
+                // console.log(response.data)
+                var data = response.data;
+                if(data.retmessage == "success"){
+
+                    $scope.$apply();
+                }
+            },function errorCallBack(response) {
+                console.log("erreor");
+            });
+
+
+        };
+
+        /**
+         * 加载评论
+         */
+
+        $http({
+            url:urlHead + 'getComments',
+            method: 'post',
+            // contentType: "application/json",
+            // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            // withCredentials: true,
+            params:{
+                "graphid":1
+            }
+        }).then(function successCallBack(response) {
+            var data = response.data;
+            $scope.commentList = data;
+        },function errorCallBack(response) {
+            console.log("erreor");
+        });
+
+        /**
+         *  删除功能
+         * @type {HTMLElement | null}
+         */
+
+        $scope.delete_comment = function(comment_detail){
+            console.log(comment_detail);
+            // var data ={
+            //     "graphid":1,
+            //     "time":20180901225825,
+            //     "username":1
+            // }
             // var result = JSON.stringify(data);
             //
             // $http({
-            //     url:urlHead + 'addComment',
+            //     url:urlHead + 'deleteComment',
             //     method: 'post',
             //     // contentType: "application/json",
             //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -207,86 +274,22 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             // },function errorCallBack(response) {
             //     console.log("erreor");
             // });
+        };
 
-            var data ={
-                "grapgid":1,
-                "time":20180901225825,
-                "username":1
-            }
-            var result = JSON.stringify(data);
+        /**
+         * 点赞评论事件
+         *
+         */
+        $scope.like_comment = function (comment_detail) {
 
-            $http({
-                url:urlHead + 'deleteComment',
-                method: 'post',
-                // contentType: "application/json",
-                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                withCredentials: true,
-                params:{
-                    "data":result
-                }
-            }).then(function successCallBack(response) {
-                console.log(response.data)
-                var data = response.data;
-                console.log(data);
-            },function errorCallBack(response) {
-                console.log("erreor");
-            });
+        };
 
-        }
+        /**
+         * 踩评论事件
+         *
+         */
+        $scope.step_comment = function (comment_detail) {
 
-
-
-        var html;
-        function reply(content){
-            html  = '<li>';
-            html += '<div class="head-face">';
-            html += '<img src="view/microIndustryChain/previewChainView/images/头像.jpg" / >';
-            html += '</div>';
-            html += '<div class="reply-cont">';
-            html += '<p class="username">小小红色飞机</p>';
-            html += '<p class="comment-body">'+content+'</p>';
-            html += '<p class="comment-footer">2016年10月5日　回复　点赞54　转发12</p>';
-            html += '</div>';
-            html += '</li>';
-            return html;
-        }
-        //
-        // var data = {};
-        // data.graphid = 1;
-        // data.comment = inputText;
-        // var result = JSON.stringify(data);
-        //
-        // $http({
-        //     url:urlHead + 'addComment',
-        //     method: 'post',
-        //     contentType: "application/json",
-        //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-        //     withCredentials: true,
-        //     params:{
-        //         "data":result
-        //     }
-        // }).then(function successCallBack(response) {
-        //     console.log(response.data)
-        //     var data = response.data;
-        //     console.log(data);
-        // },function errorCallBack(response) {
-        //     console.log("erreor");
-        // });
-        $http({
-            url:urlHead + 'getComments',
-            method: 'post',
-            // contentType: "application/json",
-            // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            // withCredentials: true,
-            params:{
-                "graphid":1
-            }
-        }).then(function successCallBack(response) {
-            console.log(response.data)
-            var data = response.data;
-            console.log(data);
-        },function errorCallBack(response) {
-            console.log("erreor");
-        });
+        };
 
     });

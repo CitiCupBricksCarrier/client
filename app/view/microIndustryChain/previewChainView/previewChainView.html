@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="view/microIndustryChain/previewChainView/previewChainView.css">
-
+<link rel="stylesheet" href="view/microIndustryChain/previewChainView/iconfont/iconfont.css">
 <div style="position:absolute; left:0; top:0; width:100%;height:100%;">
     <div style="width: 40%;float: left;position: absolute">
         <div id="topElement" onselectstart="return false;">
@@ -39,29 +39,37 @@
                 <div class="comment">
                     <div class="head-face">
                         <img src="view/microIndustryChain/previewChainView/images/头像.jpg">
-                        <p>我是鸟</p>
+                        <p style="margin-top: 10px;    font-weight:bold;font-size: 15px">zyb牛逼</p>
                     </div>
                     <div class="content">
                         <div class="cont-box">
                             <textarea class="text" placeholder="请输入..."></textarea>
                         </div>
                         <div class="tools-box">
-                            <div class="operator-box-btn"><span class="face-icon">☺</span><span class="img-icon">▧</span></div>
+                            <!--<div class="operator-box-btn"><span class="face-icon">☺</span><span class="img-icon">▧</span></div>-->
                             <div   class="submit-btn"><input id = "subm" type="button" value="提交评论"></div>
                         </div>
                     </div>
                 </div>
                 <div id="info-show">
-                    <!--<ul>-->
-                        <!--<li ng-repeat="comment in commentList">-->
-                            <!--<div class="head-face">-->
-                                <!--<img src="view/microIndustryChain/previewChainView/images/头像.jpg"></div>-->
-                            <!--<div class="reply-cont">-->
-                                <!--<p class="username"></p>-->
-                                <!--<p class="comment-body">暗收</p>-->
-                                <!--<p class="comment-footer">2016年10月5日　回复　点赞54　转发12</p></div>-->
-                        <!--</li>-->
-                    <!--</ul>-->
+                    <ul>
+                        <li ng-repeat="comment_detail in commentList track by $index">
+                            <div class="head-face">
+                                <img src="view/microIndustryChain/previewChainView/images/头像.jpg"></div>
+                            <div class="reply-cont">
+                                <p class="username" >{{comment_detail.author}}</p>
+                                <!--<p class="like" ng-click="like_comment(comment_detail)" >  &#xe602;</p>-->
+                                <!--<p class="step" ng-click="step_comment(comment_detail)">  👎100 </p>-->
+                                <i class="like iconfont icon-good" ng-click="like_comment(comment_detail)" >1 </i>
+                                <i class="step iconfont icon-cai" ng-click="step_comment(comment_detail)">1  </i>
+                                <p class="delete iconfont icon-guanbi"  ng-if = "comment_detail.graphid ==1" ng-click="delete_comment(comment_detail)"> </p>
+                                <p class="comment-body">{{comment_detail.comment}}</p>
+                                <p class="comment-footer">
+                                    #{{$index+1}}
+                                    {{comment_detail.time.substr(0,4)+"-"+comment_detail.time.substr(4,2)+"-"+comment_detail.time.substr(6,2) }}
+                                    {{comment_detail.time.substr(8,2)+":"+comment_detail.time.substr(10,2)+":"+comment_detail.time.substr(12,2)}}  </p></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
