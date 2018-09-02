@@ -159,10 +159,32 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
         };
 
+        document.getElementById("right_div").style.height = $('#article').height()+parseInt(document.getElementById("article").style.top)+"px";
+        // console.log($('#article').height(),document.getElementById("article").style.top);
+        // console.log(22222222,$('#topElement').height());
+
         /**
          * 评论区
          * @type {HTMLElement | null}
          */
+        var now = new Date();
+        var year = now.getFullYear();
+        var month =(now.getMonth() + 1).toString();
+        var day = (now.getDate()).toString();
+        if (month.length == 1) {
+            month = "0" + month;
+        }
+        if (day.length == 1) {
+            day = "0" + day;
+        }
+        var dateTime = year + month +  day;
+        console.log(dateTime)
+
+        /**
+         * 得到当前围观产业链的ID
+         */
+
+        var graphid_current = $stateParams.graphid;
 
         /**
          * 得到用户登录的session
@@ -194,10 +216,12 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         sub.onclick = function submit() {
             // console.log("ss");
             var inputText = $('.text').val();
+            // inputText = inputText.replace(/\n|\r\n/g,"<br/>");
             // $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
             // console.log(inputText);
+            console.log(inputText);
             var data = {};
-            data.graphid = 1;
+            data.graphid = graphid_current;
             data.comment = inputText;
             var result = JSON.stringify(data);
 
@@ -215,6 +239,14 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                 var data = response.data;
                 if(data.retmessage == "success"){
 
+                    let local_comment = {
+                        author:username,
+                        comment:inputText,
+                        graphid:graphid_current,
+                        time:dateTime
+
+                    };
+                    $scope.commentList.push(dateTime);
                     $scope.$apply();
                 }
             },function errorCallBack(response) {
@@ -235,11 +267,13 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             // withCredentials: true,
             params:{
-                "graphid":1
+                "graphid":graphid_current
             }
         }).then(function successCallBack(response) {
             var data = response.data;
             $scope.commentList = data;
+            // $scope.conExpModel=trimStr($scope.commentList)
+            console.log(data);
         },function errorCallBack(response) {
             console.log("erreor");
         });

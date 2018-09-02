@@ -86,7 +86,8 @@ a {
 #info-show .reply-cont{ width: 89%; padding-right: 1%; float: right;}
 #info-show .reply-cont  p{ min-height: 20px; line-height: 20px;  font-family: "微软雅黑"; font-size: 14px;}
 #info-show .reply-cont .username{ color: #169fe6; margin-bottom: 5px;float: left;margin-right: 40px}
-#info-show .reply-cont .comment-body{ color: #999; max-height: auto;}
+#info-show .reply-cont .comment-body{ color: #999; max-height: auto; word-wrap:break-word;
+    word-break:break-all;}
 #info-show .reply-cont .comment-footer{font-size: 12px; color: #c0c0c0; margin-top: 10px;}
 #info-show .reply-cont .like {cursor: pointer;float: left;margin-right: 20px}
 #info-show .reply-cont .step {cursor: pointer;float: left;margin-right: 20px}
