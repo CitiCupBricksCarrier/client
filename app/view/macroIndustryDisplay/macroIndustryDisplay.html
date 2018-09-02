@@ -7,7 +7,7 @@
     <div class="module_nav">
         <a class="nav" ui-sref="macroIndustryDisplay.generalInfo">基本情况</a>
         <div style="display:flex">
-            <a class="nav" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()">行业指标</a>
+            <a class="nav" ui-sref="macroIndustryDisplay.industryData" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()">行业指标</a>
             <div class="dataPane" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()" ng-show='toshowDataPane'>
                 <a ui-sref="macroIndustryDisplay.sellNum">整车销量</a>&ensp;&ensp;&ensp;&ensp;
                 <a ui-sref="macroIndustryDisplay.holdNum">汽车保有量</a><br>

@@ -12,7 +12,7 @@ angular.module('myApp.macroIndustryDisplay', [
     'myApp.macroIndustryDisplay.hyssdw',
     'myApp.macroIndustryDisplay.hylsbj',
     'myApp.macroIndustryDisplay.scbxdb',
-
+    'myApp.macroIndustryDisplay.industryData',
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
@@ -33,7 +33,12 @@ angular.module('myApp.macroIndustryDisplay', [
                 url:'/sellNum',
                 templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/sellNum.html',
                 controller: 'sellNumCtrl'
-            });
+            })
+            .state('macroIndustryDisplay.industryData',{
+                url:'/industryData',
+                templateUrl: 'view/macroIndustryDisplay/industryData/industryData.html',
+                controller: 'IndustryDataCtrl'
+            })
         $stateProvider
             .state('macroIndustryDisplay.holdNum',{
                 url:'/holdNum',
