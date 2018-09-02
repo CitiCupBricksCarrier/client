@@ -26,18 +26,34 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车行业全部从业人员平均人数'
+                    text: '中国汽车行业全部从业人员平均人数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['全部从业人员'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -74,19 +90,34 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车企业三年销售平均增长率'
+                    text: '中国汽车企业三年销售平均增长率',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['三年销售平均增长率'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                 yAxis: {                    axisLabel: {
-                        formatter: '{value} %'
+                        formatter: '{value} %',
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
                     }},
                 series: [
 
@@ -123,20 +154,35 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车企业现金流动负债比率'
+                    text: '中国汽车企业现金流动负债比率',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['现金流动负债比率'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                 yAxis: {
                     axisLabel: {
-                        formatter: '{value} %'
+                        formatter: '{value} %',
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
                     }
                 },
                 series: [
@@ -175,19 +221,34 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车企业销售利润率'
+                    text: '中国汽车企业销售利润率',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['销售利润率'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                 yAxis: {                    axisLabel: {
-                        formatter: '{value} %'
+                        formatter: '{value} %',
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
                     }},
                 series: [
 
@@ -225,19 +286,34 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车企业资产负债率'
+                    text: '中国汽车企业资产负债率',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['资产负债率'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                 yAxis: {                    axisLabel: {
-                        formatter: '{value} %'
+                        formatter: '{value} %',
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
                     }},
                 series: [
 

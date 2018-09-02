@@ -2,6 +2,7 @@ table{
     width: 100%;
     min-width: 720px;
     border: solid thin lightblue;
+    color: rgba(140,140,140, 0.8);
 }
 table tr{
     width: 100%;
