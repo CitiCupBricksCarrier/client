@@ -738,7 +738,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
                         }
                     }},
                 grid: { // 控制图的大小，调整下面这些值就可以，
-                    y2: 80,// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
+                    y2: 100,// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
                 },
                 series: [
                     {
