@@ -13,6 +13,7 @@ angular.module('myApp.macroIndustryDisplay', [
     'myApp.macroIndustryDisplay.hylsbj',
     'myApp.macroIndustryDisplay.scbxdb',
     'myApp.macroIndustryDisplay.industryData',
+    'myApp.macroIndustryDisplay.economicData',
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
@@ -38,6 +39,11 @@ angular.module('myApp.macroIndustryDisplay', [
                 url:'/industryData?target',
                 templateUrl: 'view/macroIndustryDisplay/industryData/industryData.html',
                 controller: 'IndustryDataCtrl'
+            })
+            .state('macroIndustryDisplay.economicData',{
+                url:'/economicData?target',
+                templateUrl: 'view/macroIndustryDisplay/economicData/economicData.html',
+                controller: 'EconomicDataCtrl'
             })
         $stateProvider
             .state('macroIndustryDisplay.holdNum',{
