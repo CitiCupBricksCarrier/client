@@ -833,6 +833,77 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
          */
         $http({
             method: 'POST',
+            url: 'http://localhost:8080/industryData/inventory/ccpch/qchyccpch'
+        }).then(function successCallback(response) {
+            var Data=response.data;
+            var finishedgoodschn=[];
+
+
+
+            var year=[];
+            for(var i=0;i<Data.length;i++) {
+                year.push(Data[i].year.substr(0,4));
+                finishedgoodschn.push(Data[i].finishedgoodschn);
+
+            }
+            var myChart1 = echarts.init(document.getElementById('zgqchyccpch'));
+            option = {
+                color:['#344996'],
+                title: {
+                    text: '中国汽车行业产成品存货',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                tooltip: {},
+                legend: {
+                    y:'bottom',
+                    data:['产成品存货'],
+                    textStyle: {
+                        color: '#fff'
+                    }
+
+                },
+                xAxis: {
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                yAxis: [{
+                    type:'value',
+                    min:35,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                }
+                ],
+                series: [
+
+                    {
+                        name: '产成品存货',
+                        type: 'bar',
+                        data: finishedgoodschn,
+                    }
+                ]
+            };
+            myChart1.setOption(option);
+
+
+        }, function errorCallback(response) {
+            alert("error");
+            // 请求失败执行代码
+        });
+
+
+        $http({
+            method: 'POST',
             url: 'http://localhost:8080/industryData/inventory/kcxs/qcjxskcxs'
         }).then(function successCallback(response) {
             var Data=response.data;
