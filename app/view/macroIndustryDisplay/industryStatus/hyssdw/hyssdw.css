@@ -13,4 +13,16 @@ table th{
 table tr td{
     text-align: center;
     border: 2px solid #E4E5E6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.circle{
+    margin-left: 40%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+
 }

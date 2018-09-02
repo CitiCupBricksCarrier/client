@@ -17,7 +17,6 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
 
             var year=[];
             for(var i=0;i<Data.length;i++) {
-                year.push(Data[i].year.substr(0,4));
                 cordebtratio.push(Data[i].cordebtratio);
 
 
