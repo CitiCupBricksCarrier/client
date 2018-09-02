@@ -23,18 +23,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国国内制造乘用车产量'
+                    text: '中国国内制造乘用车产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['乘用车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '乘用车',
@@ -74,18 +90,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#344996','#88A500','#FF7800','#E52600'],
                 title: {
-                    text: '中国国内制造乘用车分车型产量'
+                    text: '中国国内制造乘用车分车型产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['基本型乘用车(轿车)','多功能乘用车(MPV)','运动型多用途乘用车(SUV)','交叉型乘用车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '基本型乘用车(轿车)',
@@ -133,18 +165,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国国内制造商用车产量'
+                    text: '中国国内制造商用车产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['商用车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '商用车',
@@ -181,18 +229,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#344996','#88A500'],
                 title: {
-                    text: '中国国内制造商用车分车型产量'
+                    text: '中国国内制造商用车分车型产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['客车','货车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '客车',
@@ -238,18 +302,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#344996','#88A500','#FF7800','#E52600'],
                 title: {
-                    text: '中国汽车行业新增产能'
+                    text: '中国汽车行业新增产能',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['基本型乘用车(轿车)','客车','货车','其他汽车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '基本型乘用车(轿车)',
@@ -298,18 +378,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车产量'
+                    text: '中国汽车产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['汽车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '汽车',
@@ -372,18 +468,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#3449960','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953C7E','#0A20F5','#4DCC01','#C66700','#DF4CDD','#EBC306','#039765','#C52687','#4196E6'],
                 title: {
-                    text: '中国主要汽车集团基本型乘用车(轿车)产量'
+                    text: '中国主要汽车集团基本型乘用车(轿车)产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['北京现代汽车','比亚迪汽车','奇瑞汽车','东风日产','一汽丰田','一汽大众汽车','吉利集团浙江豪情汽车','广州本田汽车','广汽丰田','长安福特马自达','上海大众汽车','上海通用汽车','神龙汽车','天津一汽夏利汽车','东风悦达起亚汽车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 grid: { // 控制图的大小，调整下面这些值就可以，
                     y2: 100,// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
                 },
@@ -514,18 +626,34 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             option = {
                 color:['#3449960','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953C7E','#0A20F5','#4DCC01','#C66700','#DF4CDD','#EBC306','#039765'],
                 title: {
-                    text: '中国主要汽车集团产量'
+                    text: '中国主要汽车集团产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['第一汽车集团','上汽集团','东风汽车集团','北京汽车工业控股公司','长安汽车集团','广州汽车工业集团','安徽江淮汽车工业集团','奇瑞汽车','华晨汽车集团','浙江吉利集团','长城汽车','比亚迪汽车','中国重型汽车集团'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 grid: { // 控制图的大小，调整下面这些值就可以，
                     y2: 80,// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
                 },

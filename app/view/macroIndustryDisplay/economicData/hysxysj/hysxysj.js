@@ -34,18 +34,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996','#88A500','#FF7800','#E52600'],
                 title: {
-                    text: '中国钢材价格'
+                    text: '中国钢材价格',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['180*2.5热轧带钢现货','1mm镀锌板现货','3mm热轧普通薄板现货','1mm冷轧普通薄板现货'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: month
+                    data: month,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -97,18 +113,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国公路旅客周转量'
+                    text: '中国公路旅客周转量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['公路旅客'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: month
+                    data: month,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -145,18 +177,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国固定资产投资价格指数'
+                    text: '中国固定资产投资价格指数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['固定资产投资'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -193,18 +241,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国居民消费支出'
+                    text: '中国居民消费支出',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['居民消费支出'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -241,18 +305,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国客车销量'
+                    text: '中国客车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['客车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: month
+                    data: month,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -289,19 +369,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国人均GDP指数'
+                    text: '中国人均GDP指数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['人均GDP指数'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                 yAxis: { axisLabel: {
-                        formatter: '{value} %'
+                        formatter: '{value} %',
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
                     }},
                 series: [
 
@@ -339,18 +434,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国天然橡胶月均市场价'
+                    text: '中国天然橡胶月均市场价',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['天然橡胶'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: month
+                    data: month,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -386,18 +497,34 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国重卡产量'
+                    text: '中国重卡产量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['重卡'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
