@@ -18,7 +18,7 @@
         </div>
         <div style="display:flex">
 
-            <a class="nav" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a>
+            <a class="nav" ui-sref="macroIndustryDisplay.economicData({target: ''})" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a>
             <div class="dataPane" style="margin-left: -70px" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()" ng-show='toshowDataPane2'>
                 <a ui-sref="macroIndustryDisplay.qyjx">企业绩效</a>&ensp;
                 <a ui-sref="macroIndustryDisplay.hysxysj">行业上下游数据</a><br>
