@@ -7,29 +7,33 @@
     <div class="module_nav">
         <a class="nav" ui-sref="macroIndustryDisplay.generalInfo">基本情况</a>
         <div style="display:flex">
-            <a class="nav" ui-sref="" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()">行业指标</a>
+            <a class="nav" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()">行业指标</a>
             <div class="dataPane" ng-mouseover="showDataPane()"  ng-mouseleave="hideDataPane()" ng-show='toshowDataPane'>
-                <a ui-sref="macroIndustryDisplay.sellNum">整车销量</a><br>
-                <a ui-sref="macroIndustryDisplay.industryData.holdNum">汽车保有量</a><br>
-                <a ui-sref="macroIndustryDisplay.industryData.capacity">行业产能</a><br>
-                <a ui-sref="macroIndustryDisplay.industryData.inventory">行业库存</a><br>
-                <a ui-sref="macroIndustryDisplay.industryData.price">价格</a><br>
-                <a ui-sref="macroIndustryDisplay.industryData.registerNum">汽车上牌量</a><br>
+                <a ui-sref="macroIndustryDisplay.sellNum">整车销量</a>&ensp;&ensp;&ensp;&ensp;
+                <a ui-sref="macroIndustryDisplay.holdNum">汽车保有量</a><br>
+                <a ui-sref="macroIndustryDisplay.capacity">行业产能</a>&ensp;
+                <a ui-sref="macroIndustryDisplay.inventory">行业库存</a>&ensp;
+                <a ui-sref="macroIndustryDisplay.price">价格</a><br>
             </div>
         </div>
         <div style="display:flex">
 
-            <a class="nav" ui-sref="" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a>
-            <div class="dataPane2" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()" ng-show='toshowDataPane2'>
-                <a ui-sref="macroIndustryDisplay.qyjx">企业绩效</a><br>
-                <a ui-sref="macroIndustryDisplay.hysxysj">行业上下游<br>数据</a><br>
-                <a ui-sref="macroIndustryDisplay.hycw">行业财务及固定资产投资</a><br>
+            <a class="nav" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a>
+            <div class="dataPane" style="margin-left: -70px" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()" ng-show='toshowDataPane2'>
+                <a ui-sref="macroIndustryDisplay.qyjx">企业绩效</a>&ensp;
+                <a ui-sref="macroIndustryDisplay.hysxysj">行业上下游数据</a><br>
+                <a ui-sref="macroIndustryDisplay.hycw" style="margin-left: -10px;top: 20px">行业财务及固定资产投资</a><br>
             </div>
 
         </div>
         <!--<a class="nav" ui-sref="macroIndustryDisplay.sellNum">经济数据</a>-->
         <a class="nav">财务数据</a>
-        <a class="nav">行业地位</a>
+        <a class="nav" ng-mouseover="showDataPane3()"  ng-mouseleave="hideDataPane3()">行业地位</a>
+        <div class="dataPane" style="margin-left: 150px;height: 80px;width: 140px" ng-mouseover="showDataPane3()"  ng-mouseleave="hideDataPane3()" ng-show='toshowDataPane3'>
+            <a ui-sref="macroIndustryDisplay.hyssdw">行业上市地位</a><br>
+            <a ui-sref="macroIndustryDisplay.hylsbj">行业历史比较</a><br>
+            <a ui-sref="macroIndustryDisplay.scbxdb" >市场表现对比</a><br>
+        </div>
         <a class="nav">主要上市公司</a>
         <a class="nav">行业资讯</a>
     </div>
