@@ -35,18 +35,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             option = {
                 color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953C7E'],
                 title: {
-                    text: '中国乘用车分品牌销量'
+                    text: '中国乘用车分品牌销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['其他品牌','自主品牌','日系品牌','德系品牌','美系品牌','韩系品牌','法系品牌'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '自主品牌',
@@ -110,17 +126,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996'],
                     title: {
-                        text: '中国汽车销量'
+                        text: '中国汽车销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['汽车'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '汽车',
                         type: 'bar',
@@ -152,17 +185,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996'],
                     title: {
-                        text: '中国乘用车销量'
+                        text: '中国乘用车销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['乘用车'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '乘用车',
                         type: 'bar',
@@ -199,17 +249,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996','#88A500','#FF7800','#E52600'],
                     title: {
-                        text: '中国乘用车分车型销量'
+                        text: '中国乘用车分车型销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['基本型乘用车(轿车)','多功能乘用车(MPV)','运动型多功能乘用车(SUV)','交叉型乘用车'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '基本型乘用车(轿车)',
                         type: 'bar',
@@ -259,17 +326,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996','#88A500','#FF7800'],
                     title: {
-                        text: '中国乘用车分燃料类型销量'
+                        text: '中国乘用车分燃料类型销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['柴油','汽油','其他燃料'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '柴油',
                         type: 'bar',
@@ -310,17 +394,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996'],
                     title: {
-                        text: '中国国内制造乘用车销量'
+                        text: '中国国内制造乘用车销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['乘用车'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '乘用车',
                         type: 'bar',
@@ -358,17 +459,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996','#88A500','#FF7800','#E52600'],
                     title: {
-                        text: '中国国内制造乘用车分车型销量'
+                        text: '中国国内制造乘用车分车型销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['基本型乘用车(轿车)','多功能乘用车(MPV)','运动型多功能乘用车(SUV)','交叉型乘用车'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '基本型乘用车(轿车)',
                         type: 'bar',
@@ -414,17 +532,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996'],
                     title: {
-                        text: '中国商用车销量'
+                        text: '中国商用车销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['商用车'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '商用车',
                         type: 'bar',
@@ -462,17 +597,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
                 var option = {
                     color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0'],
                     title: {
-                        text: '中国商用车分车型销量'
+                        text: '中国商用车分车型销量',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     tooltip: {},
                     legend: {
                         data:['客车','货车','半挂牵引车','客车非完整车辆','货车非完整车辆'],
-                        y:'bottom'
+                        y:'bottom',
+                        textStyle: {
+                            color: '#fff'
+                        }
                     },
                     xAxis: {
-                        data: f1
+                        data: f1,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }},
                     series: [{
                         name: '客车',
                         type: 'bar',
@@ -529,17 +681,35 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500','#FF7800'],
                 title: {
-                    text: '中国商用车分燃料类型销量'
+                    text: '中国商用车分燃料类型销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
+
                 },
                 tooltip: {},
                 legend: {
                     data:['柴油商用车','汽油商用车','其他燃料商用车'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '柴油商用车',
                     type: 'bar',
@@ -581,17 +751,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996'],
                 title: {
-                    text: '中国国内制造商用车销量'
+                    text: '中国国内制造商用车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['商用车'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '商用车',
                     type: 'bar',
@@ -631,17 +818,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0'],
                 title: {
-                    text: '中国国内制造商用车分车型销量'
+                    text: '中国国内制造商用车分车型销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['客车','货车','半挂牵引车','客车非完整车辆','货车非完整车辆'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '客车',
                     type: 'bar',
@@ -700,17 +904,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500','#FF7800'],
                 title: {
-                    text: '中国国内制造商用车分燃料类型销量'
+                    text: '中国国内制造商用车分燃料类型销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['柴油','汽油','其他燃料'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '柴油',
                     type: 'bar',
@@ -756,17 +977,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500'],
                 title: {
-                    text: '全球乘用车销量'
+                    text: '全球乘用车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['全球','欧盟27国欧洲自由贸易区'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '全球',
                     type: 'bar',
@@ -807,17 +1045,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500'],
                 title: {
-                    text: '全球商用车销量'
+                    text: '全球商用车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['全球','欧盟27国欧洲自由贸易区'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '全球',
                     type: 'bar',
@@ -860,17 +1115,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500','#FF7800'],
                 title: {
-                    text: '美国汽车销量'
+                    text: '美国汽车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['汽车','基本型乘用车(轿车)','卡车'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '汽车',
                     type: 'bar',
@@ -917,17 +1189,34 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500'],
                 title: {
-                    text: '德国汽车销量'
+                    text: '德国汽车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['乘用车','商用车'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [{
                     name: '乘用车',
                     type: 'bar',
@@ -973,22 +1262,46 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
             var option = {
                 color:['#344996','#88A500','#FF7800','#E52600'],
                 title: {
-                    text: '日本汽车销量'
+                    text: '日本汽车销量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     data:['乘用车','货车','客车','汽车(右)'],
-                    y:'bottom'
+                    y:'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: [{    name:'乘用车/货车/客车',
+                yAxis: [{
                               type:'value',
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                     {
-                             name:'汽车',
+
                              type:'value',
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
 
                     }],
                 series: [{

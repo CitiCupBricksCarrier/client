@@ -30,26 +30,49 @@ angular.module('myApp.macroIndustryDisplay.inventory', [
             option = {
                 color:['#344996','#88A500','#FF7800','#E52600'],
                 title: {
-                    text: '中国汽车经销商库存系数'
+                    text: '中国汽车经销商库存系数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['进口汽车','自主汽车','合资汽车','汽车(右)'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: [{    name:'进口/自主/合资汽车',
+                yAxis: [{
                             type:'value',
                             max:8,
-                            splitNumber:10
+                            splitNumber:10,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                         },
-                        {    name:'汽车',
+                        {
                         type:'value',
                             splitNumber:8,
-                            min:0.5
+                            min:0.5,
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#fff'
+                                }
+                            }
 
                         }
                 ],
@@ -111,20 +134,38 @@ angular.module('myApp.macroIndustryDisplay.inventory', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车经销商库存预警指数'
+                    text: '中国汽车经销商库存预警指数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['库存预警指数'],
+                    textStyle: {
+                        color: '#fff'
+                    }
 
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: [{    name:'库存预警指数',
+                yAxis: [{
                     type:'value',
-                    min:35
+                    min:35,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 }
                 ],
                 series: [
