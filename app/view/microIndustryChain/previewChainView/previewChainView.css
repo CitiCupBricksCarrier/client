@@ -92,3 +92,21 @@ a {
 #info-show .reply-cont .like {cursor: pointer;float: left;margin-right: 20px}
 #info-show .reply-cont .step {cursor: pointer;float: left;margin-right: 20px}
 #info-show .reply-cont .delete {cursor: pointer;}
+
+
+#right_div{
+    position: fixed;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    border: solid 1px #eeeff2;
+    overflow-y: scroll;
+    right: -300px;
+    transition: .3s;
+}
+
+#right_div:hover{
+    right: 0;
+}
+

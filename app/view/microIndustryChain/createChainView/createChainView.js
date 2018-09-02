@@ -370,13 +370,17 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
             connectionListArray = $scope.connectionList;
 
+            let graphJson = {
+                graphid: $scope.graphID,
+                linkList: connectionListArray,
+                companyList: nodeListArray
+            };
+
             $http({
                 method: 'post',
-                url: urlHead + 'addGraph',
+                url: urlHead + 'update',
                 params: {
-                    "username": "1",
-                    "linkList": connectionListArray,
-                    "companyList": nodeListArray
+                    graphJson: graphJson
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 //cache: true, //避免多次请求后台数据

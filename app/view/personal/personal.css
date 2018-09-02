@@ -1,0 +1,20 @@
+#leftUserDiv{
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    left: 0;
+    padding: 20px;
+    background: whitesmoke;
+    text-align: center;
+}
+
+#leftUserDiv button{
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+#userHead{
+    width: 60%;
+}
