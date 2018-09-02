@@ -96,7 +96,7 @@ a {
 
 #right_div{
     position: fixed;
-    width: 400px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     background-color: #f7f8fa;
@@ -104,6 +104,7 @@ a {
     overflow-y: scroll;
     right: -300px;
     transition: .3s;
+
 }
 
 #right_div:hover{

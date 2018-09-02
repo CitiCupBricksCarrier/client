@@ -159,7 +159,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
         };
 
-        document.getElementById("right_div").style.height = $('#article').height()+parseInt(document.getElementById("article").style.top)+"px";
+        // document.getElementById("right_div").style.height = $('#article').height()+parseInt(document.getElementById("article").style.top)+"px";
         // console.log($('#article').height(),document.getElementById("article").style.top);
         // console.log(22222222,$('#topElement').height());
 
@@ -167,18 +167,18 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          * 评论区
          * @type {HTMLElement | null}
          */
-        var now = new Date();
-        var year = now.getFullYear();
-        var month =(now.getMonth() + 1).toString();
-        var day = (now.getDate()).toString();
-        if (month.length == 1) {
-            month = "0" + month;
-        }
-        if (day.length == 1) {
-            day = "0" + day;
-        }
-        var dateTime = year + month +  day;
-        console.log(dateTime)
+        // var now = new Date();
+        // var year = now.getFullYear();
+        // var month =(now.getMonth() + 1).toString();
+        // var day = (now.getDate()).toString();
+        // if (month.length == 1) {
+        //     month = "0" + month;
+        // }
+        // if (day.length == 1) {
+        //     day = "0" + day;
+        // }
+        // var dateTime = year + month +  day;
+        // console.log(dateTime)
 
         /**
          * 得到当前围观产业链的ID
@@ -260,23 +260,35 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          * 加载评论
          */
 
-        $http({
-            url:urlHead + 'getComments',
-            method: 'post',
-            // contentType: "application/json",
-            // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            // withCredentials: true,
-            params:{
-                "graphid":graphid_current
-            }
-        }).then(function successCallBack(response) {
-            var data = response.data;
-            $scope.commentList = data;
-            // $scope.conExpModel=trimStr($scope.commentList)
-            console.log(data);
-        },function errorCallBack(response) {
-            console.log("erreor");
-        });
+        // $http({
+        //     url:urlHead + 'getComments',
+        //     method: 'post',
+        //     // contentType: "application/json",
+        //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        //     // withCredentials: true,
+        //     params:{
+        //         "graphid":graphid_current
+        //     }
+        // }).then(function successCallBack(response) {
+        //     var data = response.data;
+        //     $scope.commentList = data;
+        //     // $scope.conExpModel=trimStr($scope.commentList)
+        //     console.log(data);
+        // },function errorCallBack(response) {
+        //     console.log("erreor");
+        // });
+        var s = {
+                "author":1,
+                "comment":213,
+                "graphid":1,
+                "time":20180910125369
+
+        }
+        $scope.commentList = [];
+        for(var  i = 0 ;i <20;i++){
+            $scope.commentList.push(s);
+        }
+        // $scope.$apply();
 
         /**
          *  删除功能
