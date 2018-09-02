@@ -378,11 +378,12 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
             $http({
                 method: 'post',
-                url: urlHead + 'update',
+                url: urlHead + 'updateGraph',
                 params: {
                     graphJson: graphJson
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true
                 //cache: true, //避免多次请求后台数据
             }).then(function (response) {
                 console.log(response.data);

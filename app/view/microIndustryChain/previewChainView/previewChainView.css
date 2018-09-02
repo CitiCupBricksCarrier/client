@@ -67,7 +67,7 @@ a {
 .comment .content{width: 80%; height: 120px; float: left;padding-left: 5%}
 
 .cont-box{ width: 100%; height: 80px; border: 1px solid #169fe6; border-top-left-radius: 5px;  border-top-right-radius: 5px; float: left;}
-.cont-box .text{ width: 96.6%; height: 86.9%; border-radius: 5px;   padding: 5px 10px; color: #169fe6; font-family: "微软雅黑"; font-size: 12px; resize:none; border: none;  outline: none; float: left;}
+.cont-box .text{ width: 100%; height: 100%; border-radius: 5px;   padding: 5px 10px; color: #169fe6; font-family: "微软雅黑"; font-size: 12px; resize:none; border: none;  outline: none; float: left;}
 
 .tools-box{ width: 100%; height: 30px; border: 1px solid #169fe6; margin-top: 5px; border-bottom-left-radius: 5px;  border-bottom-right-radius: 5px; float: left;}
 .tools-box .operator-box-btn{ width: 85%; height: 30px; float: left;  }
