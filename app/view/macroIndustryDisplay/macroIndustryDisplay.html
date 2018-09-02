@@ -20,9 +20,9 @@
 
             <a class="nav" ui-sref="macroIndustryDisplay.economicData({target: ''})" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()">经济数据</a>
             <div class="dataPane" style="margin-left: -70px" ng-mouseover="showDataPane2()"  ng-mouseleave="hideDataPane2()" ng-show='toshowDataPane2'>
-                <a ui-sref="macroIndustryDisplay.qyjx">企业绩效</a>&ensp;
-                <a ui-sref="macroIndustryDisplay.hysxysj">行业上下游数据</a><br>
-                <a ui-sref="macroIndustryDisplay.hycw" style="margin-left: -10px;top: 20px">行业财务及固定资产投资</a><br>
+                <a ui-sref="macroIndustryDisplay.economicData({target: 'qyjx'})">企业绩效</a>&ensp;
+                <a ui-sref="macroIndustryDisplay.economicData({target: 'hysxysj'})">行业上下游数据</a><br>
+                <a ui-sref="macroIndustryDisplay.economicData({target: 'hycw'})" style="margin-left: -10px;top: 20px">行业财务及固定资产投资</a><br>
             </div>
 
         </div>
