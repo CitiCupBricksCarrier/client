@@ -9,6 +9,10 @@ angular.module('myApp.macroIndustryDisplay', [
     'myApp.macroIndustryDisplay.qyjx',
     'myApp.macroIndustryDisplay.hysxysj',
     'myApp.macroIndustryDisplay.hycw',
+    'myApp.macroIndustryDisplay.hyssdw',
+    'myApp.macroIndustryDisplay.hylsbj',
+    'myApp.macroIndustryDisplay.scbxdb',
+    'myApp.macroIndustryDisplay.industryData',
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
@@ -29,7 +33,12 @@ angular.module('myApp.macroIndustryDisplay', [
                 url:'/sellNum',
                 templateUrl: 'view/macroIndustryDisplay/industryData/sellNum/sellNum.html',
                 controller: 'sellNumCtrl'
-            });
+            })
+            .state('macroIndustryDisplay.industryData',{
+                url:'/industryData',
+                templateUrl: 'view/macroIndustryDisplay/industryData/industryData.html',
+                controller: 'IndustryDataCtrl'
+            })
         $stateProvider
             .state('macroIndustryDisplay.holdNum',{
                 url:'/holdNum',
@@ -68,15 +77,35 @@ angular.module('myApp.macroIndustryDisplay', [
             });
         $stateProvider
             .state('macroIndustryDisplay.hycw',{
-                url:'/htcw',
+                url:'/hycw',
                 templateUrl: 'view/macroIndustryDisplay/economicData/hycw/hycw.html',
                 controller: 'hycwCtrl'
+            });
+        $stateProvider
+            .state('macroIndustryDisplay.hyssdw',{
+                url:'/hyssdw',
+                templateUrl: 'view/macroIndustryDisplay/industryStatus/hyssdw/hyssdw.html',
+                controller: 'hyssdwCtrl'
+            });
+        $stateProvider
+            .state('macroIndustryDisplay.hylsbj',{
+                url:'/hylsbj',
+                templateUrl: 'view/macroIndustryDisplay/industryStatus/hylsbj/hylsbj.html',
+                controller: 'hylsbjCtrl'
+            });
+        $stateProvider
+            .state('macroIndustryDisplay.scbxdb',{
+                url:'/scbxdb',
+                templateUrl: 'view/macroIndustryDisplay/industryStatus/scbxdb/scbxdb.html',
+                controller: 'scbxdbCtrl'
             });
     })
 
     .controller('MacroIndustryDisplayCtrl',function($scope, $route, $http) {
         $scope.toshowDataPane=false;
         $scope.toshowDataPane2=false;
+        $scope.toshowDataPane3=false;
+
 
         $scope.showDataPane=function () {
             $scope.toshowDataPane=true;
@@ -89,6 +118,12 @@ angular.module('myApp.macroIndustryDisplay', [
         };
         $scope.hideDataPane2=function () {
             $scope.toshowDataPane2=false;
+        };
+        $scope.showDataPane3=function () {
+            $scope.toshowDataPane3=true;
+        };
+        $scope.hideDataPane3=function () {
+            $scope.toshowDataPane3=false;
         };
 
         //导航栏的点击效果

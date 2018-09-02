@@ -29,26 +29,47 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996','#88A500'],
                 title: {
-                    text: '中国汽车行业收入占GDP比重'
+                    text: '中国汽车行业收入占GDP比重',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['行业收入','行业收入占GDP比重(右)'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: [{    name:'行业收入',
+                yAxis: [{
                     type:'value',
-                    splitNumber:10
+                    splitNumber:10,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                    {    name:'行业收入占GDP比重(右)',
+                    {
                         type:'value',
                         splitNumber:8,
                         axisLabel:{
-                            formatter: '{value} %'
+                            formatter: '{value} %',
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
                         },
                     }
                 ],
@@ -99,18 +120,34 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996','#88A500'],
                 title: {
-                    text: '中国汽车行业企业和亏损企业数量'
+                    text: '中国汽车行业企业和亏损企业数量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['企业','亏损企业'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -154,18 +191,34 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车行业负债总计'
+                    text: '中国汽车行业负债总计',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['负债总计'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -203,18 +256,34 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车行业利润总额'
+                    text: '中国汽车行业利润总额',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['利润总额'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -252,18 +321,34 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车行业主营业务成本'
+                    text: '中国汽车行业主营业务成本',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['主营业务成本'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -300,18 +385,34 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车行业资产总计'
+                    text: '中国汽车行业资产总计',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['资产总计'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -359,25 +460,47 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1'],
                 title: {
-                    text: '中国汽车行业固定资产投资额'
+                    text: '中国汽车行业固定资产投资额',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['汽车行业','改装车行业','摩托车行业','车用发动机行业','汽车与摩托车零部件行业','汽车行业总计(右)'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                 yAxis:  [{
                     type:'value',
-                    splitNumber:8
+                    splitNumber:8,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
                     {
                         type:'value',
                         splitNumber:8,
-
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
                     }
                 ],
                 series: [
@@ -451,18 +574,34 @@ angular.module('myApp.macroIndustryDisplay.hycw', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车行业固定资产投资占全国投资比重'
+                    text: '中国汽车行业固定资产投资占全国投资比重',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['固定资产投资占全国投资比重'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: year
+                    data: year,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {

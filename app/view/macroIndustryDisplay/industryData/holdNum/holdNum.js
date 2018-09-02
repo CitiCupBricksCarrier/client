@@ -23,18 +23,34 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车保有量'
+                    text: '中国汽车保有量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['保有量'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '保有量',
@@ -68,18 +84,34 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '中国汽车每千人保有量'
+                    text: '中国汽车每千人保有量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['每千人保有量'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
                     {
                         name: '每千人保有量',
@@ -119,18 +151,34 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
             option = {
                 color:['#FF7800','#88A500','#344996','#E52600'],
                 title: {
-                    text: '中国新注册民用汽车数量'
+                    text: '中国新注册民用汽车数量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['民用客车','民用货车','民用其他汽车','民用汽车'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -185,18 +233,34 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '全球汽车保有量'
+                    text: '全球汽车保有量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['保有量'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
@@ -233,18 +297,34 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '全球每千人汽车保有量'
+                    text: '全球每千人汽车保有量',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['每千人保有量'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {

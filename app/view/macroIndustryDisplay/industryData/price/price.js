@@ -26,18 +26,36 @@ angular.module('myApp.macroIndustryDisplay.price', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '乘用车整体价格变化指数'
+                    text: '乘用车整体价格变化指数',
+                    textStyle: {
+                        color: '#FFFFFF'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['整体价格变化指数'],
-
+                    textStyle: {
+                        color: '#FFFFFF'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                },
                 series: [
 
                     {
@@ -73,18 +91,34 @@ angular.module('myApp.macroIndustryDisplay.price', [
             option = {
                 color:['#344996'],
                 title: {
-                    text: '乘用车整体终端优惠指数'
+                    text: '乘用车整体终端优惠指数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 tooltip: {},
                 legend: {
                     y:'bottom',
                     data:['整体终端优惠指数'],
-
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 xAxis: {
-                    data: f1
+                    data: f1,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
                 },
-                yAxis: {},
+                yAxis: {                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }},
                 series: [
 
                     {
