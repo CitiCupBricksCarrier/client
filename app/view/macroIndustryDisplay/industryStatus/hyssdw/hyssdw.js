@@ -30,6 +30,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_all'
         }).then(function successCallback(response) {
             var Data=response.data;
+            console.log(Data)
             $scope.indstnamAll=Data[0].indstnam;
             $scope.pettmAll=Data[1].pettm;
             $scope.peyearfcastAll=Data[2].peyearfcast;
@@ -43,6 +44,164 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             $scope.businsincAll=Data[10].businsinc;
             $scope.toassetsAll=Data[11].toassets;
 
+            $scope.draw=function (data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15) {
+
+                var myChart = echarts.init(document.getElementById('test'));
+
+                var option = {
+                    color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
+                    tooltip : {
+                        backgroundColor:'rgba(0,0,0,0)',
+                        textStyle: {
+                            color: 'rgba(0,0,0,0)'
+                        }
+                    },
+                    legend: {
+                    },
+                    toolbox: {
+                    },
+                    xAxis : [
+                        {
+                            type : 'value',
+                            splitNumber: 4,
+                            scale: true
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            splitNumber: 4,
+                            scale: true
+                        }
+                    ],
+
+                    series : [
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data1,
+                            color:$scope.colors[0]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data2,
+                            color:$scope.colors[1]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data3,
+                            color:$scope.colors[2]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data4,
+                            color:$scope.colors[3]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data5,
+                            color:$scope.colors[4]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data6,
+                            color:$scope.colors[5]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data7,
+                            color:$scope.colors[6]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data8,
+                            color:$scope.colors[7]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data9,
+                            color:$scope.colors[8]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data10,
+                            color:$scope.colors[9]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data11,
+                            color:$scope.colors[10]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data12,
+                            color:$scope.colors[11]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data13,
+                            color:$scope.colors[12]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data14,
+                            color:$scope.colors[13]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data15,
+                            color:$scope.colors[14]
+                        }
+
+                    ]
+                };
+
+                myChart.setOption(option);
+            }
             for(var i=0;i<$scope.indstnamAll.length;i++){
                 $scope.str+=' <tr>\n' +
                     '            <td>'+(i+1)+'</td>\n' +
@@ -60,10 +219,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
             }
             document.getElementById('table').innerHTML=$scope.str;
-
-            var myChart = echarts.init(document.getElementById('test'));
-
-            var data1 = [
+            $scope.data1 = [
                 [$scope.roettmAll[0],$scope.pettmAll[0],$scope.tomaktvalAll[0]],
                 [$scope.roettmAll[15],$scope.pettmAll[15],$scope.tomaktvalAll[15]],
                 [$scope.roettmAll[30],$scope.pettmAll[30],$scope.tomaktvalAll[30]],
@@ -71,7 +227,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[60],$scope.pettmAll[60],$scope.tomaktvalAll[60]],
             ];
 
-            var data2 = [
+            $scope.data2 = [
                 [$scope.roettmAll[1],$scope.pettmAll[1],$scope.tomaktvalAll[1]],
                 [$scope.roettmAll[16],$scope.pettmAll[16],$scope.tomaktvalAll[16]],
                 [$scope.roettmAll[31],$scope.pettmAll[31],$scope.tomaktvalAll[31]],
@@ -79,7 +235,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[61],$scope.pettmAll[61],$scope.tomaktvalAll[61]],
             ];
 
-            var data3 = [
+            $scope.data3 = [
                 [$scope.roettmAll[2],$scope.pettmAll[2],$scope.tomaktvalAll[2]],
                 [$scope.roettmAll[17],$scope.pettmAll[17],$scope.tomaktvalAll[17]],
                 [$scope.roettmAll[32],$scope.pettmAll[32],$scope.tomaktvalAll[32]],
@@ -87,7 +243,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[62],$scope.pettmAll[62],$scope.tomaktvalAll[62]],
             ];
 
-            var data4 = [
+            $scope.data4 = [
                 [$scope.roettmAll[3],$scope.pettmAll[3],$scope.tomaktvalAll[3]],
                 [$scope.roettmAll[18],$scope.pettmAll[18],$scope.tomaktvalAll[18]],
                 [$scope.roettmAll[33],$scope.pettmAll[33],$scope.tomaktvalAll[33]],
@@ -95,7 +251,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[63],$scope.pettmAll[63],$scope.tomaktvalAll[63]],
             ];
 
-            var data5 = [
+            $scope.data5 = [
                 [$scope.roettmAll[4],$scope.pettmAll[4],$scope.tomaktvalAll[4]],
                 [$scope.roettmAll[19],$scope.pettmAll[19],$scope.tomaktvalAll[19]],
                 [$scope.roettmAll[34],$scope.pettmAll[34],$scope.tomaktvalAll[34]],
@@ -103,7 +259,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[64],$scope.pettmAll[64],$scope.tomaktvalAll[64]],
             ];
 
-            var data6 = [
+            $scope.data6 = [
                 [$scope.roettmAll[5],$scope.pettmAll[5],$scope.tomaktvalAll[5]],
                 [$scope.roettmAll[20],$scope.pettmAll[20],$scope.tomaktvalAll[20]],
                 [$scope.roettmAll[35],$scope.pettmAll[35],$scope.tomaktvalAll[35]],
@@ -111,7 +267,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[65],$scope.pettmAll[65],$scope.tomaktvalAll[65]],
             ];
 
-            var data7 = [
+            $scope.data7 = [
                 [$scope.roettmAll[6],$scope.pettmAll[6],$scope.tomaktvalAll[6]],
                 [$scope.roettmAll[21],$scope.pettmAll[21],$scope.tomaktvalAll[21]],
                 [$scope.roettmAll[36],$scope.pettmAll[36],$scope.tomaktvalAll[36]],
@@ -119,7 +275,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[66],$scope.pettmAll[66],$scope.tomaktvalAll[66]],
             ];
 
-            var data8 = [
+            $scope.data8 = [
                 [$scope.roettmAll[7],$scope.pettmAll[7],$scope.tomaktvalAll[7]],
                 [$scope.roettmAll[22],$scope.pettmAll[22],$scope.tomaktvalAll[22]],
                 [$scope.roettmAll[37],$scope.pettmAll[37],$scope.tomaktvalAll[37]],
@@ -127,7 +283,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[67],$scope.pettmAll[67],$scope.tomaktvalAll[67]],
             ];
 
-            var data9 = [
+            $scope.data9 = [
                 [$scope.roettmAll[8],$scope.pettmAll[8],$scope.tomaktvalAll[8]],
                 [$scope.roettmAll[23],$scope.pettmAll[23],$scope.tomaktvalAll[23]],
                 [$scope.roettmAll[38],$scope.pettmAll[38],$scope.tomaktvalAll[38]],
@@ -135,7 +291,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[68],$scope.pettmAll[68],$scope.tomaktvalAll[68]],
             ];
 
-            var data10 = [
+            $scope.data10 = [
                 [$scope.roettmAll[9],$scope.pettmAll[9],$scope.tomaktvalAll[9]],
                 [$scope.roettmAll[24],$scope.pettmAll[24],$scope.tomaktvalAll[24]],
                 [$scope.roettmAll[39],$scope.pettmAll[39],$scope.tomaktvalAll[39]],
@@ -143,15 +299,14 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[69],$scope.pettmAll[68],$scope.tomaktvalAll[68]],
             ];
 
-            var data11 = [
+            $scope.data11 = [
                 [$scope.roettmAll[10],$scope.pettmAll[10],$scope.tomaktvalAll[10]],
                 [$scope.roettmAll[25],$scope.pettmAll[25],$scope.tomaktvalAll[25]],
                 [$scope.roettmAll[40],$scope.pettmAll[40],$scope.tomaktvalAll[40]],
-                [$scope.roettmAll[55],$scope.pettmAll[55],$scope.tomaktvalAll[55]],
                 [$scope.roettmAll[70],$scope.pettmAll[70],$scope.tomaktvalAll[70]],
             ];
 
-            var data12 = [
+            $scope.data12 = [
                 [$scope.roettmAll[11],$scope.pettmAll[11],$scope.tomaktvalAll[11]],
                 [$scope.roettmAll[26],$scope.pettmAll[26],$scope.tomaktvalAll[26]],
                 [$scope.roettmAll[41],$scope.pettmAll[41],$scope.tomaktvalAll[41]],
@@ -159,222 +314,182 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[71],$scope.pettmAll[71],$scope.tomaktvalAll[71]],
             ];
 
-            var data13 = [
+            $scope.data13 = [
                 [$scope.roettmAll[12],$scope.pettmAll[12],$scope.tomaktvalAll[12]],
                 [$scope.roettmAll[27],$scope.pettmAll[27],$scope.tomaktvalAll[27]],
                 [$scope.roettmAll[42],$scope.pettmAll[42],$scope.tomaktvalAll[42]],
                 [$scope.roettmAll[57],$scope.pettmAll[57],$scope.tomaktvalAll[57]],
             ];
 
-            var data14 = [
+            $scope.data14 = [
                 [$scope.roettmAll[13],$scope.pettmAll[13],$scope.tomaktvalAll[13]],
                 [$scope.roettmAll[28],$scope.pettmAll[28],$scope.tomaktvalAll[28]],
                 [$scope.roettmAll[43],$scope.pettmAll[43],$scope.tomaktvalAll[43]],
                 [$scope.roettmAll[58],$scope.pettmAll[58],$scope.tomaktvalAll[58]],
             ];
 
-            var data15 = [
+            $scope.data15 = [
                 [$scope.roettmAll[14],$scope.pettmAll[14],$scope.tomaktvalAll[14]],
                 [$scope.roettmAll[29],$scope.pettmAll[29],$scope.tomaktvalAll[29]],
                 [$scope.roettmAll[44],$scope.pettmAll[44],$scope.tomaktvalAll[44]],
                 [$scope.roettmAll[59],$scope.pettmAll[59],$scope.tomaktvalAll[59]],
             ];
-            var schema = [
-                {name: 'Y', index: 0, text: 'PE-TTM'},
-                {name: 'X', index: 1, text: 'ROE-TTM'},
-                {name: 'AREA', index: 2, text: '总市值'},
 
-            ];
+            var myChart = echarts.init(document.getElementById('test'));
 
-
-            var itemStyle = {
-                normal: {
-                    opacity: 0.8,
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowOffsetY: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            };
-
-            option = {
-                color: [
-                    '#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'
-                ],
+            var option = {
+                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
+                tooltip : {
+                    backgroundColor:'rgba(0,0,0,0)',
+                    textStyle: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                },
                 legend: {
                 },
-                grid: {
-                    x: '10%',
-                    x2: 150,
-                    y: '18%',
-                    y2: '10%'
+                toolbox: {
                 },
-                tooltip: {
-                    padding: 10,
-                    backgroundColor: '#222',
-                    borderColor: '#777',
-                    borderWidth: 1,
-                    formatter: function (obj) {
-                        var value = obj.value;
-                        return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
-                            + obj.seriesName + ' ' + value[0] + '日：'
-                            + value[7]
-                            + '</div>'
-                            + schema[1].text + '：' + value[1] + '<br>'
-                            + schema[2].text + '：' + value[2] + '<br>'
-                            + schema[3].text + '：' + value[3] + '<br>'
-                            + schema[4].text + '：' + value[4] + '<br>'
-                            + schema[5].text + '：' + value[5] + '<br>'
-                            + schema[6].text + '：' + value[6] + '<br>';
-                    }
-                },
-                xAxis: {
-                    type: 'value',
-                    name: 'ROE-TTM',
-                    nameGap: 16,
-                    nameTextStyle: {
-                        color: '#fff',
-                        fontSize: 14
-                    },
-                    max: 31,
-                    splitLine: {
-                        show: false
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#eee'
-                        }
-                    }
-                },
-                yAxis: {
-                    type: 'value',
-                    name: 'PE-TTM',
-                    nameLocation: 'end',
-                    nameGap: 20,
-                    nameTextStyle: {
-                        color: '#fff',
-                        fontSize: 16
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#eee'
-                        }
-                    },
-                    splitLine: {
-                        show: false
-                    }
-                },
-                visualMap: [
+                xAxis : [
                     {
-                        left: 'right',
-                        top: '10%',
-                        dimension: 2,
-                        min: 0,
-                        max: 250,
-                        calculable: true,
-                        precision: 0.1,
-                        text: ['圆形大小：总市值'],
-                        textGap: 30,
-                        textStyle: {
-                            color: '#fff'
-                        },
-                        inRange: {
-                            symbolSize: [10, 70]
-                        },
-                        outOfRange: {
-                            symbolSize: [10, 70],
-                            color: ['rgba(255,255,255,.2)']
-                        },
-                        controller: {
-                            inRange: {
-                                color: ['#c23531']
-                            },
-                            outOfRange: {
-                                color: ['#444']
-                            }
-                        }
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
                     }
                 ],
-                series: [
+                yAxis : [
                     {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data1
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data2
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data3
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data4
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data5
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data6
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data7
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data8
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data9
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data10
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data11
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data12
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data13
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data14
-                    },
-                    {
-                        type: 'scatter',
-                        itemStyle: itemStyle,
-                        data: data15
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
                     }
+                ],
+
+                series : [
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data1,
+                        color:$scope.colors[0]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data2,
+                        color:$scope.colors[1]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data3,
+                        color:$scope.colors[2]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data4,
+                        color:$scope.colors[3]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data5,
+                        color:$scope.colors[4]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data6,
+                        color:$scope.colors[5]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data7,
+                        color:$scope.colors[6]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data8,
+                        color:$scope.colors[7]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data9,
+                        color:$scope.colors[8]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data10,
+                        color:$scope.colors[9]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data11,
+                        color:$scope.colors[10]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data12,
+                        color:$scope.colors[11]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data13,
+                        color:$scope.colors[12]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data14,
+                        color:$scope.colors[13]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data15,
+                        color:$scope.colors[14]
+                    }
+
                 ]
             };
-            myChart.setOption(option);
 
+            myChart.setOption(option);
 
 
         }, function errorCallback(response) {
@@ -484,7 +599,9 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                         switch ($scope.Y){
                             case 'PE-TTM':
-                                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>'
+                                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>';
+                                for(var i=0;i<5;i++){
+                            }
                                 break;
                             case 'PE-本年预测':
                                 $scope.str+='            <td>'+$scope.peyearfcastAll[i]+'</td>';
@@ -526,6 +643,8 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+
+
                     break;
 
                 case '沪深A股':
