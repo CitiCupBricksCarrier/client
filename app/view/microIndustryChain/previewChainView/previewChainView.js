@@ -53,6 +53,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         animeContext.strokeStyle = connectionLineAnimeColor;
 
 
+        $scope.graphID = $stateParams.graphid;
         $scope.nodeIDList = $stateParams.nodeIDList;
         $scope.nodeList = $stateParams.nodeList;
         $scope.nodeDisplayList = $stateParams.nodeDisplayList;

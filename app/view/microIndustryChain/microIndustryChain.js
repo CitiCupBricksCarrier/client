@@ -26,8 +26,8 @@ angular.module('myApp.microIndustryChain', [
                 controller: 'CreateChainViewCtrl'
             })
             .state('microIndustryChain.previewChainView',{
-                params:{"nodeIDList":null, "nodeList":null, "nodeDisplayList":null, "connectionList":null},
-                url:'/previewChainView',
+                params:{"graphid":null, "nodeIDList":null, "nodeList":null, "nodeDisplayList":null, "connectionList":null},
+                url:'/previewChainView/?:graphid',
                 templateUrl: 'view/microIndustryChain/previewChainView/previewChainView.html',
                 controller: 'PreviewChainViewCtrl'
             })
