@@ -2,85 +2,47 @@
 <div style="margin-left: 22%;width: 50%;margin-top: 6%">
 <div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
     <label>市场</label>
-    <select>
-        <option>全部</option>
-        <option>沪深A股</option>
-        <option>新三板做市</option>
+    <select  ng-model="market" ng-change="changeMarket()">
+        <option value="全部">全部</option>
+        <option value="沪深A股">沪深A股</option>
+        <option value="新三板做市">新三板做市</option>
     </select>
 
     <label style="margin-left: 20px">Y轴</label>
-    <select>
-        <option>PE-TTM</option>
-        <option>PE-本年预测</option>
-        <option>PE-LF</option>
-        <option>PS-TTM</option>
+    <select ng-model="Y" ng-change="changeY()">
+        <option value="PE-TTM">PE-TTM</option>
+        <option value="PE-本年预测">PE-本年预测</option>
+        <option value="PB-LF">PB-LF</option>
+        <option value="PS-TTM"> PS-TTM</option>
     </select>
 
     <label style="margin-left: 20px">X轴</label>
-    <select>
-        <option>ROE-TTM</option>
-        <option>ROA-TTM</option>
-        <option>净利同比</option>
-        <option>营收同比</option>
+    <select ng-model="X" ng-change="changeX()">
+        <option value="ROE-TTM">ROE-TTM</option>
+        <option value="ROA-TTM">ROA-TTM</option>
+        <option value="净利同比">净利同比</option>
+        <option value="营收同比">营收同比</option>
     </select>
 
     <label style="margin-left: 20px">面积</label>
-    <select >
-        <option>总市值</option>
-        <option>营业收入</option>
-        <option>资产总计</option>
+    <select ng-model="area" ng-change="changeArea()">
+        <option value="总市值">总市值</option>
+        <option value="营业收入">营业收入</option>
+        <option value="资产总计">资产总计</option>
     </select>
 </div>
 <div style="width:100%;height: 400px;background-color: white">
 <div id="test" style="height:400px"></div>
+    <div style="width: 100%;height: 70px;background-color: white">
+    <p>注：图形中剔除Y轴估值为负值的行业</p>
+    </div>
 </div>
 
 </div>
 
 <div style="margin-left: 22%;width: 50%;background-color: white;margin-top: 10%">
-    <table >
-        <tr>
-            <th>序号</th>
-            <th>行业名称</th>
-            <th>图例</th>
-            <th>PE-TTM</th>
-            <th>ROE-TTM(%)</th>
-            <th>总市值(最新)(亿元)</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>能源设备</td>
-            <td><img src="view/resource/汽车icon.png" style="width: 50px;height: 50px"></td>
-            <td>能源设备</td>
-            <td>能源设备</td>
-            <td>能源设备</td>
+    <table id="table">
 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>能源设备</td>
-            <td><img src="view/resource/汽车icon.png" style="width: 50px;height: 50px"></td>
-            <td>能源设备</td>
-            <td>能源设备</td>
-            <td>能源设备</td>
-
-        </tr>        <tr>
-        <td>1</td>
-        <td>能源设备</td>
-        <td><img src="view/resource/汽车icon.png" style="width: 50px;height: 50px"></td>
-        <td>能源设备</td>
-        <td>能源设备</td>
-        <td>能源设备</td>
-
-    </tr>        <tr>
-        <td>1</td>
-        <td>能源设备</td>
-        <td><img src="view/resource/汽车icon.png" style="width: 50px;height: 50px"></td>
-        <td>能源设备</td>
-        <td>能源设备</td>
-        <td>能源设备</td>
-
-    </tr>
     </table>
 </div>
 

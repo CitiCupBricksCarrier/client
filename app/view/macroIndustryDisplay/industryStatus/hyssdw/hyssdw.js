@@ -7,70 +7,512 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
     })
 
     .controller('hyssdwCtrl',function($scope, $route, $http) {
-
+        $scope.market="全部";
+        $scope.Y="PE-TTM";
+        $scope.X="ROE-TTM";
+        $scope.area="总市值";
+        $scope.str="";
+       /* $scope.indstnamAll="";
+        $scope.pettmAll="";
+        $scope.peyearfcastAll="";
+        $scope.pblfAll="";
+        $scope.psttmAll="";
+        $scope.roettmAll="";
+        $scope.roattmAll="";
+        $scope.netproAll="";
+        $scope.revenproAll="";
+        $scope.tomaktvalAll="";
+        $scope.businsincAll="";
+        $scope.toassetsAll="";*/
+        $scope.colors=['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9']
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hycw/hygk/srzgdpbz'
+            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_all'
         }).then(function successCallback(response) {
             var Data=response.data;
-            var industryinc=[];
-            var shareofgdp=[];
+            console.log(Data)
+            $scope.indstnamAll=Data[0].indstnam;
+            $scope.pettmAll=Data[1].pettm;
+            $scope.peyearfcastAll=Data[2].peyearfcast;
+            $scope.pblfAll=Data[3].pblf;
+            $scope.psttmAll=Data[4].psttm;
+            $scope.roettmAll=Data[4].roettm;
+            $scope.roattmAll=Data[6].roattm;
+            $scope.netproAll=Data[7].netpro;
+            $scope.revenproAll=Data[8].revenpro;
+            $scope.tomaktvalAll=Data[9].tomaktval;
+            $scope.businsincAll=Data[10].businsinc;
+            $scope.toassetsAll=Data[11].toassets;
+
+            $scope.draw=function (data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15) {
+
+                var myChart = echarts.init(document.getElementById('test'));
+
+                var option = {
+                    color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
+                    tooltip : {
+                        backgroundColor:'rgba(0,0,0,0)',
+                        textStyle: {
+                            color: 'rgba(0,0,0,0)'
+                        }
+                    },
+                    legend: {
+                    },
+                    toolbox: {
+                    },
+                    xAxis : [
+                        {
+                            type : 'value',
+                            splitNumber: 4,
+                            scale: true
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            splitNumber: 4,
+                            scale: true
+                        }
+                    ],
+
+                    series : [
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data1,
+                            color:$scope.colors[0]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data2,
+                            color:$scope.colors[1]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data3,
+                            color:$scope.colors[2]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data4,
+                            color:$scope.colors[3]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data5,
+                            color:$scope.colors[4]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data6,
+                            color:$scope.colors[5]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data7,
+                            color:$scope.colors[6]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data8,
+                            color:$scope.colors[7]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data9,
+                            color:$scope.colors[8]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data10,
+                            color:$scope.colors[9]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data11,
+                            color:$scope.colors[10]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data12,
+                            color:$scope.colors[11]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data13,
+                            color:$scope.colors[12]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data14,
+                            color:$scope.colors[13]
+                        },
+                        {
+                            type:'scatter',
+                            symbolSize: function (value){
+                                return Math.sqrt(value[2])/5;
+                            },
+                            data: data15,
+                            color:$scope.colors[14]
+                        }
+
+                    ]
+                };
+
+                myChart.setOption(option);
+            }
+            for(var i=0;i<$scope.indstnamAll.length;i++){
+                $scope.str+=' <tr>\n' +
+                    '            <td>'+(i+1)+'</td>\n' +
+                    '            <td>'+$scope.indstnamAll[i]+'</td>\n' ;
+                if($scope.indstnamAll[i]!="能源设备"&&$scope.indstnamAll[i]!="(子)汽车综合"&&$scope.indstnamAll[i]!="烟草"&&$scope.indstnamAll[i]!="REITS"){
+                    $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                else{
+                    $scope.str+='            <td></td>';}
 
 
-
-            var year=[];
-            for(var i=0;i<Data.length;i++) {
-                year.push(Data[i].year.substr(0,4));
-                industryinc.push(Data[i].industryinc);
-                shareofgdp.push(Data[i].shareofgdp);
+                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>'+
+                    '            <td>'+$scope.roettmAll[i]+'</td>'+
+                    '            <td>'+$scope.tomaktvalAll[i]+'</td>'+
+                    '        </tr>';
 
             }
-            var myChart1 = echarts.init(document.getElementById('test'));
-            option = {
-                color:['#344996','#88A500'],
-                title: {
-                    text: '中国汽车行业收入占GDP比重'
-                },
-                tooltip: {},
-                legend: {
-                    y:'bottom',
-                    data:['行业收入','行业收入占GDP比重(右)'],
+            document.getElementById('table').innerHTML=$scope.str;
+            $scope.data1 = [
+                [$scope.roettmAll[0],$scope.pettmAll[0],$scope.tomaktvalAll[0]],
+                [$scope.roettmAll[15],$scope.pettmAll[15],$scope.tomaktvalAll[15]],
+                [$scope.roettmAll[30],$scope.pettmAll[30],$scope.tomaktvalAll[30]],
+                [$scope.roettmAll[45],$scope.pettmAll[45],$scope.tomaktvalAll[45]],
+                [$scope.roettmAll[60],$scope.pettmAll[60],$scope.tomaktvalAll[60]],
+            ];
 
+            $scope.data2 = [
+                [$scope.roettmAll[1],$scope.pettmAll[1],$scope.tomaktvalAll[1]],
+                [$scope.roettmAll[16],$scope.pettmAll[16],$scope.tomaktvalAll[16]],
+                [$scope.roettmAll[31],$scope.pettmAll[31],$scope.tomaktvalAll[31]],
+                [$scope.roettmAll[46],$scope.pettmAll[46],$scope.tomaktvalAll[46]],
+                [$scope.roettmAll[61],$scope.pettmAll[61],$scope.tomaktvalAll[61]],
+            ];
+
+            $scope.data3 = [
+                [$scope.roettmAll[2],$scope.pettmAll[2],$scope.tomaktvalAll[2]],
+                [$scope.roettmAll[17],$scope.pettmAll[17],$scope.tomaktvalAll[17]],
+                [$scope.roettmAll[32],$scope.pettmAll[32],$scope.tomaktvalAll[32]],
+                [$scope.roettmAll[47],$scope.pettmAll[47],$scope.tomaktvalAll[47]],
+                [$scope.roettmAll[62],$scope.pettmAll[62],$scope.tomaktvalAll[62]],
+            ];
+
+            $scope.data4 = [
+                [$scope.roettmAll[3],$scope.pettmAll[3],$scope.tomaktvalAll[3]],
+                [$scope.roettmAll[18],$scope.pettmAll[18],$scope.tomaktvalAll[18]],
+                [$scope.roettmAll[33],$scope.pettmAll[33],$scope.tomaktvalAll[33]],
+                [$scope.roettmAll[48],$scope.pettmAll[48],$scope.tomaktvalAll[48]],
+                [$scope.roettmAll[63],$scope.pettmAll[63],$scope.tomaktvalAll[63]],
+            ];
+
+            $scope.data5 = [
+                [$scope.roettmAll[4],$scope.pettmAll[4],$scope.tomaktvalAll[4]],
+                [$scope.roettmAll[19],$scope.pettmAll[19],$scope.tomaktvalAll[19]],
+                [$scope.roettmAll[34],$scope.pettmAll[34],$scope.tomaktvalAll[34]],
+                [$scope.roettmAll[49],$scope.pettmAll[49],$scope.tomaktvalAll[49]],
+                [$scope.roettmAll[64],$scope.pettmAll[64],$scope.tomaktvalAll[64]],
+            ];
+
+            $scope.data6 = [
+                [$scope.roettmAll[5],$scope.pettmAll[5],$scope.tomaktvalAll[5]],
+                [$scope.roettmAll[20],$scope.pettmAll[20],$scope.tomaktvalAll[20]],
+                [$scope.roettmAll[35],$scope.pettmAll[35],$scope.tomaktvalAll[35]],
+                [$scope.roettmAll[50],$scope.pettmAll[52],$scope.tomaktvalAll[50]],
+                [$scope.roettmAll[65],$scope.pettmAll[65],$scope.tomaktvalAll[65]],
+            ];
+
+            $scope.data7 = [
+                [$scope.roettmAll[6],$scope.pettmAll[6],$scope.tomaktvalAll[6]],
+                [$scope.roettmAll[21],$scope.pettmAll[21],$scope.tomaktvalAll[21]],
+                [$scope.roettmAll[36],$scope.pettmAll[36],$scope.tomaktvalAll[36]],
+                [$scope.roettmAll[51],$scope.pettmAll[51],$scope.tomaktvalAll[51]],
+                [$scope.roettmAll[66],$scope.pettmAll[66],$scope.tomaktvalAll[66]],
+            ];
+
+            $scope.data8 = [
+                [$scope.roettmAll[7],$scope.pettmAll[7],$scope.tomaktvalAll[7]],
+                [$scope.roettmAll[22],$scope.pettmAll[22],$scope.tomaktvalAll[22]],
+                [$scope.roettmAll[37],$scope.pettmAll[37],$scope.tomaktvalAll[37]],
+                [$scope.roettmAll[52],$scope.pettmAll[52],$scope.tomaktvalAll[52]],
+                [$scope.roettmAll[67],$scope.pettmAll[67],$scope.tomaktvalAll[67]],
+            ];
+
+            $scope.data9 = [
+                [$scope.roettmAll[8],$scope.pettmAll[8],$scope.tomaktvalAll[8]],
+                [$scope.roettmAll[23],$scope.pettmAll[23],$scope.tomaktvalAll[23]],
+                [$scope.roettmAll[38],$scope.pettmAll[38],$scope.tomaktvalAll[38]],
+                [$scope.roettmAll[53],$scope.pettmAll[53],$scope.tomaktvalAll[53]],
+                [$scope.roettmAll[68],$scope.pettmAll[68],$scope.tomaktvalAll[68]],
+            ];
+
+            $scope.data10 = [
+                [$scope.roettmAll[9],$scope.pettmAll[9],$scope.tomaktvalAll[9]],
+                [$scope.roettmAll[24],$scope.pettmAll[24],$scope.tomaktvalAll[24]],
+                [$scope.roettmAll[39],$scope.pettmAll[39],$scope.tomaktvalAll[39]],
+                [$scope.roettmAll[54],$scope.pettmAll[54],$scope.tomaktvalAll[54]],
+                [$scope.roettmAll[69],$scope.pettmAll[68],$scope.tomaktvalAll[68]],
+            ];
+
+            $scope.data11 = [
+                [$scope.roettmAll[10],$scope.pettmAll[10],$scope.tomaktvalAll[10]],
+                [$scope.roettmAll[25],$scope.pettmAll[25],$scope.tomaktvalAll[25]],
+                [$scope.roettmAll[40],$scope.pettmAll[40],$scope.tomaktvalAll[40]],
+                [$scope.roettmAll[70],$scope.pettmAll[70],$scope.tomaktvalAll[70]],
+            ];
+
+            $scope.data12 = [
+                [$scope.roettmAll[11],$scope.pettmAll[11],$scope.tomaktvalAll[11]],
+                [$scope.roettmAll[26],$scope.pettmAll[26],$scope.tomaktvalAll[26]],
+                [$scope.roettmAll[41],$scope.pettmAll[41],$scope.tomaktvalAll[41]],
+                [$scope.roettmAll[56],$scope.pettmAll[56],$scope.tomaktvalAll[56]],
+                [$scope.roettmAll[71],$scope.pettmAll[71],$scope.tomaktvalAll[71]],
+            ];
+
+            $scope.data13 = [
+                [$scope.roettmAll[12],$scope.pettmAll[12],$scope.tomaktvalAll[12]],
+                [$scope.roettmAll[27],$scope.pettmAll[27],$scope.tomaktvalAll[27]],
+                [$scope.roettmAll[42],$scope.pettmAll[42],$scope.tomaktvalAll[42]],
+                [$scope.roettmAll[57],$scope.pettmAll[57],$scope.tomaktvalAll[57]],
+            ];
+
+            $scope.data14 = [
+                [$scope.roettmAll[13],$scope.pettmAll[13],$scope.tomaktvalAll[13]],
+                [$scope.roettmAll[28],$scope.pettmAll[28],$scope.tomaktvalAll[28]],
+                [$scope.roettmAll[43],$scope.pettmAll[43],$scope.tomaktvalAll[43]],
+                [$scope.roettmAll[58],$scope.pettmAll[58],$scope.tomaktvalAll[58]],
+            ];
+
+            $scope.data15 = [
+                [$scope.roettmAll[14],$scope.pettmAll[14],$scope.tomaktvalAll[14]],
+                [$scope.roettmAll[29],$scope.pettmAll[29],$scope.tomaktvalAll[29]],
+                [$scope.roettmAll[44],$scope.pettmAll[44],$scope.tomaktvalAll[44]],
+                [$scope.roettmAll[59],$scope.pettmAll[59],$scope.tomaktvalAll[59]],
+            ];
+
+            var myChart = echarts.init(document.getElementById('test'));
+
+            var option = {
+                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
+                tooltip : {
+                    backgroundColor:'rgba(0,0,0,0)',
+                    textStyle: {
+                        color: 'rgba(0,0,0,0)'
+                    }
                 },
-                xAxis: {
-                    data: year
+                legend: {
                 },
-                yAxis: [{    name:'行业收入',
-                    type:'value',
-                    splitNumber:10
+                toolbox: {
                 },
-                    {    name:'行业收入占GDP比重(右)',
-                        type:'value',
-                        splitNumber:8,
-                        axisLabel:{
-                            formatter: '{value} %'
-                        },
+                xAxis : [
+                    {
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
                     }
                 ],
-                series: [
-
+                yAxis : [
                     {
-                        name: '行业收入',
-                        type: 'bar',
-                        data: industryinc,
-                        yAxisIndex:0
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
+                    }
+                ],
+
+                series : [
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data1,
+                        color:$scope.colors[0]
                     },
                     {
-                        name: '行业收入占GDP比重(右)',
-                        type: 'line',
-                        data: shareofgdp,
-                        yAxisIndex:1
-
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data2,
+                        color:$scope.colors[1]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data3,
+                        color:$scope.colors[2]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data4,
+                        color:$scope.colors[3]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data5,
+                        color:$scope.colors[4]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data6,
+                        color:$scope.colors[5]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data7,
+                        color:$scope.colors[6]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data8,
+                        color:$scope.colors[7]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data9,
+                        color:$scope.colors[8]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data10,
+                        color:$scope.colors[9]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data11,
+                        color:$scope.colors[10]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data12,
+                        color:$scope.colors[11]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data13,
+                        color:$scope.colors[12]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data14,
+                        color:$scope.colors[13]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: $scope.data15,
+                        color:$scope.colors[14]
                     }
 
                 ]
             };
-            myChart1.setOption(option);
+
+            myChart.setOption(option);
+
+
+        }, function errorCallback(response) {
+            alert("error");
+            // 请求失败执行代码
+        });
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_all'
+        }).then(function successCallback(response) {
+            var Data=response.data;
+            $scope.indstnamAll=Data[0].indstnam;
+            $scope.pettmAll=Data[1].pettm;
+            $scope.peyearfcastAll=Data[2].peyearfcast;
+            $scope.pblfAll=Data[3].pblf;
+            $scope.psttmAll=Data[4].psttm;
+            $scope.roettmAll=Data[4].roettm;
+            $scope.roattmAll=Data[6].roattm;
+            $scope.netproAll=Data[7].netpro;
+            $scope.revenproAll=Data[8].revenpro;
+            $scope.tomaktvalAll=Data[9].tomaktval;
+            $scope.businsincAll=Data[10].businsinc;
+            $scope.toassetsAll=Data[11].toassets;
 
 
         }, function errorCallback(response) {
@@ -78,4 +520,785 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             // 请求失败执行代码
         });
 
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_shanghaiAndShenzhenAShares'
+        }).then(function successCallback(response) {
+            var Data=response.data;
+            $scope.indstnamSS=Data[0].indstnam;
+            $scope.pettmSS=Data[1].pettm;
+            $scope.peyearfcastSS=Data[2].peyearfcast;
+            $scope.pblfSS=Data[3].pblf;
+            $scope.psttmSS=Data[4].psttm;
+            $scope.roettmSS=Data[4].roettm;
+            $scope.roattmSS=Data[6].roattm;
+            $scope.netproSS=Data[7].netpro;
+            $scope.revenproSS=Data[8].revenpro;
+            $scope.tomaktvalSS=Data[9].tomaktval;
+            $scope.businsincSS=Data[10].businsinc;
+            $scope.toassetsSS=Data[11].toassets;
+        }, function errorCallback(response) {
+            alert("error");
+            // 请求失败执行代码
+        });
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_newThirdBoard'
+        }).then(function successCallback(response) {
+            var Data=response.data;
+            $scope.indstnamNTB=Data[0].indstnam;
+            $scope.pettmNTB=Data[1].pettm;
+            $scope.peyearfcastNTB=Data[2].peyearfcast;
+            $scope.pblfNTB=Data[3].pblf;
+            $scope.psttmNTB=Data[4].psttm;
+            $scope.roettmNTB=Data[4].roettm;
+            $scope.roattmNTB=Data[6].roattm;
+            $scope.netproNTB=Data[7].netpro;
+            $scope.revenproNTB=Data[8].revenpro;
+            $scope.tomaktvalNTB=Data[9].tomaktval;
+            $scope.businsincNTB=Data[10].businsinc;
+            $scope.toassetsNTB=Data[11].toassets;
+        }, function errorCallback(response) {
+            alert("error");
+            // 请求失败执行代码
+        });
+        $scope.str="";
+        $scope.str+=' <tr>\n' +
+            '            <th>序号</th>\n' +
+            '            <th>行业名称</th>\n' +
+            '            <th>图例</th>\n' +
+            '            <th>'+$scope.Y+'</th>'+
+            '            <th>'+$scope.X+'</th>'+
+            '            <th>'+$scope.area+'</th>'+
+            '        </tr>';
+
+
+
+
+        $scope.changeMarket=function () {
+            $scope.str="";
+            $scope.str+=' <tr>\n' +
+                '            <th>序号</th>\n' +
+                '            <th>行业名称</th>\n' +
+                '            <th>图例</th>\n' +
+                '            <th>'+$scope.Y+'</th>'+
+                '            <th>'+$scope.X+'</th>'+
+                '            <th>'+$scope.area+'</th>'+
+                '        </tr>';
+            switch ($scope.market){
+                case '全部':
+                    for(var i=0;i<$scope.indstnamAll.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamAll[i]+'</td>\n' ;
+                        if($scope.indstnamAll[i]!="能源设备"&&$scope.indstnamAll[i]!="(子)汽车综合"&&$scope.indstnamAll[i]!="烟草"&&$scope.indstnamAll[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>';
+                                for(var i=0;i<5;i++){
+                            }
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastAll[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfAll[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmAll[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmAll[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproAll[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalAll[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincAll[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsAll[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+
+
+                    break;
+
+                case '沪深A股':
+                    for(var i=0;i<$scope.indstnamSS.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamSS[i]+'</td>\n' ;
+                        if($scope.indstnamSS[i]!="能源设备"&&$scope.indstnamSS[i]!="(子)汽车综合"&&$scope.indstnamSS[i]!="烟草"&&$scope.indstnamSS[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmSS[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastSS[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfSS[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmSS[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmSS[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproSS[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalSS[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincSS[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsSS[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '新三板做市':
+                    for(var i=0;i<$scope.indstnamNTB.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamNTB[i]+'</td>\n' ;
+                        if($scope.indstnamNTB[i]!="能源设备"&&$scope.indstnamNTB[i]!="(子)汽车综合"&&$scope.indstnamNTB[i]!="烟草"&&$scope.indstnamNTB[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmNTB[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastNTB[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfNTB[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmNTB[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmNTB[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproNTB[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalNTB[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincNTB[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsNTB[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+            }
+
+        };
+        $scope.changeX=function () {
+            $scope.str="";
+            $scope.str+=' <tr>\n' +
+                '            <th>序号</th>\n' +
+                '            <th>行业名称</th>\n' +
+                '            <th>图例</th>\n' +
+                '            <th>'+$scope.Y+'</th>'+
+                '            <th>'+$scope.X+'</th>'+
+                '            <th>'+$scope.area+'</th>'+
+                '        </tr>';
+            switch ($scope.market){
+                case '全部':
+                    for(var i=0;i<$scope.indstnamAll.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamAll[i]+'</td>\n' ;
+                        if($scope.indstnamAll[i]!="能源设备"&&$scope.indstnamAll[i]!="(子)汽车综合"&&$scope.indstnamAll[i]!="烟草"&&$scope.indstnamAll[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastAll[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfAll[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmAll[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmAll[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproAll[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalAll[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincAll[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsAll[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '沪深A股':
+                    for(var i=0;i<$scope.indstnamSS.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamSS[i]+'</td>\n' ;
+                        if($scope.indstnamSS[i]!="能源设备"&&$scope.indstnamSS[i]!="(子)汽车综合"&&$scope.indstnamSS[i]!="烟草"&&$scope.indstnamSS[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmSS[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastSS[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfSS[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmSS[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmSS[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproSS[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalSS[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincSS[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsSS[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '新三板做市':
+                    for(var i=0;i<$scope.indstnamNTB.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamNTB[i]+'</td>\n' ;
+                        if($scope.indstnamNTB[i]!="能源设备"&&$scope.indstnamNTB[i]!="(子)汽车综合"&&$scope.indstnamNTB[i]!="烟草"&&$scope.indstnamNTB[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmNTB[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastNTB[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfNTB[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmNTB[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmNTB[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproNTB[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalNTB[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincNTB[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsNTB[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+            }
+        };
+        $scope.changeY=function () {
+            $scope.str="";
+            $scope.str+=' <tr>\n' +
+                '            <th>序号</th>\n' +
+                '            <th>行业名称</th>\n' +
+                '            <th>图例</th>\n' +
+                '            <th>'+$scope.Y+'</th>'+
+                '            <th>'+$scope.X+'</th>'+
+                '            <th>'+$scope.area+'</th>'+
+                '        </tr>';
+            switch ($scope.market){
+                case '全部':
+                    for(var i=0;i<$scope.indstnamAll.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamAll[i]+'</td>\n' ;
+                        if($scope.indstnamAll[i]!="能源设备"&&$scope.indstnamAll[i]!="(子)汽车综合"&&$scope.indstnamAll[i]!="烟草"&&$scope.indstnamAll[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastAll[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfAll[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmAll[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmAll[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproAll[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalAll[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincAll[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsAll[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '沪深A股':
+                    for(var i=0;i<$scope.indstnamSS.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamSS[i]+'</td>\n' ;
+                        if($scope.indstnamSS[i]!="能源设备"&&$scope.indstnamSS[i]!="(子)汽车综合"&&$scope.indstnamSS[i]!="烟草"&&$scope.indstnamSS[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmSS[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastSS[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfSS[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmSS[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmSS[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproSS[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalSS[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincSS[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsSS[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '新三板做市':
+                    for(var i=0;i<$scope.indstnamNTB.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamNTB[i]+'</td>\n' ;
+                        if($scope.indstnamNTB[i]!="能源设备"&&$scope.indstnamNTB[i]!="(子)汽车综合"&&$scope.indstnamNTB[i]!="烟草"&&$scope.indstnamNTB[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmNTB[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastNTB[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfNTB[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmNTB[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmNTB[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproNTB[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalNTB[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincNTB[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsNTB[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+            }
+        };
+        $scope.changeArea=function () {
+            $scope.str="";
+            $scope.str+=' <tr>\n' +
+                '            <th>序号</th>\n' +
+                '            <th>行业名称</th>\n' +
+                '            <th>图例</th>\n' +
+                '            <th>'+$scope.Y+'</th>'+
+                '            <th>'+$scope.X+'</th>'+
+                '            <th>'+$scope.area+'</th>'+
+                '        </tr>';
+            switch ($scope.market){
+                case '全部':
+                    for(var i=0;i<$scope.indstnamAll.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamAll[i]+'</td>\n' ;
+                        if($scope.indstnamAll[i]!="能源设备"&&$scope.indstnamAll[i]!="(子)汽车综合"&&$scope.indstnamAll[i]!="烟草"&&$scope.indstnamAll[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastAll[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfAll[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmAll[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmAll[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproAll[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproAll[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalAll[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincAll[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsAll[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '沪深A股':
+                    for(var i=0;i<$scope.indstnamSS.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamSS[i]+'</td>\n' ;
+                        if($scope.indstnamSS[i]!="能源设备"&&$scope.indstnamSS[i]!="(子)汽车综合"&&$scope.indstnamSS[i]!="烟草"&&$scope.indstnamSS[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmSS[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastSS[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfSS[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmSS[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmSS[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproSS[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproSS[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalSS[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincSS[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsSS[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+
+                case '新三板做市':
+                    for(var i=0;i<$scope.indstnamNTB.length;i++){
+                        $scope.str+=' <tr>\n' +
+                            '            <td>'+(i+1)+'</td>\n' +
+                            '            <td>'+$scope.indstnamNTB[i]+'</td>\n' ;
+                        if($scope.indstnamNTB[i]!="能源设备"&&$scope.indstnamNTB[i]!="(子)汽车综合"&&$scope.indstnamNTB[i]!="烟草"&&$scope.indstnamNTB[i]!="REITS"){
+                            $scope.str+='            <td><div class="circle" style="background-color:'+$scope.colors[i%15]+'"></div></td>';}
+                        else{
+                            $scope.str+='            <td></td>';}
+
+                        switch ($scope.Y){
+                            case 'PE-TTM':
+                                $scope.str+='            <td>'+$scope.pettmNTB[i]+'</td>'
+                                break;
+                            case 'PE-本年预测':
+                                $scope.str+='            <td>'+$scope.peyearfcastNTB[i]+'</td>';
+                                break;
+                            case 'PB-LF':
+                                $scope.str+='            <td>'+$scope.pblfNTB[i]+'</td>';
+                                break;
+                            case 'PS-TTM':
+                                $scope.str+='            <td>'+$scope.psttmNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.X){
+                            case 'ROE-TTM':
+                                $scope.str+='            <td>'+$scope.roettmNTB[i]+'</td>'
+                                break;
+                            case 'ROA-TTM':
+                                $scope.str+='            <td>'+$scope.roattmNTB[i]+'</td>';
+                                break;
+                            case '净利同比':
+                                $scope.str+='            <td>'+$scope.netproNTB[i]+'</td>';
+                                break;
+                            case '营收同比':
+                                $scope.str+='            <td>'+$scope.revenproNTB[i]+'</td>';
+                                break;
+                        }
+                        switch ($scope.area){
+                            case '总市值':
+                                $scope.str+='            <td>'+$scope.tomaktvalNTB[i]+'</td>'
+                                break;
+                            case '营业收入':
+                                $scope.str+='            <td>'+$scope.businsincNTB[i]+'</td>';
+                                break;
+                            case '资产总计':
+                                $scope.str+='            <td>'+$scope.toassetsNTB[i]+'</td>';
+                                break;
+
+                        }
+                        $scope.str+='        </tr>';
+
+                    }
+                    document.getElementById('table').innerHTML=$scope.str;
+                    break;
+            }
+        };
     });
