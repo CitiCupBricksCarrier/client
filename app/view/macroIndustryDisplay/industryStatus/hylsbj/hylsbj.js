@@ -48,7 +48,8 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                 $scope.sinquarroeAll=Data[7].sinquarroe;
                 $scope.sinquarroaAll=Data[8].sinquarroa;
                 $scope.createData();
-                $scope.drawChart2();
+                $scope.drawChart1();
+                $scope.drawTable();
 
             }, function errorCallback(response) {
                 alert("error");
@@ -87,6 +88,7 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
             url: 'http://localhost:8080/ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_newThirdBoard'
         }).then(function successCallback(response) {
             var Data=response.data;
+            console.log(Data)
             $scope.peNTB=Data[1].pe;
             $scope.pbNTB=Data[2].pb;
             $scope.psNTB=Data[3].ps;
@@ -105,179 +107,431 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
             switch ($scope.index){
                 case '市盈率':
                     $scope.data2=$scope.pe;
-                    $scope.title="市盈率同比行业历史比较"
+                    $scope.title="市盈率行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.peAll;
-                            alert($scope.data1[0])
                             $scope.data3=[];
-                            for(var i=0;i<$scope.data1.lengh;i++){
-                                $scope.data3[i]=$scope.data1[i]-$scope.data2[i];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
 
+                                }
                             }
-                            alert(JSON.stringify($scope.data3))
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
                             break;
                         case '沪深A股':
                             $scope.data1=$scope.peSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.peNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                     }
                     break;
                 case '市净率':
                     $scope.data2=$scope.pb;
-                    $scope.title="市净率同比行业历史比较"
+                    $scope.title="市净率行业历史比较"
 
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.pbAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.pbSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.pbNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                     }
                     break;
                 case '市销率':
                     $scope.data2=$scope.ps;
-                    $scope.title="市销率同比行业历史比较"
+                    $scope.title="市销率行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.psAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.psSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.psNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+                            }                            break;
                     }
                     break;
                 case '单季度营收同比':
                     $scope.data2=$scope.sinquarrevenpro;
-                    $scope.title="单季度营收同比同比行业历史比较"
+                    $scope.title="单季度营收同比行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.sinquarrevenproAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.sinquarrevenproSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.sinquarrevenproNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+                            }                            break;
                     }
                     break;
                 case '单季度净利同比':
                     $scope.data2=$scope.sinquarnetpro;
-                    $scope.title="单季度净利同比同比行业历史比较"
+                    $scope.title="单季度净利同比行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.sinquarnetproAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.sinquarnetproSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.sinquarnetproNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+                            }                            break;
                     }
 
                     break;
                 case '单季度净利率':
                     $scope.data2=$scope.sinquarnetinrate;
-                    $scope.title="单季度净利率同比行业历史比较"
+                    $scope.title="单季度净利率行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.sinquarnetinrateAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.sinquarnetinrateSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.sinquarnetinrateNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+                            }                            break;
                     }
 
                     break;
                 case '单季度ROE':
                     $scope.data2=$scope.sinquarroe;
-                    $scope.title="单季度ROE同比行业历史比较"
+                    $scope.title="单季度ROE行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.sinquarroeAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.sinquarroeSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.sinquarroeNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                     }
                     break;
                 case '单季度ROA':
                     $scope.data2=$scope.sinquarroa;
-                    $scope.title="单季度ROA同比行业历史比较"
+                    $scope.title="单季度ROA行业历史比较"
                     switch ($scope.market){
                         case '全部':
                             $scope.data1=$scope.sinquarroaAll;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '沪深A股':
                             $scope.data1=$scope.sinquarroaSS;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+
+                            }                            break;
                         case '新三板做市':
                             $scope.data1=$scope.sinquarroaNTB;
-                            $scope.data3=$scope.data1-$scope.data2;
-                            $scope.data4=($scope.data1/$scope.data2).toFixed(2);
-                            break;
+                            $scope.data3=[];
+                            $scope.data4=[];
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.data1[i]!='--') {
+                                    $scope.data3[i] = ($scope.data1[i] - $scope.data2[i]).toFixed(2);
+                                    $scope.data4[i] = ($scope.data1[i] / $scope.data2[i]).toFixed(2);
+                                }
+                                else{
+                                    $scope.data3[i]='--';
+                                    $scope.data4[i]='--';
+
+                                }
+                            }                            break;
                     }
                     break;
             }
@@ -331,7 +585,6 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
          * 画差异值为绝对差额的图表
          */
         $scope.drawChart2=function () {
-            alert($scope.data3)
             var myChart = echarts.init(document.getElementById('test'));
 
             var option = {
@@ -353,7 +606,15 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                         }
                     }
                 ],
-                yAxis :{},
+                yAxis :[{
+                        name:$scope.title.substr(0,$scope.title.length-6),
+                        type:'value',
+                },
+                    {
+                        name:'绝对差额',
+                        type:'value',
+                    }
+                ],
                 series : [
                     {
                         name:'汽车',
@@ -367,8 +628,11 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                     },
                     {
                         name:'绝对差额',
-                        type:'bar',
-                        data:$scope.data3
+                        type:'line',
+                        itemStyle: {normal: {areaStyle: {}}},
+                        data:$scope.data3,
+                        yAxisIndex:1
+
                     }
                 ]
             };
@@ -381,8 +645,128 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
          * 画差异值为比值的图表
          */
         $scope.drawChart3=function () {
+            var myChart = echarts.init(document.getElementById('test'));
 
+            var option = {
+                color:['#344996','#88A500','rgb(204,206,205)'],
+                title : {
+                    text: $scope.title,
+                    left:'center'
+                },
+                legend: {
+                    data:['汽车','全部A股','绝对差额'],
+                    y:"bottom"
+                },
+
+                xAxis : [
+                    {
+                        data : $scope.timeSim,
+                        axisLabel:{
+                            interval:4,
+                        }
+                    }
+                ],
+                yAxis :[{
+                    name:$scope.title.substr(0,$scope.title.length-6),
+                    type:'value',
+                },
+                    {
+                        name:'比值',
+                        type:'value',
+                    }
+                ],
+                series : [
+                    {
+                        name:'汽车',
+                        type:'line',
+                        data:$scope.data1
+                    },
+                    {
+                        name:'全部A股',
+                        type:'line',
+                        data:$scope.data2
+                    },
+                    {
+                        name:'比值',
+                        type:'bar',
+                        data:$scope.data4,
+                        yAxisIndex:1
+                    }
+                ]
+            };
+
+
+            myChart.setOption(option);
         };
 
+        $scope.changeMarket=function () {
+            $scope.createData();
+            $scope.drawTable();
+            switch ($scope.difference){
+                case '无':
+                    $scope.drawChart1();
+                    break;
+                case '绝对差额':
+                    $scope.drawChart2();
+                    break;
+                case '比值':
+                    $scope.drawChart3();
+                    break;
+            }
+        };
 
+        $scope.changeIndex=function () {
+            $scope.createData();
+            $scope.drawTable();
+            switch ($scope.difference){
+                case '无':
+                    $scope.drawChart1();
+                    break;
+                case '绝对差额':
+                    $scope.drawChart2();
+                    break;
+                case '比值':
+                    $scope.drawChart3();
+                    break;
+            }
+        };
+
+        $scope.changeDifference=function () {
+            $scope.createData();
+            $scope.drawTable();
+            switch ($scope.difference){
+                case '无':
+                    $scope.drawChart1();
+                    break;
+                case '绝对差额':
+                    $scope.drawChart2();
+                    break;
+                case '比值':
+                    $scope.drawChart3();
+                    break;
+            }
+        };
+
+        $scope.drawTable=function () {
+          var str="";
+          str+="<tr>\n" +
+              "  <th></th>\n" +
+              "  <th>汽车</th>\n" +
+              "  <th>全部A股</th>\n" +
+              "  <th>绝对差额</th>\n" +
+              "  <th>比值</th>\n" +
+              "\n" +
+              "</tr>";
+
+          for(var i=0;i<$scope.time.length;i++){
+              str+="<tr><td>"+$scope.time[i]+"</td>\n" +
+                  "<td>"+$scope.data1[i]+"</td>\n" +
+                  "<td>"+$scope.data2[i]+"</td>\n" +
+                  "<td>"+$scope.data3[i]+"</td>\n" +
+                  "<td>"+$scope.data4[i]+"</td></tr>";
+          }
+
+          document.getElementById('table').innerHTML=str;
+
+        };
     });

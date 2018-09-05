@@ -1,4 +1,20 @@
-.pane{
-
-    z-index: 999;
+table{
+    width:100%;
 }
+
+table th{
+    background: #E5F0FF;
+    font-weight: 900;
+    text-align: center;
+    border: 2px solid #E4E5E6;
+}
+
+
+table tr td{
+    text-align: center;
+    border: 2px solid #E4E5E6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+table tr:nth-child(odd){background:#F4F4F4;}
