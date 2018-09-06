@@ -28,6 +28,7 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
 
             $scope.createData();
             $scope.drawChart();
+            $scope.drawTable();
 
         }, function errorCallback(response) {
             alert("error");
@@ -69,33 +70,108 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
         });
 
         $scope.COW=function () {
+            document.getElementById('OWB').setAttribute('class','button2');
+            document.getElementById('OMB').setAttribute('class','button');
+            document.getElementById('TMB').setAttribute('class','button');
+            document.getElementById('YTDB').setAttribute('class','button');
+            document.getElementById('OYB').setAttribute('class','button');
+
             $scope.time="OW";
+            $scope.createData();
+            $scope.drawChart();
         };
 
         $scope.COM=function () {
+            document.getElementById('OWB').setAttribute('class','button');
+            document.getElementById('OMB').setAttribute('class','button2');
+            document.getElementById('TMB').setAttribute('class','button');
+            document.getElementById('YTDB').setAttribute('class','button');
+            document.getElementById('OYB').setAttribute('class','button');
             $scope.time="OM";
-
+            $scope.createData();
+            $scope.drawChart();
         };
 
         $scope.CTM=function () {
+            document.getElementById('OWB').setAttribute('class','button');
+            document.getElementById('OMB').setAttribute('class','button');
+            document.getElementById('TMB').setAttribute('class','button2');
+            document.getElementById('YTDB').setAttribute('class','button');
+            document.getElementById('OYB').setAttribute('class','button');
             $scope.time="TM";
-
+            $scope.createData();
+            $scope.drawChart();
         };
 
         $scope.CYTD=function () {
+            document.getElementById('OWB').setAttribute('class','button');
+            document.getElementById('OMB').setAttribute('class','button');
+            document.getElementById('TMB').setAttribute('class','button');
+            document.getElementById('YTDB').setAttribute('class','button2');
+            document.getElementById('OYB').setAttribute('class','button');
             $scope.time="YTD";
-
+            $scope.createData();
+            $scope.drawChart();
         };
 
         $scope.COY=function () {
+            document.getElementById('OWB').setAttribute('class','button');
+            document.getElementById('OMB').setAttribute('class','button');
+            document.getElementById('TMB').setAttribute('class','button');
+            document.getElementById('YTDB').setAttribute('class','button');
+            document.getElementById('OYB').setAttribute('class','button2');
             $scope.time="OY";
-
+            $scope.createData();
+            $scope.drawChart();
         };
+
+
 
         $scope.changeMarket=function () {
-
+            $scope.createData();
+            $scope.drawChart();
+            $scope.drawTable();
+            switch ($scope.time){
+                case 'OW':
+                    document.getElementById('OWB').focus();
+                    break;
+                case 'OM':
+                    document.getElementById('OMB').focus();
+                    break;
+                case 'TM':
+                    document.getElementById('TMB').focus();
+                    break;
+                case 'YTD':
+                    document.getElementById('YTDB').focus();
+                    break;
+                case 'OY':
+                    document.getElementById('OYB').focus();
+                    break;
+            }
         };
 
+        $scope.changeStandard=function(){
+            $scope.createData();
+            $scope.drawChart();
+
+            switch ($scope.time){
+                case 'OW':
+                    document.getElementById('OWB').focus();
+                    break;
+                case 'OM':
+                    document.getElementById('OMB').focus();
+                    break;
+                case 'TM':
+                    document.getElementById('TMB').focus();
+                    break;
+                case 'YTD':
+                    document.getElementById('YTDB').focus();
+                    break;
+                case 'OY':
+                    document.getElementById('OYB').focus();
+                    break;
+            }
+        }
 
 
         $scope.createData=function () {
@@ -177,7 +253,8 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                         case "创业板指":
                             for(var i=0;i<72;i++) {
                                 $scope.standardData[i] = -3.47;
-                            }                                                    break;
+                            }
+                            break;
                     }
                     break;
                 case 'TM':
@@ -194,22 +271,34 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                     }
                     switch ($scope.standard){
                         case "沪深300":
-                            $scope.standardData=-13.38;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -13.38;
+                            }
                             break;
                         case "三板做市":
-                            $scope.standardData=-11.93;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -11.93;
+                            }
                             break;
                         case "上证综指":
-                            $scope.standardData=-12.51;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -12.51;
+                            }
                             break;
                         case "深证成指":
-                            $scope.standardData=-17.66;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -17.66;
+                            }
                             break;
                         case "中小板指":
-                            $scope.standardData=-16.82;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -16.82;
+                            }
                             break;
                         case "创业板指":
-                            $scope.standardData=-16.01;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -16.01;
+                            }
                             break;
                     }
                     break;
@@ -227,22 +316,34 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                     }
                     switch ($scope.standard){
                         case "沪深300":
-                            $scope.standardData=-14.42;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -14.42;
+                            }
                             break;
                         case "三板做市":
-                            $scope.standardData=-24.62;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -24.62;
+                            }
                             break;
                         case "上证综指":
-                            $scope.standardData=-19.98;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -19.98;
+                            }
                             break;
                         case "深证成指":
-                            $scope.standardData=-23.55;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -23.55;
+                            }
                             break;
                         case "中小板指":
-                            $scope.standardData=-21.8;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -21.8;
+                            }
                             break;
                         case "创业板指":
-                            $scope.standardData=-24.7;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -24.7;
+                            }
                             break;
                     }
                     break;
@@ -260,22 +361,34 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                     }
                     switch ($scope.standard){
                         case "沪深300":
-                            $scope.standardData=-14.24;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -14.42;
+                            }
                             break;
                         case "三板做市":
-                            $scope.standardData=-24.62;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -24.62;
+                            }
                             break;
                         case "上证综指":
-                            $scope.standardData=-19.98;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -19.98;
+                            }
                             break;
                         case "深证成指":
-                            $scope.standardData=-23.35;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -23.35;
+                            }
                             break;
                         case "中小板指":
-                            $scope.standardData=-21.8;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -21.8;
+                            }
                             break;
                         case "创业板指":
-                            $scope.standardData=-24.7;
+                            for(var i=0;i<72;i++) {
+                                $scope.standardData[i] = -24.7;
+                            }
                             break;
                     }
                     break;
@@ -292,13 +405,29 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                     text: '行业区间涨幅',
                     left:'center'
                 },
-                tooltip: {},
+                tooltip: {
+                    formatter: function (params) {
+                        if(params.seriesIndex==0){
+                            return params.name+':'+params.data;
+                        }
+                        else {
+                            return '基准 '+$scope.standard+':'+$scope.standardData[0];
+                        }
+                    },
+                },
                 legend: {
                 },
                 xAxis: {
                     data: $scope.indstnam
                 },
-                yAxis: {},
+                yAxis: {
+                    min:$scope.judge(),
+                    axisLabel: {
+                        formatter: '{value} %',
+                        show: true
+                    }
+
+                },
                 series: [{
                     name:'涨跌幅',
                     type: 'bar',
@@ -334,5 +463,75 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
             myChart.setOption(option);
         };
 
+            $scope.getMinOfArray=function (array) {
+                var min=1000;
+                for(var i=0;i<array.length;i++){
 
+                    if(parseInt(array[i])<parseInt(min)&&array[i]!='--'){
+                        min=array[i];
+                    }
+                }
+                return min;
+            };
+
+            $scope.judge=function () {
+
+              if($scope.getMinOfArray($scope.data)<$scope.standardData[0]) return Math.round($scope.getMinOfArray($scope.data)-5);
+                else return Math.round($scope.standardData[0]-5);
+            };
+
+
+            $scope.drawTable=function () {
+               var str="";
+                str+="<tr>\n" +
+                    "  <th>序号</th>\n" +
+                    "  <th>行业名称</th>\n" +
+                    "  <th>近一周<br>涨跌幅(%)</th>\n" +
+                    "  <th>近一月<br>涨跌幅(%)</th>\n" +
+                    "  <th>近三月<br>涨跌幅(%)</th>\n" +
+                    "  <th>年初至今<br>涨跌幅(%)</th>\n" +
+                    "  <th>近一年<br>涨跌幅(%)</th>\n" +
+                    "\n" +
+                    "</tr>";
+                switch ($scope.market){
+                    case '全部':
+                        for(var i=0;i<$scope.indstnam.length;i++){
+                            str+="<tr><td>"+(i+1)+"</td>\n" +
+                                "<td>"+$scope.indstnam[i]+"</td>\n" +
+                                "<td>"+$scope.nearawkrisefalAll[i]+"</td>\n" +
+                                "<td>"+$scope.nearamthrisefalAll[i]+"</td>\n" +
+                                "<td>"+$scope.nearthrmthrisefalAll[i]+"</td>\n" +
+                                "<td>"+$scope.ydtrisefalAll[i]+"</td>\n" +
+                                "<td>"+$scope.nearayearrisefalAll[i]+"</td></tr>\n";
+
+                        }
+                        break;
+                    case '沪深A股':
+                        for(var i=0;i<$scope.indstnam.length;i++){
+                            str+="<tr><td>"+(i+1)+"</td>\n" +
+                                "<td>"+$scope.indstnam[i]+"</td>\n" +
+                                "<td>"+$scope.nearawkrisefalSS[i]+"</td>\n" +
+                                "<td>"+$scope.nearamthrisefalSS[i]+"</td>\n" +
+                                "<td>"+$scope.nearthrmthrisefalSS[i]+"</td>\n" +
+                                "<td>"+$scope.ydtrisefalSS[i]+"</td>\n" +
+                                "<td>"+$scope.nearayearrisefalSS[i]+"</td></tr>\n"
+
+                        }
+                        break;
+                    case '新三板做市':
+                        for(var i=0;i<$scope.indstnam.length;i++){
+                            str+="<tr><td>"+(i+1)+"</td>\n" +
+                                "<td>"+$scope.indstnam[i]+"</td>\n" +
+                                "<td>"+$scope.nearawkrisefalNTB[i]+"</td>\n" +
+                                "<td>"+$scope.nearamthrisefalNTB[i]+"</td>\n" +
+                                "<td>"+$scope.nearthrmthrisefalNTB[i]+"</td>\n" +
+                                "<td>"+$scope.ydtrisefalNTB[i]+"</td>\n" +
+                                "<td>"+$scope.nearayearrisefalNTB[i]+"</td></tr>\n";
+
+                        }
+                        break;
+                }
+                document.getElementById('table').innerHTML=str;
+
+            };
     });

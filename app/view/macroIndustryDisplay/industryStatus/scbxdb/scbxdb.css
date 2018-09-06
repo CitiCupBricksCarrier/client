@@ -29,7 +29,12 @@ button{
     border:1.1px solid rgb(139,168,202);
 }
 
-button:focus{
+
+
+/*
+选中状态下的button样式
+ */
+.button2{
     background: linear-gradient(to bottom,rgb(94,130,173),rgb(116,150,191));
     margin-left: -5px;
     margin-top: 5px;

@@ -2,18 +2,18 @@
 <div style="margin-left: 22%;width: 50%;margin-top: 3%">
     <div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
         <label>市场</label>
-        <select  ng-model="market" ng-change="changeMarket()">
+        <select  ng-model="market" ng-change="changeMarket()" >
             <option value="全部">全部</option>
             <option value="沪深A股">沪深A股</option>
             <option value="新三板做市">新三板做市</option>
         </select>
 
         <label style="margin-left: 20px;margin-right: 8px">时间范围</label>
-        <button style="display: inline-block" ng-click="COW()">1W</button>
-        <button style="display: inline-block" ng-click="COM()">1M</button>
-        <button style="display: inline-block" ng-click="CTM()">3M</button>
-        <button style="display: inline-block" ng-click="CYTD()">YTD</button>
-        <button style="display: inline-block" ng-click="COY()">1Y</button>
+        <button id='OWB'class="button2" style="display: inline-block" ng-click="COW()">1W</button>
+        <button id='OMB'style="display: inline-block" ng-click="COM()">1M</button>
+        <button id='TMB'style="display: inline-block" ng-click="CTM()">3M</button>
+        <button id='YTDB' style="display: inline-block" ng-click="CYTD()">YTD</button>
+        <button id='OYB' style="display: inline-block" ng-click="COY()">1Y</button>
 
         <label style="margin-left: 20px">基准</label>
         <select ng-model="standard" ng-change="changeStandard()">
@@ -39,7 +39,7 @@
 
 </div>
 
-<div style="margin-left: 22%;width: 50%;background-color: white;margin-top: 2%">
+<div style="margin-left: 22%;width: 50%;background-color: white;">
     <table id="table">
 
     </table>
