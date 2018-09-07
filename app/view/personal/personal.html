@@ -1,7 +1,7 @@
 <nav class="david-navbar" role="navigation">
     <div>
         <div>
-            <a class="navbar-brand"><img class="nav-icon" src="citi-icon/citi-white.svg" alt="花旗"></a>
+            <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="citi-icon/citi-white.svg" alt="花旗"></a>
         </div>
         <div>
             <ul class="david-navbar-right">
@@ -11,4 +11,10 @@
     </div>
 </nav>
 
-<button class="btn btn-danger" ng-click="logout()">登出</button>
+<div id="leftUserDiv">
+    <img id="userHead" src="view/personal/user.svg">
+    <button class="btn btn-default" ng-click="logout()">登出</button>
+</div>
+
+
+<link rel="stylesheet" href="view/personal/personal.css">

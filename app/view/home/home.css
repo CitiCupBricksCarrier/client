@@ -39,3 +39,26 @@
     background: white url(icon/tendency-hover.svg) no-repeat center;
     background-size: 100%;
 }
+
+
+.swiper-wrapper .bigTitle{
+    z-index: 1;
+    position: absolute;
+    left: 60px;
+    top: 200px;
+    color: white;
+    font-size: 40px;
+}
+
+.swiper-wrapper .smallTitle{
+    z-index: 1;
+    position: absolute;
+    left: 70px;
+    top: 260px;
+    color: white;
+    font-size: 20px;
+}
+
+.swiper-wrapper img{
+    position: absolute;
+}

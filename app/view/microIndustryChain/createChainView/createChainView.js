@@ -83,6 +83,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let mouseDownAnchorID = "";
         let connectionBeginNodeCache = "";
         let connectionEndNodeCache = "";
+        let connectionBeginNodeStock = "";
+        let connectionEndNodeStock = "";
         $scope.nodeIDList = [];
         $scope.nodeList = [];//一个以ID为索引的字典
         $scope.nodeDisplayList = [];//一个以ID为索引的字典
@@ -194,7 +196,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
         $scope.addNewConnection = function () {
             let fund = addConnectionFundExchangeInput.value;
-            addConnection(connectionBeginNodeCache, connectionEndNodeCache, fund);
+            addConnection(connectionBeginNodeCache, connectionEndNodeCache, connectionBeginNodeStock, connectionEndNodeStock, fund);
             $scope.isAddingConnection = false;
             refreshConnectionBackground();
         };
@@ -370,15 +372,20 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
             connectionListArray = $scope.connectionList;
 
+            let graphJson = {
+                graphid: $scope.graphID,
+                linkList: connectionListArray,
+                companyList: nodeListArray
+            };
+
             $http({
                 method: 'post',
-                url: urlHead + 'addGraph',
+                url: urlHead + 'updateGraph',
                 params: {
-                    "username": "1",
-                    "linkList": connectionListArray,
-                    "companyList": nodeListArray
+                    graphJson: graphJson
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true
                 //cache: true, //避免多次请求后台数据
             }).then(function (response) {
                 console.log(response.data);
@@ -422,6 +429,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     anchorBeginPositionCacheX = window.event.clientX - canvas.offsetLeft + document.documentElement.scrollLeft;
                     anchorBeginPositionCacheY = window.event.clientY - canvas.offsetTop + document.documentElement.scrollTop;
                     connectionBeginNodeCache = $(e.target).parent().attr("id");
+                    connectionBeginNodeStock = $scope.nodeList[connectionBeginNodeCache].nodeStock;
                     canDragAnchor = true;
                 }
                 else if(e.button == 2){
@@ -462,6 +470,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     else{
                         connectionEndNodeCache = $(e.target).parent().attr("id")
                     }
+                    connectionEndNodeStock = $scope.nodeList[connectionEndNodeCache].nodeStock;
                     let beginNode = document.getElementById(connectionBeginNodeCache),
                         endNode = document.getElementById(connectionEndNodeCache);
                     connectionContext.beginPath();
@@ -709,7 +718,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             }
         };
 
-        let addConnection = function (begin, end, fund) {
+        let addConnection = function (begin, end, stkcdA, stkcdB, fund) {
             if(begin != end) {
                 for(let i=0, length=$scope.connectionList.length; i<length; i++){
                     if( ($scope.connectionList[i].begin == begin) && ($scope.connectionList[i].end == end) ){
@@ -722,7 +731,9 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     id: newConnectionID,
                     begin: begin,
                     end: end,
-                    fund: fund
+                    stkcdA: stkcdA,
+                    stkcdB: stkcdB,
+                    fund: fund,
                 });
                 nextConnectionID++;
             }
