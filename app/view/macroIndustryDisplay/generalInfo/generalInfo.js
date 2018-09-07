@@ -60,7 +60,8 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
         //加载得到的公司列表
         $scope.category_toShow = null;
-        $scope.list_toShow = [];
+        // $scope.list_toShow = [];
+        $scope.list_toShow = [[1111],[2222],[3333],[4444],[5555]];
         var dataArr = [];
         var propArr = [];
 
@@ -94,13 +95,27 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             // $scope.list_toShow = dataArr[propArr.indexOf($scope.category_toShow)];
             var categories_selected = $scope.category_toShow.split('+');
             console.log(categories_selected)
-            var list_toShow = [];
+            var list_toShow = [[],[]];
             for(var tempI in categories_selected){
                 console.log(categories_selected[tempI])
                 console.log(propArr.indexOf(categories_selected[tempI]))
                 console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
-                list_toShow = list_toShow.concat(dataArr[propArr.indexOf(categories_selected[tempI])]);
+                var tempList = dataArr[propArr.indexOf(categories_selected[tempI])];
+                for(var i = 0;tempList != undefined && i < tempList.length; i+=5){
+                    var perRow = [];
+                    for(var j = 0; j < 5 && i+j < tempList.length; j++){
+                        perRow.push(tempList[i+j]);
+                    }
+                    list_toShow[tempI].push(perRow);
+                }
             }
+            // var list_toShow = [];
+            // for(var tempI in categories_selected){
+            //     console.log(categories_selected[tempI])
+            //     console.log(propArr.indexOf(categories_selected[tempI]))
+            //     console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
+            //     list_toShow = list_toShow.concat(dataArr[propArr.indexOf(categories_selected[tempI])]);
+            // }
             console.log(list_toShow)
             $scope.list_toShow = list_toShow;
 
@@ -120,6 +135,12 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 $('.wholePic .part_toTouch').removeClass('active');
                 //点击提示文字显示
                 $('.wholePic .touchDescription').css('opacity', 1);
+
+                //隐藏引导线
+                $('.wholePic .line_container.active').css('width', 0);      //引导线容器的大小调整
+                $('.wholePic .line_container.active').removeClass('active');
+                //右移并隐藏展开内容
+                $('.wholePic .briefAndList_container').removeClass('active');
             }
             else{
                 oldToShow.css('opacity', 0);      //取消之前高亮
@@ -132,6 +153,16 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 $('.wholePic .part_toTouch').addClass('active');
                 //点击提示文字消失
                 $('.wholePic .touchDescription').css('opacity', 0);
+
+                //显示新的引导线
+                $('.wholePic .line_container.active').css('width', 0);          //先将当前的宽度设为0
+                $('.wholePic .line_container.active').removeClass('active');
+                $('.wholePic .line_container'+'.'+this.classList[1]).addClass('active');
+                $('.wholePic .line_container.active').css('width', $('.wholePic .wholeView').width()*1.15);      //引导线容器的大小调整
+                //显示展开内容
+                $('.wholePic .briefAndList_container.active').removeClass('active');
+                $('.wholePic .briefAndList_container'+'.'+this.classList[1]).addClass('active');
+                // $('.wholePic .briefAndList_container'+'.'+this.classList[1]).delay('0.3s').animate({height: '600px'}, 'slow');
             }
 
             //显示公司列表
@@ -153,6 +184,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             // console.log(this.classList[1])
             // console.log($('.wholePic .wholeView.cover'+'.'+this.classList[1]))
             $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 1);
+
         })
         //鼠标移出部件，恢复
         $('.part_toTouch').mouseleave(function (e) {
@@ -167,6 +199,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             if(!$('.wholePic .wholeView.cover'+'.'+this.classList[1]).hasClass('isShow')){      //如果点击部件后，恢复未点击的高亮部件
                 $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
             }
+
         })
 
         //点击后跳转到对应公司的信息界面
@@ -252,12 +285,22 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             resizeWholePic();
         })
         function resizeWholePic() {
+            if($('.wholePic .active').length != 0){        //当全景图内有控件处于active时，不触发，会导致重复translate
+                // console.log('1')
+                // console.log($('.wholePic .active'))
+                return;
+            }
+            var translateX = 210;
             console.log($(window).height())
             var windowHeight = $(window).height();
             var windowWidth = $(window).width();
             var scale = (windowHeight-50) / $('.wholePic .wholeView').height();            //缩放倍率
             console.log(scale);
             $('.wholePic .wholeView').css('height', windowHeight-50);
+            $('.wholePic .line_container').css('height', windowHeight-50);      //引导线容器的大小调整
+
+            $('.wholePic .line_container.active').css('width', $('.wholePic .wholeView').width()*1.15);      //引导线容器的大小调整
+            // console.log($('.wholePic .line_container.active').width())           //最大化时不会触发？？未知
 
             // $('.wholePic .part_toTouch').css('left', $('.wholePic .part_toTouch').css('left') * scale);
 
@@ -274,5 +317,37 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 $(part).css('width', $(part).width() * scale);
                 $(part).css('height', $(part).height() * scale);
             }
+
+            //右侧展开栏的移动和调整
+            var briefAndList_container_list = $('.wholePic .briefAndList_container');
+            for(var i = 0; i < briefAndList_container_list.length; i++){
+                //容器
+                var container = briefAndList_container_list[i];
+                $(container).css('width', $(container).width()*scale);
+                $(container).css('left', $(container).position().left * scale);
+                $(container).css('top', $(container).position().top * scale);
+            }
+            //容器内其他的大小
+            var font_size = $('.wholePic .briefAndList_container .brief').css('font-size');
+            // console.log(font_size.substring(0, font_size.indexOf('px')))
+            font_size = parseInt(font_size.substring(0, font_size.indexOf('px')));
+            $('.wholePic .briefAndList_container .brief').css('font-size', font_size * scale + 'px');
+            $('.wholePic .briefAndList_container .img_xgqy').css('height', $('.wholePic .briefAndList_container .img_xgqy').height() * scale);
+            font_size = $('.wholePic .briefAndList_container .companyTable').css('font-size');
+            font_size = parseInt(font_size.substring(0, font_size.indexOf('px')));
+            $('.wholePic .briefAndList_container .companyTable').css('font-size', font_size * scale + 'px');
+            $('.wholePic .briefAndList_container .companyTable td').css('width', $('.wholePic .briefAndList_container .companyTable').width()/5);
+
+            // console.log($('.wholePic .briefAndList_container').position().left * scale)
+            // $('.wholePic .briefAndList_container').css('width', $('.wholePic .briefAndList_container').width()*scale);
+            // // $('.wholePic .briefAndList_container').css('left', $('.wholePic .briefAndList_container').position().left * scale);
+            // $('.wholePic .briefAndList_container').css('height', $('.wholePic .briefAndList_container').position().top * scale);
+
         }
+
+        // $scope.testList = [['xxxx','xxxx','xxxx','xxxx'],
+        //     ['xxxx','xxxx','xxxx','xxxx']];
+        $scope.testList = [];
+        $scope.testList.push(['深度国际','发的噶啊','个多少个','额他个','大官人啊'])
+        $scope.testList.push(['电视广告','发大水的','申达股份','大法好是'])
     });

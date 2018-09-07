@@ -95,6 +95,19 @@
     /*transform: scale(1.5);*/
     /*transition: all 0.6s;*/
 /*}*/
+/*全景图内引导线*/
+.wholePic .line_container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0px;
+    height: 925px;
+    overflow: hidden;
+}
+.wholePic .line_container.active{
+    width: 1250px;
+    transition: width 0.3s;
+}
 /*全景图内名字和公司列表*/
 .nameAndList{
     width: 150px;
@@ -119,11 +132,123 @@
     color: rgba(135,150,250, 0.8);
     text-decoration: none;
 }
+/*展开的简介和公司列表*/
+.briefAndList_container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: right;
+    width: 488px;
+    height: 0px;
+    overflow: hidden;
+    /*display: none;*/
+}
+.briefAndList_container.active{
+    transform: translateX(-210px);
+    height: 800px;
+    transition: height 1.6s;
+}
+.briefAndList_container .brief{
+    color: rgba(140,140,140, 0.8);
+    font-size: 18px;
+    font-weight: normal;
+}
+.briefAndList_container .img_xgqy{
+    height: 36px;
+}
+.briefAndList_container .companyTable{
+    float: right;
+    font-size: 18px;
+}
+.briefAndList_container .companyTable tr{
+    float: right;
+}
+.briefAndList_container .companyTable td{
+    text-align: center;
+    padding: 3px 5px 3px 5px;
+    width: 90px;
+    color: rgba(134,134,165,0.8);
+}
+.briefAndList_container .companyTable td a{
+    color: rgba(134,134,165,0.8);
+    cursor: pointer;
+    text-decoration: none;
+}
+/*对各个展开的定位*/
+.briefAndList_container.part_001_1{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1140px;
+    top: 120px;
+}
+.briefAndList_container.part_001_2{
+    position: absolute;
+    left: 1140px;
+    top: 515px;
+}
+.briefAndList_container.part_002{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1144px;
+    top: 120px;
+}
+.briefAndList_container.part_003_1{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1143px;
+    top: 76px;
+}
+.briefAndList_container.part_003_2{
+    position: absolute;
+    left: 1143px;
+    top: 515px;
+}
+.briefAndList_container.part_004_1{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1143px;
+    top: 76px;
+}
+.briefAndList_container.part_004_2{
+    position: absolute;
+    left: 1143px;
+    top: 515px;
+}
+.briefAndList_container.part_007_1{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1142px;
+    top: 120px;
+}
+.briefAndList_container.part_007_2{
+    position: absolute;
+    left: 1142px;
+    top: 555px;
+}
+.briefAndList_container.part_008_1{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1142px;
+    top: 120px;
+}
+.briefAndList_container.part_008_2{
+    position: absolute;
+    left: 1142px;
+    top: 522px;
+}
+.briefAndList_container.part_009{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1138px;
+    top: 205px;
+}
+/*对各部件的触发div*/
 .part_toTouch{
     cursor: pointer;
     background: #00ccff;
     transition: all 0.3s;
     /*opacity: 0;*/
+    z-index: 50;
 }
 .part_toTouch.active {
     transform: translateX(-210px);
