@@ -1,12 +1,12 @@
 angular.module('myApp.microIndustryChain.previewChainView', [
-
+    'ngAnimate', 'ui.bootstrap','myApp.microIndustryChain.publicOpinion'
 ])
 
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider) {
 
     })
 
-    .controller('PreviewChainViewCtrl',function($scope, $route, $http, $stateParams) {
+    .controller('PreviewChainViewCtrl', function ($scope, $route, $http, $stateParams, $uibModal) {
         //DOM对象化
         let canvas = document.getElementById("canvas");
         let context = canvas.getContext("2d");
@@ -79,7 +79,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
 
 
         (function initializeNodeDisplay() {
-            for(let i=0, length = $scope.nodeIDList.length; i<length; i++) {
+            for (let i = 0, length = $scope.nodeIDList.length; i < length; i++) {
                 let nodeIDCache = $scope.nodeIDList[i];
 
                 let node = document.createElement("node");
@@ -87,8 +87,8 @@ angular.module('myApp.microIndustryChain.previewChainView', [
 
                 node.className = "node";
                 node.id = nodeIDCache;
-                node.setAttribute("data-toggle","context");
-                node.setAttribute("data-target","#node-menu");
+                node.setAttribute("data-toggle", "context");
+                node.setAttribute("data-target", "#node-menu");
                 node.style.left = (canvas.offsetLeft + $scope.nodeDisplayList[nodeIDCache].x) + "px";
                 node.style.top = (canvas.offsetTop + $scope.nodeDisplayList[nodeIDCache].y) + "px";
                 node.style.width = 100 + "px";
@@ -99,6 +99,10 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                 node.appendChild(nodeName);
 
                 nodeDiv.appendChild(node);
+                node.onclick=function () {
+                    let item=$scope.nodeList[nodeIDCache]
+                    $scope.showPublicOpinion(item.nodeName,item.nodeStock);
+                }
             }
         })();
 
@@ -106,16 +110,16 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         (function refreshConnectionBackground() {
             connectionContext.clearRect(0, 0, canvasWidth, canvasHeight);
             connectionContext.beginPath();
-            for(let i=0, length=$scope.connectionList.length; i<length; i++){
+            for (let i = 0, length = $scope.connectionList.length; i < length; i++) {
                 let beginNode = document.getElementById($scope.connectionList[i].begin);
                 let endNode = document.getElementById($scope.connectionList[i].end);
                 connectionContext.moveTo(
-                    parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft,
-                    parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop
+                    parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width) / 2 - canvas.offsetLeft,
+                    parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height) / 2 - canvas.offsetTop
                 );
                 connectionContext.lineTo(
-                    parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft,
-                    parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop
+                    parseFloat(endNode.style.left) + parseFloat(endNode.style.width) / 2 - canvas.offsetLeft,
+                    parseFloat(endNode.style.top) + parseFloat(endNode.style.height) / 2 - canvas.offsetTop
                 );
             }
             connectionContext.strokeStyle = connectionLineColor;
@@ -128,31 +132,34 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         let animeI = 4.0;
         let animeTime = 40.0;
         let animeTimeoutID;
-        function startAnimeBackground ()
-        {
+
+        function startAnimeBackground() {
             animeI = animeI + 1.0;
-            if(animeI > animeTime){animeI = 4.0;}
+            if (animeI > animeTime) {
+                animeI = 4.0;
+            }
             animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
             animeContext.beginPath();
-            for(let i=0; i<$scope.connectionList.length; i++){
+            for (let i = 0; i < $scope.connectionList.length; i++) {
                 let beginNode = document.getElementById($scope.connectionList[i].begin);
                 let endNode = document.getElementById($scope.connectionList[i].end);
-                let beginX = parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width)/2 - canvas.offsetLeft;
-                let beginY = parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height)/2 - canvas.offsetTop;
-                let endX = parseFloat(endNode.style.left) + parseFloat(endNode.style.width)/2 - canvas.offsetLeft;
-                let endY = parseFloat(endNode.style.top) + parseFloat(endNode.style.height)/2 - canvas.offsetTop;
+                let beginX = parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width) / 2 - canvas.offsetLeft;
+                let beginY = parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height) / 2 - canvas.offsetTop;
+                let endX = parseFloat(endNode.style.left) + parseFloat(endNode.style.width) / 2 - canvas.offsetLeft;
+                let endY = parseFloat(endNode.style.top) + parseFloat(endNode.style.height) / 2 - canvas.offsetTop;
                 animeContext.moveTo(
-                    beginX + ((animeI-4.0)/animeTime)*(endX - beginX),
-                    beginY + ((animeI-4.0)/animeTime)*(endY - beginY)
+                    beginX + ((animeI - 4.0) / animeTime) * (endX - beginX),
+                    beginY + ((animeI - 4.0) / animeTime) * (endY - beginY)
                 );
                 animeContext.lineTo(
-                    beginX + (animeI/animeTime)*(endX - beginX),
-                    beginY + (animeI/animeTime)*(endY - beginY)
+                    beginX + (animeI / animeTime) * (endX - beginX),
+                    beginY + (animeI / animeTime) * (endY - beginY)
                 );
             }
             animeContext.stroke();
             animeTimeoutID = setTimeout(startAnimeBackground, 50);
         }
+
         startAnimeBackground();
 
         let stopAnimeBackground = function () {
@@ -171,7 +178,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         function getTime() {
             var now = new Date();
             var year = now.getFullYear();
-            var month =(now.getMonth() + 1).toString();
+            var month = (now.getMonth() + 1).toString();
             var day = (now.getDate()).toString();
             var hours = (now.getHours()).toString();
             var minutes = (now.getMinutes()).toString();
@@ -191,7 +198,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             if (seconds.length == 1) {
                 seconds = "0" + seconds;
             }
-            var dateTime = year + month +  day+hours + minutes+seconds;
+            var dateTime = year + month + day + hours + minutes + seconds;
             console.log(dateTime)
             return dateTime;
         }
@@ -201,7 +208,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          */
 
         var graphid_current = $stateParams.graphid;
-        console.log("id",graphid_current)
+        console.log("id", graphid_current)
 
         /**
          * 得到用户登录的session
@@ -209,7 +216,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          */
         var username = "";
         $http({
-            url:urlHead + 'getSession',
+            url: urlHead + 'getSession',
             method: 'post',
             // contentType: "application/json",
             headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -219,11 +226,10 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             var data = response.data;
             username = data;
             $scope.user_id = username;
-            console.log(111,response,data);
-        },function errorCallBack(response) {
+            console.log(111, response, data);
+        }, function errorCallBack(response) {
             console.log("erreor");
         });
-
 
 
         /**
@@ -244,32 +250,32 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             var result = JSON.stringify(data);
 
             $http({
-                url:urlHead + 'addComment',
+                url: urlHead + 'addComment',
                 method: 'post',
                 // contentType: "application/json",
                 // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 withCredentials: true,
-                params:{
-                    "data":result
+                params: {
+                    "data": result
                 }
             }).then(function successCallBack(response) {
                 // console.log(response.data)
                 var data = response.data;
-                if(data.retmessage == "success"){
+                if (data.retmessage == "success") {
 
                     var local_comment = {
-                        "author":username,
-                        "comment":inputText,
-                        "graphid":graphid_current,
-                        "time":getTime(),
-                        "up":0,
-                        "down":0
+                        "author": username,
+                        "comment": inputText,
+                        "graphid": graphid_current,
+                        "time": getTime(),
+                        "up": 0,
+                        "down": 0
                     };
                     $scope.commentList.push(local_comment);
 
                     // $scope.$apply();
                 }
-            },function errorCallBack(response) {
+            }, function errorCallBack(response) {
                 console.log("erreor");
             });
 
@@ -281,20 +287,20 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          */
 
         $http({
-            url:urlHead + 'getComments',
+            url: urlHead + 'getComments',
             method: 'post',
             // contentType: "application/json",
             // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             // withCredentials: true,
-            params:{
-                "graphid":graphid_current
+            params: {
+                "graphid": graphid_current
             }
         }).then(function successCallBack(response) {
             var data = response.data;
             $scope.commentList = data;
             // $scope.conExpModel=trimStr($scope.commentList)
             console.log(data);
-        },function errorCallBack(response) {
+        }, function errorCallBack(response) {
             console.log("erreor");
         });
         // var s = {
@@ -315,34 +321,34 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          * @type {HTMLElement | null}
          */
 
-        $scope.delete_comment = function(comment_detail){
+        $scope.delete_comment = function (comment_detail) {
             console.log(comment_detail);
-            var data ={
-                "graphid":graphid_current,
-                "time":comment_detail.time,
-                "username":comment_detail.author
+            var data = {
+                "graphid": graphid_current,
+                "time": comment_detail.time,
+                "username": comment_detail.author
             }
             var result = JSON.stringify(data);
 
             $http({
-                url:urlHead + 'deleteComment',
+                url: urlHead + 'deleteComment',
                 method: 'post',
                 // contentType: "application/json",
                 // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 withCredentials: true,
-                params:{
-                    "data":result
+                params: {
+                    "data": result
                 }
             }).then(function successCallBack(response) {
                 console.log(response.data)
                 var data = response.data;
                 console.log(data);
-                if(data.retmessage == "success"){
+                if (data.retmessage == "success") {
                     var deleted_index = $scope.commentList.indexOf(comment_detail);
-                    $scope.commentList.splice(deleted_index,1);
+                    $scope.commentList.splice(deleted_index, 1);
                     console.log($scope.commentList);
                 }
-            },function errorCallBack(response) {
+            }, function errorCallBack(response) {
                 console.log("erreor");
             });
         };
@@ -352,27 +358,27 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          *
          */
         $scope.like_comment = function (comment_detail) {
-            var data ={
-                "graphid":graphid_current,
-                "time":comment_detail.time,
-                "username":comment_detail.author
+            var data = {
+                "graphid": graphid_current,
+                "time": comment_detail.time,
+                "username": comment_detail.author
             }
             var result = JSON.stringify(data);
 
             $http({
-                url:urlHead + 'commentUp',
+                url: urlHead + 'commentUp',
                 method: 'post',
                 // contentType: "application/json",
                 // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 withCredentials: true,
-                params:{
-                    "data":result
+                params: {
+                    "data": result
                 }
             }).then(function successCallBack(response) {
                 console.log(response.data)
                 var data = response.data;
                 console.log(data);
-                if(data.retmessage == "success"){
+                if (data.retmessage == "success") {
                     // var deleted_index = $scope.commentList.indexOf(comment_detail);
                     // $scope.commentList.splice(deleted_index,1);
                     // console.log($scope.commentList);
@@ -380,7 +386,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                     // console.log($scope.commentList);
 
                 }
-            },function errorCallBack(response) {
+            }, function errorCallBack(response) {
                 console.log("erreor");
             });
         };
@@ -390,27 +396,27 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          *
          */
         $scope.step_comment = function (comment_detail) {
-            var data ={
-                "graphid":graphid_current,
-                "time":comment_detail.time,
-                "username":comment_detail.author
+            var data = {
+                "graphid": graphid_current,
+                "time": comment_detail.time,
+                "username": comment_detail.author
             }
             var result = JSON.stringify(data);
 
             $http({
-                url:urlHead + 'commentDown',
+                url: urlHead + 'commentDown',
                 method: 'post',
                 // contentType: "application/json",
                 // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                 withCredentials: true,
-                params:{
-                    "data":result
+                params: {
+                    "data": result
                 }
             }).then(function successCallBack(response) {
                 console.log(response.data)
                 var data = response.data;
                 console.log(data);
-                if(data.retmessage == "success"){
+                if (data.retmessage == "success") {
                     // var deleted_index = $scope.commentList.indexOf(comment_detail);
                     // $scope.commentList.splice(deleted_index,1);
                     // console.log($scope.commentList);
@@ -418,10 +424,38 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                     // console.log($scope.commentList);
 
                 }
-            },function errorCallBack(response) {
+            }, function errorCallBack(response) {
                 console.log("erreor");
             });
 
         };
 
+
+        $scope.showPublicOpinion = function (name,stkId) {
+
+
+            $scope.modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,//打开时的动画开关
+                templateUrl: '/view/microIndustryChain/publicOpinion/publicOpinion.html',//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
+                controller: 'PublicOpinionCtrl',//这是模态框的控制器,是用来控制模态框的
+                appendTo: angular.element(document.getElementById('nodeDiv')),
+
+                resolve: {//这是一个入参,这个很重要,它可以把主控制器中的参数传到模态框控制器中
+                    items: function () {//items是一个回调函数
+                        return {
+                            name:name,
+                            id:stkId ,
+                            scope: $scope
+                        }//这个值会被模态框的控制器获取到
+                    },
+
+                }
+            });
+
+            $scope.modalInstance.result.then(function(){}, function(res){});
+
+
+        };
+
     });
+
