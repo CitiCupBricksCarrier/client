@@ -37,7 +37,7 @@
                 <div class="comment">
                     <div class="head-face">
                         <img src="view/microIndustryChain/previewChainView/images/user.svg">
-                        <p style="margin-top: 10px;    font-weight:bold;font-size: 15px">用户</p>
+                        <p style="margin-top: 10px;    font-weight:bold;font-size: 15px"></p>
                     </div>
                     <div class="content">
                         <div class="cont-box">
@@ -58,9 +58,9 @@
                                 <p class="username" >{{comment_detail.author}}</p>
                                 <!--<p class="like" ng-click="like_comment(comment_detail)" >  &#xe602;</p>-->
                                 <!--<p class="step" ng-click="step_comment(comment_detail)">  👎100 </p>-->
-                                <i class="like iconfont icon-good" ng-click="like_comment(comment_detail)" >1 </i>
-                                <i class="step iconfont icon-cai" ng-click="step_comment(comment_detail)">1  </i>
-                                <p class="delete iconfont icon-guanbi"  ng-if = "comment_detail.graphid ==1" ng-click="delete_comment(comment_detail)"> </p>
+                                <i class="like iconfont icon-good" ng-click="like_comment(comment_detail)" >{{comment_detail.up}}</i>
+                                <i class="step iconfont icon-cai" ng-click="step_comment(comment_detail)">{{comment_detail.down}}  </i>
+                                <p class="delete iconfont icon-guanbi"  ng-if = "comment_detail.author ==user_id" ng-click="delete_comment(comment_detail)"> </p>
                                 <p class="comment-body">{{comment_detail.comment}}</p>
                                 <p class="comment-footer">
                                     #{{$index+1}}

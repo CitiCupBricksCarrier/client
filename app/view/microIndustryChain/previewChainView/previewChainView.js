@@ -168,24 +168,40 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          * 评论区
          * @type {HTMLElement | null}
          */
-        // var now = new Date();
-        // var year = now.getFullYear();
-        // var month =(now.getMonth() + 1).toString();
-        // var day = (now.getDate()).toString();
-        // if (month.length == 1) {
-        //     month = "0" + month;
-        // }
-        // if (day.length == 1) {
-        //     day = "0" + day;
-        // }
-        // var dateTime = year + month +  day;
-        // console.log(dateTime)
+        function getTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month =(now.getMonth() + 1).toString();
+            var day = (now.getDate()).toString();
+            var hours = (now.getHours()).toString();
+            var minutes = (now.getMinutes()).toString();
+            var seconds = (now.getSeconds()).toString();
+            if (month.length == 1) {
+                month = "0" + month;
+            }
+            if (day.length == 1) {
+                day = "0" + day;
+            }
+            if (hours.length == 1) {
+                hours = "0" + hours;
+            }
+            if (minutes.length == 1) {
+                minutes = "0" + minutes;
+            }
+            if (seconds.length == 1) {
+                seconds = "0" + seconds;
+            }
+            var dateTime = year + month +  day+hours + minutes+seconds;
+            console.log(dateTime)
+            return dateTime;
+        }
 
         /**
          * 得到当前围观产业链的ID
          */
 
         var graphid_current = $stateParams.graphid;
+        console.log("id",graphid_current)
 
         /**
          * 得到用户登录的session
@@ -202,6 +218,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             // console.log(response.data)
             var data = response.data;
             username = data;
+            $scope.user_id = username;
             console.log(111,response,data);
         },function errorCallBack(response) {
             console.log("erreor");
@@ -240,15 +257,17 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                 var data = response.data;
                 if(data.retmessage == "success"){
 
-                    let local_comment = {
-                        author:username,
-                        comment:inputText,
-                        graphid:graphid_current,
-                        time:dateTime
-
+                    var local_comment = {
+                        "author":username,
+                        "comment":inputText,
+                        "graphid":graphid_current,
+                        "time":getTime(),
+                        "up":0,
+                        "down":0
                     };
-                    $scope.commentList.push(dateTime);
-                    $scope.$apply();
+                    $scope.commentList.push(local_comment);
+
+                    // $scope.$apply();
                 }
             },function errorCallBack(response) {
                 console.log("erreor");
@@ -261,34 +280,34 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          * 加载评论
          */
 
-        // $http({
-        //     url:urlHead + 'getComments',
-        //     method: 'post',
-        //     // contentType: "application/json",
-        //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-        //     // withCredentials: true,
-        //     params:{
-        //         "graphid":graphid_current
-        //     }
-        // }).then(function successCallBack(response) {
-        //     var data = response.data;
-        //     $scope.commentList = data;
-        //     // $scope.conExpModel=trimStr($scope.commentList)
-        //     console.log(data);
-        // },function errorCallBack(response) {
-        //     console.log("erreor");
-        // });
-        var s = {
-                "author":1,
-                "comment":213,
-                "graphid":1,
-                "time":20180910125369
-
-        }
-        $scope.commentList = [];
-        for(var  i = 0 ;i <20;i++){
-            $scope.commentList.push(s);
-        }
+        $http({
+            url:urlHead + 'getComments',
+            method: 'post',
+            // contentType: "application/json",
+            // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            // withCredentials: true,
+            params:{
+                "graphid":graphid_current
+            }
+        }).then(function successCallBack(response) {
+            var data = response.data;
+            $scope.commentList = data;
+            // $scope.conExpModel=trimStr($scope.commentList)
+            console.log(data);
+        },function errorCallBack(response) {
+            console.log("erreor");
+        });
+        // var s = {
+        //         "author":1,
+        //         "comment":213,
+        //         "graphid":1,
+        //         "time":20180910125369
+        //
+        // }
+        // $scope.commentList = [];
+        // for(var  i = 0 ;i <20;i++){
+        //     $scope.commentList.push(s);
+        // }
         // $scope.$apply();
 
         /**
@@ -298,29 +317,34 @@ angular.module('myApp.microIndustryChain.previewChainView', [
 
         $scope.delete_comment = function(comment_detail){
             console.log(comment_detail);
-            // var data ={
-            //     "graphid":1,
-            //     "time":20180901225825,
-            //     "username":1
-            // }
-            // var result = JSON.stringify(data);
-            //
-            // $http({
-            //     url:urlHead + 'deleteComment',
-            //     method: 'post',
-            //     // contentType: "application/json",
-            //     // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            //     withCredentials: true,
-            //     params:{
-            //         "data":result
-            //     }
-            // }).then(function successCallBack(response) {
-            //     console.log(response.data)
-            //     var data = response.data;
-            //     console.log(data);
-            // },function errorCallBack(response) {
-            //     console.log("erreor");
-            // });
+            var data ={
+                "graphid":graphid_current,
+                "time":comment_detail.time,
+                "username":comment_detail.author
+            }
+            var result = JSON.stringify(data);
+
+            $http({
+                url:urlHead + 'deleteComment',
+                method: 'post',
+                // contentType: "application/json",
+                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true,
+                params:{
+                    "data":result
+                }
+            }).then(function successCallBack(response) {
+                console.log(response.data)
+                var data = response.data;
+                console.log(data);
+                if(data.retmessage == "success"){
+                    var deleted_index = $scope.commentList.indexOf(comment_detail);
+                    $scope.commentList.splice(deleted_index,1);
+                    console.log($scope.commentList);
+                }
+            },function errorCallBack(response) {
+                console.log("erreor");
+            });
         };
 
         /**
@@ -328,7 +352,37 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          *
          */
         $scope.like_comment = function (comment_detail) {
+            var data ={
+                "graphid":graphid_current,
+                "time":comment_detail.time,
+                "username":comment_detail.author
+            }
+            var result = JSON.stringify(data);
 
+            $http({
+                url:urlHead + 'commentUp',
+                method: 'post',
+                // contentType: "application/json",
+                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true,
+                params:{
+                    "data":result
+                }
+            }).then(function successCallBack(response) {
+                console.log(response.data)
+                var data = response.data;
+                console.log(data);
+                if(data.retmessage == "success"){
+                    // var deleted_index = $scope.commentList.indexOf(comment_detail);
+                    // $scope.commentList.splice(deleted_index,1);
+                    // console.log($scope.commentList);
+                    comment_detail.up++;
+                    // console.log($scope.commentList);
+
+                }
+            },function errorCallBack(response) {
+                console.log("erreor");
+            });
         };
 
         /**
@@ -336,6 +390,37 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          *
          */
         $scope.step_comment = function (comment_detail) {
+            var data ={
+                "graphid":graphid_current,
+                "time":comment_detail.time,
+                "username":comment_detail.author
+            }
+            var result = JSON.stringify(data);
+
+            $http({
+                url:urlHead + 'commentDown',
+                method: 'post',
+                // contentType: "application/json",
+                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true,
+                params:{
+                    "data":result
+                }
+            }).then(function successCallBack(response) {
+                console.log(response.data)
+                var data = response.data;
+                console.log(data);
+                if(data.retmessage == "success"){
+                    // var deleted_index = $scope.commentList.indexOf(comment_detail);
+                    // $scope.commentList.splice(deleted_index,1);
+                    // console.log($scope.commentList);
+                    comment_detail.down++;
+                    // console.log($scope.commentList);
+
+                }
+            },function errorCallBack(response) {
+                console.log("erreor");
+            });
 
         };
 
