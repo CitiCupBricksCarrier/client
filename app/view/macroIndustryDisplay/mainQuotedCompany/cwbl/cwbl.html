@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<div style="margin-left: 22%;width: 50%;margin-top: 3%;background-color: white">
+    <div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
+        <label>市场</label>
+        <select  ng-model="market" ng-change="changeMarket()">
+            <option value="全部">全部</option>
+            <option value="沪深A股">沪深A股</option>
+            <option value="新三板做市">新三板做市</option>
+        </select>
+
+        <label style="margin-left: 20px">统计数据</label>
+        <div class="mySelect">
+            <div class="option"><input type="checkbox">test</div>
+            <div class="option"><input type="checkbox">test</div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+<div style="margin-left: 22%;width: 50%;background-color: white">
+    <table id="table">
+        <tr><th>test</th></tr>
+        <tr><td>tes1tt</td></tr>
+
+    </table>
+</div>
+
+<link rel="stylesheet" href="view/macroIndustryDisplay/mainQuotedCompany/cwbl/cwbl.css"/>
