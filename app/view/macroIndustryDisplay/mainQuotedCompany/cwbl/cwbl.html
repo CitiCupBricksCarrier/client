@@ -1,5 +1,5 @@
 
-<div style="margin-left: 22%;width: 50%;margin-top: 3%;background-color: white">
+<div style="margin-left: 22%;width: 50%;margin-top: 3%;background-color: white;height: 150px">
     <div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
         <label>市场</label>
         <select  ng-model="market" ng-change="changeMarket()">
@@ -9,9 +9,12 @@
         </select>
 
         <label style="margin-left: 20px">统计数据</label>
-        <div class="mySelect">
-            <div class="option"><input type="checkbox">test</div>
-            <div class="option"><input type="checkbox">test</div>
+        <div id='input' class="myInput" ng-click="toShow=!toShow"><img src="view/macroIndustryDisplay/mainQuotedCompany/pic/arrow.png" style="width: 6px;height: 5px;float: right;margin-top: 7px;margin-right: 5px"></div>
+        <div class="mySelect" ng-show="toShow">
+            <div class="option"><input id='最高值'ng-click="check('最高值')" type="checkbox" value="最高值">最高值</div>
+            <div class="option"><input id='最低值' ng-click="check('最低值')" type="checkbox">最低值</div>
+            <div class="option"><input id='中位值'ng-click="check('中位值')" type="checkbox">中位值</div>
+            <div class="option"><input id='平均值'ng-click="check('平均值')" type="checkbox">平均值</div>
 
         </div>
 

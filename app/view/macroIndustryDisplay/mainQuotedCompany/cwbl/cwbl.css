@@ -1,5 +1,6 @@
 table{
-    width:100%;
+    width:80%;
+    margin-left: 10%;
 }
 
 table th{
@@ -19,9 +20,41 @@ table tr td{
 
 table tr:nth-child(odd){background:#F4F4F4;}
 
-.mySelect{
-    margin-left: 50px;
-}
-.mySelect option{
+.myInput{
+    width: 110px;
+    height: 21px;
     background-color: white;
+    margin-top: -25px;
+    margin-left: 230px;
+    border: 1px solid rgb(170,170,170);
+    padding-left: 5px;
 }
+
+.myInput:hover{
+    cursor: default;
+}
+
+.myInputFocus{
+    width: 110px;
+    background-color: white;
+    margin-left: 230px;
+    border: 1px solid rgb(96,138,260);
+    outline: 1px solid rgb(134,180,254);
+    outline-offset: 0px;
+
+}
+.mySelect{
+    width: 110px;
+    margin-left: 230px;
+    background-color: white;
+    border-left: 1px solid rgb(0,0,0);
+    border-top: 1px solid rgb(0,0,0);
+    border-bottom: 1px solid rgb(112,143,193);
+    padding-left: 7px;
+}
+
+input{
+    vertical-align: top;
+}
+
+
