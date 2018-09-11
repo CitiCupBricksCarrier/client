@@ -343,11 +343,10 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             // // $('.wholePic .briefAndList_container').css('left', $('.wholePic .briefAndList_container').position().left * scale);
             // $('.wholePic .briefAndList_container').css('height', $('.wholePic .briefAndList_container').position().top * scale);
 
+
+            //其他图的调整
+            $('.part .other').css('height', windowHeight-50);
+
         }
 
-        // $scope.testList = [['xxxx','xxxx','xxxx','xxxx'],
-        //     ['xxxx','xxxx','xxxx','xxxx']];
-        $scope.testList = [];
-        $scope.testList.push(['深度国际','发的噶啊','个多少个','额他个','大官人啊'])
-        $scope.testList.push(['电视广告','发大水的','申达股份','大法好是'])
     });
