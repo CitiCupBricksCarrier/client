@@ -21,13 +21,14 @@ table tr td{
 table tr:nth-child(odd){background:#F4F4F4;}
 
 .myInput{
+    display: inline-block;
+    height: 19.6px;
     width: 110px;
-    height: 21px;
     background-color: white;
-    margin-top: -25px;
-    margin-left: 230px;
     border: 1px solid rgb(170,170,170);
     padding-left: 5px;
+    vertical-align: middle;
+    margin-left: 5px;
 }
 
 .myInput:hover{
@@ -35,9 +36,8 @@ table tr:nth-child(odd){background:#F4F4F4;}
 }
 
 .myInputFocus{
-    width: 110px;
     background-color: white;
-    margin-left: 230px;
+    width: 110px;
     border: 1px solid rgb(96,138,260);
     outline: 1px solid rgb(134,180,254);
     outline-offset: 0px;
@@ -45,7 +45,8 @@ table tr:nth-child(odd){background:#F4F4F4;}
 }
 .mySelect{
     width: 110px;
-    margin-left: 230px;
+    margin-top: -5px;
+    margin-left: 214px;
     background-color: white;
     border-left: 1px solid rgb(0,0,0);
     border-top: 1px solid rgb(0,0,0);
@@ -58,3 +59,64 @@ input{
 }
 
 
+button{
+    background: linear-gradient(to bottom,rgb(238,252,255),rgb(210,225,240));
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid rgb(163,174,197);
+    margin-left: 25px;
+}
+
+.pane{
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    left: 30%;
+    top:18%;
+    border: 1px solid rgb(175,174,174);
+}
+
+.paneTitle{
+    background-color: white;
+    color: rgb(167,168,165);
+    width: 598px;
+    height: 5%;
+    font-size: 13px;
+    text-indent: 1em;
+
+}
+
+.paneBackground{
+    background-color: rgb(247,249,255);
+    width: 598px;
+    height: 98%;
+    position: absolute;
+    padding-top: 10px;
+}
+
+.paneCore{
+    background-color: white;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 76%;
+    position: absolute;
+    border: 2px solid rgb(224,234,247);
+    padding-top: 10px;
+    padding-left: 15px;
+    font-family: 等线;
+    font-weight: 600;
+ }
+
+button.myButton{
+    background: linear-gradient(to bottom, rgb(238, 252, 255), rgb(210, 225, 240));
+}
+
+span.checkSpan{
+    margin-left: 6px;
+}
+
+.myDiv{
+    margin-top: 2px;
+}

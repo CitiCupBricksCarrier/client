@@ -1,6 +1,62 @@
+<div class="pane" ng-show="toShowPane">
+    <div class="paneTitle">
+        指标选择
+    </div>
 
-<div style="margin-left: 22%;width: 50%;margin-top: 3%;background-color: white;height: 150px">
-    <div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
+    <div class="paneBackground">
+        <span style="position: absolute;left: 2%">设置显示指标(最多10个)</span>
+        <span style="position: absolute;left: 80%">已选0个指标</span>
+        <button class="myButton" style="position:absolute;top: 90%">恢复默认</button>
+        <button class="myButton" style="position:absolute;top: 90%;left: 74%">确认</button>
+        <button class="myButton" style="position:absolute;top: 90%;left: 84%">取消</button>
+
+        <div class="paneCore">
+            <div class="myDiv">
+            <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+            <div class="myDiv">
+                <input type="checkbox"><span class="checkSpan" style="display: inline-block">最新收盘日</span>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div style="margin-left: 22%;width: 50%;margin-top: 5%;background-color: white;height: 150px;">
+    <div style="display: inline-block;padding: 10px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
         <label>市场</label>
         <select  ng-model="market" ng-change="changeMarket()">
             <option value="全部">全部</option>
@@ -9,7 +65,8 @@
         </select>
 
         <label style="margin-left: 20px">统计数据</label>
-        <div id='input' class="myInput" ng-click="toShow=!toShow"><img src="view/macroIndustryDisplay/mainQuotedCompany/pic/arrow.png" style="width: 6px;height: 5px;float: right;margin-top: 7px;margin-right: 5px"></div>
+        <div id='input' class="myInput" ng-click="toShow=!toShow"><img src="view/macroIndustryDisplay/mainQuotedCompany/pic/arrow.png" style="width: 5.5px;height: 4.7px;float: right;margin-top: 5px;margin-right: 5px"></div>
+        <button style="display: inline-block" ng-click="toShowPane=!toShowPane">指标选择</button>
         <div class="mySelect" ng-show="toShow">
             <div class="option"><input id='最高值'ng-click="check('最高值')" type="checkbox" value="最高值">最高值</div>
             <div class="option"><input id='最低值' ng-click="check('最低值')" type="checkbox">最低值</div>
@@ -27,10 +84,10 @@
 
 <div style="margin-left: 22%;width: 50%;background-color: white">
     <table id="table">
-        <tr><th>test</th></tr>
-        <tr><td>tes1tt</td></tr>
 
     </table>
 </div>
+
+
 
 <link rel="stylesheet" href="view/macroIndustryDisplay/mainQuotedCompany/cwbl/cwbl.css"/>
