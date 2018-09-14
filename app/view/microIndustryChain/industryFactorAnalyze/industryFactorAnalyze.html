@@ -1,0 +1,67 @@
+
+<div id="index" class="part">
+    <h3>选择指标</h3>
+    所选指标：<label>{{index_selected}}</label>
+    <div style="position: relative;">
+        <div class="index_container">
+            <div class="section">
+                <h4>推荐指标</h4>
+                <div class="list_container recommend">
+                    <li ng-repeat="item in index_recommend">
+                        <!--<input type="checkbox" class="checkBox" ng-click="checkBoxOnChange_index(item)"/>-->
+                        <input type="checkbox" class="checkBox"/>
+                        <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
+                    </li>
+                </div>
+            </div>
+            <div class="section">
+                <h4>全部指标</h4>
+                <div class="list_container all">
+                    <li ng-repeat="item in index_selectable">
+                        <input type="checkbox" class="checkBox"/>
+                        <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
+                    </li>
+                    <li ng-repeat="item in index_unselectable">
+                        <input type="checkbox" class="checkBox"/>
+                        <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+
+        <div class="description_container">
+            <p>{{description_toShow}}</p>
+            <div ng-show="numIsShow">最近选择：<label>{{num_toShow}}</label>人</div>
+        </div>
+    </div>
+</div>
+
+<div id="method" class="part">
+    <h3>选择方法</h3>
+    所选方法：<label>{{method_selected}}</label>
+    <div style="position: relative;">
+        <div class="method_container">
+            <div class="section">
+                <h4>全部指标</h4>
+                <div class="list_container recommend">
+                    <table>
+                        <tr ng-repeat="item in method_list" ng-dblclick="clickToShowDescription_method(item)">
+                            <th>
+                                <input type="checkbox" class="checkBox"/>
+                                {{item.name}}
+                            </th>
+                            <td>
+                                {{item.description}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button class="btn_analyze">进行分析</button>
+</div>
+<link rel="stylesheet" href="view/microIndustryChain/industryFactorAnalyze/industryFactorAnalyze.css"/>

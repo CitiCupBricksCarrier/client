@@ -1,0 +1,18 @@
+.part{
+    position: relative;
+}
+.part .index_container{
+    display: inline-block;
+}
+.part .index_container .list_container{
+    overflow: auto;
+}
+.part .index_container .section{
+    max-height: 300px;
+}
+.part .description_container{
+    display: inline-block;
+    height: 400px;
+    position: absolute;
+    top: 0;
+}

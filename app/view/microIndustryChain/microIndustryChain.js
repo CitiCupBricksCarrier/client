@@ -2,7 +2,8 @@ angular.module('myApp.microIndustryChain', [
     'myApp.microIndustryChain.discoverChainView',
     'myApp.microIndustryChain.mineChainView',
     'myApp.microIndustryChain.createChainView',
-    'myApp.microIndustryChain.previewChainView'
+    'myApp.microIndustryChain.previewChainView',
+    'myApp.microIndustryChain.industryFactorAnalyze'
 ])
 
     .config(function($stateProvider, $urlRouterProvider){
@@ -30,6 +31,11 @@ angular.module('myApp.microIndustryChain', [
                 url:'/previewChainView/?:graphid',
                 templateUrl: 'view/microIndustryChain/previewChainView/previewChainView.html',
                 controller: 'PreviewChainViewCtrl'
+            })
+            .state('microIndustryChain.industryFactorAnalyze',{
+                url:'/industryFactorAnalyze',
+                templateUrl: 'view/microIndustryChain/industryFactorAnalyze/industryFactorAnalyze.html',
+                controller: 'IndustryFactorAnalyzeCtrl'
             })
     })
 
