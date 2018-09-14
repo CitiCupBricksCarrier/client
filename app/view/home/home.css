@@ -1,3 +1,11 @@
+.back_fix{
+    background-origin:border-box;                /*从content区域开始显示背景*/
+    background-position:0 120%;              /*图片上下左右居中*/
+    background-size: cover;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+    background-repeat:no-repeat;
+    background-color: black;
+}
+
 .fast-go-btn-container {
     display: flex;
     flex-flow: row;
@@ -13,30 +21,30 @@
     cursor: pointer;
 }
 .go-to-macro{
-    background: white url(icon/macro.svg) no-repeat center;
+    background: url(icon/macro.svg) no-repeat center;
     background-size: 100%;
     transition: background .5s;
 }
-.go-to-macro:hover{
-    background: white url(icon/macro-hover.svg) no-repeat center;
+.macro_hover:hover .go-to-macro{
+    background: url(icon/macro-hover.svg) no-repeat center;
     background-size: 100%;
 }
 .go-to-micro{
-    background: white url(icon/micro.svg) no-repeat center;
+    background: url(icon/micro.svg) no-repeat center;
     background-size: 100%;
     transition: background .5s;
 }
-.go-to-micro:hover{
-    background: white url(icon/micro-hover.svg) no-repeat center;
+.micro_hover:hover .go-to-micro{
+    background: url(icon/micro-hover.svg) no-repeat center;
     background-size: 100%;
 }
 .go-to-tendency{
-    background: white url(icon/tendency.svg) no-repeat center;
+    background: url(icon/tendency.svg) no-repeat center;
     background-size: 100%;
     transition: background .5s;
 }
-.go-to-tendency:hover{
-    background: white url(icon/tendency-hover.svg) no-repeat center;
+.tendency_hover:hover .go-to-tendency{
+    background: url(icon/tendency-hover.svg) no-repeat center;
     background-size: 100%;
 }
 
