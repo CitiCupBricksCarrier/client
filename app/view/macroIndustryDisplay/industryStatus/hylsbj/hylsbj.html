@@ -1,39 +1,48 @@
 
+<div style="margin-left: 22%;width: 50%;margin-top: 3%">
+    <div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
+        <label>市场</label>
+        <select  ng-model="market" ng-change="changeMarket()">
+            <option value="全部">全部</option>
+            <option value="沪深A股">沪深A股</option>
+            <option value="新三板做市">新三板做市</option>
+        </select>
 
-<div style="margin-top: 10%;display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 50%;">
-    <label>市场</label>
-    <select>
-    <option>全部</option>
-    <option>沪深A股</option>
-    <option>新三板做市</option>
-    </select>
+        <label style="margin-left: 20px">行业指标</label>
+        <select ng-model="index" ng-change="changeIndex()">
+            <option value="市盈率">市盈率</option>
+            <option value="市净率">市净率</option>
+            <option value="市销率">市销率</option>
+            <option value="单季度营收同比"> 单季度营收同比</option>
+            <option value="单季度净利同比"> 单季度净利同比</option>
+            <option value="单季度净利率">单季度净利率</option>
+            <option value="单季度ROE">单季度ROE</option>
+            <option value="单季度ROA">单季度ROA</option>
 
-    <label style="margin-left: 20px">行业指标</label>
-    <select>
-        <option>市盈率</option>
-        <option>市净率</option>
-        <option>市销率</option>
-        <option>单季度营收同比</option>
-        <option>单季度净利同比</option>
-        <option>单季度净利率</option>
-        <option>单季度ROE</option>
-        <option>单季度ROA</option>
-    </select>
+        </select>
 
         <label style="margin-left: 20px">对比行业</label>
         <select>
-            <option>全部A股</option>
-            <option> </option>
-            <option> </option>
+            <option value="全部A股">全部A股</option>
+        </select>
 
-    </select>
+        <label style="margin-left: 20px">差异值</label>
+        <select ng-model="difference" ng-change="changeDifference()">
+            <option value="无">无</option>
+            <option value="绝对差额">绝对差额</option>
+            <option value="比值">比值</option>
+        </select>
+    </div>
+    <div style="width:100%;height: 400px;background-color: white">
+        <div id="test" style="height:400px"></div>
+    </div>
 
-    <label style="margin-left: 20px">差异值</label>
-    <select >
-        <option>无</option>
-
-    </select>
 </div>
 
+<div style="margin-left: 22%;width: 50%;background-color: white">
+    <table id="table">
 
-<link rel="stylesheet" href="view/macroIndustryDisplay/industryStatus/hylsjb/hylsbj.css">
+    </table>
+</div>
+
+<link rel="stylesheet" href="view/macroIndustryDisplay/industryStatus/hylsbj/hylsbj.css"/>

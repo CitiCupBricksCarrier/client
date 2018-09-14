@@ -113,7 +113,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart1 = echarts.init(document.getElementById('zggnzzcyccl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国国内制造乘用车产量',
                     textStyle: {
@@ -180,7 +180,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart2 = echarts.init(document.getElementById('zggnzzcycfcxcl'));
             option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#857bff','#FFF566','#89c997','#FFC266'],
                 title: {
                     text: '中国国内制造乘用车分车型产量',
                     textStyle: {
@@ -255,7 +255,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart3 = echarts.init(document.getElementById('zggnzzsyccl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国国内制造商用车产量',
                     textStyle: {
@@ -319,7 +319,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart4 = echarts.init(document.getElementById('zggnzzsycfcxcl'));
             option = {
-                color:['#344996','#88A500'],
+                color:['#FFF566','#857bff'],
                 title: {
                     text: '中国国内制造商用车分车型产量',
                     textStyle: {
@@ -392,7 +392,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart5 = echarts.init(document.getElementById('zgqchyxzcn'));
             option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#857bff','#FFF566','#89c997','#FFC266'],
                 title: {
                     text: '中国汽车行业新增产能',
                     textStyle: {
@@ -468,7 +468,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart6 = echarts.init(document.getElementById('zgqccl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车产量',
                     textStyle: {
@@ -558,7 +558,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart7 = echarts.init(document.getElementById('zgzyqcjtjbxcyccl'));
             option = {
-                color:['#3449960','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953C7E','#0A20F5','#4DCC01','#C66700','#DF4CDD','#EBC306','#039765','#C52687','#4196E6'],
+                color:['#857bff','#FFF566','#89c997','#FFC266','#7B4DD0','#857bff','#953C7E','#0A20F5','#4DCC01','#C66700','#DF4CDD','#EBC306','#039765','#C52687','#4196E6'],
                 title: {
                     text: '中国主要汽车集团基本型乘用车(轿车)产量',
                     textStyle: {
@@ -716,7 +716,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart8 = echarts.init(document.getElementById('zgzyqcjtcl'));
             option = {
-                color:['#3449960','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953C7E','#0A20F5','#4DCC01','#C66700','#DF4CDD','#EBC306','#039765'],
+                color:['#FFF566','#EBC306','#89c997','#FFC266','#7B4DD0','#1A96B1','#953C7E','#0A20F5','#4DCC01','#C66700','#DF4CDD','#857bff','#039765'],
                 title: {
                     text: '中国主要汽车集团产量',
                     textStyle: {
@@ -726,7 +726,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
                 tooltip: {},
                 legend: {
                     y:'bottom',
-                    data:['第一汽车集团','上汽集团','东风汽车集团','北京汽车工业控股公司','长安汽车集团','广州汽车工业集团','安徽江淮汽车工业集团','奇瑞汽车','华晨汽车集团','浙江吉利集团','长城汽车','比亚迪汽车','中国重型汽车集团'],
+                    data:['北京汽车工业控股公司','华晨汽车集团','比亚迪汽车','长安汽车集团','奇瑞汽车','东风汽车集团','第一汽车集团','浙江吉利集团','长城汽车','广州汽车工业集团','安徽江淮汽车工业集团','上汽集团','中国重型汽车集团'],
                     textStyle: {
                         color: '#fff'
                     }
@@ -848,7 +848,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart1 = echarts.init(document.getElementById('zgqchyccpch'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业产成品存货',
                     textStyle: {
@@ -923,7 +923,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart2 = echarts.init(document.getElementById('zgqcjxskcxs'));
             option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#FFF566','#857bff','#89c997','#FFC266'],
                 title: {
                     text: '中国汽车经销商库存系数',
                     textStyle: {
@@ -1027,7 +1027,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart3 = echarts.init(document.getElementById('zgqcjxskcyjzs'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车经销商库存预警指数',
                     textStyle: {
@@ -1103,7 +1103,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart1= echarts.init(document.getElementById('cycztjgbhzs'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '乘用车整体价格变化指数',
                     textStyle: {
@@ -1168,7 +1168,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart2= echarts.init(document.getElementById('cycztzdyhzs'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '乘用车整体终端优惠指数',
                     textStyle: {
@@ -1236,7 +1236,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart1 = echarts.init(document.getElementById('zgqcbyl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车保有量',
                     textStyle: {
@@ -1297,7 +1297,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart2 = echarts.init(document.getElementById('zgqcmqrbyl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车每千人保有量',
                     textStyle: {
@@ -1364,7 +1364,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart3 = echarts.init(document.getElementById('zgxzcmyqcsl'));
             option = {
-                color:['#FF7800','#88A500','#344996','#E52600'],
+                color:['#89c997','#FFF566','#857bff','#FFC266'],
                 title: {
                     text: '中国新注册民用汽车数量',
                     textStyle: {
@@ -1446,7 +1446,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart4 = echarts.init(document.getElementById('qqqcbyl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '全球汽车保有量',
                     textStyle: {
@@ -1510,7 +1510,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart4 = echarts.init(document.getElementById('qqmqrqcbyl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '全球每千人汽车保有量',
                     textStyle: {
@@ -1588,7 +1588,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             }
             var myChart5 = echarts.init(document.getElementById('zgcycfppxl'));
             option = {
-                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953C7E'],
+                color:['#857bff','#FFF566','#89c997','#FFC266','#7B4DD0','#1A96B1','#953C7E'],
                 title: {
                     text: '中国乘用车分品牌销量',
                     textStyle: {
@@ -1679,7 +1679,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart1 = echarts.init(document.getElementById('zgqcxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车销量',
                     textStyle: {
@@ -1738,7 +1738,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart2 = echarts.init(document.getElementById('zgcycxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国乘用车销量',
                     textStyle: {
@@ -1802,7 +1802,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart3 = echarts.init(document.getElementById('zgcycfcxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#857bff','#FFF566','#89c997','#FFC266'],
                 title: {
                     text: '中国乘用车分车型销量',
                     textStyle: {
@@ -1879,7 +1879,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart4 = echarts.init(document.getElementById('zgcycfrllxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800'],
+                color:['#FFF566','#857bff','#89c997'],
                 title: {
                     text: '中国乘用车分燃料类型销量',
                     textStyle: {
@@ -1947,7 +1947,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart6 = echarts.init(document.getElementById('zggnzzcycxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国国内制造乘用车销量',
                     textStyle: {
@@ -2012,7 +2012,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart7 = echarts.init(document.getElementById('zggnzzcycfcxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#857bff','#FFF566','#89c997','#FFC266'],
                 title: {
                     text: '中国国内制造乘用车分车型销量',
                     textStyle: {
@@ -2085,7 +2085,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart8 = echarts.init(document.getElementById('zgsycxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国商用车销量',
                     textStyle: {
@@ -2150,7 +2150,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart8 = echarts.init(document.getElementById('zgsycfcxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0'],
+                color:['#FFF566','#857bff','#89c997','#FFC266','#7B4DD0'],
                 title: {
                     text: '中国商用车分车型销量',
                     textStyle: {
@@ -2234,7 +2234,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart9 = echarts.init(document.getElementById('zgsycfrllxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800'],
+                color:['#857bff','#FFF566','#89c997'],
                 title: {
                     text: '中国商用车分燃料类型销量',
                     textStyle: {
@@ -2304,7 +2304,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart10 = echarts.init(document.getElementById('zggnzzsycxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国国内制造商用车销量',
                     textStyle: {
@@ -2371,7 +2371,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart11 = echarts.init(document.getElementById('zggnzzsycfcxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0'],
+                color:['#FFF566','#857bff','#89c997','#FFC266','#7B4DD0'],
                 title: {
                     text: '中国国内制造商用车分车型销量',
                     textStyle: {
@@ -2457,7 +2457,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart12 = echarts.init(document.getElementById('zggnzzsycfrllxxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800'],
+                color:['#857bff','#FFF566','#89c997'],
                 title: {
                     text: '中国国内制造商用车分燃料类型销量',
                     textStyle: {
@@ -2530,7 +2530,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart13 = echarts.init(document.getElementById('qqcycxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500'],
+                color:['#857bff','#FFF566'],
                 title: {
                     text: '全球乘用车销量',
                     textStyle: {
@@ -2598,7 +2598,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart14 = echarts.init(document.getElementById('qqsycxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500'],
+                color:['#857bff','#FFF566'],
                 title: {
                     text: '全球商用车销量',
                     textStyle: {
@@ -2668,7 +2668,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart15 = echarts.init(document.getElementById('mgqcxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800'],
+                color:['#857bff','#FFF566','#89c997'],
                 title: {
                     text: '美国汽车销量',
                     textStyle: {
@@ -2742,7 +2742,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart16 = echarts.init(document.getElementById('dgqcxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500'],
+                color:['#857bff','#FFF566'],
                 title: {
                     text: '德国汽车销量',
                     textStyle: {
@@ -2815,7 +2815,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
             var myChart17 = echarts.init(document.getElementById('rbqcxl'));
             // 指定图表的配置项和数据
             var option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#857bff','#FFF566','#89c997','#FFC266'],
                 title: {
                     text: '日本汽车销量',
                     textStyle: {

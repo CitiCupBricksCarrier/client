@@ -12,18 +12,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
         $scope.X="ROE-TTM";
         $scope.area="总市值";
         $scope.str="";
-       /* $scope.indstnamAll="";
-        $scope.pettmAll="";
-        $scope.peyearfcastAll="";
-        $scope.pblfAll="";
-        $scope.psttmAll="";
-        $scope.roettmAll="";
-        $scope.roattmAll="";
-        $scope.netproAll="";
-        $scope.revenproAll="";
-        $scope.tomaktvalAll="";
-        $scope.businsincAll="";
-        $scope.toassetsAll="";*/
+
         $scope.colors=['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9']
         $http({
             method: 'POST',
@@ -44,164 +33,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             $scope.businsincAll=Data[10].businsinc;
             $scope.toassetsAll=Data[11].toassets;
 
-            $scope.draw=function (data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15) {
 
-                var myChart = echarts.init(document.getElementById('test'));
-
-                var option = {
-                    color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
-                    tooltip : {
-                        backgroundColor:'rgba(0,0,0,0)',
-                        textStyle: {
-                            color: 'rgba(0,0,0,0)'
-                        }
-                    },
-                    legend: {
-                    },
-                    toolbox: {
-                    },
-                    xAxis : [
-                        {
-                            type : 'value',
-                            splitNumber: 4,
-                            scale: true
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value',
-                            splitNumber: 4,
-                            scale: true
-                        }
-                    ],
-
-                    series : [
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data1,
-                            color:$scope.colors[0]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data2,
-                            color:$scope.colors[1]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data3,
-                            color:$scope.colors[2]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data4,
-                            color:$scope.colors[3]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data5,
-                            color:$scope.colors[4]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data6,
-                            color:$scope.colors[5]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data7,
-                            color:$scope.colors[6]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data8,
-                            color:$scope.colors[7]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data9,
-                            color:$scope.colors[8]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data10,
-                            color:$scope.colors[9]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data11,
-                            color:$scope.colors[10]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data12,
-                            color:$scope.colors[11]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data13,
-                            color:$scope.colors[12]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data14,
-                            color:$scope.colors[13]
-                        },
-                        {
-                            type:'scatter',
-                            symbolSize: function (value){
-                                return Math.sqrt(value[2])/5;
-                            },
-                            data: data15,
-                            color:$scope.colors[14]
-                        }
-
-                    ]
-                };
-
-                myChart.setOption(option);
-            }
             for(var i=0;i<$scope.indstnamAll.length;i++){
                 $scope.str+=' <tr>\n' +
                     '            <td>'+(i+1)+'</td>\n' +
@@ -303,6 +135,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                 [$scope.roettmAll[10],$scope.pettmAll[10],$scope.tomaktvalAll[10]],
                 [$scope.roettmAll[25],$scope.pettmAll[25],$scope.tomaktvalAll[25]],
                 [$scope.roettmAll[40],$scope.pettmAll[40],$scope.tomaktvalAll[40]],
+                [0,0,0],
                 [$scope.roettmAll[70],$scope.pettmAll[70],$scope.tomaktvalAll[70]],
             ];
 
@@ -600,8 +433,8 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                         switch ($scope.Y){
                             case 'PE-TTM':
                                 $scope.str+='            <td>'+$scope.pettmAll[i]+'</td>';
-                                for(var i=0;i<5;i++){
-                            }
+
+
                                 break;
                             case 'PE-本年预测':
                                 $scope.str+='            <td>'+$scope.peyearfcastAll[i]+'</td>';
@@ -644,7 +477,583 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                     }
                     document.getElementById('table').innerHTML=$scope.str;
 
+                    switch ($scope.Y){
+                        case 'PE-TTM':
 
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pettmAll[i*15]>0){$scope.data1[i][1]=$scope.pettmAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pettmAll[i*15+1]>0){$scope.data2[i][1]=$scope.pettmAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pettmAll[i*15+2]>0){$scope.data3[i][1]=$scope.pettmAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pettmAll[i*15+3]>0){$scope.data4[i][1]=$scope.pettmAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pettmAll[i*15+4]>0){$scope.data5[i][1]=$scope.pettmAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pettmAll[i*15+5]>0){$scope.data6[i][1]=$scope.pettmAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pettmAll[i*15+6]>0){$scope.data7[i][1]=$scope.pettmAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pettmAll[i*15+7]>0){$scope.data8[i][1]=$scope.pettmAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pettmAll[i*15+8]>0){$scope.data9[i][1]=$scope.pettmAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pettmAll[i*15+9]>0){$scope.data10[i][1]=$scope.pettmAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pettmAll[i*15+10]>0){$scope.data11[i][1]=$scope.pettmAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pettmAll[i*15+11]>0){$scope.data12[i][1]=$scope.pettmAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pettmAll[i*15+12]>0){$scope.data13[i][1]=$scope.pettmAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pettmAll[i*15+13]>0){$scope.data14[i][1]=$scope.pettmAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pettmAll[i*15+14]>0){$scope.data15[i][1]=$scope.pettmAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                                break;
+                        case 'PE-本年预测':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.peyearfcastAll[i*15]>0){$scope.data1[i][1]=$scope.peyearfcastAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+1]>0){$scope.data2[i][1]=$scope.peyearfcastAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+2]>0){$scope.data3[i][1]=$scope.peyearfcastAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+3]>0){$scope.data4[i][1]=$scope.peyearfcastAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+4]>0){$scope.data5[i][1]=$scope.peyearfcastAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+5]>0){$scope.data6[i][1]=$scope.peyearfcastAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+6]>0){$scope.data7[i][1]=$scope.peyearfcastAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+7]>0){$scope.data8[i][1]=$scope.peyearfcastAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+8]>0){$scope.data9[i][1]=$scope.peyearfcastAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+9]>0){$scope.data10[i][1]=$scope.peyearfcastAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+10]>0){$scope.data11[i][1]=$scope.peyearfcastAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+11]>0){$scope.data12[i][1]=$scope.peyearfcastAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.peyearfcastAll[i*15+12]>0){$scope.data13[i][1]=$scope.peyearfcastAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+13]>0){$scope.data14[i][1]=$scope.peyearfcastAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+14]>0){$scope.data15[i][1]=$scope.peyearfcastAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PB-LF':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pblfAll[i*15]>0){$scope.data1[i][1]=$scope.pblfAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pblfAll[i*15+1]>0){$scope.data2[i][1]=$scope.pblfAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pblfAll[i*15+2]>0){$scope.data3[i][1]=$scope.pblfAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pblfAll[i*15+3]>0){$scope.data4[i][1]=$scope.pblfAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pblfAll[i*15+4]>0){$scope.data5[i][1]=$scope.pblfAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pblfAll[i*15+5]>0){$scope.data6[i][1]=$scope.pblfAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pblfAll[i*15+6]>0){$scope.data7[i][1]=$scope.pblfAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pblfAll[i*15+7]>0){$scope.data8[i][1]=$scope.pblfAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pblfAll[i*15+8]>0){$scope.data9[i][1]=$scope.pblfAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pblfAll[i*15+9]>0){$scope.data10[i][1]=$scope.pblfAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pblfAll[i*15+10]>0){$scope.data11[i][1]=$scope.pblfAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pblfAll[i*15+11]>0){$scope.data12[i][1]=$scope.pblfAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pblfAll[i*15+12]>0){$scope.data13[i][1]=$scope.pblfAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pblfAll[i*15+13]>0){$scope.data14[i][1]=$scope.pblfAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pblfAll[i*15+14]>0){$scope.data15[i][1]=$scope.pblfAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PS-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.psttmAll[i*15]>0){$scope.data1[i][1]=$scope.psttmAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.psttmAll[i*15+1]>0){$scope.data2[i][1]=$scope.psttmAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.psttmAll[i*15+2]>0){$scope.data3[i][1]=$scope.psttmAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.psttmAll[i*15+3]>0){$scope.data4[i][1]=$scope.psttmAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.psttmAll[i*15+4]>0){$scope.data5[i][1]=$scope.psttmAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.psttmAll[i*15+5]>0){$scope.data6[i][1]=$scope.psttmAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.psttmAll[i*15+6]>0){$scope.data7[i][1]=$scope.psttmAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.psttmAll[i*15+7]>0){$scope.data8[i][1]=$scope.psttmAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.psttmAll[i*15+8]>0){$scope.data9[i][1]=$scope.psttmAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.psttmAll[i*15+9]>0){$scope.data10[i][1]=$scope.psttmAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.psttmAll[i*15+10]>0){$scope.data11[i][1]=$scope.psttmAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.psttmAll[i*15+11]>0){$scope.data12[i][1]=$scope.psttmAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.psttmAll[i*15+12]>0){$scope.data13[i][1]=$scope.psttmAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.psttmAll[i*15+13]>0){$scope.data14[i][1]=$scope.psttmAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.psttmAll[i*15+14]>0){$scope.data15[i][1]=$scope.psttmAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                    }
+                    switch ($scope.X){
+                        case 'ROE-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roettmAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roettmAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roettmAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roettmAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roettmAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roettmAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roettmAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roettmAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roettmAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roettmAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roettmAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roettmAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roettmAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roettmAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roettmAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roettmAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roettmAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roettmAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roettmAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roettmAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roettmAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roettmAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roettmAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roettmAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roettmAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roettmAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roettmAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roettmAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roettmAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roettmAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+                            break;
+                        case 'ROA-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roattmAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roattmAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roattmAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roattmAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roattmAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roattmAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roattmAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roattmAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roattmAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roattmAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roattmAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roattmAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roattmAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roattmAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roattmAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roattmAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roattmAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roattmAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roattmAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roattmAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roattmAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roattmAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roattmAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roattmAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roattmAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roattmAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roattmAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roattmAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roattmAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roattmAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '净利同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.netproAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.netproAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.netproAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.netproAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.netproAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.netproAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.netproAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.netproAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.netproAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.netproAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.netproAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.netproAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.netproAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.netproAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.netproAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.netproAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.netproAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.netproAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.netproAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.netproAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.netproAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.netproAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.netproAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.netproAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.netproAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.netproAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.netproAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.netproAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.netproAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.netproAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '营收同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.revenproAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.revenproAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.revenproAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.revenproAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.revenproAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.revenproAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.revenproAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.revenproAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.revenproAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.revenproAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.revenproAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.revenproAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.revenproAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.revenproAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.revenproAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.revenproAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.revenproAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.revenproAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.revenproAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.revenproAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.revenproAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.revenproAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.revenproAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.revenproAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.revenproAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.revenproAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.revenproAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.revenproAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.revenproAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.revenproAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                    }
+                    switch ($scope.area){
+                        case '总市值':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.tomaktvalAll[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.tomaktvalAll[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.tomaktvalAll[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.tomaktvalAll[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.tomaktvalAll[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.tomaktvalAll[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.tomaktvalAll[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.tomaktvalAll[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.tomaktvalAll[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.tomaktvalAll[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.tomaktvalAll[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.tomaktvalAll[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.tomaktvalAll[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.tomaktvalAll[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.tomaktvalAll[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.tomaktvalAll[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.tomaktvalAll[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.tomaktvalAll[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '营业收入':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.businsincAll[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.businsincAll[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.businsincAll[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.businsincAll[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.businsincAll[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.businsincAll[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.businsincAll[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.businsincAll[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.businsincAll[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.businsincAll[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.businsincAll[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.businsincAll[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.businsincAll[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.businsincAll[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.businsincAll[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.businsincAll[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.businsincAll[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.businsincAll[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.businsincAll[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.businsincAll[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.businsincAll[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.businsincAll[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.businsincAll[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.businsincAll[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.businsincAll[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.businsincAll[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.businsincAll[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.businsincAll[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.businsincAll[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.businsincAll[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '资产总计':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.toassetsAll[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.toassetsAll[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.toassetsAll[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.toassetsAll[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.toassetsAll[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.toassetsAll[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.toassetsAll[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.toassetsAll[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.toassetsAll[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.toassetsAll[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.toassetsAll[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.toassetsAll[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.toassetsAll[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.toassetsAll[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.toassetsAll[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.toassetsAll[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.toassetsAll[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.toassetsAll[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+
+                    }
+
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
                     break;
 
                 case '沪深A股':
@@ -701,6 +1110,583 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.Y){
+                        case 'PE-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pettmSS[i*15]>0){$scope.data1[i][1]=$scope.pettmSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pettmSS[i*15+1]>0){$scope.data2[i][1]=$scope.pettmSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pettmSS[i*15+2]>0){$scope.data3[i][1]=$scope.pettmSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pettmSS[i*15+3]>0){$scope.data4[i][1]=$scope.pettmSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pettmSS[i*15+4]>0){$scope.data5[i][1]=$scope.pettmSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pettmSS[i*15+5]>0){$scope.data6[i][1]=$scope.pettmSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pettmSS[i*15+6]>0){$scope.data7[i][1]=$scope.pettmSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pettmSS[i*15+7]>0){$scope.data8[i][1]=$scope.pettmSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pettmSS[i*15+8]>0){$scope.data9[i][1]=$scope.pettmSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pettmSS[i*15+9]>0){$scope.data10[i][1]=$scope.pettmSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pettmSS[i*15+10]>0){$scope.data11[i][1]=$scope.pettmSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pettmSS[i*15+11]>0){$scope.data12[i][1]=$scope.pettmSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pettmSS[i*15+12]>0){$scope.data13[i][1]=$scope.pettmSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pettmSS[i*15+13]>0){$scope.data14[i][1]=$scope.pettmSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pettmSS[i*15+14]>0){$scope.data15[i][1]=$scope.pettmSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                        case 'PE-本年预测':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.peyearfcastSS[i*15]>0){$scope.data1[i][1]=$scope.peyearfcastSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+1]>0){$scope.data2[i][1]=$scope.peyearfcastSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+2]>0){$scope.data3[i][1]=$scope.peyearfcastSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+3]>0){$scope.data4[i][1]=$scope.peyearfcastSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+4]>0){$scope.data5[i][1]=$scope.peyearfcastSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+5]>0){$scope.data6[i][1]=$scope.peyearfcastSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+6]>0){$scope.data7[i][1]=$scope.peyearfcastSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+7]>0){$scope.data8[i][1]=$scope.peyearfcastSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+8]>0){$scope.data9[i][1]=$scope.peyearfcastSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+9]>0){$scope.data10[i][1]=$scope.peyearfcastSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+10]>0){$scope.data11[i][1]=$scope.peyearfcastSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+11]>0){$scope.data12[i][1]=$scope.peyearfcastSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.peyearfcastSS[i*15+12]>0){$scope.data13[i][1]=$scope.peyearfcastSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+13]>0){$scope.data14[i][1]=$scope.peyearfcastSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+14]>0){$scope.data15[i][1]=$scope.peyearfcastSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PB-LF':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pblfSS[i*15]>0){$scope.data1[i][1]=$scope.pblfSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pblfSS[i*15+1]>0){$scope.data2[i][1]=$scope.pblfSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pblfSS[i*15+2]>0){$scope.data3[i][1]=$scope.pblfSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pblfSS[i*15+3]>0){$scope.data4[i][1]=$scope.pblfSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pblfSS[i*15+4]>0){$scope.data5[i][1]=$scope.pblfSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pblfSS[i*15+5]>0){$scope.data6[i][1]=$scope.pblfSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pblfSS[i*15+6]>0){$scope.data7[i][1]=$scope.pblfSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pblfSS[i*15+7]>0){$scope.data8[i][1]=$scope.pblfSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pblfSS[i*15+8]>0){$scope.data9[i][1]=$scope.pblfSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pblfSS[i*15+9]>0){$scope.data10[i][1]=$scope.pblfSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pblfSS[i*15+10]>0){$scope.data11[i][1]=$scope.pblfSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pblfSS[i*15+11]>0){$scope.data12[i][1]=$scope.pblfSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pblfSS[i*15+12]>0){$scope.data13[i][1]=$scope.pblfSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pblfSS[i*15+13]>0){$scope.data14[i][1]=$scope.pblfSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pblfSS[i*15+14]>0){$scope.data15[i][1]=$scope.pblfSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PS-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.psttmSS[i*15]>0){$scope.data1[i][1]=$scope.psttmSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.psttmSS[i*15+1]>0){$scope.data2[i][1]=$scope.psttmSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.psttmSS[i*15+2]>0){$scope.data3[i][1]=$scope.psttmSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.psttmSS[i*15+3]>0){$scope.data4[i][1]=$scope.psttmSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.psttmSS[i*15+4]>0){$scope.data5[i][1]=$scope.psttmSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.psttmSS[i*15+5]>0){$scope.data6[i][1]=$scope.psttmSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.psttmSS[i*15+6]>0){$scope.data7[i][1]=$scope.psttmSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.psttmSS[i*15+7]>0){$scope.data8[i][1]=$scope.psttmSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.psttmSS[i*15+8]>0){$scope.data9[i][1]=$scope.psttmSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.psttmSS[i*15+9]>0){$scope.data10[i][1]=$scope.psttmSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.psttmSS[i*15+10]>0){$scope.data11[i][1]=$scope.psttmSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.psttmSS[i*15+11]>0){$scope.data12[i][1]=$scope.psttmSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.psttmSS[i*15+12]>0){$scope.data13[i][1]=$scope.psttmSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.psttmSS[i*15+13]>0){$scope.data14[i][1]=$scope.psttmSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.psttmSS[i*15+14]>0){$scope.data15[i][1]=$scope.psttmSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                    }
+                    switch ($scope.X){
+                        case 'ROE-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roettmSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roettmSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roettmSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roettmSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roettmSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roettmSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roettmSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roettmSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roettmSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roettmSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roettmSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roettmSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roettmSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roettmSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roettmSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roettmSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roettmSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roettmSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roettmSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roettmSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roettmSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roettmSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roettmSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roettmSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roettmSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roettmSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roettmSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roettmSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roettmSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roettmSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+                            break;
+                        case 'ROA-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roattmSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roattmSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roattmSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roattmSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roattmSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roattmSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roattmSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roattmSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roattmSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roattmSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roattmSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roattmSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roattmSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roattmSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roattmSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roattmSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roattmSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roattmSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roattmSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roattmSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roattmSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roattmSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roattmSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roattmSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roattmSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roattmSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roattmSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roattmSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roattmSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roattmSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '净利同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.netproSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.netproSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.netproSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.netproSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.netproSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.netproSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.netproSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.netproSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.netproSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.netproSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.netproSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.netproSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.netproSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.netproSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.netproSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.netproSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.netproSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.netproSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.netproSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.netproSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.netproSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.netproSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.netproSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.netproSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.netproSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.netproSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.netproSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.netproSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.netproSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.netproSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '营收同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.revenproSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.revenproSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.revenproSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.revenproSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.revenproSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.revenproSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.revenproSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.revenproSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.revenproSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.revenproSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.revenproSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.revenproSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.revenproSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.revenproSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.revenproSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.revenproSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.revenproSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.revenproSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.revenproSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.revenproSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.revenproSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.revenproSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.revenproSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.revenproSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.revenproSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.revenproSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.revenproSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.revenproSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.revenproSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.revenproSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                    }
+                    switch ($scope.area){
+                        case '总市值':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.tomaktvalSS[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.tomaktvalSS[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.tomaktvalSS[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.tomaktvalSS[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.tomaktvalSS[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.tomaktvalSS[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.tomaktvalSS[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.tomaktvalSS[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.tomaktvalSS[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.tomaktvalSS[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.tomaktvalSS[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.tomaktvalSS[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.tomaktvalSS[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.tomaktvalSS[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.tomaktvalSS[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.tomaktvalSS[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.tomaktvalSS[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '营业收入':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.businsincSS[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.businsincSS[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.businsincSS[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.businsincSS[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.businsincSS[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.businsincSS[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.businsincSS[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.businsincSS[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.businsincSS[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.businsincSS[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.businsincSS[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.businsincSS[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.businsincSS[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.businsincSS[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.businsincSS[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.businsincSS[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.businsincSS[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.businsincSS[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.businsincSS[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.businsincSS[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.businsincSS[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.businsincSS[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.businsincSS[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.businsincSS[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.businsincSS[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.businsincSS[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.businsincSS[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.businsincSS[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.businsincSS[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.businsincSS[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '资产总计':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.toassetsSS[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.toassetsSS[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.toassetsSS[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.toassetsSS[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.toassetsSS[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.toassetsSS[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.toassetsSS[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.toassetsSS[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.toassetsSS[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.toassetsSS[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.toassetsSS[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.toassetsSS[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.toassetsSS[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.toassetsSS[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.toassetsSS[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.toassetsSS[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.toassetsSS[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+
+                    }
+
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
                     break;
 
                 case '新三板做市':
@@ -757,6 +1743,583 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.Y){
+                        case 'PE-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pettmNTB[i*15]>0){$scope.data1[i][1]=$scope.pettmNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+1]>0){$scope.data2[i][1]=$scope.pettmNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+2]>0){$scope.data3[i][1]=$scope.pettmNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+3]>0){$scope.data4[i][1]=$scope.pettmNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+4]>0){$scope.data5[i][1]=$scope.pettmNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+5]>0){$scope.data6[i][1]=$scope.pettmNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+6]>0){$scope.data7[i][1]=$scope.pettmNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+7]>0){$scope.data8[i][1]=$scope.pettmNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+8]>0){$scope.data9[i][1]=$scope.pettmNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+9]>0){$scope.data10[i][1]=$scope.pettmNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+10]>0){$scope.data11[i][1]=$scope.pettmNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+11]>0){$scope.data12[i][1]=$scope.pettmNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pettmNTB[i*15+12]>0){$scope.data13[i][1]=$scope.pettmNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+13]>0){$scope.data14[i][1]=$scope.pettmNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+14]>0){$scope.data15[i][1]=$scope.pettmNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                        case 'PE-本年预测':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.peyearfcastNTB[i*15]>0){$scope.data1[i][1]=$scope.peyearfcastNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+1]>0){$scope.data2[i][1]=$scope.peyearfcastNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+2]>0){$scope.data3[i][1]=$scope.peyearfcastNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+3]>0){$scope.data4[i][1]=$scope.peyearfcastNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+4]>0){$scope.data5[i][1]=$scope.peyearfcastNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+5]>0){$scope.data6[i][1]=$scope.peyearfcastNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+6]>0){$scope.data7[i][1]=$scope.peyearfcastNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+7]>0){$scope.data8[i][1]=$scope.peyearfcastNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+8]>0){$scope.data9[i][1]=$scope.peyearfcastNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+9]>0){$scope.data10[i][1]=$scope.peyearfcastNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+10]>0){$scope.data11[i][1]=$scope.peyearfcastNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+11]>0){$scope.data12[i][1]=$scope.peyearfcastNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.peyearfcastNTB[i*15+12]>0){$scope.data13[i][1]=$scope.peyearfcastNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+13]>0){$scope.data14[i][1]=$scope.peyearfcastNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+14]>0){$scope.data15[i][1]=$scope.peyearfcastNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PB-LF':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pblfNTB[i*15]>0){$scope.data1[i][1]=$scope.pblfNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+1]>0){$scope.data2[i][1]=$scope.pblfNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+2]>0){$scope.data3[i][1]=$scope.pblfNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+3]>0){$scope.data4[i][1]=$scope.pblfNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+4]>0){$scope.data5[i][1]=$scope.pblfNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+5]>0){$scope.data6[i][1]=$scope.pblfNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+6]>0){$scope.data7[i][1]=$scope.pblfNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+7]>0){$scope.data8[i][1]=$scope.pblfNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+8]>0){$scope.data9[i][1]=$scope.pblfNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+9]>0){$scope.data10[i][1]=$scope.pblfNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+10]>0){$scope.data11[i][1]=$scope.pblfNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+11]>0){$scope.data12[i][1]=$scope.pblfNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pblfNTB[i*15+12]>0){$scope.data13[i][1]=$scope.pblfNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+13]>0){$scope.data14[i][1]=$scope.pblfNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+14]>0){$scope.data15[i][1]=$scope.pblfNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PS-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.psttmNTB[i*15]>0){$scope.data1[i][1]=$scope.psttmNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+1]>0){$scope.data2[i][1]=$scope.psttmNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+2]>0){$scope.data3[i][1]=$scope.psttmNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+3]>0){$scope.data4[i][1]=$scope.psttmNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+4]>0){$scope.data5[i][1]=$scope.psttmNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+5]>0){$scope.data6[i][1]=$scope.psttmNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+6]>0){$scope.data7[i][1]=$scope.psttmNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+7]>0){$scope.data8[i][1]=$scope.psttmNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+8]>0){$scope.data9[i][1]=$scope.psttmNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+9]>0){$scope.data10[i][1]=$scope.psttmNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+10]>0){$scope.data11[i][1]=$scope.psttmNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+11]>0){$scope.data12[i][1]=$scope.psttmNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.psttmNTB[i*15+12]>0){$scope.data13[i][1]=$scope.psttmNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+13]>0){$scope.data14[i][1]=$scope.psttmNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+14]>0){$scope.data15[i][1]=$scope.psttmNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                    }
+                    switch ($scope.X){
+                        case 'ROE-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roettmNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roettmNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roettmNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roettmNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roettmNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roettmNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roettmNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roettmNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roettmNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roettmNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roettmNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roettmNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roettmNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roettmNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roettmNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roettmNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roettmNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+                            break;
+                        case 'ROA-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roattmNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roattmNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roattmNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roattmNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roattmNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roattmNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roattmNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roattmNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roattmNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roattmNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roattmNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roattmNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roattmNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roattmNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roattmNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roattmNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roattmNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '净利同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.netproNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.netproNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.netproNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.netproNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.netproNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.netproNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.netproNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.netproNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.netproNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.netproNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.netproNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.netproNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.netproNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.netproNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.netproNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.netproNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.netproNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.netproNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.netproNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.netproNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.netproNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.netproNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.netproNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.netproNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.netproNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.netproNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.netproNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.netproNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.netproNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.netproNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '营收同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.revenproNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.revenproNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.revenproNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.revenproNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.revenproNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.revenproNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.revenproNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.revenproNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.revenproNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.revenproNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.revenproNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.revenproNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.revenproNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.revenproNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.revenproNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.revenproNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.revenproNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                    }
+                    switch ($scope.area){
+                        case '总市值':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.tomaktvalNTB[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.tomaktvalNTB[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.tomaktvalNTB[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.tomaktvalNTB[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.tomaktvalNTB[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.tomaktvalNTB[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.tomaktvalNTB[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.tomaktvalNTB[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.tomaktvalNTB[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.tomaktvalNTB[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.tomaktvalNTB[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.tomaktvalNTB[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.tomaktvalNTB[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.tomaktvalNTB[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.tomaktvalNTB[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.tomaktvalNTB[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.tomaktvalNTB[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '营业收入':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.businsincNTB[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.businsincNTB[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.businsincNTB[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.businsincNTB[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.businsincNTB[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.businsincNTB[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.businsincNTB[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.businsincNTB[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.businsincNTB[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.businsincNTB[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.businsincNTB[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.businsincNTB[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.businsincNTB[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.businsincNTB[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.businsincNTB[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.businsincNTB[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.businsincNTB[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '资产总计':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.toassetsNTB[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.toassetsNTB[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.toassetsNTB[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.toassetsNTB[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.toassetsNTB[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.toassetsNTB[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.toassetsNTB[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.toassetsNTB[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.toassetsNTB[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.toassetsNTB[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.toassetsNTB[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.toassetsNTB[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.toassetsNTB[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.toassetsNTB[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.toassetsNTB[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.toassetsNTB[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.toassetsNTB[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+
+                    }
+
+                    $scope.drawNTBChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
                     break;
             }
 
@@ -826,6 +2389,219 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+
+                    switch ($scope.X){
+                        case 'ROE-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roettmAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roettmAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roettmAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roettmAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roettmAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roettmAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roettmAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roettmAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roettmAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roettmAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roettmAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roettmAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roettmAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roettmAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roettmAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roettmAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roettmAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roettmAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roettmAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roettmAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roettmAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roettmAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roettmAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roettmAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roettmAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roettmAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roettmAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roettmAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roettmAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roettmAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+                            break;
+                        case 'ROA-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roattmAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roattmAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roattmAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roattmAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roattmAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roattmAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roattmAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roattmAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roattmAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roattmAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roattmAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roattmAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roattmAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roattmAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roattmAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roattmAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roattmAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roattmAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roattmAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roattmAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roattmAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roattmAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roattmAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roattmAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roattmAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roattmAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roattmAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roattmAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roattmAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roattmAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '净利同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.netproAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.netproAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.netproAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.netproAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.netproAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.netproAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.netproAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.netproAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.netproAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.netproAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.netproAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.netproAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.netproAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.netproAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.netproAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.netproAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.netproAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.netproAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.netproAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.netproAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.netproAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.netproAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.netproAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.netproAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.netproAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.netproAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.netproAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.netproAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.netproAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.netproAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '营收同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.revenproAll[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.revenproAll[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.revenproAll[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.revenproAll[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.revenproAll[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.revenproAll[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.revenproAll[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.revenproAll[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.revenproAll[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.revenproAll[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.revenproAll[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.revenproAll[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.revenproAll[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.revenproAll[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.revenproAll[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.revenproAll[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.revenproAll[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.revenproAll[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.revenproAll[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.revenproAll[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.revenproAll[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.revenproAll[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.revenproAll[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.revenproAll[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.revenproAll[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.revenproAll[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.revenproAll[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.revenproAll[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.revenproAll[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.revenproAll[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+
+                    }
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
 
                 case '沪深A股':
@@ -882,6 +2658,217 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.X){
+                        case 'ROE-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roettmSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roettmSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roettmSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roettmSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roettmSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roettmSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roettmSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roettmSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roettmSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roettmSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roettmSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roettmSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roettmSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roettmSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roettmSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roettmSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roettmSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roettmSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roettmSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roettmSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roettmSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roettmSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roettmSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roettmSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roettmSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roettmSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roettmSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roettmSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roettmSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roettmSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+                            break;
+                        case 'ROA-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roattmSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roattmSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roattmSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roattmSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roattmSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roattmSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roattmSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roattmSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roattmSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roattmSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roattmSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roattmSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roattmSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roattmSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roattmSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roattmSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roattmSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roattmSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roattmSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roattmSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roattmSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roattmSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roattmSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roattmSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roattmSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roattmSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roattmSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roattmSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roattmSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roattmSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '净利同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.netproSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.netproSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.netproSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.netproSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.netproSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.netproSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.netproSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.netproSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.netproSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.netproSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.netproSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.netproSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.netproSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.netproSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.netproSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.netproSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.netproSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.netproSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.netproSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.netproSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.netproSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.netproSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.netproSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.netproSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.netproSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.netproSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.netproSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.netproSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.netproSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.netproSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '营收同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.revenproSS[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.revenproSS[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.revenproSS[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.revenproSS[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.revenproSS[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.revenproSS[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.revenproSS[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.revenproSS[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.revenproSS[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.revenproSS[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.revenproSS[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.revenproSS[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.revenproSS[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.revenproSS[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.revenproSS[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.revenproSS[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.revenproSS[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.revenproSS[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.revenproSS[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.revenproSS[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.revenproSS[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.revenproSS[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.revenproSS[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.revenproSS[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.revenproSS[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.revenproSS[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.revenproSS[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.revenproSS[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.revenproSS[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.revenproSS[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                    }
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
 
                 case '新三板做市':
@@ -938,6 +2925,217 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.X){
+                        case 'ROE-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roettmNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roettmNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roettmNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roettmNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roettmNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roettmNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roettmNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roettmNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roettmNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roettmNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roettmNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roettmNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roettmNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roettmNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roettmNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roettmNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roettmNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roettmNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+                            break;
+                        case 'ROA-TTM':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.roattmNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.roattmNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.roattmNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.roattmNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.roattmNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.roattmNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.roattmNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.roattmNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.roattmNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.roattmNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.roattmNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.roattmNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.roattmNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.roattmNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.roattmNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.roattmNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.roattmNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.roattmNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '净利同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.netproNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.netproNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.netproNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.netproNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.netproNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.netproNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.netproNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.netproNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.netproNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.netproNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.netproNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.netproNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.netproNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.netproNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.netproNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.netproNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.netproNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.netproNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.netproNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.netproNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.netproNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.netproNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.netproNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.netproNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.netproNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.netproNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.netproNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.netproNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.netproNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.netproNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                        case '营收同比':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.revenproNTB[i*15]>0&&$scope.data1[i][1]>0) {$scope.data1[i][0]=$scope.revenproNTB[i*15];}
+                                else $scope.data1[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+1]>0&&$scope.data2[i][1]>0) {$scope.data2[i][0]=$scope.revenproNTB[i*15+1];}
+                                else $scope.data2[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+2]>0&&$scope.data3[i][1]>0) {$scope.data3[i][0]=$scope.revenproNTB[i*15+2];}
+                                else $scope.data3[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+3]>0&&$scope.data4[i][1]>0) {$scope.data4[i][0]=$scope.revenproNTB[i*15+3];}
+                                else $scope.data4[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+4]>0&&$scope.data5[i][1]>0) {$scope.data5[i][0]=$scope.revenproNTB[i*15+4];}
+                                else $scope.data5[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+5]>0&&$scope.data6[i][1]>0) {$scope.data6[i][0]=$scope.revenproNTB[i*15+5];}
+                                else $scope.data6[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+6]>0&&$scope.data7[i][1]>0) {$scope.data7[i][0]=$scope.revenproNTB[i*15+6];}
+                                else $scope.data7[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+7]>0&&$scope.data8[i][1]>0) {$scope.data8[i][0]=$scope.revenproNTB[i*15+7];}
+                                else $scope.data8[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+8]>0&&$scope.data9[i][1]>0) {$scope.data9[i][0]=$scope.revenproNTB[i*15+8];}
+                                else $scope.data9[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+9]>0&&$scope.data10[i][1]>0) {$scope.data10[i][0]=$scope.revenproNTB[i*15+9];}
+                                else $scope.data10[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+10]>0&&$scope.data11[i][1]>0) {$scope.data11[i][0]=$scope.revenproNTB[i*15+10];}
+                                else $scope.data11[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+11]>0&&$scope.data12[i][1]>0) {$scope.data12[i][0]=$scope.revenproNTB[i*15+11];}
+                                else $scope.data12[i][0]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.revenproNTB[i*15+12]>0&&$scope.data13[i][1]>0) {$scope.data13[i][0]=$scope.revenproNTB[i*15+12];}
+                                else $scope.data13[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+13]>0&&$scope.data14[i][1]>0) {$scope.data14[i][0]=$scope.revenproNTB[i*15+13];}
+                                else $scope.data14[i][0]=0;
+
+                                if($scope.revenproNTB[i*15+14]>0&&$scope.data15[i][1]>0) {$scope.data15[i][0]=$scope.revenproNTB[i*15+14];}
+                                else $scope.data15[i][0]=0;
+                            }
+
+                            break;
+                    }
+                    $scope.drawNTBChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
             }
         };
@@ -1006,6 +3204,219 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+
+                    switch ($scope.Y){
+                        case 'PE-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pettmAll[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.pettmAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pettmAll[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.pettmAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pettmAll[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.pettmAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pettmAll[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.pettmAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pettmAll[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.pettmAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pettmAll[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.pettmAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pettmAll[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.pettmAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pettmAll[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.pettmAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pettmAll[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.pettmAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pettmAll[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.pettmAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pettmAll[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.pettmAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pettmAll[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.pettmAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pettmAll[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.pettmAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pettmAll[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.pettmAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pettmAll[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.pettmAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                        case 'PE-本年预测':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.peyearfcastAll[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.peyearfcastAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.peyearfcastAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.peyearfcastAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.peyearfcastAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.peyearfcastAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.peyearfcastAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.peyearfcastAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.peyearfcastAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.peyearfcastAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.peyearfcastAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.peyearfcastAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.peyearfcastAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.peyearfcastAll[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.peyearfcastAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.peyearfcastAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.peyearfcastAll[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.peyearfcastAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PB-LF':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pblfAll[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.pblfAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pblfAll[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.pblfAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pblfAll[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.pblfAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pblfAll[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.pblfAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pblfAll[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.pblfAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pblfAll[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.pblfAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pblfAll[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.pblfAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pblfAll[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.pblfAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pblfAll[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.pblfAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pblfAll[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.pblfAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pblfAll[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.pblfAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pblfAll[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.pblfAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pblfAll[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.pblfAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pblfAll[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.pblfAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pblfAll[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.pblfAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PS-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.psttmAll[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.psttmAll[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.psttmAll[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.psttmAll[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.psttmAll[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.psttmAll[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.psttmAll[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.psttmAll[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.psttmAll[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.psttmAll[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.psttmAll[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.psttmAll[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.psttmAll[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.psttmAll[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.psttmAll[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.psttmAll[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.psttmAll[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.psttmAll[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.psttmAll[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.psttmAll[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.psttmAll[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.psttmAll[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.psttmAll[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.psttmAll[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.psttmAll[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.psttmAll[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.psttmAll[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.psttmAll[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.psttmAll[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.psttmAll[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                    }
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
 
                 case '沪深A股':
@@ -1062,6 +3473,219 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+
+                    switch ($scope.Y){
+                        case 'PE-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pettmSS[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.pettmSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pettmSS[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.pettmSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pettmSS[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.pettmSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pettmSS[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.pettmSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pettmSS[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.pettmSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pettmSS[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.pettmSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pettmSS[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.pettmSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pettmSS[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.pettmSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pettmSS[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.pettmSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pettmSS[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.pettmSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pettmSS[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.pettmSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pettmSS[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.pettmSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pettmSS[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.pettmSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pettmSS[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.pettmSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pettmSS[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.pettmSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                        case 'PE-本年预测':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.peyearfcastSS[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.peyearfcastSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.peyearfcastSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.peyearfcastSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.peyearfcastSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.peyearfcastSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.peyearfcastSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.peyearfcastSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.peyearfcastSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.peyearfcastSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.peyearfcastSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.peyearfcastSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.peyearfcastSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.peyearfcastSS[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.peyearfcastSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.peyearfcastSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.peyearfcastSS[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.peyearfcastSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PB-LF':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pblfSS[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.pblfSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pblfSS[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.pblfSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pblfSS[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.pblfSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pblfSS[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.pblfSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pblfSS[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.pblfSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pblfSS[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.pblfSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pblfSS[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.pblfSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pblfSS[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.pblfSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pblfSS[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.pblfSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pblfSS[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.pblfSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pblfSS[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.pblfSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pblfSS[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.pblfSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pblfSS[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.pblfSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pblfSS[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.pblfSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pblfSS[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.pblfSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PS-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.psttmSS[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.psttmSS[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.psttmSS[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.psttmSS[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.psttmSS[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.psttmSS[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.psttmSS[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.psttmSS[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.psttmSS[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.psttmSS[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.psttmSS[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.psttmSS[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.psttmSS[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.psttmSS[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.psttmSS[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.psttmSS[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.psttmSS[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.psttmSS[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.psttmSS[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.psttmSS[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.psttmSS[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.psttmSS[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.psttmSS[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.psttmSS[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.psttmSS[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.psttmSS[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.psttmSS[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.psttmSS[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.psttmSS[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.psttmSS[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                    }
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
 
                 case '新三板做市':
@@ -1118,6 +3742,218 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.Y){
+                        case 'PE-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pettmNTB[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.pettmNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.pettmNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.pettmNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.pettmNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.pettmNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.pettmNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.pettmNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.pettmNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.pettmNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.pettmNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.pettmNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.pettmNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pettmNTB[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.pettmNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.pettmNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pettmNTB[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.pettmNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                        case 'PE-本年预测':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.peyearfcastNTB[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.peyearfcastNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.peyearfcastNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.peyearfcastNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.peyearfcastNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.peyearfcastNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.peyearfcastNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.peyearfcastNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.peyearfcastNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.peyearfcastNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.peyearfcastNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.peyearfcastNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.peyearfcastNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.peyearfcastNTB[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.peyearfcastNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.peyearfcastNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.peyearfcastNTB[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.peyearfcastNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PB-LF':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.pblfNTB[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.pblfNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.pblfNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.pblfNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.pblfNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.pblfNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.pblfNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.pblfNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.pblfNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.pblfNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.pblfNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.pblfNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.pblfNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.pblfNTB[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.pblfNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.pblfNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.pblfNTB[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.pblfNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+
+                            break;
+                        case 'PS-TTM':
+
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.psttmNTB[i*15]>0&&$scope.data1[i][0]>0){$scope.data1[i][1]=$scope.psttmNTB[i*15];}
+                                else $scope.data1[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+1]>0&&$scope.data2[i][0]>0){$scope.data2[i][1]=$scope.psttmNTB[i*15+1];}
+                                else $scope.data2[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+2]>0&&$scope.data3[i][0]>0){$scope.data3[i][1]=$scope.psttmNTB[i*15+2];}
+                                else $scope.data3[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+3]>0&&$scope.data4[i][0]>0){$scope.data4[i][1]=$scope.psttmNTB[i*15+3];}
+                                else $scope.data4[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+4]>0&&$scope.data5[i][0]>0){$scope.data5[i][1]=$scope.psttmNTB[i*15+4];}
+                                else $scope.data5[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+5]>0&&$scope.data6[i][0]>0){$scope.data6[i][1]=$scope.psttmNTB[i*15+5];}
+                                else $scope.data6[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+6]>0&&$scope.data7[i][0]>0){$scope.data7[i][1]=$scope.psttmNTB[i*15+6];}
+                                else $scope.data7[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+7]>0&&$scope.data8[i][0]>0){$scope.data8[i][1]=$scope.psttmNTB[i*15+7];}
+                                else $scope.data8[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+8]>0&&$scope.data9[i][0]>0){$scope.data9[i][1]=$scope.psttmNTB[i*15+8];}
+                                else $scope.data9[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+9]>0&&$scope.data10[i][0]>0){$scope.data10[i][1]=$scope.psttmNTB[i*15+9];}
+                                else $scope.data10[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+10]>0&&$scope.data11[i][0]>0){$scope.data11[i][1]=$scope.psttmNTB[i*15+10];}
+                                else $scope.data11[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+11]>0&&$scope.data12[i][0]>0){$scope.data12[i][1]=$scope.psttmNTB[i*15+11];}
+                                else $scope.data12[i][1]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.psttmNTB[i*15+12]>0&&$scope.data13[i][0]>0){$scope.data13[i][1]=$scope.psttmNTB[i*15+12];}
+                                else $scope.data13[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+13]>0&&$scope.data14[i][0]>0){$scope.data14[i][1]=$scope.psttmNTB[i*15+13];}
+                                else $scope.data14[i][1]=0;
+
+                                if($scope.psttmNTB[i*15+14]>0&&$scope.data15[i][0]>0){$scope.data15[i][1]=$scope.psttmNTB[i*15+14];}
+                                else $scope.data15[i][1]=0;
+                            }
+                            break;
+                    }
+                    $scope.drawNTBChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
             }
         };
@@ -1186,6 +4022,253 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.area) {
+                        case '总市值':
+                            for (var i = 0; i < $scope.data1.length; i++) {
+                                if ($scope.tomaktvalAll[i * 15] > 0 && $scope.data1[i][1] > 0 && $scope.data1[i][0] > 0) {
+                                    $scope.data1[i][2] = $scope.tomaktvalAll[i * 15];
+                                }
+                                else $scope.data1[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 1] > 0 && $scope.data2[i][1] > 0 && $scope.data2[i][0] > 0) {
+                                    $scope.data2[i][2] = $scope.tomaktvalAll[i * 15 + 1];
+                                }
+                                else $scope.data2[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 2] > 0 && $scope.data3[i][1] > 0 && $scope.data3[i][0] > 0) {
+                                    $scope.data3[i][2] = $scope.tomaktvalAll[i * 15 + 2];
+                                }
+                                else $scope.data3[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 3] > 0 && $scope.data4[i][1] > 0 && $scope.data4[i][0] > 0) {
+                                    $scope.data4[i][2] = $scope.tomaktvalAll[i * 15 + 3];
+                                }
+                                else $scope.data4[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 4] > 0 && $scope.data5[i][1] > 0 && $scope.data5[i][0] > 0) {
+                                    $scope.data5[i][2] = $scope.tomaktvalAll[i * 15 + 4];
+                                }
+                                else $scope.data5[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 5] > 0 && $scope.data6[i][1] > 0 && $scope.data6[i][0] > 0) {
+                                    $scope.data6[i][2] = $scope.tomaktvalAll[i * 15 + 5];
+                                }
+                                else $scope.data6[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 6] > 0 && $scope.data7[i][1] > 0 && $scope.data7[i][0] > 0) {
+                                    $scope.data7[i][2] = $scope.tomaktvalAll[i * 15 + 6];
+                                }
+                                else $scope.data7[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 7] > 0 && $scope.data8[i][1] > 0 && $scope.data8[i][0] > 0) {
+                                    $scope.data8[i][2] = $scope.tomaktvalAll[i * 15 + 7];
+                                }
+                                else $scope.data8[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 8] > 0 && $scope.data9[i][1] > 0 && $scope.data9[i][0] > 0) {
+                                    $scope.data9[i][2] = $scope.tomaktvalAll[i * 15 + 8];
+                                }
+                                else $scope.data9[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 9] > 0 && $scope.data10[i][1] > 0 && $scope.data10[i][0] > 0) {
+                                    $scope.data10[i][2] = $scope.tomaktvalAll[i * 15 + 9];
+                                }
+                                else $scope.data10[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 10] > 0 && $scope.data11[i][1] > 0 && $scope.data11[i][0] > 0) {
+                                    $scope.data11[i][2] = $scope.tomaktvalAll[i * 15 + 10];
+                                }
+                                else $scope.data11[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 11] > 0 && $scope.data12[i][1] > 0 && $scope.data12[i][0] > 0) {
+                                    $scope.data12[i][2] = $scope.tomaktvalAll[i * 15 + 11];
+                                }
+                                else $scope.data12[i][2] = 0;
+
+                            }
+
+                            for (var i = 0; i < $scope.data13.length; i++) {
+                                if ($scope.tomaktvalAll[i * 15 + 12] > 0 && $scope.data13[i][1] > 0 && $scope.data13[i][0] > 0) {
+                                    $scope.data13[i][2] = $scope.tomaktvalAll[i * 15 + 12];
+                                }
+                                else $scope.data13[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 13] > 0 && $scope.data14[i][1] > 0 && $scope.data14[i][0] > 0) {
+                                    $scope.data14[i][2] = $scope.tomaktvalAll[i * 15 + 13];
+                                }
+                                else $scope.data14[i][2] = 0;
+
+                                if ($scope.tomaktvalAll[i * 15 + 14] > 0 && $scope.data15[i][1] > 0 && $scope.data15[i][0] > 0) {
+                                    $scope.data15[i][2] = $scope.tomaktvalAll[i * 15 + 14];
+                                }
+                                else $scope.data15[i][2] = 0;
+                            }
+                            break;
+                        case '营业收入':
+                            for (var i = 0; i < $scope.data1.length; i++) {
+                                if ($scope.businsincAll[i * 15] > 0 && $scope.data1[i][1] > 0 && $scope.data1[i][0] > 0) {
+                                    $scope.data1[i][2] = $scope.businsincAll[i * 15];
+                                }
+                                else $scope.data1[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 1] > 0 && $scope.data2[i][1] > 0 && $scope.data2[i][0] > 0) {
+                                    $scope.data2[i][2] = $scope.businsincAll[i * 15 + 1];
+                                }
+                                else $scope.data2[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 2] > 0 && $scope.data3[i][1] > 0 && $scope.data3[i][0] > 0) {
+                                    $scope.data3[i][2] = $scope.businsincAll[i * 15 + 2];
+                                }
+                                else $scope.data3[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 3] > 0 && $scope.data4[i][1] > 0 && $scope.data4[i][0] > 0) {
+                                    $scope.data4[i][2] = $scope.businsincAll[i * 15 + 3];
+                                }
+                                else $scope.data4[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 4] > 0 && $scope.data5[i][1] > 0 && $scope.data5[i][0] > 0) {
+                                    $scope.data5[i][2] = $scope.businsincAll[i * 15 + 4];
+                                }
+                                else $scope.data5[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 5] > 0 && $scope.data6[i][1] > 0 && $scope.data6[i][0] > 0) {
+                                    $scope.data6[i][2] = $scope.businsincAll[i * 15 + 5];
+                                }
+                                else $scope.data6[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 6] > 0 && $scope.data7[i][1] > 0 && $scope.data7[i][0] > 0) {
+                                    $scope.data7[i][2] = $scope.businsincAll[i * 15 + 6];
+                                }
+                                else $scope.data7[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 7] > 0 && $scope.data8[i][1] > 0 && $scope.data8[i][0] > 0) {
+                                    $scope.data8[i][2] = $scope.businsincAll[i * 15 + 7];
+                                }
+                                else $scope.data8[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 8] > 0 && $scope.data9[i][1] > 0 && $scope.data9[i][0] > 0) {
+                                    $scope.data9[i][2] = $scope.businsincAll[i * 15 + 8];
+                                }
+                                else $scope.data9[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 9] > 0 && $scope.data10[i][1] > 0 && $scope.data10[i][0] > 0) {
+                                    $scope.data10[i][2] = $scope.businsincAll[i * 15 + 9];
+                                }
+                                else $scope.data10[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 10] > 0 && $scope.data11[i][1] > 0 && $scope.data11[i][0] > 0) {
+                                    $scope.data11[i][2] = $scope.businsincAll[i * 15 + 10];
+                                }
+                                else $scope.data11[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 11] > 0 && $scope.data12[i][1] > 0 && $scope.data12[i][0] > 0) {
+                                    $scope.data12[i][2] = $scope.businsincAll[i * 15 + 11];
+                                }
+                                else $scope.data12[i][2] = 0;
+
+                            }
+
+                            for (var i = 0; i < $scope.data13.length; i++) {
+                                if ($scope.businsincAll[i * 15 + 12] > 0 && $scope.data13[i][1] > 0 && $scope.data13[i][0] > 0) {
+                                    $scope.data13[i][2] = $scope.businsincAll[i * 15 + 12];
+                                }
+                                else $scope.data13[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 13] > 0 && $scope.data14[i][1] > 0 && $scope.data14[i][0] > 0) {
+                                    $scope.data14[i][2] = $scope.businsincAll[i * 15 + 13];
+                                }
+                                else $scope.data14[i][2] = 0;
+
+                                if ($scope.businsincAll[i * 15 + 14] > 0 && $scope.data15[i][1] > 0 && $scope.data15[i][0] > 0) {
+                                    $scope.data15[i][2] = $scope.businsincAll[i * 15 + 14];
+                                }
+                                else $scope.data15[i][2] = 0;
+                            }
+                            break;
+                        case '资产总计':
+                            for (var i = 0; i < $scope.data1.length; i++) {
+                                if ($scope.toassetsAll[i * 15] > 0 && $scope.data1[i][1] > 0 && $scope.data1[i][0] > 0) {
+                                    $scope.data1[i][2] = $scope.toassetsAll[i * 15];
+                                }
+                                else $scope.data1[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 1] > 0 && $scope.data2[i][1] > 0 && $scope.data2[i][0] > 0) {
+                                    $scope.data2[i][2] = $scope.toassetsAll[i * 15 + 1];
+                                }
+                                else $scope.data2[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 2] > 0 && $scope.data3[i][1] > 0 && $scope.data3[i][0] > 0) {
+                                    $scope.data3[i][2] = $scope.toassetsAll[i * 15 + 2];
+                                }
+                                else $scope.data3[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 3] > 0 && $scope.data4[i][1] > 0 && $scope.data4[i][0] > 0) {
+                                    $scope.data4[i][2] = $scope.toassetsAll[i * 15 + 3];
+                                }
+                                else $scope.data4[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 4] > 0 && $scope.data5[i][1] > 0 && $scope.data5[i][0] > 0) {
+                                    $scope.data5[i][2] = $scope.toassetsAll[i * 15 + 4];
+                                }
+                                else $scope.data5[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 5] > 0 && $scope.data6[i][1] > 0 && $scope.data6[i][0] > 0) {
+                                    $scope.data6[i][2] = $scope.toassetsAll[i * 15 + 5];
+                                }
+                                else $scope.data6[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 6] > 0 && $scope.data7[i][1] > 0 && $scope.data7[i][0] > 0) {
+                                    $scope.data7[i][2] = $scope.toassetsAll[i * 15 + 6];
+                                }
+                                else $scope.data7[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 7] > 0 && $scope.data8[i][1] > 0 && $scope.data8[i][0] > 0) {
+                                    $scope.data8[i][2] = $scope.toassetsAll[i * 15 + 7];
+                                }
+                                else $scope.data8[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 8] > 0 && $scope.data9[i][1] > 0 && $scope.data9[i][0] > 0) {
+                                    $scope.data9[i][2] = $scope.toassetsAll[i * 15 + 8];
+                                }
+                                else $scope.data9[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 9] > 0 && $scope.data10[i][1] > 0 && $scope.data10[i][0] > 0) {
+                                    $scope.data10[i][2] = $scope.toassetsAll[i * 15 + 9];
+                                }
+                                else $scope.data10[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 10] > 0 && $scope.data11[i][1] > 0 && $scope.data11[i][0] > 0) {
+                                    $scope.data11[i][2] = $scope.toassetsAll[i * 15 + 10];
+                                }
+                                else $scope.data11[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 11] > 0 && $scope.data12[i][1] > 0 && $scope.data12[i][0] > 0) {
+                                    $scope.data12[i][2] = $scope.toassetsAll[i * 15 + 11];
+                                }
+                                else $scope.data12[i][2] = 0;
+
+                            }
+
+                            for (var i = 0; i < $scope.data13.length; i++) {
+                                if ($scope.toassetsAll[i * 15 + 12] > 0 && $scope.data13[i][1] > 0 && $scope.data13[i][0] > 0) {
+                                    $scope.data13[i][2] = $scope.toassetsAll[i * 15 + 12];
+                                }
+                                else $scope.data13[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 13] > 0 && $scope.data14[i][1] > 0 && $scope.data14[i][0] > 0) {
+                                    $scope.data14[i][2] = $scope.toassetsAll[i * 15 + 13];
+                                }
+                                else $scope.data14[i][2] = 0;
+
+                                if ($scope.toassetsAll[i * 15 + 14] > 0 && $scope.data15[i][1] > 0 && $scope.data15[i][0] > 0) {
+                                    $scope.data15[i][2] = $scope.toassetsAll[i * 15 + 14];
+                                }
+                                else $scope.data15[i][2] = 0;
+                            }
+                            break;
+                    }
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
 
                 case '沪深A股':
@@ -1242,6 +4325,164 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.area){
+                        case '总市值':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.tomaktvalSS[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.tomaktvalSS[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.tomaktvalSS[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.tomaktvalSS[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.tomaktvalSS[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.tomaktvalSS[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.tomaktvalSS[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.tomaktvalSS[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.tomaktvalSS[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.tomaktvalSS[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.tomaktvalSS[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.tomaktvalSS[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.tomaktvalSS[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.tomaktvalSS[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.tomaktvalSS[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.tomaktvalSS[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.tomaktvalSS[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.tomaktvalSS[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '营业收入':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.businsincSS[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.businsincSS[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.businsincSS[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.businsincSS[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.businsincSS[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.businsincSS[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.businsincSS[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.businsincSS[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.businsincSS[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.businsincSS[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.businsincSS[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.businsincSS[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.businsincSS[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.businsincSS[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.businsincSS[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.businsincSS[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.businsincSS[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.businsincSS[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.businsincSS[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.businsincSS[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.businsincSS[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.businsincSS[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.businsincSS[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.businsincSS[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.businsincSS[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.businsincSS[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.businsincSS[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.businsincSS[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.businsincSS[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.businsincSS[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '资产总计':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.toassetsSS[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.toassetsSS[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.toassetsSS[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.toassetsSS[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.toassetsSS[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.toassetsSS[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.toassetsSS[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.toassetsSS[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.toassetsSS[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.toassetsSS[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.toassetsSS[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.toassetsSS[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.toassetsSS[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.toassetsSS[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.toassetsSS[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.toassetsSS[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.toassetsSS[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.toassetsSS[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+
+                    }
+                    $scope.drawChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
+
                     break;
 
                 case '新三板做市':
@@ -1298,7 +4539,483 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
                     }
                     document.getElementById('table').innerHTML=$scope.str;
+                    switch ($scope.area){
+                        case '总市值':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.tomaktvalNTB[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.tomaktvalNTB[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.tomaktvalNTB[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.tomaktvalNTB[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.tomaktvalNTB[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.tomaktvalNTB[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.tomaktvalNTB[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.tomaktvalNTB[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.tomaktvalNTB[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.tomaktvalNTB[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.tomaktvalNTB[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.tomaktvalNTB[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.tomaktvalNTB[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.tomaktvalNTB[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.tomaktvalNTB[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.tomaktvalNTB[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.tomaktvalNTB[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.tomaktvalNTB[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '营业收入':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.businsincNTB[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.businsincNTB[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.businsincNTB[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.businsincNTB[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.businsincNTB[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.businsincNTB[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.businsincNTB[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.businsincNTB[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.businsincNTB[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.businsincNTB[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.businsincNTB[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.businsincNTB[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.businsincNTB[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.businsincNTB[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.businsincNTB[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.businsincNTB[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.businsincNTB[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.businsincNTB[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+                        case '资产总计':
+                            for(var i=0;i<$scope.data1.length;i++){
+                                if($scope.toassetsNTB[i*15]>0&&$scope.data1[i][1]>0&&$scope.data1[i][0]>0) {$scope.data1[i][2]=$scope.toassetsNTB[i*15];}
+                                else $scope.data1[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+1]>0&&$scope.data2[i][1]>0&&$scope.data2[i][0]>0) {$scope.data2[i][2]=$scope.toassetsNTB[i*15+1];}
+                                else $scope.data2[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+2]>0&&$scope.data3[i][1]>0&&$scope.data3[i][0]>0) {$scope.data3[i][2]=$scope.toassetsNTB[i*15+2];}
+                                else $scope.data3[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+3]>0&&$scope.data4[i][1]>0&&$scope.data4[i][0]>0) {$scope.data4[i][2]=$scope.toassetsNTB[i*15+3];}
+                                else $scope.data4[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+4]>0&&$scope.data5[i][1]>0&&$scope.data5[i][0]>0) {$scope.data5[i][2]=$scope.toassetsNTB[i*15+4];}
+                                else $scope.data5[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+5]>0&&$scope.data6[i][1]>0&&$scope.data6[i][0]>0) {$scope.data6[i][2]=$scope.toassetsNTB[i*15+5];}
+                                else $scope.data6[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+6]>0&&$scope.data7[i][1]>0&&$scope.data7[i][0]>0) {$scope.data7[i][2]=$scope.toassetsNTB[i*15+6];}
+                                else $scope.data7[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+7]>0&&$scope.data8[i][1]>0&&$scope.data8[i][0]>0) {$scope.data8[i][2]=$scope.toassetsNTB[i*15+7];}
+                                else $scope.data8[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+8]>0&&$scope.data9[i][1]>0&&$scope.data9[i][0]>0) {$scope.data9[i][2]=$scope.toassetsNTB[i*15+8];}
+                                else $scope.data9[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+9]>0&&$scope.data10[i][1]>0&&$scope.data10[i][0]>0) {$scope.data10[i][2]=$scope.toassetsNTB[i*15+9];}
+                                else $scope.data10[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+10]>0&&$scope.data11[i][1]>0&&$scope.data11[i][0]>0) {$scope.data11[i][2]=$scope.toassetsNTB[i*15+10];}
+                                else $scope.data11[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+11]>0&&$scope.data12[i][1]>0&&$scope.data12[i][0]>0) {$scope.data12[i][2]=$scope.toassetsNTB[i*15+11];}
+                                else $scope.data12[i][2]=0;
+
+                            }
+
+                            for(var i=0;i<$scope.data13.length;i++) {
+                                if($scope.toassetsNTB[i*15+12]>0&&$scope.data13[i][1]>0&&$scope.data13[i][0]>0) {$scope.data13[i][2]=$scope.toassetsNTB[i*15+12];}
+                                else $scope.data13[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+13]>0&&$scope.data14[i][1]>0&&$scope.data14[i][0]>0) {$scope.data14[i][2]=$scope.toassetsNTB[i*15+13];}
+                                else $scope.data14[i][2]=0;
+
+                                if($scope.toassetsNTB[i*15+14]>0&&$scope.data15[i][1]>0&&$scope.data15[i][0]>0) {$scope.data15[i][2]=$scope.toassetsNTB[i*15+14];}
+                                else $scope.data15[i][2]=0;
+                            }
+                            break;
+
+                    }
+
+                    $scope.drawNTBChart($scope.data1,$scope.data2,$scope.data3,$scope.data4,$scope.data5,$scope.data6,$scope.data7,$scope.data8,$scope.data9,$scope.data10,$scope.data11,$scope.data12,$scope.data13,$scope.data14,$scope.data15)
                     break;
             }
         };
+
+        $scope.drawChart=function (data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15) {
+
+            var myChart = echarts.init(document.getElementById('test'));
+
+            var option = {
+                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
+                tooltip : {
+                    backgroundColor:'rgba(0,0,0,0)',
+                    textStyle: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                },
+                legend: {
+                },
+                toolbox: {
+                },
+                xAxis : [
+                    {
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
+                    }
+                ],
+
+                series : [
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data1,
+                        color:$scope.colors[0]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data2,
+                        color:$scope.colors[1]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data3,
+                        color:$scope.colors[2]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data4,
+                        color:$scope.colors[3]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data5,
+                        color:$scope.colors[4]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data6,
+                        color:$scope.colors[5]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data7,
+                        color:$scope.colors[6]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data8,
+                        color:$scope.colors[7]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data9,
+                        color:$scope.colors[8]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data10,
+                        color:$scope.colors[9]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data11,
+                        color:$scope.colors[10]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data12,
+                        color:$scope.colors[11]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data13,
+                        color:$scope.colors[12]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data14,
+                        color:$scope.colors[13]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data15,
+                        color:$scope.colors[14]
+                    }
+
+                ]
+            };
+
+            myChart.setOption(option);
+        }
+
+        $scope.drawNTBChart=function (data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12,data13,data14,data15) {
+
+            var myChart = echarts.init(document.getElementById('test'));
+
+            var option = {
+                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
+                tooltip : {
+                    backgroundColor:'rgba(0,0,0,0)',
+                    textStyle: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                },
+                legend: {
+                },
+                toolbox: {
+                },
+                xAxis : [
+                    {
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        splitNumber: 4,
+                        scale: true
+                    }
+                ],
+
+                series : [
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2])/5;
+                        },
+                        data: data1,
+                        color:$scope.colors[0]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data2,
+                        color:$scope.colors[1]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data3,
+                        color:$scope.colors[2]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data4,
+                        color:$scope.colors[3]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data5,
+                        color:$scope.colors[4]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data6,
+                        color:$scope.colors[5]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data7,
+                        color:$scope.colors[6]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data8,
+                        color:$scope.colors[7]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data9,
+                        color:$scope.colors[8]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data10,
+                        color:$scope.colors[9]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data11,
+                        color:$scope.colors[10]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data12,
+                        color:$scope.colors[11]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data13,
+                        color:$scope.colors[12]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data14,
+                        color:$scope.colors[13]
+                    },
+                    {
+                        type:'scatter',
+                        symbolSize: function (value){
+                            return Math.sqrt(value[2]);
+                        },
+                        data: data15,
+                        color:$scope.colors[14]
+                    }
+
+                ]
+            };
+
+            myChart.setOption(option);
+        }
     });

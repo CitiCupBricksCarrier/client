@@ -2,6 +2,7 @@ table{
     width:100%;
 }
 table tr:nth-child(odd){background:#F4F4F4;}
+
 table th{
      background: #E5F0FF;
      font-weight: 900;
