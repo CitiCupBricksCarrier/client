@@ -1,5 +1,6 @@
 table{
-    font-size: 8px;
+    font-size: 2px;
+    margin-left: 0%;
 }
 
 table th{
@@ -108,7 +109,7 @@ button{
     padding-top: 10px;
     padding-left: 15px;
     overflow-y: auto;
- }
+}
 
 button.myButton{
     background: linear-gradient(to bottom, rgb(238, 252, 255), rgb(210, 225, 240));
