@@ -29,7 +29,8 @@ angular.module('myApp.login', [
 
           var modulus = null,
               exponent = null,
-              eventId = null;
+              eventId = null,
+              bizToken = null;
 
           $http({
             method: 'post',
@@ -41,6 +42,7 @@ angular.module('myApp.login', [
               modulus = response.data.modulus;
               eventId = response.data.eventid;
               exponent = response.data.exponent;
+              bizToken = response.data.bizToken;
           }, function () {
             console.error("get login params error");
           });
@@ -53,7 +55,8 @@ angular.module('myApp.login', [
 
             var datas = {
                 "username": $scope.username,
-                "password": encrypted_password
+                "password": encrypted_password,
+                "bizToken": bizToken
             };
             var result = JSON.stringify(datas);
             $http({
