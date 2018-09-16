@@ -2,8 +2,7 @@ angular.module('myApp.microIndustryChain', [
     'myApp.microIndustryChain.discoverChainView',
     'myApp.microIndustryChain.mineChainView',
     'myApp.microIndustryChain.createChainView',
-    'myApp.microIndustryChain.previewChainView',
-    'myApp.microIndustryChain.industryFactorAnalyze'
+    'myApp.microIndustryChain.previewChainView'
 ])
 
     .config(function($stateProvider, $urlRouterProvider){

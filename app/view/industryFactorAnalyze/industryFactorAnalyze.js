@@ -1,4 +1,4 @@
-angular.module('myApp.microIndustryChain.industryFactorAnalyze', [
+angular.module('myApp.industryFactorAnalyze', [
 ])
 
     .config(function($stateProvider, $urlRouterProvider){
