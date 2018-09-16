@@ -6,9 +6,9 @@ angular.module('myApp.microIndustryChain.industryFactorAnalyze', [
     })
 
     .controller('IndustryFactorAnalyzeCtrl',function($scope, $route, $http, $state) {
-
+        $scope.toShowResult=false;
         //指标部分
-        $scope.index_recommend = ['xxx1', 'xxx2', 'xxx3'];
+        $scope.index_recommend = ['安全性-存货周转率', '成长-ROE变动', '估值类-股息率'];
         $scope.index_selectable = ['安全性-存货周转率','安全性类-速动比率','安全性类-总资产周转率', '成长-ROE变动', '成长类-GPOA变动', '成长类-毛利润增长率',
             '分析师类-一致预期PB', '分析师类-一致预期预测营业收入', '分析师类-最近一个月券商覆盖数量（券商家数）变化', '估值类-股息率', '估值类-市销率的倒数',
             '估值类-市盈率的倒数', '价量-6日成交额标准差', '价量-6日成交额均值（千元）', '价量-20日特雷诺比率', '价量-60日特雷诺比率', '盈利质量-累计成本费用利润率',
@@ -19,7 +19,7 @@ angular.module('myApp.microIndustryChain.industryFactorAnalyze', [
 
         $scope.index_unselectable = ['zzz1','zzz2', 'zzz3'];
 
-        $scope.description_toShow = '点击查看指标详细信息';
+        $scope.description_toShow = 'Tip:点击指标名查看详细信息';
         $scope.numIsShow = false;
         $scope.num_toShow = 0;
 
@@ -70,11 +70,12 @@ angular.module('myApp.microIndustryChain.industryFactorAnalyze', [
             if(index_selected_list.length == 1){        //普通方法
                 analyze_single(index_selected_list[0], $scope.method_selected);
             }
+            $scope.toShowResult=true;
+
         }
 
         //复合因子确认分析按钮的监听
         $scope.clickSureToAnalyze = function(){
-
         }
 
         /**
@@ -215,7 +216,7 @@ angular.module('myApp.microIndustryChain.industryFactorAnalyze', [
             '企业一定期间累计的利润总额与成本、费用总额的比率',
             '企业的所得税占盈利总额百分比'
         ];
-        var numList = [1,2,3];
+        var numList = [19,8,4,6,2,11,5,6,4,6,12,11,2,15,10,2,9,5,10];
 
         /**
          * 获取指标的详细信息

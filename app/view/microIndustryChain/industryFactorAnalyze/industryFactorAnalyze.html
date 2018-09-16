@@ -1,76 +1,79 @@
-
-<div id="index" class="part">
-    <h3>选择指标</h3>
-    所选指标：<label>{{index_selected}}</label>
-    <div style="position: relative;">
-        <div class="index_container">
-            <div class="section">
-                <h4>推荐指标</h4>
-                <div class="list_container recommend">
-                    <li ng-repeat="item in index_recommend">
-                        <!--<input type="checkbox" class="checkBox" ng-click="checkBoxOnChange_index(item)"/>-->
-                        <input type="checkbox" class="checkBox"/>
-                        <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
-                    </li>
+<div class="container">
+    <div id="index" class="part" style="margin-top: 10%">
+        <h1>Step1.选择指标</h1>
+        已选指标：<label>{{index_selected}}</label>
+        <div style="position: relative;margin-top: 5%">
+            <div class="index_container">
+                <div class="section">
+                    <h4>推荐指标</h4>
+                    <div class="list_container recommend" >
+                        <li style="border: 1px solid #c0c0c0;border-left-style: none;border-top-style: none;border-bottm-style: none;border-right-style: none;" ng-repeat="item in index_recommend">
+                            <!--<input type="checkbox" class="checkBox" ng-click="checkBoxOnChange_index(item)"/>-->
+                            <input type="checkbox" class="checkBox"/>
+                            <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
+                        </li>
+                    </div>
+                </div>
+                <div class="section">
+                    <h4>全部指标</h4>
+                    <div class="list_container all">
+                        <li style="border: 1px solid #c0c0c0;border-left-style: none;border-top-style: none;border-bottm-style: none;border-right-style: none;" ng-repeat="item in index_selectable">
+                            <input type="checkbox" class="checkBox"/>
+                            <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
+                        </li>
+                        <li ng-show="false" ng-repeat="item in index_unselectable">
+                            <input type="checkbox" class="checkBox" disabled/>
+                            <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
+                        </li>
+                    </div>
                 </div>
             </div>
-            <div class="section">
-                <h4>全部指标</h4>
-                <div class="list_container all">
-                    <li ng-repeat="item in index_selectable">
-                        <input type="checkbox" class="checkBox"/>
-                        <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
-                    </li>
-                    <li ng-repeat="item in index_unselectable">
-                        <input type="checkbox" class="checkBox" disabled/>
-                        <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
-                    </li>
-                </div>
-            </div>
-        </div>
 
-        <div class="description_container">
-            <p>{{description_toShow}}</p>
-            <div ng-show="numIsShow">最近选择：<label>{{num_toShow}}</label>人</div>
-        </div>
-    </div>
-</div>
-
-<div id="method" class="part">
-    <h3>选择方法</h3>
-    所选方法：<label>{{method_selected}}</label>
-    <div style="position: relative;">
-        <div class="method_container">
-            <div class="section">
-                <h4>全部指标</h4>
-                <div class="list_container recommend">
-                    <table>
-                        <tr ng-repeat="item in method_list" ng-dblclick="clickToShowDescription_method(item)">
-                            <th>
-                                <input type="checkbox" class="checkBox"/>
-                                {{item.name}}
-                            </th>
-                            <td>
-                                {{item.description}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="description_container">
+                <p >{{description_toShow}}</p>
+                <div ng-show="numIsShow">最近选择：<label>{{num_toShow}}</label>人</div>
             </div>
         </div>
     </div>
-</div>
 
-<div>
-    <button class="btn_analyze" ng-click="clickToAnalyze()">进行分析</button>
-</div>
-<div class="ratio_container">
-    <h4>请输入各指标的权重</h4>
-    <h5>各指标权重总和为100，如果不符合将会自动计算调整</h5>
-    <div ng-repeat="item in index_selected_list">
-        <label>{{item}}：</label>
-        <input class="input_number" type="number" min="0" max="100"/>
+    <div id="method" class="part" style="margin-top: 25%">
+        <h1>Step2.选择方法</h1>
+        已选方法：<label>{{method_selected}}</label>
+        <div style="position: relative;margin-top: 5%">
+            <div class="method_container">
+                <div class="section">
+                    <h4>全部方法</h4>
+                    <div class="list_container recommend">
+                        <table>
+                            <tr ng-repeat="item in method_list" ng-dblclick="clickToShowDescription_method(item)">
+                                <th>
+                                    <input type="checkbox" class="checkBox"/>
+                                    {{item.name}}
+                                </th>
+                                <td>
+                                    {{item.description}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
+
+    <div style="margin-top: 25%">
+        <button class="btn_analyze" ng-click="clickToAnalyze()">进行分析</button>
+    </div>
+    <div ng-show="false" class="ratio_container">
+        <h4>请输入各指标的权重</h4>
+        <h5>各指标权重总和为100，如果不符合将会自动计算调整</h5>
+        <div ng-repeat="item in index_selected_list">
+            <label>{{item}}：</label>
+            <input class="input_number" type="number" min="0" max="100"/>
+        </div>
+        <button class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
+    </div>
+
+    <label style="margin-top: 10%;font-size: 36px" >分析结果：</label><span style="font-size: 26px" ng-show="toShowResult">您所选择的指标和行业股票的收益率之间有相关性，且相关性较稳定。</span>
 </div>
 <link rel="stylesheet" href="view/microIndustryChain/industryFactorAnalyze/industryFactorAnalyze.css"/>
