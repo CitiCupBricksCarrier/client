@@ -14,6 +14,11 @@ angular.module('myApp.macroIndustryDisplay', [
     'myApp.macroIndustryDisplay.scbxdb',
     'myApp.macroIndustryDisplay.industryData',
     'myApp.macroIndustryDisplay.economicData',
+    'myApp.macroIndustryDisplay.cwbl',
+    'myApp.macroIndustryDisplay.cwsj',
+    'myApp.macroIndustryDisplay.gzbx',
+    'myApp.macroIndustryDisplay.scbx',
+    'myApp.macroIndustryDisplay.ylyc',
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
@@ -106,6 +111,31 @@ angular.module('myApp.macroIndustryDisplay', [
                 url:'/scbxdb',
                 templateUrl: 'view/macroIndustryDisplay/industryStatus/scbxdb/scbxdb.html',
                 controller: 'scbxdbCtrl'
+            })
+            .state('macroIndustryDisplay.cwbl',{
+                url:'/cwbl',
+                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/cwbl/cwbl.html',
+                controller: 'cwblCtrl'
+            })
+            .state('macroIndustryDisplay.cwsj',{
+                url:'/cwsj',
+                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/cwsj/cwsj.html',
+                controller: 'cwsjCtrl'
+            })
+            .state('macroIndustryDisplay.gzbx',{
+                url:'/gzbx',
+                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/gzbx/gzbx.html',
+                controller: 'gzbxCtrl'
+            })
+            .state('macroIndustryDisplay.scbx',{
+                url:'/scbx',
+                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/scbx/scbx.html',
+                controller: 'scbxCtrl'
+            })
+            .state('macroIndustryDisplay.ylyc',{
+                url:'/ylyc',
+                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/ylyc/ylyc.html',
+                controller: 'ylycCtrl'
             });
     })
 
@@ -133,6 +163,12 @@ angular.module('myApp.macroIndustryDisplay', [
         };
         $scope.hideDataPane3=function () {
             $scope.toshowDataPane3=false;
+        };
+        $scope.showDataPane4=function () {
+            $scope.toshowDataPane4=true;
+        };
+        $scope.hideDataPane4=function () {
+            $scope.toshowDataPane4=false;
         };
 
         //导航栏的点击效果
