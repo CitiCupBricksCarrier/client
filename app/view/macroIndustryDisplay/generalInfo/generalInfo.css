@@ -380,3 +380,8 @@
     width: 522px;
     height: 334px;
 }
+
+.part .other{
+    height: 925px;
+    min-width: 800px;
+}

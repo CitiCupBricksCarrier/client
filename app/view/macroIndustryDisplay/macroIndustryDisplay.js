@@ -14,16 +14,12 @@ angular.module('myApp.macroIndustryDisplay', [
     'myApp.macroIndustryDisplay.scbxdb',
     'myApp.macroIndustryDisplay.industryData',
     'myApp.macroIndustryDisplay.economicData',
-    'myApp.macroIndustryDisplay.cwbl',
-    'myApp.macroIndustryDisplay.cwsj',
-    'myApp.macroIndustryDisplay.gzbx',
-    'myApp.macroIndustryDisplay.scbx',
-    'myApp.macroIndustryDisplay.ylyc',
-
 ])
 
     .config(function($stateProvider,$urlRouterProvider){
-        $urlRouterProvider.when('/macroIndustryDisplay', '/macroIndustryDisplay/generalInfo');
+        // $urlRouterProvider.when('/macroIndustryDisplay', '/macroIndustryDisplay/generalInfo');
+        // $urlRouterProvider.when('/macroIndustryDisplay', '/macroIndustryList');
+        // $stateProvider.when('macroIndustryDisplay', 'macroIndustryDisplay.generalInfo');
 
         $stateProvider
             .state('macroIndustryDisplay.generalInfo',{
@@ -51,80 +47,65 @@ angular.module('myApp.macroIndustryDisplay', [
                 templateUrl: 'view/macroIndustryDisplay/economicData/economicData.html',
                 controller: 'EconomicDataCtrl'
             })
+        $stateProvider
             .state('macroIndustryDisplay.holdNum',{
                 url:'/holdNum',
                 templateUrl: 'view/macroIndustryDisplay/industryData/holdNum/holdNum.html',
                 controller: 'holdNumCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.capacity',{
                 url:'/capacity',
                 templateUrl: 'view/macroIndustryDisplay/industryData/capacity/capacity.html',
                 controller: 'capacityCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.inventory',{
                 url:'/inventory',
                 templateUrl: 'view/macroIndustryDisplay/industryData/inventory/inventory.html',
                 controller: 'inventoryCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.price',{
                 url:'/price',
                 templateUrl: 'view/macroIndustryDisplay/industryData/price/price.html',
                 controller: 'priceCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.qyjx',{
                 url:'/qyjx',
                 templateUrl: 'view/macroIndustryDisplay/economicData/qyjx/qyjx.html',
                 controller: 'qyjxCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.hysxysj',{
                 url:'/hysxysj',
                 templateUrl: 'view/macroIndustryDisplay/economicData/hysxysj/hysxysj.html',
                 controller: 'hysxysjCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.hycw',{
                 url:'/hycw',
                 templateUrl: 'view/macroIndustryDisplay/economicData/hycw/hycw.html',
                 controller: 'hycwCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.hyssdw',{
                 url:'/hyssdw',
                 templateUrl: 'view/macroIndustryDisplay/industryStatus/hyssdw/hyssdw.html',
                 controller: 'hyssdwCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.hylsbj',{
                 url:'/hylsbj',
                 templateUrl: 'view/macroIndustryDisplay/industryStatus/hylsbj/hylsbj.html',
                 controller: 'hylsbjCtrl'
-            })
+            });
+        $stateProvider
             .state('macroIndustryDisplay.scbxdb',{
                 url:'/scbxdb',
                 templateUrl: 'view/macroIndustryDisplay/industryStatus/scbxdb/scbxdb.html',
                 controller: 'scbxdbCtrl'
-            })
-            .state('macroIndustryDisplay.cwbl',{
-                url:'/cwbl',
-                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/cwbl/cwbl.html',
-                controller: 'cwblCtrl'
-            })
-            .state('macroIndustryDisplay.cwsj',{
-                url:'/cwsj',
-                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/cwsj/cwsj.html',
-                controller: 'cwsjCtrl'
-            })
-            .state('macroIndustryDisplay.gzbx',{
-                url:'/gzbx',
-                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/gzbx/gzbx.html',
-                controller: 'gzbxCtrl'
-            })
-            .state('macroIndustryDisplay.scbx',{
-                url:'/scbx',
-                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/scbx/scbx.html',
-                controller: 'scbxCtrl'
-            })
-            .state('macroIndustryDisplay.ylyc',{
-                url:'/ylyc',
-                templateUrl: 'view/macroIndustryDisplay/mainQuotedCompany/ylyc/ylyc.html',
-                controller: 'ylycCtrl'
             });
     })
 
@@ -132,7 +113,6 @@ angular.module('myApp.macroIndustryDisplay', [
         $scope.toshowDataPane=false;
         $scope.toshowDataPane2=false;
         $scope.toshowDataPane3=false;
-        $scope.toshowDataPane4=false;
 
 
         $scope.showDataPane=function () {
@@ -153,13 +133,6 @@ angular.module('myApp.macroIndustryDisplay', [
         $scope.hideDataPane3=function () {
             $scope.toshowDataPane3=false;
         };
-        $scope.showDataPane4=function () {
-            $scope.toshowDataPane4=true;
-        };
-        $scope.hideDataPane4=function () {
-            $scope.toshowDataPane4=false;
-        };
-
 
         //导航栏的点击效果
         $('.header_macro .module_nav .nav').click(function (e) {
