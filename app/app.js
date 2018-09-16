@@ -1,6 +1,6 @@
 'use strict';
 
-let urlHead = "http://localhost:8080/"
+let urlHead = "http://localhost:8080/";
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
@@ -78,4 +78,5 @@ angular.module('myApp', [
                 "</nav>"
         };
     });
+
 

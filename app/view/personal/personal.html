@@ -16,5 +16,27 @@
     <button class="btn btn-default" ng-click="logout()">登出</button>
 </div>
 
+<div class="david-container" id="accountDiv">
+    <div id="accountDiv_right">
+        <h2>账户</h2>
+        <div ng-repeat="account in accounts">
+            <div class="account" ng-repeat="(key, value) in account">
+                <p>产品名称：{{value.productName}}</p>
+                <p>产品代码：{{value.productCode}}</p>
+                <p>产品账户：{{value.displayAccountNumber}}</p>
+                <p>账户昵称：{{value.accountNickname}}</p>
+                <p>账户余额：{{value.currentBalance}} {{value.currencyCode}}</p>
+            </div>
+        </div>
+        <h2>保险</h2>
+        <div class="account" ng-repeat="insurance in insurances">
+            <p>产品名称：{{insurance.productName}}</p>
+            <p>产品代码：{{insurance.productCode}}</p>
+            <p>产品账户：{{insurance.displayAccountNumber}}</p>
+            <p>保险金额：{{insurance.totalPremiumPaidAmount}} {{insurance.currencyCode}}</p>
+        </div>
+    </div>
+</div>
+
 
 <link rel="stylesheet" href="view/personal/personal.css">
