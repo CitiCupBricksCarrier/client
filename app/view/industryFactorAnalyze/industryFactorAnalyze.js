@@ -7,16 +7,16 @@ angular.module('myApp.industryFactorAnalyze', [
 
     .controller('IndustryFactorAnalyzeCtrl',function($scope, $route, $http, $state) {
         $scope.toShowResult=false;
-        $scope.RESULT=''
+        $scope.RESULT='正在分析...';
         //指标部分
         $scope.index_recommend = ['安全性-存货周转率', '成长-ROE变动', '估值类-股息率'];
         $scope.index_selectable = ['安全性-存货周转率','安全性类-速动比率','安全性类-总资产周转率', '成长-ROE变动', '成长类-GPOA变动', '成长类-毛利润增长率',
             '分析师类-一致预期PB', '分析师类-一致预期预测营业收入', '分析师类-最近一个月券商覆盖数量（券商家数）变化', '估值类-股息率', '估值类-市销率的倒数',
             '估值类-市盈率的倒数', '价量-6日成交额标准差', '价量-6日成交额均值（千元）', '价量-20日特雷诺比率', '价量-60日特雷诺比率', '盈利质量-累计成本费用利润率',
             '盈利质量-所得税占盈利总额百分比'];
-        var index_selectable_eng = ['inventory_turnover', 'quick_ratio','turnover_of_total_assets','ROE_change','GPOA_change','profit_growth_rate',
-            'consistence_expectation','consistence_expectation_predict_profit','dealers_num_change_1M','dividend_rate','market_selling_rate_rec',
-            'P_E_ratio_rec', 'turnover_std_6D', 'turnover_mean_6D', 'Tenore_ratio_20D', 'Tenore_ratio_60D', 'cost_profit_margin_cumu', 'incometax_profit_percent'];
+        var index_selectable_eng = ['InventoryTurnover', 'Quick_Ratio','TurnoverOfTotalAssets','ROE_change','GPOA_change','ProfitGrowthRate',
+            'ConsistenceExpectation','ConsistenceExpectationPredictProfit','DealersNumChange_1M','DividendRate','MarketSellingRateRec',
+            'PE_RatioRec', 'TurnoverStd_6D', 'TurnoverMean_6D', 'TenoreRatio_20D', 'TenoreRatio_60D', 'CostProfitMarginCumu', 'IncometaxProfitPercent'];
 
         $scope.index_unselectable = ['zzz1','zzz2', 'zzz3'];
 
@@ -30,6 +30,7 @@ angular.module('myApp.industryFactorAnalyze', [
 
         var index_default = '安全性-存货周转率';
 
+        $scope.toShowRatio = false;         //显示填写比例
 
         //方法部分
         $scope.method_list = [
@@ -70,35 +71,64 @@ angular.module('myApp.industryFactorAnalyze', [
         $scope.clickToAnalyze = function () {
             if(index_selected_list.length == 1){        //普通方法
                 analyze_single(index_selected_list[0], $scope.method_selected);
+                $scope.toShowResult=true;
             }
-            switch ($scope.method_selected){
-                case 'IC-mean':
-                    $scope.RESULT='您所选择的指标和行业股票的收益率之间有较强的相关性。';
-                    document.getElementById('resultSpan').innerText=$scope.RESULT;
-                    break;
-                case 'IC-IR':
-                    $scope.RESULT='您所选择的指标和行业股票的收益率之间有相关性，且相关性较稳定。';
-                    document.getElementById('resultSpan').innerText=$scope.RESULT;
-                    break;
-                case 'IC-T':
-                    $scope.RESULT='您所选择的指标和行业股票的收益率之间相关性较不显著。';
-                    document.getElementById('resultSpan').innerText=$scope.RESULT;
-                    break;
-                case '多空收益':
-                    $scope.RESULT='多空收益可用来探究您选择的因子对整个行业股票收益率的影响；你所选择的因子对应的多空收益为：40%。';
-                    document.getElementById('resultSpan').innerText=$scope.RESULT;
-                    break;
-                default:
-                    $scope.RESULT='';
-                    break;
+            else if(index_selected_list.length > 1){        //复合因子
+                //显示填写的列表
+                $scope.toShowRatio = true;
             }
-            $scope.toShowResult=true;
+
+            // switch ($scope.method_selected){
+            //     case 'IC-mean':
+            //         $scope.RESULT='您所选择的指标和行业股票的收益率之间有较强的相关性。';
+            //         document.getElementById('resultSpan').innerText=$scope.RESULT;
+            //         break;
+            //     case 'IC-IR':
+            //         $scope.RESULT='您所选择的指标和行业股票的收益率之间有相关性，且相关性较稳定。';
+            //         document.getElementById('resultSpan').innerText=$scope.RESULT;
+            //         break;
+            //     case 'IC-T':
+            //         $scope.RESULT='您所选择的指标和行业股票的收益率之间相关性较不显著。';
+            //         document.getElementById('resultSpan').innerText=$scope.RESULT;
+            //         break;
+            //     case '多空收益':
+            //         $scope.RESULT='多空收益可用来探究您选择的因子对整个行业股票收益率的影响；你所选择的因子对应的多空收益为：40%。';
+            //         document.getElementById('resultSpan').innerText=$scope.RESULT;
+            //         break;
+            //     default:
+            //         $scope.RESULT='';
+            //         break;
+            // }
 
         }
 
         //复合因子确认分析按钮的监听
         $scope.clickSureToAnalyze = function(){
+            // console.log($('.ratio_container .input_number'))
+            var ratioList = [];
+            var total = 0;
+            $('.ratio_container .input_number').each(function () {
+                // console.log($(this).val())
+                if($(this).val() > 0){
+                    ratioList.push(parseInt($(this).val()));
+                    total += parseInt($(this).val());
+                }
+                else{
+                    return;
+                }
+            })
+            // console.log(total)
+            //处理ratio
+            for(var i = 0; i < ratioList.length; i++){
+                ratioList[i] = ratioList[i]/total * 100;
+            }
+
+            //调用方法
+            analyze_multi(index_selected_list,'复合因子IC' , ratioList);
+
+            $scope.toShowResult=true;
         }
+
 
         /**
          * 页面加载完毕时
@@ -206,6 +236,8 @@ angular.module('myApp.industryFactorAnalyze', [
             $($('.part .method_container .section .list_container .checkBox')[1]).prop('checked', true);
             $scope.method_selected = method_default;
 
+            $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
+
             $scope.$apply();
         }
 
@@ -262,15 +294,21 @@ angular.module('myApp.industryFactorAnalyze', [
          * http请求
          */
         //获取最近选择人数
-        // $http({
-        //     method: 'post',
-        //     url: 'http://localhost:8080/CorrelationAnalysis/IndexClicks'
-        // }).then(function successCallBack(response) {
-        //     console.log(response.data);
-        //
-        // },function errorCallBack(response) {
-        //     console.error('获取最近选择人数失败');
-        // });
+        $http({
+            method: 'post',
+            url: 'http://localhost:8080/CorrelationAnalysis/IndexClicks'
+        }).then(function successCallBack(response) {
+            console.log(response.data);
+            var data = response.data;
+            for(var i = 0; i < index_selectable_eng.length; i++){
+                // console.log(data[index_selectable_eng[i]])
+                numList[i] = data[index_selectable_eng[i]];
+                // console.log(numList[i])
+            }
+
+        },function errorCallBack(response) {
+            console.error('获取最近选择人数失败');
+        });
 
         //进行分析，单个指标的
         function analyze_single(index, method) {
@@ -283,9 +321,41 @@ angular.module('myApp.industryFactorAnalyze', [
                 }
             }).then(function successCallBack(response) {
                 console.log(response.data);
-
+                $scope.RESULT = response.data;
+                $scope.$apply;
             },function errorCallBack(response) {
                 console.error('分析失败');
+                return '';
+            });
+        }
+
+        //进行分析，复合因子
+        function analyze_multi(index_selected_list, method, ratioList) {
+            var form_data = new FormData();
+            form_data.append('indexes', index_selected_list);
+            form_data.append('analysisMethod', method);
+            form_data.append('ratio', ratioList);
+
+            $http({
+                method: 'post',
+                url: 'http://localhost:8080/CorrelationAnalysis/Multi_FactorsAnalysis',
+                // data: {
+                //     indexes: index_selected_list,
+                //     analysisMethod: method,
+                //     ratio: ratioList
+                // },
+                data: form_data,
+                transformRequest: angular.identity,     //使用angular传参认证
+                headers: {
+                    'Content-Type': undefined           //设置请求头
+                }
+            }).then(function successCallBack(response) {
+                console.log(response.data);
+                $scope.RESULT = response.data;
+                $scope.$apply;
+            },function errorCallBack(response) {
+                console.error('分析失败');
+                return '';
             });
         }
     });

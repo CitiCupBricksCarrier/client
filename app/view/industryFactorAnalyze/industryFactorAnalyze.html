@@ -66,7 +66,7 @@
     <div style="margin-top: 25%">
         <button class="btn_analyze" ng-click="clickToAnalyze()">进行分析</button>
     </div>
-    <div ng-show="false" class="ratio_container">
+    <div ng-show="toShowRatio" class="ratio_container">
         <h4>请输入各指标的权重</h4>
         <h5>各指标权重总和为100，如果不符合将会自动计算调整</h5>
         <div ng-repeat="item in index_selected_list">
@@ -76,6 +76,6 @@
         <button class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
     </div>
 
-    <label style="margin-top: 10%;font-size: 36px" >分析结果：</label><span id="resultSpan" style="font-size: 26px" ng-show="toShowResult"></span>
+    <label style="margin-top: 10%;font-size: 36px" >分析结果：</label><span id="resultSpan" style="font-size: 26px" ng-show="toShowResult">{{RESULT}}</span>
 </div>
 <link rel="stylesheet" href="view/industryFactorAnalyze/industryFactorAnalyze.css"/>
