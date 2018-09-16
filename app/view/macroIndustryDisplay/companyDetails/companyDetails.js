@@ -151,7 +151,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                 let similarData = response.data;
 
                 //添加公司节点
-                addCompany(similarData.company.compname,similarData.company.stkcd,0,0);
+                addCompany(similarData.company.compnamesummary,similarData.company.stkcd,0,0);
 
 
                 //添加行业节点
@@ -169,7 +169,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                         if($.inArray(company_json_str,company_json_list) == -1  ){
                             company_json_list.push(company_json_str);
                             let company_json_temp = JSON.parse(company_json_str);
-                            addCompany(company_json_temp.compname,company_json_temp.stkcd,company_json_list.length+industryList.length,categoryList.indexOf(category_temp));
+                            addCompany(company_json_temp.compnamesummary,company_json_temp.stkcd,company_json_list.length+industryList.length,categoryList.indexOf(category_temp));
                         }
                     }
                 }
@@ -186,7 +186,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                     for (let j = 0 ; j<similarData[indistry_index].length;j++){
                         for(let n = 0 ; n <companyList.length;n++){
                             // console.log(companyList[n].name,1,similarData[indistry_index][j].compname)
-                            if(companyList[n].name == similarData[indistry_index][j].compname){
+                            if(companyList[n].name == similarData[indistry_index][j].compnamesummary){
                                 // console.log(industryList[i],1,companyList[n]);
                                 console.log(111)
                                 addConnection(industryList[i],companyList[n]);
