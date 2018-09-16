@@ -293,22 +293,22 @@ angular.module('myApp.industryFactorAnalyze', [
          * ----------------------------------
          * http请求
          */
-        //获取最近选择人数
-        $http({
-            method: 'post',
-            url: urlHead+'CorrelationAnalysis/IndexClicks'
-        }).then(function successCallBack(response) {
-            console.log(response.data);
-            var data = response.data;
-            for(var i = 0; i < index_selectable_eng.length; i++){
-                // console.log(data[index_selectable_eng[i]])
-                numList[i] = data[index_selectable_eng[i]];
-                // console.log(numList[i])
-            }
-
-        },function errorCallBack(response) {
-            console.error('获取最近选择人数失败');
-        });
+        // //获取最近选择人数
+        // $http({
+        //     method: 'post',
+        //     url: urlHead+'CorrelationAnalysis/IndexClicks'
+        // }).then(function successCallBack(response) {
+        //     console.log(response.data);
+        //     var data = response.data;
+        //     for(var i = 0; i < index_selectable_eng.length; i++){
+        //         // console.log(data[index_selectable_eng[i]])
+        //         numList[i] = data[index_selectable_eng[i]];
+        //         // console.log(numList[i])
+        //     }
+        //
+        // },function errorCallBack(response) {
+        //     console.error('获取最近选择人数失败');
+        // });
 
         //进行分析，单个指标的
         function analyze_single(index, method) {
