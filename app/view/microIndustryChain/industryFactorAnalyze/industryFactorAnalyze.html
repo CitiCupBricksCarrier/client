@@ -22,7 +22,7 @@
                         <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
                     </li>
                     <li ng-repeat="item in index_unselectable">
-                        <input type="checkbox" class="checkBox"/>
+                        <input type="checkbox" class="checkBox" disabled/>
                         <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
                     </li>
                 </div>
@@ -62,6 +62,15 @@
 </div>
 
 <div>
-    <button class="btn_analyze">进行分析</button>
+    <button class="btn_analyze" ng-click="clickToAnalyze()">进行分析</button>
+</div>
+<div class="ratio_container">
+    <h4>请输入各指标的权重</h4>
+    <h5>各指标权重总和为100，如果不符合将会自动计算调整</h5>
+    <div ng-repeat="item in index_selected_list">
+        <label>{{item}}：</label>
+        <input class="input_number" type="number" min="0" max="100"/>
+    </div>
+    <button class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
 </div>
 <link rel="stylesheet" href="view/microIndustryChain/industryFactorAnalyze/industryFactorAnalyze.css"/>

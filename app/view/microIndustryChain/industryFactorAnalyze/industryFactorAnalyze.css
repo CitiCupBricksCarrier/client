@@ -6,6 +6,7 @@
 }
 .part .index_container .list_container{
     overflow: auto;
+    max-height: 280px;
 }
 .part .index_container .section{
     max-height: 300px;
