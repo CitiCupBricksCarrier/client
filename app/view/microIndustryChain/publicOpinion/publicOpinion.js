@@ -20,7 +20,7 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
             initPieChart($scope, pieChart);
             initWordCloud($scope, wordCloud);
 
-            $.get('http://localhost:8080/sentimentAnalysis?stkid='+$scope.id, res => {
+            $.get(urlHead+'sentimentAnalysis?stkid='+$scope.id, res => {
                 res = JSON.parse(res);
                 refreshData(pieChart, res.sentimentIndex);
                 refreshData(wordCloud, res.wordCloud);

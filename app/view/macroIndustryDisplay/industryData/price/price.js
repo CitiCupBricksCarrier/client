@@ -9,7 +9,7 @@ angular.module('myApp.macroIndustryDisplay.price', [
     .controller('priceCtrl',function($scope, $route, $http) {
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/price/cycztjgbhzs/cycztjgbhzs'
+            url: urlHead+'industryData/price/cycztjgbhzs/cycztjgbhzs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var totalpricechangeindex=[];
@@ -74,7 +74,7 @@ angular.module('myApp.macroIndustryDisplay.price', [
         });
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/price/cycztjgbhzs/cycztzdyhzs'
+            url: urlHead+'industryData/price/cycztjgbhzs/cycztzdyhzs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var overallterminalpreferenceindex=[];

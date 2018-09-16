@@ -9,7 +9,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
     .controller('holdNumCtrl',function($scope, $route, $http) {
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/holdNum/qcbyl/zgqcbyl'
+            url: urlHead+'industryData/holdNum/qcbyl/zgqcbyl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var carownchn=[];
@@ -70,7 +70,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/holdNum/qcbyl/zgqcmqrbyl'
+            url: urlHead+'industryData/holdNum/qcbyl/zgqcmqrbyl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var carownperthouchn=[];
@@ -130,7 +130,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/holdNum/qczc/zgxzcmyqcsl'
+            url: urlHead+'industryData/holdNum/qczc/zgxzcmyqcsl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var civilcarchn=[];
@@ -216,7 +216,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
         });
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/holdNum/qqqcbyl/qqqcbyl'
+            url: urlHead+'industryData/holdNum/qqqcbyl/qqqcbyl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var carownworld=[];
@@ -280,7 +280,7 @@ angular.module('myApp.macroIndustryDisplay.holdNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/holdNum/qqqcbyl/qqmqrqcbyl'
+            url: urlHead+'industryData/holdNum/qqqcbyl/qqmqrqcbyl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var carownperthouworld=[];

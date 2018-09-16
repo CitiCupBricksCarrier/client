@@ -10,7 +10,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zggcjg'
+            url: urlHead+'economicData/hysxysj/zggcjg'
         }).then(function successCallback(response) {
             var Data=response.data;
             var coldrolledordinary=[];
@@ -96,7 +96,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zggllkzzl'
+            url: urlHead+'economicData/hysxysj/zggllkzzl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var hwpassturnover=[];
@@ -160,7 +160,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zggdzctzjgzs'
+            url: urlHead+'economicData/hysxysj/zggdzctzjgzs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var fixedassetinv=[];
@@ -224,7 +224,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zgjmxfzc'
+            url: urlHead+'economicData/hysxysj/zgjmxfzc'
         }).then(function successCallback(response) {
             var Data=response.data;
             var percapitaexp=[];
@@ -288,7 +288,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zgkcxl'
+            url: urlHead+'economicData/hysxysj/zgkcxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var bussales=[];
@@ -352,7 +352,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zgrjgdpzs'
+            url: urlHead+'economicData/hysxysj/zgrjgdpzs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var percapitagdp=[];
@@ -417,7 +417,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zgtrxjyjscj'
+            url: urlHead+'economicData/hysxysj/zgtrxjyjscj'
         }).then(function successCallback(response) {
             var Data=response.data;
             var ntrubmonavemktpri=[];
@@ -480,7 +480,7 @@ angular.module('myApp.macroIndustryDisplay.hysxysj', [
         });
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/hysxysj/zgzkcl'
+            url: urlHead+'economicData/hysxysj/zgzkcl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var hvtruckop=[];

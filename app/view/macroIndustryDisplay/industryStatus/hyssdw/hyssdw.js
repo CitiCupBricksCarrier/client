@@ -16,7 +16,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
         $scope.colors=['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9']
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_all'
+            url: urlHead+'StatusOfIndustryListing/StatusOfIndustryListing_all'
         }).then(function successCallback(response) {
             var Data=response.data;
             console.log(Data)
@@ -331,7 +331,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
         });
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_all'
+            url: urlHead+'StatusOfIndustryListing/StatusOfIndustryListing_all'
         }).then(function successCallback(response) {
             var Data=response.data;
             $scope.indstnamAll=Data[0].indstnam;
@@ -355,7 +355,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_shanghaiAndShenzhenAShares'
+            url: urlHead+'StatusOfIndustryListing/StatusOfIndustryListing_shanghaiAndShenzhenAShares'
         }).then(function successCallback(response) {
             var Data=response.data;
             $scope.indstnamSS=Data[0].indstnam;
@@ -377,7 +377,7 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/StatusOfIndustryListing/StatusOfIndustryListing_newThirdBoard'
+            url: urlHead+'StatusOfIndustryListing/StatusOfIndustryListing_newThirdBoard'
         }).then(function successCallback(response) {
             var Data=response.data;
             $scope.indstnamNTB=Data[0].indstnam;

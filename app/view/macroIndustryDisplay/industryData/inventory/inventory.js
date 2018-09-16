@@ -9,7 +9,7 @@ angular.module('myApp.macroIndustryDisplay.inventory', [
     .controller('inventoryCtrl',function($scope, $route, $http) {
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/inventory/kcxs/qcjxskcxs'
+            url: urlHead+'industryData/inventory/kcxs/qcjxskcxs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var distrifinishedfoodschn=[];
@@ -117,7 +117,7 @@ angular.module('myApp.macroIndustryDisplay.inventory', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/inventory/kcyjzs/qcjxskcyjzs'
+            url: urlHead+'industryData/inventory/kcyjzs/qcjxskcyjzs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var stockewarningindexchn=[];

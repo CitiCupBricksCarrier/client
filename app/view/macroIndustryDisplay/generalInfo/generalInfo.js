@@ -217,7 +217,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
         // $scope.test_ajax = function () {
         //     $.ajax({
-        //         url: 'http://localhost:8080/industryData/sellNum/cycxl/cycfppxl',
+        //         url: urlHead+'industryData/sellNum/cycxl/cycfppxl',
         //         data: {},
         //         type: 'post',
         //         success: function (data) {
@@ -235,7 +235,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         function loadCompanyList() {
             $http({
                 method: 'post',
-                url: 'http://localhost:8080/generalInfo/companyList'
+                url: urlHead+'generalInfo/companyList'
             }).then(function successCallBack(response) {
                 // console.log(response);
                 // return response.data;

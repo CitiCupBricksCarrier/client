@@ -155,7 +155,7 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/majorListedCompanies/ContrastOfMarketPerformance'
+            url: urlHead+'majorListedCompanies/ContrastOfMarketPerformance'
         }).then(function successCallback(response) {
             $scope.Data=response.data;
             var Data=$scope.Data;

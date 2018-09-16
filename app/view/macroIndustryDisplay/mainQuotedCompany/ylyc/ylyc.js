@@ -155,7 +155,7 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/majorListedCompanies/ComparisonOfEarningsForecast'
+            url: urlHead+'majorListedCompanies/ComparisonOfEarningsForecast'
         }).then(function successCallback(response) {
             $scope.Data=response.data;
             var Data=$scope.Data;

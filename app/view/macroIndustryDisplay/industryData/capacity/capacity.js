@@ -9,7 +9,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
     .controller('capacityCtrl',function($scope, $route, $http) {
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/cyc/zggnzzcyccl'
+            url: urlHead+'industryData/capacity/cyc/zggnzzcyccl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var passproductionmichn=[];
@@ -69,7 +69,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/cyc/zggnzzcycfcxcl'
+            url: urlHead+'industryData/capacity/cyc/zggnzzcycfcxcl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var acrossproductionmichn=[];
@@ -151,7 +151,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/syc/zggnzzsyccl'
+            url: urlHead+'industryData/capacity/syc/zggnzzsyccl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var commerproductionmichn=[];
@@ -211,7 +211,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/cyc/zggnzzsycfcxcl'
+            url: urlHead+'industryData/capacity/cyc/zggnzzsycfcxcl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var coachproductionmichn=[];
@@ -281,7 +281,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/xzcn/zgqccyxzcn'
+            url: urlHead+'industryData/capacity/xzcn/zgqccyxzcn'
         }).then(function successCallback(response) {
             var Data=response.data;
             var basicnewcap=[];
@@ -364,7 +364,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/zgqccl/zgqccl'
+            url: urlHead+'industryData/capacity/zgqccl/zgqccl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var yieldchn=[];
@@ -424,7 +424,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/zgqccl/zgzyqcjtjbxcyccl'
+            url: urlHead+'industryData/capacity/zgqccl/zgzyqcjtjbxcyccl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var bjxdbasicyieldchn=[];
@@ -586,7 +586,7 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
         });
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/capacity/zgqccl/zgzyqcjtcl'
+            url: urlHead+'industryData/capacity/zgqccl/zgzyqcjtcl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var bjyieldchn=[];

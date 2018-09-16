@@ -153,7 +153,7 @@ angular.module('myApp.macroIndustryDisplay.cwbl', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/majorListedCompanies/ComparisonOfFinancialRatio'
+            url: urlHead+'majorListedCompanies/ComparisonOfFinancialRatio'
         }).then(function successCallback(response) {
             $scope.Data=response.data;
             var Data=$scope.Data;

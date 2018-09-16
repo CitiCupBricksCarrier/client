@@ -15,7 +15,7 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/ContrastOfMarketPerformance/ContrastOfMarketPerformance_all'
+            url: urlHead+'ContrastOfMarketPerformance/ContrastOfMarketPerformance_all'
         }).then(function successCallback(response) {
             var Data=response.data;
             console.log(Data);
@@ -37,7 +37,7 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/ContrastOfMarketPerformance/ContrastOfMarketPerformance_shanghaiAndShenzhenAShares'
+            url: urlHead+'ContrastOfMarketPerformance/ContrastOfMarketPerformance_shanghaiAndShenzhenAShares'
         }).then(function successCallback(response) {
             var Data=response.data;
             console.log(Data);
@@ -54,7 +54,7 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/ContrastOfMarketPerformance/ContrastOfMarketPerformance_newThirdBoard'
+            url: urlHead+'ContrastOfMarketPerformance/ContrastOfMarketPerformance_newThirdBoard'
         }).then(function successCallback(response) {
             var Data=response.data;
             console.log(Data);

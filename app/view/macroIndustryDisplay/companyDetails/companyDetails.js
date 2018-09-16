@@ -62,7 +62,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
          */
         function getCompanyDetail() {
             $http({
-                url: 'http://localhost:8080/generalInfo/companyDetail',
+                url: urlHead+'generalInfo/companyDetail',
                 method: 'post',
                 // contentType: "application/json",
                 params: {
@@ -140,7 +140,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
 
         function getSimilarRecommendation() {
             $http({
-                url: 'http://localhost:8080/similarRecommandation/',
+                url: urlHead+'similarRecommandation/',
                 method: 'post',
                 // contentType: "application/json",
                 params: {

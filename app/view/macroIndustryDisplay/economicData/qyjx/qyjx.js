@@ -9,7 +9,7 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
     .controller('qyjxCtrl',function($scope, $route, $http) {
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/qyjx/qbcyrypjrs'
+            url: urlHead+'economicData/qyjx/qbcyrypjrs'
         }).then(function successCallback(response) {
             var Data=response.data;
             var numempave=[];
@@ -73,7 +73,7 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/qyjx/snxspjzzl'
+            url: urlHead+'economicData/qyjx/snxspjzzl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var thryearsalesgrowratecomave=[];
@@ -137,7 +137,7 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
         });
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/qyjx/xjldfzbl'
+            url: urlHead+'economicData/qyjx/xjldfzbl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var cashcurdebtratio=[];
@@ -204,7 +204,7 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/qyjx/xslrl'
+            url: urlHead+'economicData/qyjx/xslrl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var corsalespromargin=[];
@@ -269,7 +269,7 @@ angular.module('myApp.macroIndustryDisplay.qyjx', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/economicData/qyjx/zcfzl'
+            url: urlHead+'economicData/qyjx/zcfzl'
         }).then(function successCallback(response) {
             var Data=response.data
             var cordebtratio=[];

@@ -10,7 +10,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycfppxl'
+            url: urlHead+'industryData/sellNum/cycxl/cycfppxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var brandamer=[];
@@ -112,7 +112,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/zgqcxl/zgqcxl'
+            url: urlHead+'industryData/sellNum/zgqcxl/zgqcxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -171,7 +171,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycxl'
+            url: urlHead+'industryData/sellNum/cycxl/cycxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -229,7 +229,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycfcxxl'
+            url: urlHead+'industryData/sellNum/cycxl/cycfcxxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -308,7 +308,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/cycfrllxxl'
+            url: urlHead+'industryData/sellNum/cycxl/cycfrllxxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -380,7 +380,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/gnzzcycxl'
+            url: urlHead+'industryData/sellNum/cycxl/gnzzcycxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -439,7 +439,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/cycxl/gnzzcycfcxxl'
+            url: urlHead+'industryData/sellNum/cycxl/gnzzcycfcxxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -518,7 +518,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/sycxl/sycxl'
+            url: urlHead+'industryData/sellNum/sycxl/sycxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -575,7 +575,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/sycxl/sycfcxxl'
+            url: urlHead+'industryData/sellNum/sycxl/sycfcxxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -663,7 +663,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/sycxl/sycfrllxxl'
+            url: urlHead+'industryData/sellNum/sycxl/sycfrllxxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -737,7 +737,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/sycxl/gnzzsycxl'
+            url: urlHead+'industryData/sellNum/sycxl/gnzzsycxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -795,7 +795,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/sycxl/gnzzsycfcxxl'
+            url: urlHead+'industryData/sellNum/sycxl/gnzzsycfcxxl'
         }).then(function successCallback(response) {
 
             var Data=response.data;
@@ -883,7 +883,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/sycxl/gnzzsycfrllxxl'
+            url: urlHead+'industryData/sellNum/sycxl/gnzzsycfrllxxl'
         }).then(function successCallback(response) {
 
             var Data=response.data;
@@ -959,7 +959,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/qqcycxl'
+            url: urlHead+'industryData/sellNum/qqqcxl/qqcycxl'
         }).then(function successCallback(response) {
             var Data=response.data;
             var f1=[];
@@ -1026,7 +1026,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/qqsycxl'
+            url: urlHead+'industryData/sellNum/qqqcxl/qqsycxl'
         }).then(function successCallback(response) {
 
             var Data=response.data;
@@ -1094,7 +1094,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/mgqcxl'
+            url: urlHead+'industryData/sellNum/qqqcxl/mgqcxl'
         }).then(function successCallback(response) {
 
             var Data=response.data;
@@ -1169,7 +1169,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/dgqcxl'
+            url: urlHead+'industryData/sellNum/qqqcxl/dgqcxl'
         }).then(function successCallback(response) {
 
             var Data=response.data;
@@ -1238,7 +1238,7 @@ angular.module('myApp.macroIndustryDisplay.sellNum', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/industryData/sellNum/qqqcxl/rbqcxl'
+            url: urlHead+'industryData/sellNum/qqqcxl/rbqcxl'
         }).then(function successCallback(response) {
 
             var Data=response.data;

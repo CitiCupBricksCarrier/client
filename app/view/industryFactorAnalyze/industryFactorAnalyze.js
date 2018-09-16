@@ -296,7 +296,7 @@ angular.module('myApp.industryFactorAnalyze', [
         //获取最近选择人数
         $http({
             method: 'post',
-            url: 'http://localhost:8080/CorrelationAnalysis/IndexClicks'
+            url: urlHead+'CorrelationAnalysis/IndexClicks'
         }).then(function successCallBack(response) {
             console.log(response.data);
             var data = response.data;
@@ -314,7 +314,7 @@ angular.module('myApp.industryFactorAnalyze', [
         function analyze_single(index, method) {
             $http({
                 method: 'post',
-                url: 'http://localhost:8080/CorrelationAnalysis/AnalysisIndustry',
+                url: urlHead+'CorrelationAnalysis/AnalysisIndustry',
                 params: {
                     index: index,
                     analysisMethod: method
@@ -338,7 +338,7 @@ angular.module('myApp.industryFactorAnalyze', [
 
             $http({
                 method: 'post',
-                url: 'http://localhost:8080/CorrelationAnalysis/Multi_FactorsAnalysis',
+                url: urlHead+'CorrelationAnalysis/Multi_FactorsAnalysis',
                 // data: {
                 //     indexes: index_selected_list,
                 //     analysisMethod: method,

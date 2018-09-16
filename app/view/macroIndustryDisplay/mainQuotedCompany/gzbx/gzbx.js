@@ -155,7 +155,7 @@ angular.module('myApp.macroIndustryDisplay.gzbx', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/majorListedCompanies/ComparisonOfValuationPerformance'
+            url: urlHead+'majorListedCompanies/ComparisonOfValuationPerformance'
         }).then(function successCallback(response) {
             $scope.Data=response.data;
             var Data=$scope.Data;

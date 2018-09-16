@@ -17,7 +17,7 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_allAShares'
+            url: urlHead+'ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_allAShares'
         }).then(function successCallback(response) {
             var Data=response.data;
             $scope.time=Data[0].time;
@@ -36,7 +36,7 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_all'
+                url: urlHead+'ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_all'
             }).then(function successCallback(response) {
                 var Data=response.data;
                 $scope.peAll=Data[1].pe;
@@ -66,7 +66,7 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_shanghaiAndShenzhenAShares'
+            url: urlHead+'ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_shanghaiAndShenzhenAShares'
         }).then(function successCallback(response) {
             var Data=response.data;
             $scope.peSS=Data[1].pe;
@@ -85,7 +85,7 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_newThirdBoard'
+            url: urlHead+'ComparisonOfIndustryHistory/ComparisonOfIndustryHistory_newThirdBoard'
         }).then(function successCallback(response) {
             var Data=response.data;
             console.log(Data)

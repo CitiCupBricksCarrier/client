@@ -153,7 +153,7 @@ angular.module('myApp.macroIndustryDisplay.cwsj', [
 
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/majorListedCompanies/ComparisonOfFinancialData'
+            url: urlHead+'majorListedCompanies/ComparisonOfFinancialData'
         }).then(function successCallback(response) {
             $scope.Data=response.data;
             var Data=$scope.Data;
