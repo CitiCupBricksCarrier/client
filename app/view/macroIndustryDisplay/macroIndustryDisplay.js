@@ -110,6 +110,7 @@ angular.module('myApp.macroIndustryDisplay', [
     })
 
     .controller('MacroIndustryDisplayCtrl',function($scope, $route, $http) {
+
         $scope.toshowDataPane=false;
         $scope.toshowDataPane2=false;
         $scope.toshowDataPane3=false;

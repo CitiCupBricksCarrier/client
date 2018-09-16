@@ -435,7 +435,10 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                     // selectedMode: 'single',
                     data: categories.map(function (a) {
                         return a.name;
-                    })
+                    }),
+                    textStyle: {
+                        color: 'rgba(200,200,200, 0.8)'
+                    }
                 }],
                 animationDuration: 1500,
                 animationEasingUpdate: 'quinticInOut',
