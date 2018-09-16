@@ -20,11 +20,11 @@
     color: rgba(135,150,250, 0.8);
     /*font-weight: bold;*/
     /*transform: translateX(-1.5px);*/
-    transform: translateX(-17px);
+    transform: translateX(-29px);
     list-style: none;
 }
 .navBar li .icon_active{
-    width: 40px;
+    width: 60px;
     display: none;
 }
 .navBar .nav_item{
