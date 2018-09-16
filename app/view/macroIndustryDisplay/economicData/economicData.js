@@ -7,6 +7,9 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
     })
 
     .controller('EconomicDataCtrl',function($scope, $route, $http, $stateParams) {
+        //设置标题栏响应nav为active,应付刷新等情况
+        $($('.header_macro .module_nav .nav')[3]).addClass('active')
+
         $().ready(function () {
             // console.log('111')
             //通过地址传参定位
@@ -119,7 +122,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart1 = echarts.init(document.getElementById('srzgdpbz'));
             option = {
-                color:['#344996','#88A500'],
+                color:['#857bff','#FFC266'],
                 title: {
                     text: '中国汽车行业收入占GDP比重',
                     textStyle: {
@@ -210,7 +213,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart2 = echarts.init(document.getElementById('qyhksqysl'));
             option = {
-                color:['#344996','#88A500'],
+                color:['#857bff','#FFF566'],
                 title: {
                     text: '中国汽车行业企业和亏损企业数量',
                     textStyle: {
@@ -281,7 +284,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart3 = echarts.init(document.getElementById('fzzj'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业负债总计',
                     textStyle: {
@@ -346,7 +349,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart4 = echarts.init(document.getElementById('lrze'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业利润总额',
                     textStyle: {
@@ -411,7 +414,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart5 = echarts.init(document.getElementById('zyywcb'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业主营业务成本',
                     textStyle: {
@@ -475,7 +478,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart6 = echarts.init(document.getElementById('zczj'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业资产总计',
                     textStyle: {
@@ -550,7 +553,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart7 = echarts.init(document.getElementById('gdzctze'));
             option = {
-                color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1'],
+                color:['#857bff','#FFF566','#89c997','#E52600','#7B4DD0','#FFC266'],
                 title: {
                     text: '中国汽车行业固定资产投资额',
                     textStyle: {
@@ -664,7 +667,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart8 = echarts.init(document.getElementById('gdzctzzqgtzbz'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业固定资产投资占全国投资比重',
                     textStyle: {
@@ -742,7 +745,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             //#3449960
             var myChart1= echarts.init(document.getElementById('zggcjg'));
             option = {
-                color:['#344996','#88A500','#FF7800','#E52600'],
+                color:['#FFF566','#857bff','#89c997','#FFC266'],
                 title: {
                     text: '中国钢材价格',
                     textStyle: {
@@ -821,7 +824,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart2= echarts.init(document.getElementById('zggllkzzl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国公路旅客周转量',
                     textStyle: {
@@ -885,7 +888,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart3= echarts.init(document.getElementById('zggdzctzjgzs'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国固定资产投资价格指数',
                     textStyle: {
@@ -949,7 +952,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart4= echarts.init(document.getElementById('zgjmxfzc'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国居民消费支出',
                     textStyle: {
@@ -1013,7 +1016,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart5= echarts.init(document.getElementById('zgkcxl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国客车销量',
                     textStyle: {
@@ -1077,7 +1080,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart6= echarts.init(document.getElementById('zgrjgdpzs'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国人均GDP指数',
                     textStyle: {
@@ -1142,7 +1145,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart7= echarts.init(document.getElementById('zgtrxjyjscj'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国天然橡胶月均市场价',
                     textStyle: {
@@ -1205,7 +1208,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart8= echarts.init(document.getElementById('zgzkcl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国重卡产量',
                     textStyle: {
@@ -1275,7 +1278,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart1= echarts.init(document.getElementById('zgqchyqbcyrypjrs'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车行业全部从业人员平均人数',
                     textStyle: {
@@ -1339,7 +1342,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart2= echarts.init(document.getElementById('zgqcqysnxspjzzl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车企业三年销售平均增长率',
                     textStyle: {
@@ -1403,7 +1406,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart2= echarts.init(document.getElementById('zgqcqyxjldfzbl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车企业现金流动负债比率',
                     textStyle: {
@@ -1470,7 +1473,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart4= echarts.init(document.getElementById('zgqcqyxslrl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车企业销售利润率',
                     textStyle: {
@@ -1535,7 +1538,7 @@ angular.module('myApp.macroIndustryDisplay.economicData', [
             }
             var myChart4= echarts.init(document.getElementById('zgqcqyzcfzl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
                     text: '中国汽车企业资产负债率',
                     textStyle: {

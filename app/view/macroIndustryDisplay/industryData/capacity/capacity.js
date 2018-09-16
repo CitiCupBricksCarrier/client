@@ -21,9 +21,9 @@ angular.module('myApp.macroIndustryDisplay.capacity', [
             }
             var myChart1 = echarts.init(document.getElementById('zggnzzcyccl'));
             option = {
-                color:['#344996'],
+                color:['#857bff'],
                 title: {
-                    text: '中国国内制造乘用车产量',
+                    text: 'z',
                     textStyle: {
                         color: '#fff'
                     }

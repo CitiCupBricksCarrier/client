@@ -13,7 +13,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
          */
 
         //设置标题栏响应nav为active,应付刷新等情况
-        $($('.header_macro .module_nav .nav')[0]).addClass('active')
+        $($('.header_macro .module_nav .nav')[1]).addClass('active')
 
         //点击定位到页面位置
         $('.nav_item').click(function (e) {

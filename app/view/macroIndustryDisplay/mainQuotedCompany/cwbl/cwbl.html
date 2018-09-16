@@ -1,10 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="pane" ng-show="toShowPane">
+    <div class="paneTitle">
+        指标选择
+        <img class="closeIcon" ng-click="close()" src="view/macroIndustryDisplay/mainQuotedCompany/pic/icon-close.png" style="width: 10px;height: 10px;position: absolute;left: 96%;top:5px">
 
-</body>
-</html>
+    </div>
+
+    <div class="paneBackground">
+        <span style="position: absolute;left: 2%">设置显示指标(最多10个)</span>
+        <span style="position: absolute;left: 80%">已选</span><span id="span" style="position: absolute;left: 85%;top:2%;color: red;font-size: 18px">6</span><span style="position: absolute;left: 88%">个指标</span>
+        <button ng-click="returnToDefault()" class="myButton" style="position:absolute;top: 90%">恢复默认</button>
+        <button ng-click="choose()" class="myButton" style="position:absolute;top: 90%;left: 74%">确认</button>
+        <button ng-click="close()" class="myButton" style="position:absolute;top: 90%;left: 84%">取消</button>
+
+        <div class="paneCore">
+            <div class="myDiv">
+            <input checked name="default" ng-click="check2(1)" id='1' type="checkbox"><span class="checkSpan" style="display: inline-block">ROE(%)</span>
+            </div>
+            <div class="myDiv">
+                <input checked name="default" ng-click="check2(2)"  id="2" type="checkbox"><span class="checkSpan" style="display: inline-block">ROA(%)</span>
+            </div>
+            <div class="myDiv">
+                <input checked name="default" ng-click="check2(3)"  id="3" type="checkbox"><span class="checkSpan" style="display: inline-block">销售毛利率(%)</span>
+            </div>
+
+            <div class="myDiv">
+                <input checked name="default" ng-click="check2(4)"  id='4' type="checkbox"><span class="checkSpan" style="display: inline-block">营业利润率(%)</span>
+            </div>
+
+            <div class="myDiv">
+                <input name="input" ng-click="check2(5)"   id='5' type="checkbox"><span class="checkSpan" style="display: inline-block">销售净利率(%)</span>
+            </div>
+
+            <div class="myDiv">
+                <input name="input" ng-click="check2(6)"  id="6" type="checkbox"><span class="checkSpan" style="display: inline-block">EBITDA率(%)</span>
+            </div>
+
+            <div class="myDiv">
+                <input  checked name="default" ng-click="check2(7)"  id="7" type="checkbox"><span class="checkSpan" style="display: inline-block">资产负债率(%)</span>
+            </div>
+
+            <div class="myDiv">
+                <input name="input" ng-click="check2(8)"  id="8"  type="checkbox"><span class="checkSpan" style="display: inline-block">产权比率(%)</span>
+            </div>
+
+            <div class="myDiv">
+                <input checked  name="default" ng-click="check2(9)"  id="9" type="checkbox"><span class="checkSpan" style="display: inline-block">资产周转率(次)</span>
+            </div>
+            <div class="myDiv">
+                <input name="input" ng-click="check2(10)"  id="10" type="checkbox"><span class="checkSpan" style="display: inline-block">应收账款周转率(次)</span>
+            </div>
+            <div class="myDiv">
+                <input name="input" ng-click="check2(11)"  id="11" type="checkbox"><span class="checkSpan" style="display: inline-block">存货周转率(次)</span>
+            </div>
+            <div class="myDiv">
+                <input name="input"  ng-click="check2(12)" id="12" type="checkbox"><span class="checkSpan" style="display: inline-block">流动比率(倍)</span>
+            </div>
+            <div class="myDiv">
+                <input name="input" ng-click="check2(13)"  id="13" type="checkbox"><span class="checkSpan" style="display: inline-block">速动比率(倍)</span>
+            </div>
+            <div class="myDiv">
+                <input name="input" ng-click="check2(14)"  id="14" type="checkbox"><span class="checkSpan" style="display: inline-block">每股收益</span>
+            </div>
+            <div class="myDiv">
+                <input name="input" ng-click="check2(15)"  id="15" type="checkbox"><span class="checkSpan" style="display: inline-block">每股净资产</span>
+            </div>
+            <div class="myDiv">
+                <input name="input" ng-click="check2(16)"  id="16" type="checkbox"><span class="checkSpan" style="display: inline-block">每股现金流</span>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<div style="margin-left: 5%;width: 90%;margin-top: 5%;background-color: white;height: 150px;">
+    <div id='TITLE' style="display: inline-block;padding: 10px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
+        <label>市场</label>
+        <select  ng-model="market" ng-change="changeMarket()">
+            <option value="全部">全部</option>
+            <option value="沪深A股">沪深A股</option>
+            <option value="新三板做市">新三板做市</option>
+        </select>
+
+        <label style="margin-left: 20px">统计数据</label>
+        <div id='myInput' class="myInput" ng-click="toShow=!toShow">最高值,平均值<img src="view/macroIndustryDisplay/mainQuotedCompany/pic/arrow.png" style="width: 5.5px;height: 4.7px;float: right;margin-top: 5px;margin-right: 5px"></div>
+        <button style="display: inline-block;padding-bottom: 20px" ng-click="toShowPane=!toShowPane">指标选择</button>
+        <div id='mySelect' class="mySelect" ng-show="toShow">
+            <div class="option"><input checked id='最高值'ng-click="check('最高值')" type="checkbox" value="最高值">最高值</div>
+            <div class="option"><input id='最低值' ng-click="check('最低值')" type="checkbox">最低值</div>
+            <div class="option"><input id='中位值'ng-click="check('中位值')" type="checkbox">中位值</div>
+            <div class="option"><input checked id='平均值'ng-click="check('平均值')" type="checkbox">平均值</div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+<div style="margin-left: 5%;width: 90%;background-color: white;">
+    <label style="position: absolute;margin-top:-5%;font-size: 20px">汽车-财务比率比较</label>
+    <table id="table" width="100%">
+
+
+
+    </table>
+</div>
+
+
+
+<link rel="stylesheet" href="view/macroIndustryDisplay/mainQuotedCompany/cwbl/cwbl.css"/>

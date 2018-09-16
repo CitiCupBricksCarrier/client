@@ -1,40 +1,48 @@
-<nav class="david-navbar david-navbar-bottom" role="navigation">
-    <div>
+
+
+    <nav class="david-navbar david-navbar-bottom" role="navigation" style="background: rgba(0,0,0,0.5)">
         <div>
-            <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="citi-icon/citi-white.svg" alt="花旗"></a>
-        </div>
-        <div>
-            <ul class="david-navbar-right">
-                <li ui-sref="home"><a>首页</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-<div class="login-block">
-    <div id="login-left-block">
-        <img id="login-ad" src="view/login/ad.png">
-    </div>
-    <div id="login-right-block">
-        <div id="login-cell">
-            <p class="login-big-font">用户登录</p>
-            <input ng-model="username" class="login-input" placeholder="请输入用户名" type="text">
-            <input ng-model="password" class="login-input" placeholder="请输入密码" type="password">
-            <button ng-click="login()" class="login-btn">登录</button>
-            <div class="login-sub">
-                <p class="small">注册新用户</p>
+            <div>
+                <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="citi-icon/citi-white.svg" alt="花旗"></a>
             </div>
-            <div class="login-notice small">
-                {{notice}}
-            </div>
-            <div class="login-other">
-                <p class="small">其他登录方式：</p>
-                <button id="citiBtn"></button>
+            <div>
+                <ul class="david-navbar-right">
+                    <li ui-sref="home"><a>首页</a></li>
+                </ul>
             </div>
         </div>
+    </nav>
+
+    <div style="position:absolute; display: block; height: 80%; width: 400px; margin-top: 200px; margin-left: 5%; z-index: 1">
+        <p style="color: white; font-size: 40px">花旗产业链金融平台</p>
+        <p style="color: white; font-size: 20px">给您提供高速快捷的自动化分析服务</p>
     </div>
-</div>
 
 
+    <div class="login-block">
+        <div id="login-right-block">
+            <div id="login-cell" style="background: url('view/login/login_cell.png') no-repeat center; z-index: 2">
+                <div style="margin-left: 300px">
+                    <p class="login-big-font">用户登录</p>
+                    <input ng-model="username" class="login-input" placeholder="请输入用户名" type="text">
+                    <input ng-model="password" class="login-input" placeholder="请输入密码" type="password">
+                    <button ng-click="login()" class="login-btn">登录</button>
+                    <div class="login-sub">
+                        <p class="small">注册新用户</p>
+                    </div>
+                    <div class="login-notice small">
+                        {{notice}}
+                    </div>
+                    <div class="login-other">
+                        <p class="small">其他登录方式：</p>
+                        <button id="citiBtn"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="view/login/CitiE2E.js"></script>
 <link rel="stylesheet" href="view/login/login.css">

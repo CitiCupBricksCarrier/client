@@ -1,10 +1,12 @@
 #leftUserDiv{
     display: block;
     position: absolute;
+    top: 0;
+    z-index: -1;
     width: 250px;
     height: 100%;
     left: 0;
-    padding: 20px;
+    padding: 80px 20px;
     background: whitesmoke;
     text-align: center;
 }
@@ -22,8 +24,32 @@
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .175);
 }
-
-
 #userHead{
     width: 60%;
+}
+
+
+#accountDiv{
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    display: block;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    word-wrap: break-word;
+}
+#accountDiv_right{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    margin-left: 250px;
+    padding: 50px;
+}
+
+.account{
+    background: whitesmoke;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 10px;
 }
