@@ -36,10 +36,10 @@ angular.module('myApp.industryFactorAnalyze', [
         $scope.method_list = [
             {name: 'IC-mean', description: '衡量您所选择的因子的选股能力，越大，则说明您选择的因子在您选择股票时越有效'},
             {name: 'IC-IR', description: '衡量您所选的因子的选股能力和稳定性，越大，则说明您选择的因子选股能力越强、越稳定'},
-            {name: '一元线性回归', description: '经典方法，为您计算因子之间的函数关系'},
+            // {name: '一元线性回归', description: '经典方法，为您计算因子之间的函数关系'},
             {name: 'IC-T', description: '衡量您所选的因子对收益率是否有影响，越接近于0，则影响越弱'},
             {name: '多空收益', description: '探究您选择的因子对整个行业收益率的影响'},
-            {name: '复合因子IC', description: '当您想要研究复合因子的选股能力、稳定性时的最佳选择'}
+            // {name: '复合因子IC', description: '当您想要研究复合因子的选股能力、稳定性时的最佳选择'}
         ];
         $scope.method_selected = '';
         // console.log($scope.method_list)
@@ -124,7 +124,7 @@ angular.module('myApp.industryFactorAnalyze', [
             }
 
             //调用方法
-            analyze_multi(index_selected_list,'复合因子IC' , ratioList);
+            analyze_multi(index_selected_list,$scope.method_selected , ratioList);
 
             $scope.toShowResult=true;
         }
@@ -176,21 +176,21 @@ angular.module('myApp.industryFactorAnalyze', [
                 $scope.index_selected = index_selected_list.toString();
                 $scope.index_selected_list = index_selected_list;
 
-                //如果选择多个，就只能选择复合因子,并自动选中
-                if(index_selected_list.length > 1){
-                    $('.part .method_container .section .list_container .checkBox').attr('disabled', true);
-                    $('.part .method_container .section .list_container .checkBox:last').attr('disabled', false);
-                    $('.part .method_container .section .list_container .checkBox:checked').prop('checked', false);
-                    $('.part .method_container .section .list_container .checkBox:last').prop('checked', true);
-                    $scope.method_selected = '复合因子IC';
-                }
-                else{       //如果只有一个，不能选择复合因子
-                    $('.part .method_container .section .list_container .checkBox').attr('disabled', false);
-                    $('.part .method_container .section .list_container .checkBox:last').prop('checked', false);
-                    $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
-                    $($('.part .method_container .section .list_container .checkBox')[1]).prop('checked', true);
-                    $scope.method_selected = 'IC-IR';
-                }
+                // //如果选择多个，就只能选择复合因子,并自动选中
+                // if(index_selected_list.length > 1){
+                //     $('.part .method_container .section .list_container .checkBox').attr('disabled', true);
+                //     $('.part .method_container .section .list_container .checkBox:last').attr('disabled', false);
+                //     $('.part .method_container .section .list_container .checkBox:checked').prop('checked', false);
+                //     $('.part .method_container .section .list_container .checkBox:last').prop('checked', true);
+                //     $scope.method_selected = '复合因子IC';
+                // }
+                // else{       //如果只有一个，不能选择复合因子
+                //     $('.part .method_container .section .list_container .checkBox').attr('disabled', false);
+                //     $('.part .method_container .section .list_container .checkBox:last').prop('checked', false);
+                //     $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
+                //     $($('.part .method_container .section .list_container .checkBox')[1]).prop('checked', true);
+                //     $scope.method_selected = 'IC-IR';
+                // }
 
                 //分析按钮的可用设置
                 if(index_selected_list.length > 0){
@@ -236,7 +236,7 @@ angular.module('myApp.industryFactorAnalyze', [
             $($('.part .method_container .section .list_container .checkBox')[1]).prop('checked', true);
             $scope.method_selected = method_default;
 
-            $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
+            // $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
 
             $scope.$apply();
         }
