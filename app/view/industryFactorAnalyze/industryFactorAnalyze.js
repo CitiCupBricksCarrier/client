@@ -7,6 +7,7 @@ angular.module('myApp.industryFactorAnalyze', [
 
     .controller('IndustryFactorAnalyzeCtrl',function($scope, $route, $http, $state) {
         $scope.toShowResult=false;
+        $scope.RESULT=''
         //指标部分
         $scope.index_recommend = ['安全性-存货周转率', '成长-ROE变动', '估值类-股息率'];
         $scope.index_selectable = ['安全性-存货周转率','安全性类-速动比率','安全性类-总资产周转率', '成长-ROE变动', '成长类-GPOA变动', '成长类-毛利润增长率',
@@ -69,6 +70,27 @@ angular.module('myApp.industryFactorAnalyze', [
         $scope.clickToAnalyze = function () {
             if(index_selected_list.length == 1){        //普通方法
                 analyze_single(index_selected_list[0], $scope.method_selected);
+            }
+            switch ($scope.method_selected){
+                case 'IC-mean':
+                    $scope.RESULT='您所选择的指标和行业股票的收益率之间有较强的相关性。';
+                    document.getElementById('resultSpan').innerText=$scope.RESULT;
+                    break;
+                case 'IC-IR':
+                    $scope.RESULT='您所选择的指标和行业股票的收益率之间有相关性，且相关性较稳定。';
+                    document.getElementById('resultSpan').innerText=$scope.RESULT;
+                    break;
+                case 'IC-T':
+                    $scope.RESULT='您所选择的指标和行业股票的收益率之间相关性较不显著。';
+                    document.getElementById('resultSpan').innerText=$scope.RESULT;
+                    break;
+                case '多空收益':
+                    $scope.RESULT='多空收益可用来探究您选择的因子对整个行业股票收益率的影响；你所选择的因子对应的多空收益为：40%。';
+                    document.getElementById('resultSpan').innerText=$scope.RESULT;
+                    break;
+                default:
+                    $scope.RESULT='';
+                    break;
             }
             $scope.toShowResult=true;
 
@@ -240,15 +262,15 @@ angular.module('myApp.industryFactorAnalyze', [
          * http请求
          */
         //获取最近选择人数
-        $http({
-            method: 'post',
-            url: 'http://localhost:8080/CorrelationAnalysis/IndexClicks'
-        }).then(function successCallBack(response) {
-            console.log(response.data);
-
-        },function errorCallBack(response) {
-            console.error('获取最近选择人数失败');
-        });
+        // $http({
+        //     method: 'post',
+        //     url: 'http://localhost:8080/CorrelationAnalysis/IndexClicks'
+        // }).then(function successCallBack(response) {
+        //     console.log(response.data);
+        //
+        // },function errorCallBack(response) {
+        //     console.error('获取最近选择人数失败');
+        // });
 
         //进行分析，单个指标的
         function analyze_single(index, method) {
