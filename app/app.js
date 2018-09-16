@@ -14,6 +14,7 @@ angular.module('myApp', [
     'myApp.home',
     'myApp.personal',
     'myApp.microIndustryChain',
+    'myApp.macroIndustryList',
     'myApp.macroIndustryDisplay'
 ])
 
@@ -45,6 +46,11 @@ angular.module('myApp', [
             url:'/macroIndustryDisplay',
             templateUrl: 'view/macroIndustryDisplay/macroIndustryDisplay.html',
             controller: 'MacroIndustryDisplayCtrl'
+        })
+        .state('macroIndustryList',{
+            url:'/macroIndustryList',
+            templateUrl: 'view/macroIndustryDisplay/macroIndustryList.html',
+            controller: 'MacroIndustryListCtrl'
         })
     })
 
