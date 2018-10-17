@@ -119,6 +119,11 @@ a {
     background-size: 50%;
     font-size: 8px;
 }
+#riskBtn{
+    background: white no-repeat center;
+    background-size: 50%;
+    font-size: 8px;
+}
 
 #leftToolBar{
     position: fixed;

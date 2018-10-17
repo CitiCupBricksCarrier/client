@@ -391,6 +391,56 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
 
+        $scope.risk = function () {
+            let nodeListArray = [],
+                connectionListArray = [];
+
+            for(let i=0, length=$scope.nodeIDList.length; i<length; i++){
+                let id = $scope.nodeIDList[i];
+                nodeListArray.push({
+                    id: id,
+                    nodeName: $scope.nodeList[id].nodeName,
+                    nodeStock: $scope.nodeList[id].nodeStock,
+                    nodeRole: $scope.nodeList[id].nodeRole,
+                    nodeColor: $scope.nodeList[id].nodeColor,
+                    x: $scope.nodeDisplayList[id].x,
+                    y: $scope.nodeDisplayList[id].y
+                })
+            }
+            connectionListArray = $scope.connectionList;
+
+            let graphJson = {
+                riskCompany: nodeListArray[0],
+                linkList: connectionListArray,
+                companyList: nodeListArray
+            };
+
+            $http({
+                method: 'post',
+                url: urlHead + 'riskDiffusion',
+                params: {
+                    data: graphJson
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                withCredentials: true
+                //cache: true, //避免多次请求后台数据
+            }).then(function (response) {
+                console.log(response);
+            }, function () {
+                console.error("Link Failed");
+            });
+        };
+
+
+
+
+
+
+
+
+
+
+
         /**
          * 节点拖动的实现
          */
