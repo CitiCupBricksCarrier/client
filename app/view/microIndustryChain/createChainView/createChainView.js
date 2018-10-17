@@ -109,6 +109,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         });
 
 
+
         $http({
             method: 'post',
             url: urlHead + 'getGraphByID',
@@ -119,32 +120,27 @@ angular.module('myApp.microIndustryChain.createChainView', [
             withCredentials: true
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
+
+            console.log(response);
             let partialNodeArray = response.data.nodeList,
                 partialConnectionArray = response.data.connectionList;
+
             for(let i=0, length=partialNodeArray.length; i<length; i++){
                 let particalNodeCache = partialNodeArray[i];
-                $scope.nodeIDList.push(particalNodeCache.id);
-                $scope.nodeList[particalNodeCache.id] = {
-                    nodeName: particalNodeCache.name,
-                    nodeStock: particalNodeCache.stkcd,
-                    nodeRole: particalNodeCache.role,
-                    nodeColor: particalNodeCache.color
-                };
-                $scope.nodeDisplayList[particalNodeCache.id] = {
-                    x: particalNodeCache.posx,
-                    y: particalNodeCache.posy
-                };
+                addNode(particalNodeCache.name, particalNodeCache.stkcd, particalNodeCache.role, particalNodeCache.color, canvasLeft+parseFloat(particalNodeCache.posx), canvasTop+parseFloat(particalNodeCache.posy), particalNodeCache.id);
+
             }
+
+            nextNodeID = parseInt((partialNodeArray[partialNodeArray.length-1].id).substr(1)) + 1;
 
             for(let i=0, length=partialConnectionArray.length; i<length; i++){
                 let partialConnectionCache = partialConnectionArray[i];
-                $scope.connectionList.push({
-                    id: partialConnectionCache.id,
-                    begin: partialConnectionCache.begin,
-                    end: partialConnectionCache.end,
-                    fund: partialConnectionCache.fund
-                });
+                addConnection(partialConnectionCache.begin, partialConnectionCache.end, $scope.nodeList[partialConnectionCache.begin].nodeStock, $scope.nodeList[partialConnectionCache.end].nodeStock, partialConnectionCache.fund);
             }
+
+            nextConnectionID = parseInt((partialConnectionArray[partialConnectionArray.length-1].id).substr(1)) + 1;
+
+            refreshConnectionBackground();
 
         }, function () {
             console.error("get graph error");
@@ -618,7 +614,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
 
 
 
-        let addNode = function (name, stock, role, color) {
+        let addNode = function (name, stock, role, color, x, y, id) {
             let node = document.createElement("node");
             let nodeName = document.createElement("p");
             let nodeAnchorTop = document.createElement("nodeAnchorTop");
@@ -627,11 +623,11 @@ angular.module('myApp.microIndustryChain.createChainView', [
             let nodeAnchorLeft = document.createElement("nodeAnchorLeft");
 
             node.className = "node";
-            node.id = "N" + nextNodeID;
+            node.id = (id !== undefined)? id: ("N"+nextNodeID);
             node.setAttribute("data-toggle","context");
             node.setAttribute("data-target","#node-menu");
-            node.style.left = nextNodePositionX + "px";
-            node.style.top = nextNodePositionY + "px";
+            node.style.left = ((x !== undefined)?x:nextNodePositionX) + "px";
+            node.style.top = ((y !== undefined)?y:nextNodePositionY) + "px";
             node.style.width = 100 + "px";
             node.style.height = 50 + "px";
             nodeName.id = "nodeName";
