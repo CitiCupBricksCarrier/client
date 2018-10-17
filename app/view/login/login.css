@@ -10,7 +10,7 @@
     background-size: auto;                  /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
     background-repeat:no-repeat;
     background-color: black;
-    background-image:url("background.png");
+    background-image:url("https://citicup.greatnju.com/loginBackground/loginBackground2.png");
 }
 .login-block #login-left-block{
     position: relative;
