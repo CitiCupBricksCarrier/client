@@ -6,56 +6,6 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
     })
 
     .controller('GeneralInfoCtrl',function($scope, $route, $http, $state) {
-        /**
-         * -------------------------------------------------
-         * -------------------------------------------------
-         * 监听、设置等
-         */
-
-        //设置标题栏响应nav为active,应付刷新等情况
-        $($('.header_macro .module_nav .nav')[1]).addClass('active')
-
-        //点击定位到页面位置
-        $('.nav_item').click(function (e) {
-            e.preventDefault();
-            // console.log(e.target);
-            // console.log($($(e.target).attr('href')))
-            var link = this;
-            $.smoothScroll({
-                scrollTarget: link.hash
-            });
-        })
-        $('.part h3 a').click(function (e) {
-            e.preventDefault();
-            var link = this;
-            $.smoothScroll({
-                scrollTarget: link.hash
-            });
-        })
-        //导航条
-        $(window).scroll(function (e) {
-            var parts = $('.part');
-            for(var i = 0; i < parts.length; i++){
-                var part = $(parts[i]);
-                if(part.offset().top >= $(window).scrollTop()){
-                    // console.log(part.offset().top + "  " + $(window).scrollTop())
-                    var targetNav = $(".navBar a[href='#" + part.attr('id') + "']");
-
-                    if($('.nav_item.active').attr('href') == targetNav.attr('href')){           //如果未改变
-                        // console.log('same')
-                        break;
-                    }
-                    $('.nav_item.active').parent().removeClass('active');
-                    $('.nav_item.active').parent().children('.icon_active').hide();      //隐藏汽车icon
-                    $('.nav_item.active').removeClass('active');
-                    targetNav.addClass('active');
-                    targetNav.parent().addClass('active');
-                    targetNav.parent().children('.icon_active').show();             //显示汽车icon
-                    break;
-                }
-            }
-        })
-
         $scope.list_luntai = ['xxx1','xxx2','xxx3'];
 
         //加载得到的公司列表
@@ -65,148 +15,35 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         var dataArr = [];
         var propArr = [];
 
-        //公司列表的显示和隐藏
-        // $('.nameAndList .name_part').click(function (e) {
-        //     // console.log(this.parentNode)
-        //     // console.log($(this.parentNode).children('.list_part'))
-        //     var listNode = $(this.parentNode).children('.list_part');
-        //     if(listNode.is(':hidden')){
-        //         listNode.show('fast');
-        //     }
-        //     else{
-        //         listNode.hide('fast');
-        //     }
-        // })
-        $('.nameAndList .name_part').click(function (e) {
-            // console.log(this.parentNode)
-            // console.log($(this.parentNode).children('.list_part'))
-            var listNode = $(this.parentNode).children('.list_part');
-            if(listNode.is(':hidden')){
-                listNode.show('fast');
-            }
-            else{
-                listNode.hide('fast');
-            }
-        })
-        //点击对应部件
-        $('.part_toTouch').click(function (e) {
-            $scope.category_toShow = $(this).attr('name');
-            // console.log(dataArr[propArr.indexOf($scope.category_toShow)]);
-            // $scope.list_toShow = dataArr[propArr.indexOf($scope.category_toShow)];
-            var categories_selected = $scope.category_toShow.split('+');
-            console.log(categories_selected)
-            var list_toShow = [[],[]];
-            for(var tempI in categories_selected){
-                console.log(categories_selected[tempI])
-                console.log(propArr.indexOf(categories_selected[tempI]))
-                console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
-                var tempList = dataArr[propArr.indexOf(categories_selected[tempI])];
-                for(var i = 0;tempList != undefined && i < tempList.length; i+=5){
-                    var perRow = [];
-                    for(var j = 0; j < 5 && i+j < tempList.length; j++){
-                        perRow.push(tempList[i+j]);
-                    }
-                    list_toShow[tempI].push(perRow);
-                }
-            }
-            // var list_toShow = [];
-            // for(var tempI in categories_selected){
-            //     console.log(categories_selected[tempI])
-            //     console.log(propArr.indexOf(categories_selected[tempI]))
-            //     console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
-            //     list_toShow = list_toShow.concat(dataArr[propArr.indexOf(categories_selected[tempI])]);
-            // }
-            console.log(list_toShow)
-            $scope.list_toShow = list_toShow;
-
-            var listNode = $('.companyList');
-            $scope.$apply();        //应用更改
-
-            //部件高亮
-            var oldToShow = $('.wholePic .wholeView'+'.isShow');
-            var newToShow = $('.wholePic .wholeView'+'.'+this.classList[1]);
-
-            if(oldToShow.attr('class') == newToShow.attr('class')){
-                oldToShow.css('opacity', 0);      //取消之前高亮
-                oldToShow.removeClass('isShow');
-
-                //右移全景图
-                $('.wholePic .wholeView').removeClass('active');
-                $('.wholePic .part_toTouch').removeClass('active');
-                //点击提示文字显示
-                $('.wholePic .touchDescription').css('opacity', 1);
-
-                //隐藏引导线
-                $('.wholePic .line_container.active').css('width', 0);      //引导线容器的大小调整
-                $('.wholePic .line_container.active').removeClass('active');
-                //右移并隐藏展开内容
-                $('.wholePic .briefAndList_container').removeClass('active');
-            }
-            else{
-                oldToShow.css('opacity', 0);      //取消之前高亮
-                oldToShow.removeClass('isShow');
-                newToShow.addClass('isShow');         //记录被点击后在显示高亮的
-                newToShow.css('opacity', 1);      //新的部件高亮
-
-                //左移全景图
-                $('.wholePic .wholeView').addClass('active');
-                $('.wholePic .part_toTouch').addClass('active');
-                //点击提示文字消失
-                $('.wholePic .touchDescription').css('opacity', 0);
-
-                //显示新的引导线
-                $('.wholePic .line_container.active').css('width', 0);          //先将当前的宽度设为0
-                $('.wholePic .line_container.active').removeClass('active');
-                $('.wholePic .line_container'+'.'+this.classList[1]).addClass('active');
-                $('.wholePic .line_container.active').css('width', $('.wholePic .wholeView').width()*1.15);      //引导线容器的大小调整
-                //显示展开内容
-                $('.wholePic .briefAndList_container.active').removeClass('active');
-                $('.wholePic .briefAndList_container'+'.'+this.classList[1]).addClass('active');
-                // $('.wholePic .briefAndList_container'+'.'+this.classList[1]).delay('0.3s').animate({height: '600px'}, 'slow');
-            }
-
-            //显示公司列表
-            if(listNode.is(':hidden')){
-                listNode.show('fast');
-            }
-            else if(oldToShow.attr('class') == newToShow.attr('class')){          //只有点击正在显示的部件才隐藏
-                listNode.hide('fast');
-            }
-        })
-        //鼠标移到部件上,模糊，高亮等
-        $('.part_toTouch').mouseenter(function (e) {
-            // console.log($($('.wholePic .wholeView')[0]))
-            $($('.wholePic .wholeView')[0]).css('opacity', 0);
-            $($('.wholePic .wholeView.cover')[0]).css('opacity', 1);
-            // $($('.wholePic .wholeView.cover')[1]).css('opacity', 1);
-            // console.log($('.wholePic .wholeView.cover'+'.'+$(this).attr('id')))
-            // $('.wholePic .wholeView.cover'+'.'+$(this).attr('id')).css('opacity', 1);
-            // console.log(this.classList[1])
-            // console.log($('.wholePic .wholeView.cover'+'.'+this.classList[1]))
-            $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 1);
-
-        })
-        //鼠标移出部件，恢复
-        $('.part_toTouch').mouseleave(function (e) {
-            // console.log($($('.wholePic .wholeView')[0]))
-            if(!$('.wholePic .wholeView').hasClass('active')){          //只有未点击部件的时候才恢复
-                $($('.wholePic .wholeView')[0]).css('opacity', 1);
-                $($('.wholePic .wholeView.cover')[0]).css('opacity', 0);
-                // $($('.wholePic .wholeView.cover')[1]).css('opacity', 0);
-                // $('.wholePic .wholeView.cover'+'.'+$(this).attr('id')).css('opacity', 0);
-                $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
-            }
-            if(!$('.wholePic .wholeView.cover'+'.'+this.classList[1]).hasClass('isShow')){      //如果点击部件后，恢复未点击的高亮部件
-                $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
-            }
-
-        })
-
         //点击后跳转到对应公司的信息界面
         $scope.goToCompanyDetails = function (item) {
             // console.log('1')
             var stkcd_toShow = item.stkcd;
             $state.go('macroIndustryDisplay.companyDetails', {stkcd_toShow: stkcd_toShow})
+        }
+
+        //点击空白部分关闭列表
+        $scope.clickFreeSpace = function () {
+            var picOnShowing = $('.wholePic .wholeView'+'.isShow');
+            // console.log(picOnShowing);
+            if(picOnShowing.length == 0){       //没有处于显示状态
+                return;
+            }
+            picOnShowing.css('opacity', 0);      //取消之前高亮
+            picOnShowing.removeClass('isShow');
+
+            //右移全景图
+            $('.wholePic .wholeView').removeClass('active');
+            $('.wholePic .part_toTouch').removeClass('active');
+            //点击提示文字显示
+            $('.wholePic .touchDescription').css('opacity', 1);
+
+            //隐藏引导线
+            $('.wholePic .line_container.active').css('width', 0);      //引导线容器的大小调整
+            $('.wholePic .line_container.active').removeClass('active');
+            //右移并隐藏展开内容
+            $('.wholePic .briefAndList_container').removeClass('active');
+
         }
 
         /**
@@ -269,8 +106,226 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         loadCompanyList();
 
         $().ready(function () {
+            $().delay(100);
             resizeWholePic();
 
+            /**
+             * -------------------------------------------------
+             * -------------------------------------------------
+             * 监听、设置等
+             */
+
+            //设置标题栏响应nav为active,应付刷新等情况
+            $($('.header_macro .module_nav .nav')[1]).addClass('active')
+
+            //点击定位到页面位置
+            $('.nav_item').click(function (e) {
+                e.preventDefault();
+                // console.log(e.target);
+                // console.log($($(e.target).attr('href')))
+                var link = this;
+                $.smoothScroll({
+                    scrollTarget: link.hash
+                });
+            })
+            $('.part h3 a').click(function (e) {
+                e.preventDefault();
+                var link = this;
+                $.smoothScroll({
+                    scrollTarget: link.hash
+                });
+            })
+            //导航条
+            $(window).scroll(function (e) {
+                var parts = $('.part');
+                for(var i = 0; i < parts.length; i++){
+                    var part = $(parts[i]);
+                    if(part.offset().top >= $(window).scrollTop()){
+                        // console.log(part.offset().top + "  " + $(window).scrollTop())
+                        var targetNav = $(".navBar a[href='#" + part.attr('id') + "']");
+
+                        if($('.nav_item.active').attr('href') == targetNav.attr('href')){           //如果未改变
+                            // console.log('same')
+                            break;
+                        }
+                        $('.nav_item.active').parent().removeClass('active');
+                        $('.nav_item.active').parent().children('.icon_active').hide();      //隐藏汽车icon
+                        $('.nav_item.active').removeClass('active');
+                        targetNav.addClass('active');
+                        targetNav.parent().addClass('active');
+                        targetNav.parent().children('.icon_active').show();             //显示汽车icon
+                        break;
+                    }
+                }
+            })
+
+
+            //公司列表的显示和隐藏
+            // $('.nameAndList .name_part').click(function (e) {
+            //     // console.log(this.parentNode)
+            //     // console.log($(this.parentNode).children('.list_part'))
+            //     var listNode = $(this.parentNode).children('.list_part');
+            //     if(listNode.is(':hidden')){
+            //         listNode.show('fast');
+            //     }
+            //     else{
+            //         listNode.hide('fast');
+            //     }
+            // })
+            $('.nameAndList .name_part').click(function (e) {
+                // console.log(this.parentNode)
+                // console.log($(this.parentNode).children('.list_part'))
+                var listNode = $(this.parentNode).children('.list_part');
+                if(listNode.is(':hidden')){
+                    listNode.show('fast');
+                }
+                else{
+                    listNode.hide('fast');
+                }
+            })
+            //点击对应部件
+            $('.part_toTouch').click(function (e) {
+                if($(this).attr('name') == '空白部分'){     //点击空白部分，取消响应
+                    var picOnShowing = $('.wholePic .wholeView'+'.isShow');
+                    // console.log(picOnShowing);
+                    if(picOnShowing.length == 0){       //没有处于显示状态
+                        return;
+                    }
+                    picOnShowing.css('opacity', 0);      //取消之前高亮
+                    picOnShowing.removeClass('isShow');
+
+                    //右移全景图
+                    $('.wholePic .wholeView').removeClass('active');
+                    $('.wholePic .part_toTouch').removeClass('active');
+                    //点击提示文字显示
+                    $('.wholePic .touchDescription').css('opacity', 1);
+
+                    //隐藏引导线
+                    $('.wholePic .line_container.active').css('width', 0);      //引导线容器的大小调整
+                    $('.wholePic .line_container.active').removeClass('active');
+                    //右移并隐藏展开内容
+                    $('.wholePic .briefAndList_container').removeClass('active');
+
+                    return;
+                }
+                $scope.category_toShow = $(this).attr('name');
+                // console.log(dataArr[propArr.indexOf($scope.category_toShow)]);
+                // $scope.list_toShow = dataArr[propArr.indexOf($scope.category_toShow)];
+                var categories_selected = $scope.category_toShow.split('+');
+                console.log(categories_selected)
+                var list_toShow = [[],[]];
+                for(var tempI in categories_selected){
+                    console.log(categories_selected[tempI])
+                    console.log(propArr.indexOf(categories_selected[tempI]))
+                    console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
+                    var tempList = dataArr[propArr.indexOf(categories_selected[tempI])];
+                    for(var i = 0;tempList != undefined && i < tempList.length; i+=5){
+                        var perRow = [];
+                        for(var j = 0; j < 5 && i+j < tempList.length; j++){
+                            perRow.push(tempList[i+j]);
+                        }
+                        list_toShow[tempI].push(perRow);
+                    }
+                }
+                // var list_toShow = [];
+                // for(var tempI in categories_selected){
+                //     console.log(categories_selected[tempI])
+                //     console.log(propArr.indexOf(categories_selected[tempI]))
+                //     console.log(dataArr[propArr.indexOf(categories_selected[tempI])])
+                //     list_toShow = list_toShow.concat(dataArr[propArr.indexOf(categories_selected[tempI])]);
+                // }
+                console.log(list_toShow)
+                $scope.list_toShow = list_toShow;
+
+                var listNode = $('.companyList');
+                $scope.$apply();        //应用更改
+
+                //部件高亮
+                var oldToShow = $('.wholePic .wholeView'+'.isShow');
+                var newToShow = $('.wholePic .wholeView'+'.'+this.classList[1]);
+
+                if(oldToShow.attr('class') == newToShow.attr('class')){
+                    oldToShow.css('opacity', 0);      //取消之前高亮
+                    oldToShow.removeClass('isShow');
+
+                    //右移全景图
+                    $('.wholePic .wholeView').removeClass('active');
+                    $('.wholePic .part_toTouch').removeClass('active');
+                    //点击提示文字显示
+                    $('.wholePic .touchDescription').css('opacity', 1);
+
+                    //隐藏引导线
+                    $('.wholePic .line_container.active').css('width', 0);      //引导线容器的大小调整
+                    $('.wholePic .line_container.active').removeClass('active');
+                    //右移并隐藏展开内容
+                    $('.wholePic .briefAndList_container').removeClass('active');
+                }
+                else{
+                    oldToShow.css('opacity', 0);      //取消之前高亮
+                    oldToShow.removeClass('isShow');
+                    newToShow.addClass('isShow');         //记录被点击后在显示高亮的
+                    newToShow.css('opacity', 1);      //新的部件高亮
+
+                    //左移全景图
+                    $('.wholePic .wholeView').addClass('active');
+                    $('.wholePic .part_toTouch').addClass('active');
+                    //点击提示文字消失
+                    $('.wholePic .touchDescription').css('opacity', 0);
+
+                    //显示新的引导线
+                    $('.wholePic .line_container.active').css('width', 0);          //先将当前的宽度设为0
+                    $('.wholePic .line_container.active').removeClass('active');
+                    $('.wholePic .line_container'+'.'+this.classList[1]).addClass('active');
+                    $('.wholePic .line_container.active').css('width', $('.wholePic .wholeView').width()*1.15);      //引导线容器的大小调整
+                    //显示展开内容
+                    $('.wholePic .briefAndList_container.active').removeClass('active');
+                    $('.wholePic .briefAndList_container'+'.'+this.classList[1]).addClass('active');
+                    // $('.wholePic .briefAndList_container'+'.'+this.classList[1]).delay('0.3s').animate({height: '600px'}, 'slow');
+                }
+
+                //显示公司列表
+                if(listNode.is(':hidden')){
+                    listNode.show('fast');
+                }
+                else if(oldToShow.attr('class') == newToShow.attr('class')){          //只有点击正在显示的部件才隐藏
+                    listNode.hide('fast');
+                }
+            })
+            //鼠标移到部件上,模糊，高亮等
+            $('.part_toTouch').mouseenter(function (e) {
+                if($(this).attr('name') == '空白部分') {     //空白部分，不做响应
+                    return;
+                }
+                // console.log($($('.wholePic .wholeView')[0]))
+                $($('.wholePic .wholeView')[0]).css('opacity', 0);
+                $($('.wholePic .wholeView.cover')[0]).css('opacity', 1);
+                // $($('.wholePic .wholeView.cover')[1]).css('opacity', 1);
+                // console.log($('.wholePic .wholeView.cover'+'.'+$(this).attr('id')))
+                // $('.wholePic .wholeView.cover'+'.'+$(this).attr('id')).css('opacity', 1);
+                // console.log(this.classList[1])
+                // console.log($('.wholePic .wholeView.cover'+'.'+this.classList[1]))
+                $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 1);
+
+            })
+            //鼠标移出部件，恢复
+            $('.part_toTouch').mouseleave(function (e) {
+                if($(this).attr('name') == '空白部分') {     //空白部分，不做响应
+                    return;
+                }
+
+                // console.log($($('.wholePic .wholeView')[0]))
+                if(!$('.wholePic .wholeView').hasClass('active')){          //只有未点击部件的时候才恢复
+                    $($('.wholePic .wholeView')[0]).css('opacity', 1);
+                    $($('.wholePic .wholeView.cover')[0]).css('opacity', 0);
+                    // $($('.wholePic .wholeView.cover')[1]).css('opacity', 0);
+                    // $('.wholePic .wholeView.cover'+'.'+$(this).attr('id')).css('opacity', 0);
+                    $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
+                }
+                if(!$('.wholePic .wholeView.cover'+'.'+this.classList[1]).hasClass('isShow')){      //如果点击部件后，恢复未点击的高亮部件
+                    $('.wholePic .wholeView.cover'+'.'+this.classList[1]).css('opacity', 0);
+                }
+
+            })
         })
 
         /**
@@ -292,8 +347,15 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             }
             var translateX = 210;
             console.log($(window).height())
+            console.log(window.devicePixelRatio);       //可以获取屏幕缩放比例
+            var devicePixelRatio = window.devicePixelRatio;
+
             var windowHeight = $(window).height();
             var windowWidth = $(window).width();
+
+            while($('.wholePic .wholeView').length == 0){
+                $('.wholePic .wholeView').delay(500).height();
+            }
             var scale = (windowHeight-50) / $('.wholePic .wholeView').height();            //缩放倍率
             console.log(scale);
             $('.wholePic .wholeView').css('height', windowHeight-50);
@@ -338,6 +400,9 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             $('.wholePic .briefAndList_container .companyTable').css('font-size', font_size * scale + 'px');
             $('.wholePic .briefAndList_container .companyTable td').css('width', $('.wholePic .briefAndList_container .companyTable').width()/5);
 
+            $('.wholePic .touchDescription').css('height', $('.wholePic .touchDescription').height() * scale);
+            $('.wholePic .touchDescription').css('left', $('.wholePic .touchDescription').position().left * scale);
+            $('.wholePic .touchDescription').css('top', $('.wholePic .touchDescription').position().top * scale);
             // console.log($('.wholePic .briefAndList_container').position().left * scale)
             // $('.wholePic .briefAndList_container').css('width', $('.wholePic .briefAndList_container').width()*scale);
             // // $('.wholePic .briefAndList_container').css('left', $('.wholePic .briefAndList_container').position().left * scale);

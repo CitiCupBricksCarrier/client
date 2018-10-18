@@ -380,6 +380,14 @@
     width: 522px;
     height: 334px;
 }
+#part_000{
+    /*cursor: inherit;*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 925px;
+    width: 1750px;
+}
 
 .part .other{
     height: 925px;
