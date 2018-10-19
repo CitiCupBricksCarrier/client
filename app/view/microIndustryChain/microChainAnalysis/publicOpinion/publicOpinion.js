@@ -32,9 +32,6 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
             })
         })
 
-       $scope.$on("modalRendered",function () {
-
-       })
 
 
         $scope.animationsEnabled = true;
@@ -43,7 +40,7 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
 
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,//打开时的动画开关
-                templateUrl: '/view/microIndustryChain/publicOpinion/myModal.html',//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
+                templateUrl: '/view/microIndustryChain/microChainAnalysis/publicOpinion/myModal.html',//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
                 controller: 'ModalInstanceCtrl',//这是模态框的控制器,是用来控制模态框的
                 windowTopClass:'topWindow',
                 resolve: {//这是一个入参,这个很重要,它可以把主控制器中的参数传到模态框控制器中

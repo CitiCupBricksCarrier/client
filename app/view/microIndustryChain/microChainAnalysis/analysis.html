@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/analysis.css">
+<div class="modal-header">
+    <h3 class="modal-title">对公司“{{name}}”进行分析</h3>
+</div>
+<div class="modal-body" id="body">
+
+    <label>
+        <input type="radio" ng-model="method" value="pe">
+        PE估值
+    </label>
+    <label>
+        <input type="radio" ng-model="method" value="opinion">
+        舆情分析
+    </label>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="confirm()">确定</button>
+</div>
