@@ -134,8 +134,9 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                     scrollTarget: link.hash
                 });
             })
-            //导航条
+            //处理导航条
             $(window).scroll(function (e) {
+                //导航条
                 var parts = $('.part');
                 for(var i = 0; i < parts.length; i++){
                     var part = $(parts[i]);
@@ -158,6 +159,42 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 }
             })
 
+            //整屏滚动
+            document.onmousewheel = function(event){
+                if(event.wheelDelta < 0){
+                    toScrollPart(true);
+                }else if(event.wheelDelta > 0){
+                    toScrollPart(false);
+                }
+            }
+            document.onkeydown = function(event){
+                console.log(event.code)
+                if(event.code == 'ArrowDown' || event.code == 'PageDown'){
+                    toScrollPart(true);
+                }
+                else if(event.code == 'ArrowUp' || event.code == 'PageUp'){
+                    toScrollPart(false);
+                }
+            }
+
+            //翻页函数
+            function toScrollPart(isDown) {
+                var curPart = $('.navBar li.active');
+                var toPart;
+                if(isDown){
+                    toPart = $(curPart).next().children('.nav_item');
+                }
+                else{
+                    toPart = $(curPart).prev().children('.nav_item');
+                }
+                if(toPart.length == 0){
+                    return;
+                }
+                $.smoothScroll({
+                    // scrollTarget: toPart
+                    scrollTarget: $($(toPart).attr('href'))
+                });
+            }
 
             //公司列表的显示和隐藏
             // $('.nameAndList .name_part').click(function (e) {
