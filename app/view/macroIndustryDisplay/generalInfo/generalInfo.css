@@ -138,7 +138,7 @@
     left: 0;
     top: 0;
     text-align: right;
-    width: 488px;
+    width: 442px;
     height: 0px;
     overflow: hidden;
     /*display: none;*/
@@ -150,15 +150,15 @@
 }
 .briefAndList_container .brief{
     color: rgba(140,140,140, 0.8);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
 }
 .briefAndList_container .img_xgqy{
-    height: 36px;
+    height: 32px;
 }
 .briefAndList_container .companyTable{
     float: right;
-    font-size: 18px;
+    font-size: 16px;
 }
 .briefAndList_container .companyTable tr{
     float: right;
@@ -178,86 +178,86 @@
 .briefAndList_container.part_001_1{
     position: absolute;
     /*left: 930px;*/
-    left: 1140px;
-    top: 120px;
+    left: 1010px;
+    top: 105px;
 }
 .briefAndList_container.part_001_2{
     position: absolute;
-    left: 1140px;
-    top: 515px;
+    left: 1010px;
+    top: 457px;
 }
 .briefAndList_container.part_002{
     position: absolute;
     /*left: 930px;*/
-    left: 1144px;
-    top: 120px;
+    left: 1010px;
+    top: 110px;
 }
 .briefAndList_container.part_003_1{
     position: absolute;
     /*left: 930px;*/
-    left: 1143px;
-    top: 76px;
+    left: 1009px;
+    top: 68px;
 }
 .briefAndList_container.part_003_2{
     position: absolute;
-    left: 1143px;
-    top: 515px;
+    left: 1009px;
+    top: 458px;
 }
 .briefAndList_container.part_004_1{
     position: absolute;
     /*left: 930px;*/
-    left: 1143px;
-    top: 76px;
+    left: 1009px;
+    top: 68px;
 }
 .briefAndList_container.part_004_2{
     position: absolute;
-    left: 1143px;
-    top: 515px;
+    left: 1009px;
+    top: 458px;
 }
 .briefAndList_container.part_005{
     position: absolute;
     /*left: 930px;*/
-    left: 1143px;
-    top: 76px;
+    left: 1009px;
+    top: 104px;
 }
 .briefAndList_container.part_006_1{
     position: absolute;
     /*left: 930px;*/
-    left: 1142px;
-    top: 120px;
+    left: 1008px;
+    top: 56px;
 }
 .briefAndList_container.part_006_2{
     position: absolute;
-    left: 1142px;
-    top: 555px;
+    left: 1008px;
+    top: 445px;
 }
 .briefAndList_container.part_007_1{
     position: absolute;
     /*left: 930px;*/
-    left: 1142px;
-    top: 120px;
+    left: 1008px;
+    top: 106px;
 }
 .briefAndList_container.part_007_2{
     position: absolute;
-    left: 1142px;
-    top: 555px;
+    left: 1008px;
+    top: 492px;
 }
 .briefAndList_container.part_008_1{
     position: absolute;
     /*left: 930px;*/
-    left: 1142px;
-    top: 120px;
+    left: 1008px;
+    top: 106px;
 }
 .briefAndList_container.part_008_2{
     position: absolute;
-    left: 1142px;
-    top: 522px;
+    left: 1008px;
+    top: 464px;
 }
 .briefAndList_container.part_009{
     position: absolute;
     /*left: 930px;*/
-    left: 1138px;
-    top: 205px;
+    left: 1004px;
+    top: 182px;
 }
 /*对各部件的触发div*/
 .part_toTouch{
@@ -433,12 +433,13 @@
     height: 123px;
 }
 #part_000{
-    /*cursor: inherit;*/
+    cursor: inherit;
     position: absolute;
     top: 0px;
     left: 0px;
     height: 925px;
     width: 1750px;
+    z-index: auto;
 }
 #part_icon01{
     position: absolute;

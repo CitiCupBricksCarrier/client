@@ -106,8 +106,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         loadCompanyList();
 
         $().ready(function () {
-            $().delay(100);
-            resizeWholePic();
+            $().delay(100)
 
             /**
              * -------------------------------------------------
@@ -326,6 +325,8 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 }
 
             })
+
+            resizeWholePic();
         })
 
         /**
@@ -333,9 +334,6 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
          * -------------------------------------------------
          * 自适应
          */
-        // window.onload = function () {
-        //     resizeWholePic();
-        // }
         $(window).resize(function () {
             resizeWholePic();
         })
@@ -348,12 +346,13 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             var translateX = 210;
             console.log($(window).height())
             console.log(window.devicePixelRatio);       //可以获取屏幕缩放比例
-            var devicePixelRatio = window.devicePixelRatio;
+            var devicePixelRatio = window.devicePixelRatio; //可以获取屏幕缩放比例
 
             var windowHeight = $(window).height();
             var windowWidth = $(window).width();
 
-            while($('.wholePic .wholeView').length == 0){
+            //偶尔会出现$().ready函数触发该方法，但是获取不到dom对象，使用此循环解决？
+            while($('.wholePic .wholeView').length == 0 || $('.wholePic .wholeView').height() == 0 || $('.wholePic .wholeView').width() == 0){
                 $('.wholePic .wholeView').delay(500).height();
             }
             var scale = (windowHeight-50) / $('.wholePic .wholeView').height();            //缩放倍率
