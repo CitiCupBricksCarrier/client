@@ -1,21 +1,53 @@
 table{
     width:100%;
+    background-color:rgba(0,0,0,0); /* IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂，但解析为透明 */
+    color: #d6d6d6;
+    font-size: 14px;
 }
-table tr:nth-child(odd){background:#F4F4F4;}
 
 table th{
-     background: #E5F0FF;
-     font-weight: 900;
+    font-weight: 900;
     text-align: center;
-    border: 2px solid #E4E5E6;
+    font-size: 16px;
+    color: #d6d6d6;
+    height: 60px;
 }
 
-
-table tr td{
+table tr{
     text-align: center;
-    border: 2px solid #E4E5E6;
     padding-top: 5px;
     padding-bottom: 5px;
+    color: #d6d6d6;
+    height: 30px;
+    border: 1px solid rgb(67,67,67);
+    border-left-style: none;
+    border-right-style: none;
+
+
+}
+
+table tr:nth-child(1) {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #d6d6d6;
+    height: 25px;
+    border: 0px solid rgb(67,67,67);
+
+}
+
+table tr:nth-child(2) {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #d6d6d6;
+    height: 25px;
+    border: 0px solid rgb(67,67,67);
+
+}
+
+tbody td{
+
 }
 
 .circle{
@@ -25,5 +57,84 @@ table tr td{
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
+
+}
+
+/*导航栏*/
+.navBar{
+    position: fixed;
+    /*right: 5%;*/
+    left: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+.navBar li{
+    margin: 50px 0 50px 0;
+    transition: margin 1s, color 1s;
+    /*font-size: 15px;*/
+    color: rgba(140,140,140, 0.8);
+}
+.navBar li.active{
+    margin: 100px 0 100px 0;
+    /*transition: margin 0.5s;*/
+    font-size: 25px;
+    color: rgba(135,150,250, 0.8);
+    /*font-weight: bold;*/
+    /*transform: translateX(-1.5px);*/
+    transform: translateX(-29px);
+    list-style: none;
+}
+.navBar li .icon_active{
+    width: 60px;
+    display: none;
+}
+.navBar .nav_item{
+    text-decoration: none;
+    transition: ease-in-out 0.5s;
+    color: rgba(140,140,140, 0.8);
+    padding-left: 15px;
+}
+.navBar .nav_item.active{
+    color: rgba(135,150,250, 0.8);
+}
+.navBar .vertical_line{
+    position: absolute;
+    width: 2px;
+    height: 80vh;
+    background: linear-gradient(rgba(70,70,70,0.1), rgba(160,160,160, 1), rgba(70,70,70,0.1)),
+    linear-gradient(to right, rgba(123, 123, 123, 0.1), rgba(160, 160, 160, 0.1));
+    left: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px;
+}
+/*二级列表*/
+.navBar li ul{
+    margin: 10px 0px 10px 35px;
+    list-style: none;
+    display: none;
+}
+.navBar li ul li {
+    margin: 10px 0px 10px 0px;
+    font-weight: normal;
+    font-size: 15px;
+}
+.navBar .nav2_item{
+    text-decoration: none;
+    transition: ease-in-out 0.5s;
+    color: rgba(140,140,140, 0.8);
+}
+.navBar .nav2_item.active {
+    color: rgba(135,150,250, 0.8);
+}
+
+select{
+    background-color: rgba(0,0,0,0);
+    color:rgba(170,170,170, 0.8);
+}
+
+select option{
+    background-color: rgba(0,0,0,0.81);
 
 }

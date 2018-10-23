@@ -403,7 +403,10 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
             var option = {
                 title: {
                     text: '行业区间涨幅',
-                    left:'center'
+                    left:'center',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
                 tooltip: {
                     formatter: function (params) {
@@ -416,15 +419,29 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                     },
                 },
                 legend: {
+                    data:['涨跌幅','基准'],
+                    y:'bottom',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
                 xAxis: {
-                    data: $scope.indstnam
+                    data: $scope.indstnam,
+                    axisLabel:{
+                        show: true,
+                        textStyle: {
+                            color: '#d6d6d6'
+                        }
+                    }
                 },
                 yAxis: {
                     min:$scope.judge(),
                     axisLabel: {
                         formatter: '{value} %',
-                        show: true
+                        show: true,
+                        textStyle: {
+                            color: '#d6d6d6'
+                        }
                     }
 
                 },
