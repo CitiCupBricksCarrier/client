@@ -9,6 +9,8 @@
 }
 .navBar li{
     margin: 50px 0 50px 0;
+    /*往下时margin-top动画，往上时margin-bottom动画，在js里进行设置*/
+    /*transition: margin-top ease 1s;*/
     transition: margin 1s, color 1s;
     /*font-size: 15px;*/
     color: rgba(140,140,140, 0.8);
@@ -16,12 +18,14 @@
 .navBar li.active{
     margin: 200px 0 200px 0;
     /*transition: margin 0.5s;*/
-    font-size: 25px;
+    font-size: 22px;
+    /*font-size: 25px;*/
     color: rgba(135,150,250, 0.8);
     /*font-weight: bold;*/
     /*transform: translateX(-1.5px);*/
     transform: translateX(-29px);
     list-style: none;
+    text-shadow:0 0 5px rgba(255,255,255,0.5);
 }
 .navBar li .icon_active{
     width: 60px;
@@ -46,6 +50,7 @@
     top: 50%;
     transform: translateY(-50%);
     margin: 0px;
+    border: 0;
 }
 
 /*各部分*/
@@ -54,7 +59,7 @@
     padding-left: 380px;
 }
 .part .blank{
-    height: 50px;
+    height: 60px;
 }
 
 /*全景图*/
@@ -66,7 +71,7 @@
     /*width: 65%;*/
     /*height: 95vh;*/
     height: 925px;
-    min-width: 800px;
+    /*min-width: 800px;*/
     transition: all 0.3s;
 }
 .wholePic .wholeView.active{
