@@ -44,9 +44,14 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
+    max-height: 60px;
     /*min-width: 1300px;*/
     /*background: #00ccff;*/
-    background: transparent;
+    /*background: transparent;*/
+    background: url(../../view/resource/新背景.jpg) no-repeat;
+    -webkit-background-size: 100vw 100vh;
+    background-size: 100vw 100vh;
+    overflow: hidden;
     z-index: 101;
 }
 .header_macro .module_nav{
