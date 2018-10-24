@@ -7,6 +7,7 @@ angular.module('myApp.macroIndustryDisplay.industryData', [
 
     .controller('IndustryDataCtrl',function($scope, $route, $http, $stateParams) {
         //设置标题栏响应nav为active,应付刷新等情况
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
         $($('.header_macro .module_nav .nav')[2]).addClass('active')
 
         $().ready(function () {

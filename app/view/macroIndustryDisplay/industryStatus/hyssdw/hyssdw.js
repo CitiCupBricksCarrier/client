@@ -7,6 +7,10 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
     })
 
     .controller('hyssdwCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[4]).addClass('active');
+
         $scope.market="全部";
         $scope.Y="PE-TTM";
         $scope.X="ROE-TTM";

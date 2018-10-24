@@ -7,6 +7,9 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
     })
 
     .controller('scbxdbCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[4]).addClass('active');
 
         $scope.market="全部";
         $scope.time="OW";
