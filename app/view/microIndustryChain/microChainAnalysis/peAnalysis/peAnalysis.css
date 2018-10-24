@@ -1,0 +1,65 @@
+
+.large-font {
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.small-font {
+    font-size: 16px;
+}
+
+.gray-font {
+    color: lightgray;
+}
+.label-font{
+    color: white;
+    font-size: 11px;
+
+}
+
+.lower-pe {
+    color: #4BA840
+}
+
+.lower-pe-background {
+    background-color: #4BA840;
+}
+
+
+.moderate-pe {
+    color: #EE8031
+}
+.moderate-pe-background {
+    background-color: #EE8031;
+}
+
+.higher-pe {
+    color: #D44D4A
+}
+.higher-pe-background {
+    background-color: #D44D4A;
+}
+
+.rank-container {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.rank-item {
+    font-size: 14px;
+    height: 50px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.modal-dialog{
+    width: 70% !important;
+}
+
+.current-company{
+    /*background-color: #f1f1f1;*/
+    /*border: 1px solid grey;*/
+    /*border-collapse: collapse;*/
+    background-color: lightgray;
+}

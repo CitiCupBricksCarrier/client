@@ -444,7 +444,6 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                         return {
                             name:name,
                             id:stkId ,
-                            // scope: $scope
                         }//这个值会被模态框的控制器获取到
                     },
 

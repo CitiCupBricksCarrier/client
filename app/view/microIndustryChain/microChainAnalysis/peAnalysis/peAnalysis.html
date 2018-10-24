@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/peAnalysis/peAnalysis.css">
+
+<div class="modal-header">
+    <h3 class="modal-title">对公司“{{name}}”进行PE分析</h3>
+</div>
+<div class="modal-body" id="body">
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div>
+                <div class="row small-font">
+                    <div class="col-md-8">
+                        <span>最新PE </span>
+                        <span class="gray-font">{{data.date}}</span>
+                    </div>
+                    <span class="col-md-4 small-font gray-font">成立时间 {{data.timeToMarket}}</span>
+                </div>
+                <div class="row large-font" style="margin-top: 3px">
+                    <span class="col-md-8">{{data.pe}}</span>
+                    <span ng-if="data.evaluation==='估值偏低'" class="lower-pe col-md-4">{{data.evaluation}}</span>
+                    <span ng-if="data.evaluation==='估值适中'" class="moderate-pe col-md-4">{{data.evaluation}}</span>
+                    <span ng-if="data.evaluation==='估值偏高'" class="higher-pe col-md-4">{{data.evaluation}}</span>
+                </div>
+                <br>
+                <div class="row small-font">
+                    <span class="col-md-8">PE百分位 </span>
+                    <span class="col-md-4 ">预测股价</span>
+                </div>
+                <div class="row large-font">
+                    <span class="col-md-8">{{data.pePercentile*100}}%</span>
+                    <span class="col-md-4">{{data.forecast}}</span>
+                </div>
+
+            </div>
+
+            <div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <h3 style="text-align: center">估值排行</h3>
+            <div>
+                <div class="row">
+                    <span class="col-sm-8 col-sm-offset-1">名称</span>
+                    <div class="col-sm-2">PE</div>
+                </div>
+                <div class="rank-container">
+                    <div ng-repeat="item in data.peRank" class="row rank-item">
+
+
+                        <div ng-if="item.stockId===id" class="current-company row">
+                            <div class="col-sm-8 col-sm-offset-1">
+                                <div class="row">
+                                    {{item.name}}
+                                </div>
+                                <div class="row">
+                                    <span ng-if="item.evaluation==='估值偏低'"
+                                          class="lower-pe-background label-font ">偏低</span>
+                                    <span ng-if="item.evaluation==='估值适中'"
+                                          class="moderate-pe-background label-font">适中</span>
+                                    <span ng-if="item.evaluation==='估值偏高'"
+                                          class="higher-pe-background label-font">偏高</span>
+                                    {{item.stockId}}
+                                </div>
+                            </div>
+                            <span class="col-sm-2">{{item.pe}}</span>
+                        </div>
+
+                        <div ng-if="item.stockId!==id" class="row">
+                            <div class="col-sm-8 col-sm-offset-1">
+                                <div class="row">
+                                    {{item.name}}
+                                </div>
+                                <div class="row">
+                                       <span ng-if="item.evaluation==='估值偏低'"
+                                             class="lower-pe-background label-font ">偏低</span>
+                                    <span ng-if="item.evaluation==='估值适中'"
+                                          class="moderate-pe-background label-font">适中</span>
+                                    <span ng-if="item.evaluation==='估值偏高'"
+                                          class="higher-pe-background label-font">偏高</span>
+                                    {{item.stockId}}
+                                </div>
+                            </div>
+                            <span class="col-sm-2">{{item.pe}}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="confirm()">确定</button>
+</div>
