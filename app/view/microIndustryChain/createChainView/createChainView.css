@@ -120,7 +120,7 @@ a {
     font-size: 8px;
 }
 #riskBtn{
-    background: white no-repeat center;
+    background: white url(icon/risk.svg) no-repeat center;
     background-size: 50%;
     font-size: 8px;
 }
@@ -361,3 +361,25 @@ a {
     border-radius: 7px;
 }
 
+#infect-time-board {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 400px;
+    height: 100px;
+    background: whitesmoke;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    left: 40%;
+    top: 50%;
+    z-index: 10;
+}
+
+#time-slider {
+
+}

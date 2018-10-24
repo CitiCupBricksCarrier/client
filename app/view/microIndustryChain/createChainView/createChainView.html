@@ -90,9 +90,9 @@
                 </button>
             </div>
             <div class="topToolBarBigBlockCell">
-                <button id="riskBtn" class="btn btn-default topToolBarBigBtn" ng-click="risk()"
+                <button id="riskBtn" class="btn btn-default topToolBarBigBtn" ng-click="openRisk()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
-                        title="分享到社交平台" data-content="分析产业链风险">
+                        title="分析产业链风险" data-content="分析产业链风险">
                     风险传递
                 </button>
             </div>
@@ -256,6 +256,16 @@
         <li ng-click="undo()"><a>撤销</a></li>
         <li ng-click="redo()"><a>重做</a></li>
     </ul>
+</div>
+
+<div id="infect-time-board" onselectstart="return false;" ng-show="showInfectTimeBoard">
+    <p>发生风险的节点</p>
+    <select ng-model="riskFrom" ng-change="getRisk(riskFrom)" style="margin-bottom: 5px">
+        <option label="无">{{'stop'}}</option>
+        <option ng-repeat="nodeID in nodeIDList" label="{{nodeList[nodeID].nodeName}}">{{nodeID}}</option>
+    </select>
+    <input ng-init="infectTime = 10" ng-model="infectTime" id="time-slider" type="range" min="10" max="100" step="10">
+    <p>第 {{infectTime}} 天</p>
 </div>
 
 <script src="view/microIndustryChain/createChainView/bootstrap-contextmenu.js"></script>

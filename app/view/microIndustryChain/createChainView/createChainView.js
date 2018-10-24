@@ -33,6 +33,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let addConnectionFundExchangeInput = document.getElementById("addConnectionFundExchangeInput");
         let editConnectionBoard = document.getElementById("editConnectionBoard");
         let editConnectionFundExchangeInput = document.getElementById("editConnectionFundExchangeInput");
+        let infectTimeBoard = document.getElementById("infect-time-board");
 
         //可调DOM参数
         let canvasWidth = 2000;//三层的 宽和高
@@ -43,6 +44,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
         let connectionLineColor = "rgba(0,0,0,0.5)";//连线层 连线颜色
         let connectionLineAnimeWidth = 6;
         let connectionLineAnimeColor = "rgba(255,215,0,1)";//连线层 动画颜色
+        let riskAnimeWidth = 10;
+        let riskAnimeColor = "rgba(255,69,0,0.5)";//连线层 动画颜色
         let step = 15;//网格背景 网络间隔
         let netColor = "rgba(0,0,0,0.1)";//网格背景 网络颜色
         let nextNodePositionX = canvasLeft + 200;//新增节点 位置
@@ -68,13 +71,13 @@ angular.module('myApp.microIndustryChain.createChainView', [
         animeBackground.height = canvas.height;
         animeBackground.style.left = canvas.style.left;
         animeBackground.style.top = canvas.style.top;
-        animeContext.lineWidth = connectionLineAnimeWidth;
-        animeContext.strokeStyle = connectionLineAnimeColor;
 
         //$scope参数初始化
         $scope.isAddingNode = false;
         $scope.isEdittingNode = false;
         $scope.isAddingConnection = false;
+        $scope.showInfectTimeBoard = false;
+        $scope.riskCompanyStatusList = {};
 
 
         //高频更新变量
@@ -391,7 +394,20 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
 
-        $scope.risk = function () {
+        $scope.openRisk = function () {
+            window.event.stopPropagation();
+            hideAllBoard();
+            infectTimeBoard.style.left = window.event.clientX + "px";
+            infectTimeBoard.style.top = window.event.clientY + "px";
+            $scope.showInfectTimeBoard = true;
+        };
+
+        $scope.getRisk = function (riskCompanyID) {
+            if (riskCompanyID == 'stop') {
+                $scope.riskCompanyStatusList = {};
+                return;
+            }
+            console.log(riskCompanyID);
             let nodeListArray = [],
                 connectionListArray = [];
 
@@ -407,10 +423,19 @@ angular.module('myApp.microIndustryChain.createChainView', [
                     y: $scope.nodeDisplayList[id].y
                 })
             }
+            let riskCompany = {
+                id: riskCompanyID,
+                nodeName: $scope.nodeList[riskCompanyID].nodeName,
+                nodeStock: $scope.nodeList[riskCompanyID].nodeStock,
+                nodeRole: $scope.nodeList[riskCompanyID].nodeRole,
+                nodeColor: $scope.nodeList[riskCompanyID].nodeColor,
+                x: $scope.nodeDisplayList[riskCompanyID].x,
+                y: $scope.nodeDisplayList[riskCompanyID].y
+            };
             connectionListArray = $scope.connectionList;
 
             let graphJson = {
-                riskCompany: nodeListArray[0],
+                riskCompany: riskCompany,
                 linkList: connectionListArray,
                 companyList: nodeListArray
             };
@@ -425,13 +450,25 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 withCredentials: true
                 //cache: true, //避免多次请求后台数据
             }).then(function (response) {
-                console.log(response);
+                console.log(response.data);
+                let riskList = response.data;
+                for (let i=10; i<=100; i+=10) {
+                    $scope.riskCompanyStatusList[i] = {};
+                    for (let key in riskList[i].companyList) {
+                        for (let index in $scope.nodeIDList) {
+                            let id = $scope.nodeIDList[index];
+                            if ($scope.nodeList[id].nodeStock == key) {
+                                $scope.riskCompanyStatusList[i][id] = riskList[i].companyList[key].status;
+                            }
+                        }
+                    }
+                    $scope.riskCompanyStatusList[i][$scope.riskFrom] = 1;
+                }
+                console.log($scope.riskCompanyStatusList);
             }, function () {
                 console.error("Link Failed");
             });
         };
-
-
 
 
 
@@ -620,6 +657,8 @@ angular.module('myApp.microIndustryChain.createChainView', [
             animeI = animeI + 1.0;
             if(animeI > animeTime){animeI = 4.0;}
             animeContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            animeContext.lineWidth = connectionLineAnimeWidth;
+            animeContext.strokeStyle = connectionLineAnimeColor;
             animeContext.beginPath();
             for(let i=0; i<$scope.connectionList.length; i++){
                 let beginNode = document.getElementById($scope.connectionList[i].begin);
@@ -638,6 +677,20 @@ angular.module('myApp.microIndustryChain.createChainView', [
                 );
             }
             animeContext.stroke();
+            animeContext.lineWidth = riskAnimeWidth;
+            animeContext.strokeStyle = riskAnimeColor;
+            if ($scope.riskCompanyStatusList !== {}) {
+                for (let nodeID in $scope.riskCompanyStatusList[$scope.infectTime]) {
+                    if ($scope.riskCompanyStatusList[$scope.infectTime][nodeID] == 0) { continue; }
+                    let riskNode = document.getElementById(nodeID);
+                    animeContext.beginPath();
+                    animeContext.arc(
+                        parseFloat(riskNode.style.left) + parseFloat(riskNode.style.width)/2 - canvas.offsetLeft,
+                        parseFloat(riskNode.style.top) + parseFloat(riskNode.style.height)/2 - canvas.offsetTop,
+                        2*animeI, 0, 2*Math.PI);
+                    animeContext.stroke();
+                }
+            }
             animeTimeoutID = setTimeout(startAnimeBackground, 50);
         }
         startAnimeBackground();
@@ -825,6 +878,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
             $scope.isEdittingNode = false;
             $scope.isAddingConnection = false;
             $scope.isEdittingConnection = false;
+            $scope.showInfectTimeBoard = false;
         };
 
         let drawArrow = function(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
