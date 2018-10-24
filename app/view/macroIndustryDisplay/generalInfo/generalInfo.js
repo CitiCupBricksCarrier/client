@@ -135,6 +135,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 });
             })
             //处理导航条
+            var curNavIndex = 0;        //记录当前nav的index，可以由此判断往上还是往下的变化
             $(window).scroll(function (e) {
                 //导航条
                 var parts = $('.part');
@@ -148,6 +149,15 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                             // console.log('same')
                             break;
                         }
+                        //判断往上还是往下，并修改对应的动画效果
+                        if(curNavIndex > i){        //往下
+                            $('.navBar li').css('transition', 'margin-bottom ease 1s');
+                        }
+                        else{                       //往上
+                            $('.navBar li').css('transition', 'margin-top ease 1s');
+                        }
+                        curNavIndex = i;        //更新记录的当前navIndex
+
                         $('.nav_item.active').parent().removeClass('active');
                         $('.nav_item.active').parent().children('.icon_active').hide();      //隐藏汽车icon
                         $('.nav_item.active').removeClass('active');
@@ -168,7 +178,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 }
             }
             document.onkeydown = function(event){
-                console.log(event.code)
+                // console.log(event.code)
                 if(event.code == 'ArrowDown' || event.code == 'PageDown'){
                     toScrollPart(true);
                 }
@@ -241,6 +251,10 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                     $('.wholePic .line_container.active').removeClass('active');
                     //右移并隐藏展开内容
                     $('.wholePic .briefAndList_container').removeClass('active');
+
+                    //恢复全景图本体，隐藏变暗的本体
+                    $($('.wholePic .wholeView')[0]).css('opacity', 1);
+                    $($('.wholePic .wholeView.cover')[0]).css('opacity', 0);
 
                     return;
                 }
@@ -426,19 +440,23 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 $(container).css('top', $(container).position().top * scale);
             }
             //容器内其他的大小
-            var font_size = $('.wholePic .briefAndList_container .brief').css('font-size');
+            var brief = $('.wholePic .briefAndList_container .brief');
+            var font_size = $(brief).css('font-size');
             // console.log(font_size.substring(0, font_size.indexOf('px')))
             font_size = parseInt(font_size.substring(0, font_size.indexOf('px')));
-            $('.wholePic .briefAndList_container .brief').css('font-size', font_size * scale + 'px');
-            $('.wholePic .briefAndList_container .img_xgqy').css('height', $('.wholePic .briefAndList_container .img_xgqy').height() * scale);
-            font_size = $('.wholePic .briefAndList_container .companyTable').css('font-size');
+            $(brief).css('font-size', font_size * scale + 'px');
+            var img_xgqy = $('.wholePic .briefAndList_container .img_xgqy');
+            $(img_xgqy).css('height', $(img_xgqy).height() * scale);
+            var companyTable = $('.wholePic .briefAndList_container .companyTable');
+            font_size = $(companyTable).css('font-size');
             font_size = parseInt(font_size.substring(0, font_size.indexOf('px')));
-            $('.wholePic .briefAndList_container .companyTable').css('font-size', font_size * scale + 'px');
-            $('.wholePic .briefAndList_container .companyTable td').css('width', $('.wholePic .briefAndList_container .companyTable').width()/5);
+            $(companyTable).css('font-size', font_size * scale + 'px');
+            $('.wholePic .briefAndList_container .companyTable td').css('width', $(companyTable).width()/5);
 
-            $('.wholePic .touchDescription').css('height', $('.wholePic .touchDescription').height() * scale);
-            $('.wholePic .touchDescription').css('left', $('.wholePic .touchDescription').position().left * scale);
-            $('.wholePic .touchDescription').css('top', $('.wholePic .touchDescription').position().top * scale);
+            var touchDescription = $('.wholePic .touchDescription');
+            $(touchDescription).css('height', $(touchDescription).height() * scale);
+            $(touchDescription).css('left', $(touchDescription).position().left * scale);
+            $(touchDescription).css('top', $(touchDescription).position().top * scale);
             // console.log($('.wholePic .briefAndList_container').position().left * scale)
             // $('.wholePic .briefAndList_container').css('width', $('.wholePic .briefAndList_container').width()*scale);
             // // $('.wholePic .briefAndList_container').css('left', $('.wholePic .briefAndList_container').position().left * scale);
@@ -447,7 +465,6 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
             //其他图的调整
             $('.part .other').css('height', windowHeight-50);
-
         }
 
     });
