@@ -8,6 +8,9 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
     })
 
     .controller('hylsbjCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[4]).addClass('active');
 
         $scope.market="全部";
         $scope.index="市盈率";
