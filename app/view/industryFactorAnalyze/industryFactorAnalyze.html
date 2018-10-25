@@ -76,6 +76,29 @@
         <button class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
     </div>
 
-    <label style="margin-top: 10%;font-size: 36px" >分析结果：</label><span id="resultSpan" style="font-size: 26px" ng-show="toShowResult">{{RESULT}}</span>
+    <div class="resultAndDetail">
+        <div class="analyzeResult">
+            <h2>分析结果：</h2>
+            <span id="resultSpan" style="font-size: 26px" ng-show="toShowResult">{{RESULT}}</span>
+        </div>
+        <div class="analyzeDetail" ng-show="toShowAnalyzeDetail">
+            <h2>分析过程</h2>
+            <div ng-switch="detailOfMethodToShow">
+                <div ng-switch-when="IC-mean">
+                    <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/IC-mean.png"/>
+                </div>
+                <div ng-switch-when="IC-IR">
+                    <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/IC-IR.png"/>
+                </div>
+                <div ng-switch-when="IC-T">
+                    <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/IC-T.png"/>
+                </div>
+                <div ng-switch-when="多空收益">
+                    <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/多空收益1.png"/>
+                    <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/多空收益2.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <link rel="stylesheet" href="view/industryFactorAnalyze/industryFactorAnalyze.css"/>

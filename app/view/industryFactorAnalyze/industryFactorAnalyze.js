@@ -46,6 +46,10 @@ angular.module('myApp.industryFactorAnalyze', [
 
         var method_default = 'IC-IR';
 
+        //显示方法的公式图片
+        $scope.toShowAnalyzeDetail = false;     //显示分析详情
+        $scope.detailOfMethodToShow = '';       //要显示的方法
+
         /**
          * -----------------------------------------------------------------------------
          * -----------------------------------------------------------------------------
@@ -322,9 +326,17 @@ angular.module('myApp.industryFactorAnalyze', [
             }).then(function successCallBack(response) {
                 console.log(response.data);
                 $scope.RESULT = response.data;
+
+                $scope.toShowAnalyzeDetail = true;     //显示分析详情
+                $scope.detailOfMethodToShow = $scope.method_selected;       //要显示的方法
+
                 $scope.$apply;
             },function errorCallBack(response) {
                 console.error('分析失败');
+                $scope.RESULT = '分析失败';
+
+                $scope.$apply;
+
                 return '';
             });
         }
@@ -352,9 +364,16 @@ angular.module('myApp.industryFactorAnalyze', [
             }).then(function successCallBack(response) {
                 console.log(response.data);
                 $scope.RESULT = response.data;
+
+                $scope.toShowAnalyzeDetail = true;     //显示分析详情
+                $scope.detailOfMethodToShow = $scope.method_selected;       //要显示的方法
+
                 $scope.$apply;
             },function errorCallBack(response) {
                 console.error('分析失败');
+                $scope.RESULT = '分析失败';
+                $scope.$apply;
+
                 return '';
             });
         }
