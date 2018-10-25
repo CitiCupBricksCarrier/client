@@ -167,7 +167,7 @@ angular.module('myApp.microIndustryChain.createChainView', [
         };
 
         $scope.addCompanyNode = function (company) {
-            addNode(company.compname, company.stkcd, "", "#000000");
+            addNode(company.compnamesummary, company.stkcd, "", "#000000");
         };
 
         $scope.addEmptyNode = function () {
