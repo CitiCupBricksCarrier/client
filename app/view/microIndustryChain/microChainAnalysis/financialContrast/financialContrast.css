@@ -1,0 +1,14 @@
+input {
+    height: 30px;
+    width: 300px;
+}
+
+select {
+    height: 30px;
+    width: 300px;
+}
+
+.modal-dialog{
+    width: 30%!important;
+    margin: 20% auto;
+}
