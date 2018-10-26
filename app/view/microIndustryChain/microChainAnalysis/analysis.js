@@ -3,7 +3,7 @@ angular.module('myApp.microIndustryChain.analysis', [
 ])
     .controller('AnalysisCtrl', function ($scope, $uibModal, $uibModalInstance, items) {
 
-        $scope.method = "financial";
+        $scope.method = "pe";
         $scope.name = items.name;
         $scope.id = items.id;
 
@@ -16,10 +16,10 @@ angular.module('myApp.microIndustryChain.analysis', [
         let methods = ["opinion", "pe", "financial"]
 
         $scope.confirm = function () {
-            $uibModalInstance.close();
 
             let index = methods.indexOf($scope.method);
 
+            $uibModalInstance.close();
             $scope.modalInstance = $uibModal.open({
                 templateUrl: urls[index],//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
                 controller: controllers[index],//这是模态框的控制器,是用来控制模态框的
@@ -30,12 +30,14 @@ angular.module('myApp.microIndustryChain.analysis', [
                         return {
                             name: $scope.name,
                             id: $scope.id,
-                            scope: $scope
+                            scope: $scope,
+                            // data: JSON.parse(res)
                         }//这个值会被模态框的控制器获取到
                     },
 
                 }
             });
+
 
         }
     })

@@ -5,7 +5,30 @@
 </div>
 <div class="modal-body">
 
-    <div class="row">
+    <div class="spinner"  ng-hide="render">
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <button id="spinner" ng-hide="!render" ng-click=""></button>
+    </div>
+
+
+    <div class="row" ng-hide="!render">
         <div class="col-lg-8">
             <div>
                 <div class="row small-font">
@@ -13,13 +36,13 @@
                         <span>最新PE </span>
                         <span class="gray-font">{{data.date}}</span>
                     </div>
-                    <span class="col-md-4 small-font gray-font">成立时间 {{data.timeToMarket}}</span>
+                    <span class="col-md-4 small-font gray-font">估值时间 {{data.timeToMarket}}</span>
                 </div>
                 <div class="row large-font" style="margin-top: 3px">
                     <span class="col-md-8">{{data.pe}}</span>
-                    <span ng-if="data.evaluation==='估值偏低'" class="lower-pe col-md-4">{{data.evaluation}}</span>
+                    <span ng-if="data.evaluation==='估值较低'" class="lower-pe col-md-4">{{data.evaluation}}</span>
                     <span ng-if="data.evaluation==='估值适中'" class="moderate-pe col-md-4">{{data.evaluation}}</span>
-                    <span ng-if="data.evaluation==='估值偏高'" class="higher-pe col-md-4">{{data.evaluation}}</span>
+                    <span ng-if="data.evaluation==='估值较高'" class="higher-pe col-md-4">{{data.evaluation}}</span>
                 </div>
                 <br>
                 <div class="row small-font">
@@ -27,13 +50,33 @@
                     <span class="col-md-4 ">预测股价</span>
                 </div>
                 <div class="row large-font">
-                    <span class="col-md-8">{{data.pePercentile*100}}%</span>
+                    <span class="col-md-8">{{data.pePercentile}}</span>
                     <span class="col-md-4">{{data.forecast}}</span>
                 </div>
 
             </div>
 
-            <div>
+            <div style="margin-top: 30px;margin-right: 30px">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height: 50px">
+                        <div class="col-lg-8" style="margin-top: 5px">历史PE走势图</div>
+                        <div class="btn-group" data-toggle="buttons" style="float: right">
+                            <label id="defaultYear" class="btn btn-default transparent-btn" style="outline: none" ng-click="getHistory(0)">
+                                <input  type="radio" name="options" id="option1" >近两年
+                            </label>
+                            <label class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(1)">
+                                <input type="radio" name="options" id="option2" ng-click="getHistory(1)"> 近一年
+                            </label>
+                            <label class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(2)">
+                                <input type="radio" name="options" id="option3" ng-click="getHistory(2)"> 近半年
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                       <div id="lineChart" style="height: 400px; width: 700px"></div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -41,7 +84,7 @@
         <div class="col-lg-4">
             <h3 style="text-align: center">估值排行</h3>
             <div>
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px">
                     <span class="col-sm-8 col-sm-offset-1">名称</span>
                     <div class="col-sm-2">PE</div>
                 </div>
@@ -49,37 +92,37 @@
                     <div ng-repeat="item in data.peRank" class="row rank-item">
 
 
-                        <div ng-if="item.stockId===id" class="current-company row">
+                        <div ng-if="item.stkcd===id" class="current-company row">
                             <div class="col-sm-8 col-sm-offset-1">
                                 <div class="row">
-                                    {{item.name}}
+                                    {{item.companyName}}
                                 </div>
                                 <div class="row">
-                                    <span ng-if="item.evaluation==='估值偏低'"
-                                          class="lower-pe-background label-font ">偏低</span>
+                                    <span ng-if="item.evaluation==='估值较低'"
+                                          class="lower-pe-background  badge ">较低</span>
                                     <span ng-if="item.evaluation==='估值适中'"
-                                          class="moderate-pe-background label-font">适中</span>
-                                    <span ng-if="item.evaluation==='估值偏高'"
-                                          class="higher-pe-background label-font">偏高</span>
-                                    {{item.stockId}}
+                                          class="moderate-pe-background  badge">适中</span>
+                                    <span ng-if="item.evaluation==='估值较高'"
+                                          class="higher-pe-background  badge">较高</span>
+                                    {{item.stkcd}}
                                 </div>
                             </div>
                             <span class="col-sm-2">{{item.pe}}</span>
                         </div>
 
-                        <div ng-if="item.stockId!==id" class="row">
+                        <div ng-if="item.stkcd!==id" class="row">
                             <div class="col-sm-8 col-sm-offset-1">
                                 <div class="row">
-                                    {{item.name}}
+                                    {{item.companyName}}
                                 </div>
                                 <div class="row">
-                                       <span ng-if="item.evaluation==='估值偏低'"
-                                             class="lower-pe-background label-font ">偏低</span>
+                                      <span ng-if="item.evaluation==='估值较低'"
+                                            class="lower-pe-background  badge ">较低</span>
                                     <span ng-if="item.evaluation==='估值适中'"
-                                          class="moderate-pe-background label-font">适中</span>
-                                    <span ng-if="item.evaluation==='估值偏高'"
-                                          class="higher-pe-background label-font">偏高</span>
-                                    {{item.stockId}}
+                                          class="moderate-pe-background  badge">适中</span>
+                                    <span ng-if="item.evaluation==='估值较高'"
+                                          class="higher-pe-background  badge">较高</span>
+                                    {{item.stkcd}}
                                 </div>
                             </div>
                             <span class="col-sm-2">{{item.pe}}</span>
@@ -95,5 +138,5 @@
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="confirm()">确定</button>
+    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
 </div>
