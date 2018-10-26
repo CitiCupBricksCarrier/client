@@ -15,10 +15,65 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
         var dataArr = [];
         var propArr = [];
 
-        //点击后跳转到对应公司的信息界面
-        $scope.goToCompanyDetails = function (item) {
-            // console.log('1')
+        //点击公司后显示公司的预览信息
+        $scope.isShowingCompanyPreview = true;      //默认为显示，不然无法修改位置
+        $scope.companyPreview_toShow = {
+            stkcd: 'xxx',
+            compName: 'xxx',
+            compNameEng: 'xxx',
+            nature: 'xxx',
+            foundDate: 'xxx',
+            listingOrNot: 'xxx',
+            chairman: 'xxx',
+            fiscalDate: 'xxx',
+            mainProduct: 'xxx',
+            business: 'xxx',
+            briefing: 'xxx',
+            address: 'xxx',
+            website: 'xxx'
+        };
+        $scope.showCompanyPreview = function(item){
             var stkcd_toShow = item.stkcd;
+            $http({
+                url: urlHead+'generalInfo/companyDetail',
+                method: 'post',
+                // contentType: "application/json",
+                params: {
+                    stkid: stkcd_toShow
+                }
+            }).then(function successCallBack(response) {
+                console.log(response.data)
+                var data = response.data;
+                $scope.companyPreview_toShow = {
+                    stkcd: data.stkcd,
+                    compName: data.compname,
+                    compNameEng: data.compnameeng,
+                    nature: data.nature,
+                    foundDate: data.founddate,
+                    listingOrNot: data.listingornot,
+                    chairman: data.chairman,
+                    fiscalDate: data.fiscaldate,
+                    mainProduct: data.mainproduct,
+                    business: data.business,
+                    briefing: data.briefing,
+                    address: data.address,
+                    website: data.website
+                }
+                $('.companyDetailPreview_container').addClass('active');
+                $scope.isShowingCompanyPreview = true;
+                // $scope.$apply();
+            },function errorCallBack(response) {
+                console.log(response);
+            });
+        }
+        $scope.closeCompanyPreview = function(){
+            $scope.isShowingCompanyPreview = false;
+            $('.companyDetailPreview_container').removeClass('active');
+        }
+
+        //点击后跳转到对应公司的信息界面
+        $scope.goToCompanyDetails = function (stkcd_toShow) {
+            // console.log('1')
             $state.go('macroIndustryDisplay.companyDetails', {stkcd_toShow: stkcd_toShow})
         }
 
@@ -171,6 +226,9 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
             //整屏滚动
             document.onmousewheel = function(event){
+                if($scope.isShowingCompanyPreview){         //在显示公司预览时，不整屏滚动
+                    return;
+                }
                 if(event.wheelDelta < 0){
                     toScrollPart(true);
                 }else if(event.wheelDelta > 0){
@@ -232,6 +290,13 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             //点击对应部件
             $('.part_toTouch').click(function (e) {
                 if($(this).attr('name') == '空白部分'){     //点击空白部分，取消响应
+                    if($scope.isShowingCompanyPreview == true){     //如果在显示详情预览，关闭预览
+                        $scope.isShowingCompanyPreview = false;
+                        $('.companyDetailPreview_container').removeClass('active');
+                        $scope.$apply();
+                        return;
+                    }
+
                     var picOnShowing = $('.wholePic .wholeView'+'.isShow');
                     // console.log(picOnShowing);
                     if(picOnShowing.length == 0){       //没有处于显示状态
@@ -258,6 +323,15 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
                     return;
                 }
+
+                //点击除空白部分以外的
+
+                if($scope.isShowingCompanyPreview == true){     //如果在显示详情预览，关闭预览
+                    $scope.isShowingCompanyPreview = false;
+                    $('.companyDetailPreview_container').removeClass('active');
+                    $scope.$apply();
+                }
+
                 $scope.category_toShow = $(this).attr('name');
                 // console.log(dataArr[propArr.indexOf($scope.category_toShow)]);
                 // $scope.list_toShow = dataArr[propArr.indexOf($scope.category_toShow)];
@@ -289,6 +363,9 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
                 var listNode = $('.companyList');
                 $scope.$apply();        //应用更改
+
+                //优化表格宽度
+                $('.wholePic .briefAndList_container .companyTable td').css('width', $('.wholePic .briefAndList_container .img_xgqy').width()/5);
 
                 //部件高亮
                 var oldToShow = $('.wholePic .wholeView'+'.isShow');
@@ -377,9 +454,16 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
             })
 
-            resizeWholePic();
+            setTimeout(readyAndPrepare, 200);
+            // resizeWholePic();
         })
-
+        //由ready函数中调用，DOM加载完后，resize，调整部分组件显示
+        function readyAndPrepare(){
+            resizeWholePic();
+            $scope.isShowingCompanyPreview = false;         //调整完就关闭
+            $scope.$apply();
+            $('.companyDetailPreview_container').css('opacity', 1);
+        }
         /**
          * -------------------------------------------------
          * -------------------------------------------------
@@ -394,7 +478,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 // console.log($('.wholePic .active'))
                 return;
             }
-            var translateX = 210;
+            var translateX = -210;
             console.log($(window).height())
             console.log(window.devicePixelRatio);       //可以获取屏幕缩放比例
             var devicePixelRatio = window.devicePixelRatio; //可以获取屏幕缩放比例
@@ -403,9 +487,10 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             var windowWidth = $(window).width();
 
             //偶尔会出现$().ready函数触发该方法，但是获取不到dom对象，使用此循环解决？
-            while($('.wholePic .wholeView').length == 0 || $('.wholePic .wholeView').height() == 0 || $('.wholePic .wholeView').width() == 0){
-                $('.wholePic .wholeView').delay(500).height();
-            }
+            // while($('.wholePic .wholeView').length == 0){
+            //     console.log("获取不到DOM")
+            //     $('.wholePic .wholeView').delay(500).height();
+            // }
             var scale = (windowHeight-50) / $('.wholePic .wholeView').height();            //缩放倍率
             console.log(scale);
             $('.wholePic .wholeView').css('height', windowHeight-50);
@@ -451,7 +536,7 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
             font_size = $(companyTable).css('font-size');
             font_size = parseInt(font_size.substring(0, font_size.indexOf('px')));
             $(companyTable).css('font-size', font_size * scale + 'px');
-            $('.wholePic .briefAndList_container .companyTable td').css('width', $(companyTable).width()/5);
+            $('.wholePic .briefAndList_container .companyTable td').css('width', $(img_xgqy).width()/5);
 
             var touchDescription = $('.wholePic .touchDescription');
             $(touchDescription).css('height', $(touchDescription).height() * scale);
@@ -465,6 +550,14 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
 
             //其他图的调整
             $('.part .other').css('height', windowHeight-50);
+
+            //公司预览的调整   已知bug，resize时，大小和位置会出现错误
+            var companyDetailPreview_container = $('.companyDetailPreview_container');
+            if($('.companyDetailPreview_container').length != 0 && $('.companyDetailPreview_container').position().left != 0){
+                companyDetailPreview_container.css('left', $(companyDetailPreview_container).position().left * scale);
+                companyDetailPreview_container.css('top', $(companyDetailPreview_container).position().top * scale);
+                companyDetailPreview_container.css('transform','scale('+scale+') translateX('+translateX/scale+'px)');
+            }
         }
 
     });

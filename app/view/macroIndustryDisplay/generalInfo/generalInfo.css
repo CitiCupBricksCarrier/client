@@ -503,6 +503,90 @@
     width: 46px;
 }
 
+/*公司详情预览*/
+.companyDetailPreview_container{
+    position: absolute;
+    left: 910px;
+    /*left: 700px;*/
+    top: 0px;
+
+    background: url(../../../view/resource/圆角矩形.png) no-repeat;
+    background-size: 100% 100%;
+    height: 821px;
+    width: 722px;
+    z-index: 60;
+
+    padding: 30px 36px 30px 36px;
+    /*display: none;*/
+    opacity: 0;
+    transform-origin: left top;
+}
+.companyDetailPreview_container.active{
+    /*transform: translateX(-210px);*/
+}
+.companyDetailPreview_container h4{
+    font-size: 2.0rem;
+    /*font-size: 20px;*/
+    color: #a2a4e3;
+}
+.companyDetailPreview_container .btn_close{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    /*background-color: rgba(0,0,0,0.2);*/
+}
+.companyDetailPreview_container .companyDetailPreview{
+    position: relative;
+    width: 625px;
+    height: 670px;
+    padding-left: 10px;
+    /*margin: 6px 10px 6px 10px;*/
+
+    overflow: auto;
+}
+/*滚动条*/
+.companyDetailPreview_container .companyDetailPreview::-webkit-scrollbar{
+    width: 5px;
+    background-color: transparent;
+}
+.companyDetailPreview_container .companyDetailPreview::-webkit-scrollbar-thumb{
+    background-color: #626262;
+    border-radius: 4px;
+}
+/*预览详情*/
+.companyDetailPreview_container .companyDetailPreview .companyIconAndName_container{
+    text-align: center;
+    padding: 30px 0 30px 0;
+}
+.companyDetailPreview_container .companyDetailPreview .purpleFontColor{
+    color: #a2a4e3;
+}
+.companyDetailPreview_container .companyDetailPreview .mainFontColor{
+    color: #c3c3c3;
+}
+.companyDetailPreview_container .companyDetailPreview .compNameFontSize{
+    font-size: 20px;
+}
+.companyDetailPreview_container .companyDetailPreview .otherContentFontSize{
+    font-size: 16px;
+}
+.companyDetailPreview_container .companyDetailPreview .companyDetail_container{
+    width: 90%;
+    margin: auto;
+}
+.companyDetailPreview_container .companyDetailPreview .item_name{
+    width: 150px;
+    padding: 7px 20px 7px 0;
+    display: inline-block;
+}
+.companyDetailPreview_container .companyDetailPreview .item_value {
+    display: inline-block;
+}
+
+/*页面其他图*/
 .part .other{
     height: 925px;
     min-width: 800px;
