@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/financialContrast/contrastTable.css">
+<div class="modal-header">
+    <h4 class="modal-title" style="text-align: center"> {{title}}</h4>
+</div>
+<div class="modal-body" id="body">
+
+    <!--<p>{{data.stkidB}}</p>-->
+    <table>
+
+        <tr>
+            <th>属性</th>
+            <th>{{nameA}}</th>
+            <th>{{nameB}}</th>
+
+        </tr>
+        <tr ng-repeat="(key,value) in data.stkidA">
+            <td>{{value.translate}}</td>
+            <td>{{value.value.length>0?value.value:'-'}}</td>
+            <td>{{data.stkidB[key].length>0?data.stkidB[key]:'-'}}</td>
+        </tr>
+
+    </table>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">确认</button>
+</div>

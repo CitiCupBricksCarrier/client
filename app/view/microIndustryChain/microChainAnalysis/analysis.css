@@ -1,5 +1,6 @@
 .smDialog .modal-dialog{
     margin: 20% auto;
+    width: 30%!important;
 }
 
 label{
