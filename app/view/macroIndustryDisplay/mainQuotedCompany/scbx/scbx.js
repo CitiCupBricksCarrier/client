@@ -437,14 +437,46 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                                 if ($scope.chosenIndexs[j] != 3)
                                     str += "<td>" + $scope.Data[indexs[$scope.chosenIndexs[j]]][i] + "</td>";
                                 else {
+                                    if($scope.Data.fucknew[i]!=null)
                                     str += "<td>" + $scope.Data.fucknew[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thwk[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thyear[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearamth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearthrmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearsixmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearayear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thwk[i]!=null)
+                                        str += "<td>" + $scope.Data.thwk[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thmth[i]!=null)
+                                        str += "<td>" + $scope.Data.thmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thyear[i]!=null)
+                                        str += "<td>" + $scope.Data.thyear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearamth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearamth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearthrmth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearthrmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearsixmth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearsixmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearayear[i]!=null)
+                                        str += "<td>" + $scope.Data.nearayear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
 
                                 }
                             }

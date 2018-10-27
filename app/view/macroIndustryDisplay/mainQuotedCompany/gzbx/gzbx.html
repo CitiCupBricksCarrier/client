@@ -1,3 +1,5 @@
+<img src="view/resource/5主要上市公司/线条下.png" style="margin-top: 5%;margin-left:-23.5%;width: 1800px">
+
 <div class="pane" ng-show="toShowPane">
     <div class="paneTitle">
         指标选择
@@ -7,10 +9,10 @@
 
     <div class="paneBackground">
         <span style="position: absolute;left: 2%">设置显示指标(最多10个)</span>
-        <span style="position: absolute;left: 80%">已选</span><span id="span" style="position: absolute;left: 85%;top:2%;color: red;font-size: 18px">7</span><span style="position: absolute;left: 88%">个指标</span>
+        <span style="position: absolute;left: 73%">已选</span><span id="span" style="position: absolute;left: 81%;top:2%;color: red;font-size: 18px">7</span><span style="position: absolute;left: 86%">个指标</span>
         <button ng-click="returnToDefault()" class="myButton" style="position:absolute;top: 90%">恢复默认</button>
-        <button ng-click="choose()" class="myButton" style="position:absolute;top: 90%;left: 74%">确认</button>
-        <button ng-click="close()" class="myButton" style="position:absolute;top: 90%;left: 84%">取消</button>
+        <button ng-click="choose()" class="myButton" style="position:absolute;top: 90%;left: 70%">确认</button>
+        <button ng-click="close()" class="myButton" style="position:absolute;top: 90%;left: 80%">取消</button>
 
         <div class="paneCore">
             <div class="myDiv">
@@ -56,18 +58,18 @@
         </div>
     </div>
 </div>
-<div id='div1' style=margin-left:9%;width:80%;margin-top:5%;background-color:white;height:150px;">
-    <div id='TITLE' style="display: inline-block;padding: 10px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
-        <label>市场</label>
+<div id='div1' style="margin-left:15%;width:80%;margin-top:-78.5%;height:150px;">
+    <div id='TITLE' style="display: inline-block;padding: 10px 0px 0px 15px;height: 40px;width: 100%;">
+        <label style="color: #d6d6d6">市场</label>
         <select  ng-model="market" ng-change="changeMarket()">
             <option value="全部">全部</option>
             <option value="沪深A股">沪深A股</option>
             <option value="新三板做市">新三板做市</option>
         </select>
 
-        <label style="margin-left: 20px">统计数据</label>
+        <label style="margin-left: 200px;color: #d6d6d6">统计数据</label>
         <div id='myInput' class="myInput" ng-click="toShow=!toShow">最高值,平均值<img src="view/macroIndustryDisplay/mainQuotedCompany/pic/arrow.png" style="width: 5.5px;height: 4.7px;float: right;margin-top: 5px;margin-right: 5px"></div>
-        <button style="display: inline-block;padding-bottom: 20px" ng-click="toShowPane=!toShowPane">指标选择</button>
+        <button style="margin-left:200px;display: inline-block;padding-bottom: 20px;color:#a2a4e3" ng-click="toShowPane=!toShowPane">指标选择</button>
         <div id='mySelect' class="mySelect" ng-show="toShow">
             <div class="option"><input checked id='最高值'ng-click="check('最高值')" type="checkbox" value="最高值">最高值</div>
             <div class="option"><input id='最低值' ng-click="check('最低值')" type="checkbox">最低值</div>
@@ -84,9 +86,9 @@
 </div>
 
 
-<div id='div2' style="margin-left:9%;width: 80%;background-color: white;">
-    <label style="position: absolute;margin-top:-5%;font-size: 20px">汽车-估值表现比较</label>
-    <table id="table" >
+<div id='div2' style="margin-left:10%;width: 1250px;overflow: auto">
+    <label style="position: absolute;margin-top:-5%;font-size: 20px;color: #d6d6d6">汽车-估值表现比较</label>
+    <table id="table" width="100%">
 
 
 

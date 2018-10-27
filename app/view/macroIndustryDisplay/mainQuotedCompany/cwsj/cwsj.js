@@ -276,7 +276,7 @@ angular.module('myApp.macroIndustryDisplay.cwsj', [
 
             }
             if ((array.length/4)%2==0) {
-                return[result17.toFixed(2),result16.toFixed(2),result15.toFixed(2),result14.toFixed(2)];
+                return[Number(result17).toFixed(2),Number(result16).toFixed(2),Number(result15).toFixed(2),Number(result14).toFixed(2)];
             }
             else{
                 return [array17[array.length/4/2-0.5],array16[array.length/4/2-0.5],array15[array.length/4/2-0.5],array14[array.length/4/2-0.5]];
