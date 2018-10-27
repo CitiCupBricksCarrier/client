@@ -411,6 +411,8 @@ a {
 }
 
 .left-tool-container {
+    position: fixed;
+    top: 116px;
     margin-left: 10%;
     height: 80%;
     width: 230px;
@@ -522,9 +524,10 @@ html, body {
     overflow: scroll;
 
 }
+
 /*.scrollbar{*/
-    /*width: 20px;*/
-    /*height: 20px;*/
+/*width: 20px;*/
+/*height: 20px;*/
 /*}*/
 
 #displayDiv::-webkit-scrollbar {
@@ -546,22 +549,26 @@ html, body {
 
 }
 
-.display-div-container{
+.display-div-container {
+    position: fixed;
     padding: 20px;
     background-color: #fbfbfb;
     margin: 10px 0 0 20px;
-    width: calc(80% - 250px );
-    min-width: 1250px;
-    height: 800px;
+    width: calc(80% - 260px);
+    min-width: 660px !important;
+    max-height: 80%;
+    height: 80%;
+    left: calc(10% + 240px);
+    top: 116px;
 }
 
-.back-menu{
+.back-menu {
     position: absolute;
     z-index: 100;
     left: calc(10% - 60px);
     width: 50px;
     /*height: 100px;*/
-    top: 10px   ;
+    top: 10px;
     text-align: center;
     background-color: #f1f1f1;
     border: none;
@@ -572,7 +579,7 @@ html, body {
 
 }
 
-.back-menu-text{
+.back-menu-text {
     width: 14px;
     font-size: 14px;
     margin: auto;
