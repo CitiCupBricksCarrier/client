@@ -42,6 +42,6 @@ angular.module('myApp.personal', [
             }, function () {
                 console.error("log out error");
             });
-        }
+        };
 
     });

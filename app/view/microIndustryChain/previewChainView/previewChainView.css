@@ -11,7 +11,7 @@
     background-color:white;
 }
 .left_div {
-    background-color:white;
+    /*background-color:white;*/
     float:left;
     width:64%;
     margin:15px 1% 0 0
@@ -39,7 +39,7 @@ body {
     word-wrap:break-word;
     /*word-break:normal;
     */
-    padding:2%;
+    padding:0 2% 2% 2%;
 }
 .head-left{
     width: 80%;
@@ -128,11 +128,79 @@ body {
     padding:10px 0 10px 5%;
 }
 
+.chainModel{
+    width: 100%;
+    height: 200px;
+    margin: 0 0 10px 0;
+    background-color:white;
 
+}
 
+.article_text{
+    width: 100%;
+    margin:0;
+    background-color:white;
+}
 
+.article-tip{
+    color:rgb(152,145,199);
+    padding:10px 0 0px 5%;
+}
 
+.display-div-container {
+    /*position: fixed;*/
+    padding: 20px;
+    background-color: #fbfbfb;
+    /*margin: 10px 0 0 20px;*/
+    /*width: calc(80% - 260px);*/
+    min-width: 660px !important;
+    /*max-height: 80%;*/
+    /*height: 0%;*/
+    /*left: calc(10% + 240px);*/
+    /*top: 116px;*/
+    width: 100%;
+    /*overflow: scroll;*/
+    height: 300px;
+    margin-bottom: 10px;
+}
 
+#displayDiv {
+    position: relative;
+    display: flex;
+    /*height: 100%;*/
+    /*!*margin-left: 200px;*!*/
+    /*width: calc(90% - 230px);*/
+    /*padding: 40px;*/
+
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+
+}
+
+/*.scrollbar{*/
+/*width: 20px;*/
+/*height: 20px;*/
+/*}*/
+
+#displayDiv::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+    margin: 0 auto;
+}
+
+#displayDiv::-webkit-scrollbar-thumb {
+
+    background-color: #eeeeee;
+    border-radius: 6px;
+}
+
+#displayDiv::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #fbfbfb;
+    background-color: #fbfbfb;
+
+}
 
 
 
@@ -155,37 +223,37 @@ a {
     overflow: auto;
 }
 
-#canvas{
+#canvas {
     position: absolute;
     display: block;
     cursor: auto;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,0);
-    z-index: -1;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 0);
+    z-index: 3;
 }
 
-#animeBackground{
+#animeBackground {
     position: absolute;
     display: block;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,0);
-    z-index: -2;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 0);
+    z-index: 2;
 }
 
-#connectionBackground{
+#connectionBackground {
     position: absolute;
     display: block;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,0);
-    z-index: -3;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 0);
+    z-index: 1;
 }
 
-#netBackground{
+#netBackground {
     position: absolute;
     display: block;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,1);
-    z-index: -4;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 1);
+    z-index: 0;
 }
 
 

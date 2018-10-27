@@ -7,6 +7,9 @@ angular.module('myApp.microIndustryChain.previewChainView', [
     })
 
     .controller('PreviewChainViewCtrl', function ($scope, $route, $http, $stateParams, $uibModal) {
+
+
+
         //DOM对象化
         let canvas = document.getElementById("canvas");
         let context = canvas.getContext("2d");
@@ -20,16 +23,22 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         let animeContext = animeBackground.getContext("2d");
 
         //可调DOM参数
-        let canvasWidth = 1000;//三层的 宽和高
-        let canvasHeight = 600;
-        let canvasLeft = 50;
-        let canvasTop = 50;
+        let canvasWidth = 1230;//三层的 宽和高
+        let canvasHeight = 1000;
+        let canvasLeft = 0;
+        let canvasTop = 0;
         let connectionLineWidth = 5;//连线层 连线宽度
-        let connectionLineColor = "rgba(0,0,0,0.5)";//连线层 连线颜色
+        let connectionLineColor = "#dcdcdc";//连线层 连线颜色
         let connectionLineAnimeWidth = 6;
-        let connectionLineAnimeColor = "rgba(255,215,0,1)";//连线层 动画颜色
+        let connectionLineAnimeColor = "#7ecef4";//连线层 动画颜色
+        let riskAnimeWidth = 10;
+        let riskAnimeColor = "rgba(255,69,0,0.5)";//连线层 动画颜色
         let step = 15;//网格背景 网络间隔
-        let netColor = "rgba(0,0,0,0.1)";//网格背景 网络颜色
+        let netColor = "#eeeeee";//网格背景 网络颜色
+        let nextNodePositionX = canvasLeft + 200;//新增节点 位置
+        let nextNodePositionY = canvasTop + 30;
+        let nextNodeID = 1;//新增节点 ID
+        let nextConnectionID = 1;
 
         //DOM参数初始化
         canvas.width = canvasWidth;
@@ -53,12 +62,161 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         animeContext.strokeStyle = connectionLineAnimeColor;
 
 
-        $scope.graphID = $stateParams.graphid;
-        $scope.nodeIDList = $stateParams.nodeIDList;
-        $scope.nodeList = $stateParams.nodeList;
-        $scope.nodeDisplayList = $stateParams.nodeDisplayList;
-        $scope.connectionList = $stateParams.connectionList;
+        // $scope.graphID = $stateParams.graphid;
+        // $scope.nodeIDList = $stateParams.nodeIDList;
+        // $scope.nodeList = $stateParams.nodeList;
+        // $scope.nodeDisplayList = $stateParams.nodeDisplayList;
+        // $scope.connectionList = $stateParams.connectionList;
 
+
+        //路由参数获取
+        $scope.graphID = $stateParams.graphid;
+
+        $scope.nodeIDList = [];
+        $scope.nodeList = [];//一个以ID为索引的字典
+        $scope.nodeDisplayList = [];//一个以ID为索引的字典
+        $scope.connectionList = [];
+
+        $http({
+            method: 'post',
+            url: urlHead + 'getGraphByID',
+            params: {
+                "graghid": $scope.graphID,
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            withCredentials: true
+            //cache: true, //避免多次请求后台数据
+        }).then(function (response) {
+
+            console.log(1,response);
+            let partialNodeArray = response.data.nodeList,
+                partialConnectionArray = response.data.connectionList;
+
+            for (let i = 0, length = partialNodeArray.length; i < length; i++) {
+                let particalNodeCache = partialNodeArray[i];
+                addNode(particalNodeCache.name, particalNodeCache.stkcd, particalNodeCache.role, particalNodeCache.color, canvasLeft + parseFloat(particalNodeCache.posx), canvasTop + parseFloat(particalNodeCache.posy), particalNodeCache.id);
+
+            }
+
+            if (partialNodeArray.length > 0) {
+                nextNodeID = parseInt((partialNodeArray[partialNodeArray.length - 1].id).substr(1)) + 1;
+            }
+
+            for (let i = 0, length = partialConnectionArray.length; i < length; i++) {
+                let partialConnectionCache = partialConnectionArray[i];
+                addConnection(partialConnectionCache.begin, partialConnectionCache.end, $scope.nodeList[partialConnectionCache.begin].nodeStock, $scope.nodeList[partialConnectionCache.end].nodeStock, partialConnectionCache.fund);
+            }
+
+            if (partialConnectionArray.length > 0) {
+                nextConnectionID = parseInt((partialConnectionArray[partialConnectionArray.length - 1].id).substr(1)) + 1;
+            }
+
+            refreshConnectionBackground();
+
+        }, function () {
+            console.error("get graph error");
+        });
+
+
+        let addNode = function (name, stock, role, color, x, y, id) {
+            let node = document.createElement("node");
+            let nodeName = document.createElement("p");
+            let nodeAnchorTop = document.createElement("nodeAnchorTop");
+            let nodeAnchorRight = document.createElement("nodeAnchorRight");
+            let nodeAnchorBottom = document.createElement("nodeAnchorBottom");
+            let nodeAnchorLeft = document.createElement("nodeAnchorLeft");
+
+            node.className = "node";
+            node.id = (id !== undefined) ? id : ("N" + nextNodeID);
+            node.setAttribute("data-toggle", "context");
+            node.setAttribute("data-target", "#node-menu");
+            node.style.left = ((x !== undefined) ? x : nextNodePositionX) + "px";
+            node.style.top = ((y !== undefined) ? y : nextNodePositionY) + "px";
+            node.style.width = 180 + "px";
+            node.style.height = 60 + "px";
+            node.style.padding = "15px 30px 0 30px";
+            node.style.backgroundColor = color;
+            nodeName.id = "nodeName";
+            nodeName.innerText = name;
+            nodeAnchorTop.className = "node-anchor-top";
+            nodeAnchorTop.id = "A" + nextNodeID + "1";
+            nodeAnchorRight.className = "node-anchor-right";
+            nodeAnchorRight.id = "A" + nextNodeID + "2";
+            nodeAnchorRight.style.left = (parseFloat(node.style.width) - 8) + "px";
+            nodeAnchorBottom.className = "node-anchor-bottom";
+            nodeAnchorBottom.id = "A" + nextNodeID + "3";
+            nodeAnchorBottom.style.top = (parseFloat(node.style.height) - 8) + "px";
+            nodeAnchorLeft.className = "node-anchor-left";
+            nodeAnchorLeft.id = "A" + nextNodeID + "4";
+            node.appendChild(nodeName);
+            node.appendChild(nodeAnchorTop);
+            node.appendChild(nodeAnchorRight);
+            node.appendChild(nodeAnchorBottom);
+            node.appendChild(nodeAnchorLeft);
+
+            $scope.nodeList[node.id] = {
+                nodeName: name,
+                nodeStock: stock,
+                nodeRole: role,
+                nodeColor: color
+            };
+            $scope.nodeIDList.push(node.id);
+
+            nodeDiv.appendChild(node);
+
+
+            refreshNodeDisplayList();
+        };
+
+        let addConnection = function (begin, end, stkcdA, stkcdB, fund) {
+            if (begin != end) {
+                for (let i = 0, length = $scope.connectionList.length; i < length; i++) {
+                    if (($scope.connectionList[i].begin == begin) && ($scope.connectionList[i].end == end)) {
+                        return;
+                    }
+                }
+                let newConnectionID = "C" + nextConnectionID;
+                $scope.connectionList.push
+                ({
+                    id: newConnectionID,
+                    begin: begin,
+                    end: end,
+                    stkcdA: stkcdA,
+                    stkcdB: stkcdB,
+                    fund: fund,
+                });
+                nextConnectionID++;
+            }
+        };
+
+        let refreshConnectionBackground = function () {
+            connectionContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            connectionContext.beginPath();
+            for (let i = 0, length = $scope.connectionList.length; i < length; i++) {
+                let beginNode = document.getElementById($scope.connectionList[i].begin);
+                let endNode = document.getElementById($scope.connectionList[i].end);
+                connectionContext.moveTo(
+                    parseFloat(beginNode.style.left) + parseFloat(beginNode.style.width) / 2 - canvas.offsetLeft,
+                    parseFloat(beginNode.style.top) + parseFloat(beginNode.style.height) / 2 - canvas.offsetTop
+                );
+                connectionContext.lineTo(
+                    parseFloat(endNode.style.left) + parseFloat(endNode.style.width) / 2 - canvas.offsetLeft,
+                    parseFloat(endNode.style.top) + parseFloat(endNode.style.height) / 2 - canvas.offsetTop
+                );
+            }
+            connectionContext.strokeStyle = connectionLineColor;
+            connectionContext.stroke();
+        };
+
+        let refreshNodeDisplayList = function () {
+            for (let i = 0, length = $scope.nodeIDList.length; i < length; i++) {
+                let nodePartialCache = document.getElementById($scope.nodeIDList[i]);
+                $scope.nodeDisplayList[$scope.nodeIDList[i]] = {
+                    x: parseFloat(nodePartialCache.style.left) - canvas.offsetLeft,
+                    y: parseFloat(nodePartialCache.style.top) - canvas.offsetTop
+                }
+            }
+        };
 
         /**
          *网格背景的实现
@@ -95,7 +253,8 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                 node.style.height = 50 + "px";
                 nodeName.id = "nodeName";
                 nodeName.innerText = $scope.nodeList[nodeIDCache].nodeName;
-                nodeName.style.color = $scope.nodeList[nodeIDCache].nodeColor;
+                nodeName.style.color = "white";
+                node.style.backgroundColor = $scope.nodeList[nodeIDCache].nodeColor;
                 node.appendChild(nodeName);
 
                 nodeDiv.appendChild(node);

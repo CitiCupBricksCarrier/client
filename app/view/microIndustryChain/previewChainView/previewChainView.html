@@ -117,44 +117,53 @@
     </div>
     <div class="main_content">
         <div class="left_div">
-            <p>    清晨推开木窗，春风料峭，一丝凉意，却闻到了远方山中木叶的芬芳。
+            <div class="display-div-container">
+                <div id="displayDiv">
+                    <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
+                    <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
+                    <canvas id="animeBackground" style="left: 0; top: 0;"></canvas>
+                    <canvas id="canvas" data-toggle="context" data-target="#canvas-menu"
+                            style="left: 0; top: 0;"></canvas>
 
-                一个人踽踽凉凉，背好行囊。穿过雨露未的桃林，低头昨夕桃花雨下，风雨无情。落花宛若前世梨花带雨的美人，让人心头悸动，过处是否翩若惊鸿。
+                    <div id="nodeDiv">
+                    </div>
+                </div>
+            </div>
+            <div class="article_text">
+                <div class="article-tip">
+                    <p>正文</p>
+                </div>
+                <p> 当前， 新能源汽车 产业正迅猛发展，我国超越美国成为全球第一汽车大国。新能源关键技术取得重要突破，动力电池性能指标不断提升， 燃料电池 动力系统部件和集成技术显著提高，多个自主品牌的网联车投入市场，自动驾驶技术也开始进入道路测试的重要阶段……
+                    我国新能源汽车行业历经十多年的发展，在实践中依靠科技创新，正一步步壮大迎来关键时期。新的变革有望使我国的汽车产业实现弯道超车，而由汽车衍生出来的汽车金融行业也正迎来发展的春天。
+                    在2018第四届中国汽车金融产业国际峰会暨第四届中国汽车金融风控管理高峰论坛上，中企网络通信技术有限公司（简称“中企通信”）数据科学与创新副总监詹东东在演讲中表示，创新的ICT技术将助力新能源汽车和整个汽车产业链的变革加速升级！
 
-                前方一片湖，几座山，岚烟缥缈。呼唤着远方的船家，却无人应，偶然瞥见芦苇丛前有一竹筏，只好自己渡岸。心中难免几许失意，拿出一壶清醇的酒，于湖心独酌半杯。不禁忆起东坡游于赤壁之上“驾一叶之扁舟，举匏樽以相属。寄蜉蝣于天地，渺沧海之一粟。哀吾生之须臾，羡长江之无穷。”不忍叹息。
-
-                水尤清冽，船停靠岸，波光粼粼，不知雨露依旧未凝干。有些微醺，于是系好船，小躺顷刻。醒来已近黄昏，伸了伸懒腰，揉了揉惺忪的眼，准备上山。途中望见一座古香古色的八角亭，纤尘不染，重檐翘角，青龙盘柱，流风余韵。正坐下，身后一簇极似忍冬的花，在黄昏下照的绯红，又不知其名，就起名为“落日”了，袁宏道有言:“茗赏者上也，谈赏者次也，酒赏者下也。”由此观之，清赏最佳。
-
-                转身离开，抬头见不远处有炊烟袅袅绕青竹。便寻之而去，脚下有条青石板的小路通往木屋，别有一翻滋味在心头，木屋的主人，以独特的方式显示了其风雅。不觉沉思良久，走近环顾四周，木屋前并没有什么装饰，唯一的点缀，便是那青翠的竹林和门前挂着的笸篮。简朴之中，却被一丝清新脱俗所感染着，此地幽中静，静中幽。倘若不是这木屋映入眼帘，谁知有人居住呢?
-
-                逝尽，但深知不该冒昧扰人清静，于是久久在门外徘徊。主人点了灯走出来，手里还握着一卷书，正要挂灯笼，瞧见我，提了提灯笼，泛黄的光照着我们，不料……竟是一场旧雨重逢，檐下望进一双深邃的眼瞳，两眼枯涩而泪不出。故人邀我进了屋舍，厅堂中央有一幅宋画，墨色中能看到光的游动。还有两把木椅，椅间的木桌上放着一白瓷兰草。清香满溢，沁人心脾，融了一世，共赴情长。故人邀我留宿并以野簌米酒待之。
-
-                月光消磨这幽深的夜晚，四周静得能听见呼吸，烛光缱绻映照了你容颜，一袭品月流仙裙因风屑，抱一面古琴弹起了《湘妃怨》。虽然很快就要到拂晓，但这夜正好倾诉衷肠。我心思绪翻涌，望着对面那熟悉的脸孔，却只能默默饮酒。
-
-                晨光熹微，清风徐来，山中下起了绵绵细雨，像是黏湿的蛛丝，织成了薄薄的网，颤微微地网住了整个世界。
-
-                烟雨如梦，一袭白衣，清心寡欲，寻一方净地。灯火下读一卷旧书，陋室里养一瓷幽兰，无措中听一曲伤感。却终究踏月而来，只因你在山中。再去见你一面，在远去的时光，将旧梦轻诵，无影亦无踪。
-            </p>
-            <div class="support">
-                <!--<div class="praise ">-->
+                    汽车产业变革，金融后市场发展因势而变
+                    过去十多年，我国汽车市场整体保有量保持在10%~20%的增长，每年新增汽车1000~2000万台。2009年，中国汽车销量超越美国后，汽车产业更是飞速发展。尤其去年，我国新能源汽车产业得到快速发展，但产业变革带来的第一波冲击，使新能源汽车产业下游的汽车金融产业与发达国家相比仍有一定差距。
+                    一方面，服务效率与体验急待提升；另一方面，资金监管政策收紧，风控能力要求增强，汽车产业的变革让我国的汽车金融市场在蕴含巨大发展空间的同时面临着挑战！
+                    去年，中国汽车流通行业协会通过大力推动和创新汽车产业金融业务，深度挖掘市场潜力，实现了汽车市场的稳步回升，推动了脱虚向实的政策引导。
+                    中企通信詹东东在演讲中表示，随着新能源汽车市场的发展与变革，新势力造车和合资车企纷纷拔地而起，金融监控政策和汽车金融市场环境的变化将让金融产业业发生翻天覆地的变化！当前，高新技术产业的发展正推动汽车金融市场的渗透率持续上升，市场参与主体也呈现爆发性的增长。汽车金融已经发展成一个高度细分和逐渐规范化的行业，并仍然处于快速变革和增长期，詹东东认为，汽车金融产品的不断推陈出新，需要创新的ICT技术方案来支持。
+                </p>
+                <div class="support">
+                    <!--<div class="praise ">-->
                     <!--<span id="praise" data-content="给作者点赞"><img src="view/microIndustryChain/previewChainView/images/zan.png" id="praise-img" /></span>-->
                     <!--<span id="praise-txt">0</span>-->
                     <!--<span id="add-num"><em>+1</em></span>-->
-                <!--</div>-->
-                <div class="praise ">
-                    <span id="praise" data-content="给作者点赞"><img src="view/microIndustryChain/previewChainView/images/zan.png" id="praise-img" /></span>
-                    <span id="praise-txt">0</span>
-                    <!--<span id="add-num"><em>+1</em></span>-->
-                </div>
-                <div class="reward ">
-                    <span id="reward" data-content="给作者打赏"><img src="view/microIndustryChain/previewChainView/images/reward.png" id="reward-img" /></span>
-                    <span id="reward-txt">0</span>
-                </div>
-                <div class="gotop ">
-                    <span id="gotop" data-content="返回上层"><img src="view/microIndustryChain/previewChainView/images/gotop.png" id="gotop-img" /></span>
-                </div>
+                    <!--</div>-->
+                    <div class="praise ">
+                        <span id="praise" data-content="给作者点赞"><img src="view/microIndustryChain/previewChainView/images/zan.png" id="praise-img" /></span>
+                        <span id="praise-txt">0</span>
+                        <!--<span id="add-num"><em>+1</em></span>-->
+                    </div>
+                    <div class="reward ">
+                        <span id="reward" data-content="给作者打赏"><img src="view/microIndustryChain/previewChainView/images/reward.png" id="reward-img" /></span>
+                        <span id="reward-txt">0</span>
+                    </div>
+                    <div class="gotop ">
+                        <span id="gotop" data-content="返回上层"><img src="view/microIndustryChain/previewChainView/images/gotop.png" id="gotop-img" /></span>
+                    </div>
 
-                <div class="clear"></div>
+                    <div class="clear"></div>
+                </div>
             </div>
         </div>
         <div class="right_div">

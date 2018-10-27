@@ -10,6 +10,7 @@ angular.module('myApp.microIndustryChain', [
 
         $stateProvider
             .state('microIndustryChain.discoverChainView',{
+                params:{"graphid":null},
                 url:'/discoverChainView',
                 templateUrl: 'view/microIndustryChain/discoverChainView/discoverChainView.html',
                 controller: 'DiscoverChainViewCtrl'
@@ -20,13 +21,12 @@ angular.module('myApp.microIndustryChain', [
                 controller: 'MineChainViewCtrl'
             })
             .state('microIndustryChain.createChainView',{
-                params:{"graphid":null},
                 url:'/createChainView/?:graphid',
                 templateUrl: 'view/microIndustryChain/createChainView/createChainView.html',
                 controller: 'CreateChainViewCtrl'
             })
             .state('microIndustryChain.previewChainView',{
-                params:{"graphid":null, "nodeIDList":null, "nodeList":null, "nodeDisplayList":null, "connectionList":null},
+                params:{"graphid":null},
                 url:'/previewChainView/?:graphid',
                 templateUrl: 'view/microIndustryChain/previewChainView/previewChainView.html',
                 controller: 'PreviewChainViewCtrl'

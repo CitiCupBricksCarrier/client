@@ -17,7 +17,8 @@ angular.module('myApp', [
     'myApp.macroIndustryList',
     'myApp.macroIndustryDisplay',
     'myApp.industryFactorAnalyze',
-    'myApp.register'
+    'myApp.register',
+    'myApp.personalMain'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -65,6 +66,14 @@ angular.module('myApp', [
             templateUrl:'view/register/register.html',
             controller: 'RegisterCtrl'
         })
+
+        .state('personalMain',{
+            url:'/personalMain',
+            templateUrl:'view/personal/personalMain.html',
+            controller: 'PersonalMainCtrl'
+        })
+
+
     })
 
 
@@ -83,7 +92,7 @@ angular.module('myApp', [
                 "        </div>\n" +
                 "        <div>\n" +
                 "            <ul class=\"david-navbar-right\">\n" +
-                "                <li ui-sref=\"personal\" ng-show=\"haslogined\"><a>个人中心</a></li>\n" +
+                "                <li ui-sref=\"personalMain\" ng-show=\"haslogined\"><a>个人中心</a></li>\n" +
                 "                <li ui-sref=\"login\" ng-hide=\"haslogined\"><a>登录</a></li>\n" +
                 "            </ul>\n" +
                 "        </div>\n" +
