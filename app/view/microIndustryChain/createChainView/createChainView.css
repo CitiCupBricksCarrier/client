@@ -2,139 +2,146 @@ a {
     cursor: pointer;
 }
 
-#topElement{
-    -moz-user-select:-moz-none;
+#topElement {
+    -moz-user-select: -moz-none;
     overflow: auto;
 }
 
-#canvas{
+#canvas {
     position: absolute;
     display: block;
     cursor: auto;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,0);
-    z-index: -1;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 0);
+    z-index: 3;
 }
 
-#animeBackground{
+#animeBackground {
     position: absolute;
     display: block;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,0);
-    z-index: -2;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 0);
+    z-index: 2;
 }
 
-#connectionBackground{
+#connectionBackground {
     position: absolute;
     display: block;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,0);
-    z-index: -3;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 0);
+    z-index: 1;
 }
 
-#netBackground{
+#netBackground {
     position: absolute;
     display: block;
-    border: 1px solid #CCCCCC;
-    background: rgba(255,255,255,1);
-    z-index: -4;
+    border: 2px solid #eeeeee;
+    background: rgba(255, 255, 255, 1);
+    z-index: 0;
 }
 
-#topToolBar{
+#topToolBar {
     position: fixed;
     z-index: 10;
     width: 100%;
-    height: 100px;
+    height: 118px;
     top: 0;
-    border-bottom: 1px solid #CCCCCC;
-    background: whitesmoke;
+    border-bottom: 0px solid #CCCCCC;
+    background: #E9E9E9;
 }
-#topToolBar #topToolBarMenu{
+
+#topToolBar #topToolBarMenu {
     width: 100%;
     height: 30px;
-    border-bottom: 1px solid #CCCCCC;
-    background: whitesmoke;
+    border-bottom: 0px solid #CCCCCC;
+    background: #E9E9E9;
 }
-#topToolBar .topToolBarBigBlock{
+
+#topToolBar .topToolBarBigBlock {
     display: flex;
     flex-flow: row;
-    width: 100%;
-    height: 50px;
-    border-bottom: 1px solid #CCCCCC;
-    background: whitesmoke;
+    height: 75px;
+    border: 1px solid #CCCCCC;
+    background: white;
+    width: 80%;
+    min-width: 920px;
+    margin-left: 10%;
+    margin-top: 10px;
 }
-#topToolBar .topToolBarBigBlockCell{
+
+#topToolBar .topToolBarBigBlockCell {
     display: flex;
     flex-flow: row;
     width: auto;
     height: 100%;
     padding: 8px;
-    border-right: 1px solid #CCCCCC;
-}
-#topToolBar .topToolBarBigBtn{
-    width: 50px;
-    height: 100%;
-    margin-left: 4px;
-    margin-right: 4px;
-    padding: 0;
-    text-align: center;
-    font-weight: bold;
-    color: rgba(0,0,0,0);
-}
-#topToolBar .topToolBarBigBtn:hover{
-    color: black;
-}
-#addCompanyBtn{
-    background: white url(icon/addCompany.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
-}
-#addDiyBtn{
-    background: white url(icon/add.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
-}
-#previewBtn{
-    background: white url(icon/preview.svg) no-repeat center;
-    background-size: 60%;
-    font-size: 8px;
-}
-#saveBtn{
-    background: white url(icon/save.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
-}
-#downloadBtn{
-    background: white url(icon/download.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
-}
-#publishBtn{
-    background: white url(icon/publish.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
-}
-#shareBtn{
-    background: white url(icon/share.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
-}
-#riskBtn{
-    background: white url(icon/risk.svg) no-repeat center;
-    background-size: 50%;
-    font-size: 8px;
+    border-right: 1px dashed #CCCCCC;
 }
 
-#leftToolBar{
-    position: fixed;
+#topToolBar .topToolBarBigBtn {
+    width: 150px;
+    height: 60px;
+    /*margin-left: 4px;*/
+    /*margin-right: 4px;*/
+    /*margin-top: 10px;*/
+    padding: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #6577d2;
+    background-color: transparent;
+    border: 0 transparent solid;
+    outline: none;
+}
+
+/*#topToolBar .topToolBarBigBtn:hover{*/
+/*color: black;*/
+/*!*background-size: 50%;*!*/
+/*font-size: 16px;*/
+/*}*/
+/*#addCompanyBtn{*/
+/*background: white url(icon/公司节点.png) no-repeat ;*/
+
+/*}*/
+/*!*#addDiyBtn{*!*/
+/*!*background: white url(icon/添加.png) no-repeat ;*!*/
+
+/*!*}*!*/
+/*#previewBtn{*/
+/*background: white url(icon/预览.png) no-repeat ;*/
+
+/*}*/
+/*#saveBtn{*/
+/*background: white url(icon/保存.png) no-repeat ;*/
+
+/*}*/
+/*#downloadBtn{*/
+/*background: white url(icon/下载.png) no-repeat ;*/
+
+/*}*/
+/*#publishBtn{*/
+/*background: white url(icon/发布.png) no-repeat ;*/
+
+/*}*/
+/*#shareBtn{*/
+/*background: white url(icon/分享.png) no-repeat ;*/
+
+/*}*/
+#riskBtn {
+    background: white url(icon/risk.svg) no-repeat;
+}
+
+#leftToolBar {
+    /*position: fixed;*/
     z-index: 2;
     width: 220px;
-    height: 100%;
+    /*height: 100%;*/
     top: 100px;
     border-right: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-#leftToolBar .leftToolBarBlock{
+
+#leftToolBar .leftToolBarBlock {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
@@ -142,15 +149,17 @@ a {
     border-bottom: 1px solid #CCCCCC;
     background: white;
 }
-#leftToolBar .historyBlock{
+
+#leftToolBar .historyBlock {
     width: 100%;
     height: 200px;
     border-bottom: 1px solid #CCCCCC;
     resize: vertical;
-    overflow:auto;
+    overflow: auto;
     background: white;
 }
-#leftToolBar .historyBlock .historyBlockCell{
+
+#leftToolBar .historyBlock .historyBlockCell {
     display: flex;
     flex-flow: row;
     width: 100%;
@@ -161,18 +170,21 @@ a {
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-#leftToolBar .historyBlock .historyBlockCell:hover{
+
+#leftToolBar .historyBlock .historyBlockCell:hover {
     background: white;
 }
-#leftToolBar .historyBlock .historyBlockCell div{
+
+#leftToolBar .historyBlock .historyBlockCell div {
     display: block;
     width: 75%;
 }
-#leftToolBar .historyBlock .historyBlockCell button{
+
+#leftToolBar .historyBlock .historyBlockCell button {
     width: 25%;
 }
 
-#addCompanyNodeBoard{
+#addCompanyNodeBoard {
     position: fixed;
     z-index: 100;
     display: flex;
@@ -187,11 +199,13 @@ a {
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-#addCompanyNodeBoard input{
+
+#addCompanyNodeBoard input {
     width: 100%;
     margin-bottom: 10px;
 }
-#addCompanyNodeBoard .tableDiv{
+
+#addCompanyNodeBoard .tableDiv {
     width: 100%;
     height: 400px;
     overflow-y: scroll;
@@ -199,7 +213,7 @@ a {
     border-radius: 4px;
 }
 
-#addNodeBoard{
+#addNodeBoard {
     position: fixed;
     z-index: 100;
     display: flex;
@@ -214,14 +228,14 @@ a {
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-#addNodeBoard input{
+
+#addNodeBoard input {
     width: 100%;
     margin-bottom: 10px;
 }
 
-#editNodeBoard{
+#editNodeBoard {
     position: absolute;
-    z-index: 5;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -235,12 +249,13 @@ a {
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-#editNodeBoard input{
+
+#editNodeBoard input {
     width: 100%;
     margin-bottom: 10px;
 }
 
-#addConnectionBoard{
+#addConnectionBoard {
     position: fixed;
     z-index: 100;
     display: flex;
@@ -256,12 +271,13 @@ a {
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-#addConnectionBoard input{
+
+#addConnectionBoard input {
     width: 100%;
     margin-bottom: 10px;
 }
 
-#editConnectionBoard{
+#editConnectionBoard {
     position: fixed;
     z-index: 100;
     display: flex;
@@ -277,30 +293,33 @@ a {
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-#editConnectionBoard input{
+
+#editConnectionBoard input {
     width: 100%;
     margin-bottom: 10px;
 }
 
-.node{
+.node {
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     display: flex;
     width: 100px;
     height: 50px;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
-    font-size: 6px;
+    font-size: 14px;
+    color: white;
     background: #FFF;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-.node p{
+
+.node p {
     pointer-events: none;
 }
 
-.node-anchor-right{
+.node-anchor-right {
     left: 92px;
     position: absolute;
     z-index: 3;
@@ -310,12 +329,14 @@ a {
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-.node-anchor-right:hover{
+
+.node-anchor-right:hover {
     width: 14px;
     height: 14px;
     border-radius: 7px;
 }
-.node-anchor-left{
+
+.node-anchor-left {
     left: -6px;
     position: absolute;
     z-index: 3;
@@ -325,12 +346,14 @@ a {
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-.node-anchor-left:hover{
+
+.node-anchor-left:hover {
     width: 14px;
     height: 14px;
     border-radius: 7px;
 }
-.node-anchor-top{
+
+.node-anchor-top {
     top: -6px;
     position: absolute;
     z-index: 3;
@@ -340,12 +363,14 @@ a {
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-.node-anchor-top:hover{
+
+.node-anchor-top:hover {
     width: 14px;
     height: 14px;
     border-radius: 7px;
 }
-.node-anchor-bottom{
+
+.node-anchor-bottom {
     top: 32px;
     position: absolute;
     z-index: 3;
@@ -355,7 +380,8 @@ a {
     border: 1px solid #CCCCCC;
     background: whitesmoke;
 }
-.node-anchor-bottom:hover{
+
+.node-anchor-bottom:hover {
     width: 14px;
     height: 14px;
     border-radius: 7px;
@@ -382,4 +408,175 @@ a {
 
 #time-slider {
 
+}
+
+.left-tool-container {
+    margin-left: 10%;
+    height: 80%;
+    width: 230px;
+
+}
+
+.history-node-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 230px;
+
+}
+
+.history-node-container-head {
+    background-color: #f3f3f3;
+    height: 60px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5677d2;
+
+}
+
+.history-node-container-body {
+    background-color: white;
+    max-height: 270px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.history-node-container-body::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+
+    margin: 0 auto;
+}
+
+.history-node-container-body::-webkit-scrollbar-thumb {
+
+    background-color: #eeeeee;
+    border-radius: 6px;
+}
+
+.history-node-container-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #fbfbfb;
+    background-color: #fbfbfb;
+
+}
+
+.history-node-item {
+    min-height: 50px;
+    border-top: 1px solid #f3f3f3;
+    padding: 15px;
+    display: flex;
+}
+
+.history-node-item-text {
+    width: 140px;
+    font-size: 12px;
+    color: #828282;
+    margin: 0 10px 0 15px;
+}
+
+.history-node-connection-text {
+    width: 200px;
+}
+
+.circle-index {
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    /*border: 1px solid black;*/
+    color: white;
+    text-align: center;
+    /*margin: 15px;*/
+}
+
+.delete-button {
+    /*margin: 15px;*/
+    width: 16px;
+    height: 16px;
+    background: transparent url(icon/remove.png) no-repeat;
+    border: 0 transparent solid;
+    outline: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #E9E9E9
+}
+
+.main-content {
+    height: calc(100% - 118px);
+    width: 100%;
+    display: flex;
+}
+
+#displayDiv {
+    position: relative;
+    display: flex;
+    /*height: 100%;*/
+    /*!*margin-left: 200px;*!*/
+    /*width: calc(90% - 230px);*/
+    /*padding: 40px;*/
+
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+
+}
+/*.scrollbar{*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+/*}*/
+
+#displayDiv::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+    margin: 0 auto;
+}
+
+#displayDiv::-webkit-scrollbar-thumb {
+
+    background-color: #eeeeee;
+    border-radius: 6px;
+}
+
+#displayDiv::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #fbfbfb;
+    background-color: #fbfbfb;
+
+}
+
+.display-div-container{
+    padding: 20px;
+    background-color: #fbfbfb;
+    margin: 10px 0 0 20px;
+    width: calc(80% - 250px );
+    min-width: 1250px;
+    height: 800px;
+}
+
+.back-menu{
+    position: absolute;
+    z-index: 100;
+    left: calc(10% - 60px);
+    width: 50px;
+    /*height: 100px;*/
+    top: 10px   ;
+    text-align: center;
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: auto;
+
+}
+
+.back-menu-text{
+    width: 14px;
+    font-size: 14px;
+    margin: auto;
+    color: #a4a4a4;
+    line-height: 18px;
+    margin-top: 5px;
 }
