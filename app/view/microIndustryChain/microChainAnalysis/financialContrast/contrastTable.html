@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/financialContrast/contrastTable.css">
+<div class="modal-header">
+    <h4 class="modal-title" style="text-align: center"> {{title}}</h4>
+</div>
+<div class="modal-body" id="body">
+
+    <div class="spinner"  ng-hide="render">
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <button id="spinner" ng-hide="!render" ng-click=""></button>
+    </div>
+    <table ng-hide="!render">
+
+        <tr>
+            <th>属性</th>
+            <th>{{nameA}}</th>
+            <th>{{nameB}}</th>
+
+        </tr>
+        <tr ng-repeat="(key,value) in data.stkidA">
+            <td>{{value.translate}}</td>
+            <td>{{value.value.length>0?value.value:'-'}}</td>
+            <td>{{data.stkidB[key].length>0?data.stkidB[key]:'-'}}</td>
+        </tr>
+
+    </table>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">确认</button>
+</div>
