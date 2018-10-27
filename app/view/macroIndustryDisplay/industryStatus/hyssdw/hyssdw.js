@@ -7,6 +7,10 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
     })
 
     .controller('hyssdwCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[4]).addClass('active');
+
         $scope.market="全部";
         $scope.Y="PE-TTM";
         $scope.X="ROE-TTM";
@@ -52,120 +56,120 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             }
             document.getElementById('table').innerHTML=$scope.str;
             $scope.data1 = [
-                [$scope.roettmAll[0],$scope.pettmAll[0],$scope.tomaktvalAll[0]],
-                [$scope.roettmAll[15],$scope.pettmAll[15],$scope.tomaktvalAll[15]],
-                [$scope.roettmAll[30],$scope.pettmAll[30],$scope.tomaktvalAll[30]],
-                [$scope.roettmAll[45],$scope.pettmAll[45],$scope.tomaktvalAll[45]],
-                [$scope.roettmAll[60],$scope.pettmAll[60],$scope.tomaktvalAll[60]],
+                [$scope.roettmAll[0],$scope.pettmAll[0],$scope.tomaktvalAll[0],$scope.indstnamAll[0]],
+                [$scope.roettmAll[15],$scope.pettmAll[15],$scope.tomaktvalAll[15],$scope.indstnamAll[15]],
+                [$scope.roettmAll[30],$scope.pettmAll[30],$scope.tomaktvalAll[30],$scope.indstnamAll[30]],
+                [$scope.roettmAll[45],$scope.pettmAll[45],$scope.tomaktvalAll[45],$scope.indstnamAll[45]],
+                [$scope.roettmAll[60],$scope.pettmAll[60],$scope.tomaktvalAll[60],$scope.indstnamAll[60]],
             ];
 
             $scope.data2 = [
-                [$scope.roettmAll[1],$scope.pettmAll[1],$scope.tomaktvalAll[1]],
-                [$scope.roettmAll[16],$scope.pettmAll[16],$scope.tomaktvalAll[16]],
-                [$scope.roettmAll[31],$scope.pettmAll[31],$scope.tomaktvalAll[31]],
-                [$scope.roettmAll[46],$scope.pettmAll[46],$scope.tomaktvalAll[46]],
-                [$scope.roettmAll[61],$scope.pettmAll[61],$scope.tomaktvalAll[61]],
+                [$scope.roettmAll[1],$scope.pettmAll[1],$scope.tomaktvalAll[1],$scope.indstnamAll[1]],
+                [$scope.roettmAll[16],$scope.pettmAll[16],$scope.tomaktvalAll[16],$scope.indstnamAll[16]],
+                [$scope.roettmAll[31],$scope.pettmAll[31],$scope.tomaktvalAll[31],$scope.indstnamAll[31]],
+                [$scope.roettmAll[46],$scope.pettmAll[46],$scope.tomaktvalAll[46],$scope.indstnamAll[46]],
+                [$scope.roettmAll[61],$scope.pettmAll[61],$scope.tomaktvalAll[61],$scope.indstnamAll[61]],
             ];
 
             $scope.data3 = [
-                [$scope.roettmAll[2],$scope.pettmAll[2],$scope.tomaktvalAll[2]],
-                [$scope.roettmAll[17],$scope.pettmAll[17],$scope.tomaktvalAll[17]],
-                [$scope.roettmAll[32],$scope.pettmAll[32],$scope.tomaktvalAll[32]],
-                [$scope.roettmAll[47],$scope.pettmAll[47],$scope.tomaktvalAll[47]],
-                [$scope.roettmAll[62],$scope.pettmAll[62],$scope.tomaktvalAll[62]],
+                [$scope.roettmAll[2],$scope.pettmAll[2],$scope.tomaktvalAll[2],$scope.indstnamAll[2]],
+                [$scope.roettmAll[17],$scope.pettmAll[17],$scope.tomaktvalAll[17],$scope.indstnamAll[17]],
+                [$scope.roettmAll[32],$scope.pettmAll[32],$scope.tomaktvalAll[32],$scope.indstnamAll[32]],
+                [$scope.roettmAll[47],$scope.pettmAll[47],$scope.tomaktvalAll[47],$scope.indstnamAll[47]],
+                [$scope.roettmAll[62],$scope.pettmAll[62],$scope.tomaktvalAll[62],$scope.indstnamAll[62]],
             ];
 
             $scope.data4 = [
-                [$scope.roettmAll[3],$scope.pettmAll[3],$scope.tomaktvalAll[3]],
-                [$scope.roettmAll[18],$scope.pettmAll[18],$scope.tomaktvalAll[18]],
-                [$scope.roettmAll[33],$scope.pettmAll[33],$scope.tomaktvalAll[33]],
-                [$scope.roettmAll[48],$scope.pettmAll[48],$scope.tomaktvalAll[48]],
-                [$scope.roettmAll[63],$scope.pettmAll[63],$scope.tomaktvalAll[63]],
+                [$scope.roettmAll[3],$scope.pettmAll[3],$scope.tomaktvalAll[3],$scope.indstnamAll[3]],
+                [$scope.roettmAll[18],$scope.pettmAll[18],$scope.tomaktvalAll[18],$scope.indstnamAll[18]],
+                [$scope.roettmAll[33],$scope.pettmAll[33],$scope.tomaktvalAll[33],$scope.indstnamAll[33]],
+                [$scope.roettmAll[48],$scope.pettmAll[48],$scope.tomaktvalAll[48],$scope.indstnamAll[48]],
+                [$scope.roettmAll[63],$scope.pettmAll[63],$scope.tomaktvalAll[63],$scope.indstnamAll[63]],
             ];
 
             $scope.data5 = [
-                [$scope.roettmAll[4],$scope.pettmAll[4],$scope.tomaktvalAll[4]],
-                [$scope.roettmAll[19],$scope.pettmAll[19],$scope.tomaktvalAll[19]],
-                [$scope.roettmAll[34],$scope.pettmAll[34],$scope.tomaktvalAll[34]],
-                [$scope.roettmAll[49],$scope.pettmAll[49],$scope.tomaktvalAll[49]],
-                [$scope.roettmAll[64],$scope.pettmAll[64],$scope.tomaktvalAll[64]],
+                [$scope.roettmAll[4],$scope.pettmAll[4],$scope.tomaktvalAll[4],$scope.indstnamAll[4]],
+                [$scope.roettmAll[19],$scope.pettmAll[19],$scope.tomaktvalAll[19],$scope.indstnamAll[19]],
+                [$scope.roettmAll[34],$scope.pettmAll[34],$scope.tomaktvalAll[34],$scope.indstnamAll[34]],
+                [$scope.roettmAll[49],$scope.pettmAll[49],$scope.tomaktvalAll[49],$scope.indstnamAll[49]],
+                [$scope.roettmAll[64],$scope.pettmAll[64],$scope.tomaktvalAll[64],$scope.indstnamAll[64]],
             ];
 
             $scope.data6 = [
-                [$scope.roettmAll[5],$scope.pettmAll[5],$scope.tomaktvalAll[5]],
-                [$scope.roettmAll[20],$scope.pettmAll[20],$scope.tomaktvalAll[20]],
-                [$scope.roettmAll[35],$scope.pettmAll[35],$scope.tomaktvalAll[35]],
-                [$scope.roettmAll[50],$scope.pettmAll[52],$scope.tomaktvalAll[50]],
-                [$scope.roettmAll[65],$scope.pettmAll[65],$scope.tomaktvalAll[65]],
+                [$scope.roettmAll[5],$scope.pettmAll[5],$scope.tomaktvalAll[5],$scope.indstnamAll[5]],
+                [$scope.roettmAll[20],$scope.pettmAll[20],$scope.tomaktvalAll[20],$scope.indstnamAll[20]],
+                [$scope.roettmAll[35],$scope.pettmAll[35],$scope.tomaktvalAll[35],$scope.indstnamAll[35]],
+                [$scope.roettmAll[50],$scope.pettmAll[52],$scope.tomaktvalAll[50],$scope.indstnamAll[50]],
+                [$scope.roettmAll[65],$scope.pettmAll[65],$scope.tomaktvalAll[65],$scope.indstnamAll[65]],
             ];
 
             $scope.data7 = [
-                [$scope.roettmAll[6],$scope.pettmAll[6],$scope.tomaktvalAll[6]],
-                [$scope.roettmAll[21],$scope.pettmAll[21],$scope.tomaktvalAll[21]],
-                [$scope.roettmAll[36],$scope.pettmAll[36],$scope.tomaktvalAll[36]],
-                [$scope.roettmAll[51],$scope.pettmAll[51],$scope.tomaktvalAll[51]],
-                [$scope.roettmAll[66],$scope.pettmAll[66],$scope.tomaktvalAll[66]],
+                [$scope.roettmAll[6],$scope.pettmAll[6],$scope.tomaktvalAll[6],$scope.indstnamAll[6]],
+                [$scope.roettmAll[21],$scope.pettmAll[21],$scope.tomaktvalAll[21],$scope.indstnamAll[21]],
+                [$scope.roettmAll[36],$scope.pettmAll[36],$scope.tomaktvalAll[36],$scope.indstnamAll[36]],
+                [$scope.roettmAll[51],$scope.pettmAll[51],$scope.tomaktvalAll[51],$scope.indstnamAll[51]],
+                [$scope.roettmAll[66],$scope.pettmAll[66],$scope.tomaktvalAll[66],$scope.indstnamAll[66]],
             ];
 
             $scope.data8 = [
-                [$scope.roettmAll[7],$scope.pettmAll[7],$scope.tomaktvalAll[7]],
-                [$scope.roettmAll[22],$scope.pettmAll[22],$scope.tomaktvalAll[22]],
-                [$scope.roettmAll[37],$scope.pettmAll[37],$scope.tomaktvalAll[37]],
-                [$scope.roettmAll[52],$scope.pettmAll[52],$scope.tomaktvalAll[52]],
-                [$scope.roettmAll[67],$scope.pettmAll[67],$scope.tomaktvalAll[67]],
+                [$scope.roettmAll[7],$scope.pettmAll[7],$scope.tomaktvalAll[7],$scope.indstnamAll[7]],
+                [$scope.roettmAll[22],$scope.pettmAll[22],$scope.tomaktvalAll[22],$scope.indstnamAll[22]],
+                [$scope.roettmAll[37],$scope.pettmAll[37],$scope.tomaktvalAll[37],$scope.indstnamAll[37]],
+                [$scope.roettmAll[52],$scope.pettmAll[52],$scope.tomaktvalAll[52],$scope.indstnamAll[52]],
+                [$scope.roettmAll[67],$scope.pettmAll[67],$scope.tomaktvalAll[67],$scope.indstnamAll[67]],
             ];
 
             $scope.data9 = [
-                [$scope.roettmAll[8],$scope.pettmAll[8],$scope.tomaktvalAll[8]],
-                [$scope.roettmAll[23],$scope.pettmAll[23],$scope.tomaktvalAll[23]],
-                [$scope.roettmAll[38],$scope.pettmAll[38],$scope.tomaktvalAll[38]],
-                [$scope.roettmAll[53],$scope.pettmAll[53],$scope.tomaktvalAll[53]],
-                [$scope.roettmAll[68],$scope.pettmAll[68],$scope.tomaktvalAll[68]],
+                [$scope.roettmAll[8],$scope.pettmAll[8],$scope.tomaktvalAll[8],$scope.indstnamAll[8]],
+                [$scope.roettmAll[23],$scope.pettmAll[23],$scope.tomaktvalAll[23],$scope.indstnamAll[23]],
+                [$scope.roettmAll[38],$scope.pettmAll[38],$scope.tomaktvalAll[38],$scope.indstnamAll[38]],
+                [$scope.roettmAll[53],$scope.pettmAll[53],$scope.tomaktvalAll[53],$scope.indstnamAll[53]],
+                [$scope.roettmAll[68],$scope.pettmAll[68],$scope.tomaktvalAll[68],$scope.indstnamAll[68]],
             ];
 
             $scope.data10 = [
-                [$scope.roettmAll[9],$scope.pettmAll[9],$scope.tomaktvalAll[9]],
-                [$scope.roettmAll[24],$scope.pettmAll[24],$scope.tomaktvalAll[24]],
-                [$scope.roettmAll[39],$scope.pettmAll[39],$scope.tomaktvalAll[39]],
-                [$scope.roettmAll[54],$scope.pettmAll[54],$scope.tomaktvalAll[54]],
-                [$scope.roettmAll[69],$scope.pettmAll[68],$scope.tomaktvalAll[68]],
+                [$scope.roettmAll[9],$scope.pettmAll[9],$scope.tomaktvalAll[9],$scope.indstnamAll[9]],
+                [$scope.roettmAll[24],$scope.pettmAll[24],$scope.tomaktvalAll[24],$scope.indstnamAll[24]],
+                [$scope.roettmAll[39],$scope.pettmAll[39],$scope.tomaktvalAll[39],$scope.indstnamAll[39]],
+                [$scope.roettmAll[54],$scope.pettmAll[54],$scope.tomaktvalAll[54],$scope.indstnamAll[54]],
+                [$scope.roettmAll[69],$scope.pettmAll[68],$scope.tomaktvalAll[68],$scope.indstnamAll[68]],
             ];
 
             $scope.data11 = [
-                [$scope.roettmAll[10],$scope.pettmAll[10],$scope.tomaktvalAll[10]],
-                [$scope.roettmAll[25],$scope.pettmAll[25],$scope.tomaktvalAll[25]],
-                [$scope.roettmAll[40],$scope.pettmAll[40],$scope.tomaktvalAll[40]],
-                [0,0,0],
-                [$scope.roettmAll[70],$scope.pettmAll[70],$scope.tomaktvalAll[70]],
+                [$scope.roettmAll[10],$scope.pettmAll[10],$scope.tomaktvalAll[10],$scope.indstnamAll[10]],
+                [$scope.roettmAll[25],$scope.pettmAll[25],$scope.tomaktvalAll[25],$scope.indstnamAll[25]],
+                [$scope.roettmAll[40],$scope.pettmAll[40],$scope.tomaktvalAll[40],$scope.indstnamAll[40]],
+                [0,0,0,'null'],
+                [$scope.roettmAll[70],$scope.pettmAll[70],$scope.tomaktvalAll[70],$scope.indstnamAll[70]],
             ];
 
             $scope.data12 = [
-                [$scope.roettmAll[11],$scope.pettmAll[11],$scope.tomaktvalAll[11]],
-                [$scope.roettmAll[26],$scope.pettmAll[26],$scope.tomaktvalAll[26]],
-                [$scope.roettmAll[41],$scope.pettmAll[41],$scope.tomaktvalAll[41]],
-                [$scope.roettmAll[56],$scope.pettmAll[56],$scope.tomaktvalAll[56]],
-                [$scope.roettmAll[71],$scope.pettmAll[71],$scope.tomaktvalAll[71]],
+                [$scope.roettmAll[11],$scope.pettmAll[11],$scope.tomaktvalAll[11],$scope.indstnamAll[11]],
+                [$scope.roettmAll[26],$scope.pettmAll[26],$scope.tomaktvalAll[26],$scope.indstnamAll[26]],
+                [$scope.roettmAll[41],$scope.pettmAll[41],$scope.tomaktvalAll[41],$scope.indstnamAll[41]],
+                [$scope.roettmAll[56],$scope.pettmAll[56],$scope.tomaktvalAll[56],$scope.indstnamAll[56]],
+                [$scope.roettmAll[71],$scope.pettmAll[71],$scope.tomaktvalAll[71],$scope.indstnamAll[71]],
             ];
 
             $scope.data13 = [
-                [$scope.roettmAll[12],$scope.pettmAll[12],$scope.tomaktvalAll[12]],
-                [$scope.roettmAll[27],$scope.pettmAll[27],$scope.tomaktvalAll[27]],
-                [$scope.roettmAll[42],$scope.pettmAll[42],$scope.tomaktvalAll[42]],
-                [$scope.roettmAll[57],$scope.pettmAll[57],$scope.tomaktvalAll[57]],
+                [$scope.roettmAll[12],$scope.pettmAll[12],$scope.tomaktvalAll[12],$scope.indstnamAll[12]],
+                [$scope.roettmAll[27],$scope.pettmAll[27],$scope.tomaktvalAll[27],$scope.indstnamAll[27]],
+                [$scope.roettmAll[42],$scope.pettmAll[42],$scope.tomaktvalAll[42],$scope.indstnamAll[42]],
+                [$scope.roettmAll[57],$scope.pettmAll[57],$scope.tomaktvalAll[57],$scope.indstnamAll[57]],
             ];
 
             $scope.data14 = [
-                [$scope.roettmAll[13],$scope.pettmAll[13],$scope.tomaktvalAll[13]],
-                [$scope.roettmAll[28],$scope.pettmAll[28],$scope.tomaktvalAll[28]],
-                [$scope.roettmAll[43],$scope.pettmAll[43],$scope.tomaktvalAll[43]],
-                [$scope.roettmAll[58],$scope.pettmAll[58],$scope.tomaktvalAll[58]],
+                [$scope.roettmAll[13],$scope.pettmAll[13],$scope.tomaktvalAll[13],$scope.indstnamAll[13]],
+                [$scope.roettmAll[28],$scope.pettmAll[28],$scope.tomaktvalAll[28],$scope.indstnamAll[28]],
+                [$scope.roettmAll[43],$scope.pettmAll[43],$scope.tomaktvalAll[43],$scope.indstnamAll[43]],
+                [$scope.roettmAll[58],$scope.pettmAll[58],$scope.tomaktvalAll[58],$scope.indstnamAll[58]],
             ];
 
             $scope.data15 = [
-                [$scope.roettmAll[14],$scope.pettmAll[14],$scope.tomaktvalAll[14]],
-                [$scope.roettmAll[29],$scope.pettmAll[29],$scope.tomaktvalAll[29]],
-                [$scope.roettmAll[44],$scope.pettmAll[44],$scope.tomaktvalAll[44]],
-                [$scope.roettmAll[59],$scope.pettmAll[59],$scope.tomaktvalAll[59]],
+                [$scope.roettmAll[14],$scope.pettmAll[14],$scope.tomaktvalAll[14],$scope.indstnamAll[14]],
+                [$scope.roettmAll[29],$scope.pettmAll[29],$scope.tomaktvalAll[29],$scope.indstnamAll[29]],
+                [$scope.roettmAll[44],$scope.pettmAll[44],$scope.tomaktvalAll[44],$scope.indstnamAll[44]],
+                [$scope.roettmAll[59],$scope.pettmAll[59],$scope.tomaktvalAll[59],$scope.indstnamAll[59]],
             ];
 
             var myChart = echarts.init(document.getElementById('test'));
@@ -173,9 +177,12 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             var option = {
                 color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
                 tooltip : {
-                    backgroundColor:'rgba(0,0,0,0)',
                     textStyle: {
-                        color: 'rgba(0,0,0,0)'
+                        color: 'rgba(255,255,255,255)'
+                    },
+                    formatter: function (params) {
+                        return params.data[3]+':'+params.data[2];
+
                     }
                 },
                 legend: {
@@ -186,14 +193,26 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                     {
                         type : 'value',
                         splitNumber: 4,
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
                 yAxis : [
                     {
                         type : 'value',
                         splitNumber: 4,
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
 
@@ -204,7 +223,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data1,
-                        color:$scope.colors[0]
                     },
                     {
                         type:'scatter',
@@ -212,7 +230,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data2,
-                        color:$scope.colors[1]
                     },
                     {
                         type:'scatter',
@@ -220,7 +237,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data3,
-                        color:$scope.colors[2]
                     },
                     {
                         type:'scatter',
@@ -228,7 +244,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data4,
-                        color:$scope.colors[3]
                     },
                     {
                         type:'scatter',
@@ -236,7 +251,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data5,
-                        color:$scope.colors[4]
                     },
                     {
                         type:'scatter',
@@ -244,7 +258,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data6,
-                        color:$scope.colors[5]
                     },
                     {
                         type:'scatter',
@@ -252,7 +265,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data7,
-                        color:$scope.colors[6]
                     },
                     {
                         type:'scatter',
@@ -260,7 +272,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data8,
-                        color:$scope.colors[7]
                     },
                     {
                         type:'scatter',
@@ -268,7 +279,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data9,
-                        color:$scope.colors[8]
                     },
                     {
                         type:'scatter',
@@ -276,7 +286,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data10,
-                        color:$scope.colors[9]
                     },
                     {
                         type:'scatter',
@@ -284,7 +293,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data11,
-                        color:$scope.colors[10]
                     },
                     {
                         type:'scatter',
@@ -292,7 +300,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data12,
-                        color:$scope.colors[11]
                     },
                     {
                         type:'scatter',
@@ -300,7 +307,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data13,
-                        color:$scope.colors[12]
                     },
                     {
                         type:'scatter',
@@ -308,7 +314,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data14,
-                        color:$scope.colors[13]
                     },
                     {
                         type:'scatter',
@@ -316,7 +321,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: $scope.data15,
-                        color:$scope.colors[14]
                     }
 
                 ]
@@ -4708,9 +4712,12 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             var option = {
                 color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
                 tooltip : {
-                    backgroundColor:'rgba(0,0,0,0)',
                     textStyle: {
-                        color: 'rgba(0,0,0,0)'
+                        color: 'rgba(255,255,255,255)'
+                    },
+                    formatter: function (params) {
+                        return params.data[3]+':'+params.data[2];
+
                     }
                 },
                 legend: {
@@ -4721,14 +4728,26 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                     {
                         type : 'value',
                         splitNumber: 4,
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
                 yAxis : [
                     {
                         type : 'value',
                         splitNumber: 4,
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
 
@@ -4739,7 +4758,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data1,
-                        color:$scope.colors[0]
                     },
                     {
                         type:'scatter',
@@ -4747,7 +4765,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data2,
-                        color:$scope.colors[1]
                     },
                     {
                         type:'scatter',
@@ -4755,7 +4772,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data3,
-                        color:$scope.colors[2]
                     },
                     {
                         type:'scatter',
@@ -4763,7 +4779,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data4,
-                        color:$scope.colors[3]
                     },
                     {
                         type:'scatter',
@@ -4771,7 +4786,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data5,
-                        color:$scope.colors[4]
                     },
                     {
                         type:'scatter',
@@ -4779,7 +4793,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data6,
-                        color:$scope.colors[5]
                     },
                     {
                         type:'scatter',
@@ -4787,7 +4800,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data7,
-                        color:$scope.colors[6]
                     },
                     {
                         type:'scatter',
@@ -4795,7 +4807,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data8,
-                        color:$scope.colors[7]
                     },
                     {
                         type:'scatter',
@@ -4803,7 +4814,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data9,
-                        color:$scope.colors[8]
                     },
                     {
                         type:'scatter',
@@ -4811,7 +4821,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data10,
-                        color:$scope.colors[9]
                     },
                     {
                         type:'scatter',
@@ -4819,7 +4828,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data11,
-                        color:$scope.colors[10]
                     },
                     {
                         type:'scatter',
@@ -4827,7 +4835,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data12,
-                        color:$scope.colors[11]
                     },
                     {
                         type:'scatter',
@@ -4835,7 +4842,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data13,
-                        color:$scope.colors[12]
                     },
                     {
                         type:'scatter',
@@ -4843,7 +4849,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data14,
-                        color:$scope.colors[13]
                     },
                     {
                         type:'scatter',
@@ -4851,7 +4856,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data15,
-                        color:$scope.colors[14]
                     }
 
                 ]
@@ -4867,9 +4871,12 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
             var option = {
                 color:['#344996','#88A500','#FF7800','#E52600','#7B4DD0','#1A96B1','#953c7e','#0a20f5','#4dcc01','#c66700','#df4cdd','#ebc306','#039765','#c52687','#5fa5e9'],
                 tooltip : {
-                    backgroundColor:'rgba(0,0,0,0)',
                     textStyle: {
-                        color: 'rgba(0,0,0,0)'
+                        color: 'rgba(255,255,255,255)'
+                    },
+                    formatter: function (params) {
+                        return params.data[3]+':'+params.data[2];
+
                     }
                 },
                 legend: {
@@ -4880,14 +4887,26 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                     {
                         type : 'value',
                         splitNumber: 4,
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
                 yAxis : [
                     {
                         type : 'value',
                         splitNumber: 4,
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
 
@@ -4898,7 +4917,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2])/5;
                         },
                         data: data1,
-                        color:$scope.colors[0]
                     },
                     {
                         type:'scatter',
@@ -4906,7 +4924,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data2,
-                        color:$scope.colors[1]
                     },
                     {
                         type:'scatter',
@@ -4914,7 +4931,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data3,
-                        color:$scope.colors[2]
                     },
                     {
                         type:'scatter',
@@ -4922,7 +4938,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data4,
-                        color:$scope.colors[3]
                     },
                     {
                         type:'scatter',
@@ -4930,7 +4945,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data5,
-                        color:$scope.colors[4]
                     },
                     {
                         type:'scatter',
@@ -4938,7 +4952,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data6,
-                        color:$scope.colors[5]
                     },
                     {
                         type:'scatter',
@@ -4946,7 +4959,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data7,
-                        color:$scope.colors[6]
                     },
                     {
                         type:'scatter',
@@ -4954,7 +4966,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data8,
-                        color:$scope.colors[7]
                     },
                     {
                         type:'scatter',
@@ -4962,7 +4973,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data9,
-                        color:$scope.colors[8]
                     },
                     {
                         type:'scatter',
@@ -4970,7 +4980,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data10,
-                        color:$scope.colors[9]
                     },
                     {
                         type:'scatter',
@@ -4978,7 +4987,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data11,
-                        color:$scope.colors[10]
                     },
                     {
                         type:'scatter',
@@ -4986,7 +4994,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data12,
-                        color:$scope.colors[11]
                     },
                     {
                         type:'scatter',
@@ -4994,7 +5001,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data13,
-                        color:$scope.colors[12]
                     },
                     {
                         type:'scatter',
@@ -5002,7 +5008,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data14,
-                        color:$scope.colors[13]
                     },
                     {
                         type:'scatter',
@@ -5010,7 +5015,6 @@ angular.module('myApp.macroIndustryDisplay.hyssdw', [
                             return Math.sqrt(value[2]);
                         },
                         data: data15,
-                        color:$scope.colors[14]
                     }
 
                 ]

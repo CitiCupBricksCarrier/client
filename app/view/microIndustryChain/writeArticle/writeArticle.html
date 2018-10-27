@@ -1,0 +1,15 @@
+<div class="center_box">
+
+    <select ng-model="articleGraph" style="margin-bottom: 40px">
+        <option ng-repeat="graph in ownGraphList" label="{{graph}}">{{graph.graphid}}</option>
+    </select>
+
+    <textarea ng-model="articleContent" style="width: 60%; margin-bottom: 40px">
+
+    </textarea>
+
+    <button class="btn btn-lg btn-success" style="width: 60%">提交文章</button>
+
+</div>
+
+<link rel="stylesheet" href="view/microIndustryChain/writeArticle/writeArticle.css">

@@ -21,6 +21,13 @@ table tr td{
 
 table tr:nth-child(odd){background:#F4F4F4;}
 
+.tableDiv{
+    width: 80%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: white
+}
+
 .myInput{
     display: inline-block;
     height: 19.6px;

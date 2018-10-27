@@ -7,6 +7,9 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
     })
 
     .controller('scbxdbCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[4]).addClass('active');
 
         $scope.market="全部";
         $scope.time="OW";
@@ -403,7 +406,10 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
             var option = {
                 title: {
                     text: '行业区间涨幅',
-                    left:'center'
+                    left:'center',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
                 tooltip: {
                     formatter: function (params) {
@@ -416,15 +422,29 @@ angular.module('myApp.macroIndustryDisplay.scbxdb', [
                     },
                 },
                 legend: {
+                    data:['涨跌幅','基准'],
+                    y:'bottom',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
                 xAxis: {
-                    data: $scope.indstnam
+                    data: $scope.indstnam,
+                    axisLabel:{
+                        show: true,
+                        textStyle: {
+                            color: '#d6d6d6'
+                        }
+                    }
                 },
                 yAxis: {
                     min:$scope.judge(),
                     axisLabel: {
                         formatter: '{value} %',
-                        show: true
+                        show: true,
+                        textStyle: {
+                            color: '#d6d6d6'
+                        }
                     }
 
                 },

@@ -7,6 +7,10 @@ angular.module('myApp.macroIndustryDisplay.gzbx', [
     })
 
     .controller('gzbxCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[5]).addClass('active');
+
         $scope.toShow=false;
         $scope.toShowPane=false;
         $scope.str="最高值,平均值";

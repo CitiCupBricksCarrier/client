@@ -2,7 +2,9 @@ angular.module('myApp.microIndustryChain', [
     'myApp.microIndustryChain.discoverChainView',
     'myApp.microIndustryChain.mineChainView',
     'myApp.microIndustryChain.createChainView',
-    'myApp.microIndustryChain.previewChainView'
+    'myApp.microIndustryChain.previewChainView',
+    'myApp.microIndustryChain.writeArticle',
+    'myApp.microIndustryChain.articleView'
 ])
 
     .config(function($stateProvider, $urlRouterProvider){
@@ -36,6 +38,16 @@ angular.module('myApp.microIndustryChain', [
                 templateUrl: 'view/microIndustryChain/industryFactorAnalyze/industryFactorAnalyze.html',
                 controller: 'IndustryFactorAnalyzeCtrl'
             })
+            .state('microIndustryChain.writeArticle',{
+                url:'/writeArticle',
+                templateUrl: 'view/microIndustryChain/writeArticle/writeArticle.html',
+                controller: 'WriteArticleCtrl'
+            })
+            .state('microIndustryChain.articleView',{
+                url:'/articleView',
+                templateUrl: 'view/microIndustryChain/articleView/articleView.html',
+                controller: 'ArticleViewCtrl'
+            })
     })
 
     .controller('MicroIndustryChainCtrl',function($scope, $route, $http, $state) {
@@ -62,12 +74,25 @@ angular.module('myApp.microIndustryChain', [
         $scope.clickDiscoverTab = function () {
             $('#discoverTab').addClass('active');
             $('#mineTab').removeClass('active');
+            $('#articleTab').removeClass('active');
         };
 
         $scope.clickMineTab = function () {
             if($scope.haslogined) {
                 $('#mineTab').addClass('active');
                 $('#discoverTab').removeClass('active');
+                $('#articleTab').removeClass('active');
+            }
+            else{
+                $state.go('login')
+            }
+        };
+
+        $scope.clickArticleTab = function () {
+            if($scope.haslogined) {
+                $('#mineTab').removeClass('active');
+                $('#discoverTab').removeClass('active');
+                $('#articleTab').addClass('active');
             }
             else{
                 $state.go('login')

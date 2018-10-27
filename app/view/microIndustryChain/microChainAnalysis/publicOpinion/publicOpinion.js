@@ -1,17 +1,15 @@
 angular.module('myApp.microIndustryChain.publicOpinion', [
     'ngAnimate', 'ui.bootstrap'
 ])
-    .controller('PublicOpinionCtrl', function ($scope,$uibModal,items) {
+    .controller('PublicOpinionCtrl', function ($scope, $uibModal, items) {
         $scope.data = {
             sentimentIndex: [],
             wordCloud: [],
             opinions: []
         };
 
-        $scope.name=items.name;
-        $scope.id=items.id;
-        console.log(items);
-
+        $scope.name = items.name;
+        $scope.id = items.id;
 
 
         items.scope.modalInstance.rendered.then(function () {
@@ -20,7 +18,7 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
             initPieChart($scope, pieChart);
             initWordCloud($scope, wordCloud);
 
-            $.get(urlHead+'sentimentAnalysis?stkid='+$scope.id, res => {
+            $.get(urlHead + 'sentimentAnalysis?stkid=' + $scope.id, res => {
                 res = JSON.parse(res);
                 refreshData(pieChart, res.sentimentIndex);
                 refreshData(wordCloud, res.wordCloud);
@@ -32,20 +30,15 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
             })
         })
 
-       $scope.$on("modalRendered",function () {
-
-       })
-
 
         $scope.animationsEnabled = true;
 
-        $scope.open = function (title, opinions,keyWord) {
-
+        $scope.open = function (title, opinions, keyWord) {
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,//打开时的动画开关
-                templateUrl: '/view/microIndustryChain/publicOpinion/myModal.html',//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
-                controller: 'ModalInstanceCtrl',//这是模态框的控制器,是用来控制模态框的
-                windowTopClass:'topWindow',
+                templateUrl: '/view/microIndustryChain/microChainAnalysis/publicOpinion/myModal.html',//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
+                controller: 'OpinionModalInstanceCtrl',//这是模态框的控制器,是用来控制模态框的
+                windowTopClass: 'topWindow',
                 resolve: {//这是一个入参,这个很重要,它可以把主控制器中的参数传到模态框控制器中
                     items: function () {//items是一个回调函数
                         return {
@@ -57,13 +50,14 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
                 }
             });
             modalInstance.rendered.then(function () {
-                console.log("opened");
-                let content=document.getElementById('opinionsTable');
-                let contents=content.innerHTML;
+
+                let content = document.getElementById('opinionsTable');
+                let contents = content.innerHTML;
                 var values = contents.split(keyWord);
                 content.innerHTML = values.join('<span style="background:yellow;">' + keyWord + '</span>');
             });
-            modalInstance.result.then(function(){});
+            modalInstance.result.then(function () {
+            });
 
 
         };
@@ -86,28 +80,27 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
 
         }
 
-        $scope.openModal=function(){
-            $scope.open("舆情列表",$scope.data.opinions);
+        $scope.openModal = function () {
+            $scope.open("舆情列表", $scope.data.opinions);
         }
 
         $scope.openWordModal = function (index) {
             let opinions = [];
             let source = $scope.data.opinions;
 
-            console.log("open Word")
 
             index = index.index;
             for (let key in source) {
-                if (source[key].content.indexOf(index)!==-1||source[key].title.indexOf(index)!==-1) {
+                if (source[key].content.indexOf(index) !== -1 || source[key].title.indexOf(index) !== -1) {
                     opinions.push(source[key]);
                 }
             }
-            $scope.open('包含关键词 "' + index + '" 的舆情列表', opinions,index);
+            $scope.open('包含关键词 "' + index + '" 的舆情列表', opinions, index);
 
         }
 
     })
-    .controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+    .controller('OpinionModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
 //这是模态框的控制器,记住$uibModalInstance这个是用来调用函数将模态框内的数据传到外层控制器中的,items则上面所说的入参函数,它可以获取到外层主控制器的参数
 
         $scope.title = items.title;
@@ -115,7 +108,6 @@ angular.module('myApp.microIndustryChain.publicOpinion', [
 
         $scope.ok = function () {
             //close函数是在模态框关闭后调用的函数,他会将这个参数传到主控制器的results函数中,作为回调值
-            console.log($scope.title)
             $uibModalInstance.close();
         };
 
@@ -252,7 +244,7 @@ function initWordCloud($scope, wordCloud) {
 
     wordCloud.setOption(option);
     wordCloud.on('click', function (data) {
-        $scope.openWordModal({index:data.name});
+        $scope.openWordModal({index: data.name});
     })
     wordCloud.showLoading();
 }

@@ -8,6 +8,9 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
     })
 
     .controller('hylsbjCtrl',function($scope, $route, $http) {
+        //设置标题栏响应nav为active
+        $($('.header_macro .module_nav .nav.active')).removeClass('active');
+        $($('.header_macro .module_nav .nav')[4]).addClass('active');
 
         $scope.market="全部";
         $scope.index="市盈率";
@@ -546,11 +549,17 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                 color:['#344996','#88A500'],
                 title : {
                     text: $scope.title,
-                    left:'center'
-                },
+                    left:'center',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
+                    },
                 legend: {
                     data:['汽车','全部A股'],
-                    y:"bottom"
+                    y:"bottom",
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
 
                 xAxis : [
@@ -558,10 +567,22 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                         data : $scope.timeSim,
                         axisLabel:{
                             interval:4,
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
                         }
+
                     }
                 ],
-                yAxis :{},
+                yAxis :{
+                    axisLabel:{
+                        show: true,
+                        textStyle: {
+                            color: '#d6d6d6'
+                        }
+                    }
+                },
                 series : [
                     {
                         name:'汽车',
@@ -591,28 +612,56 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                 color:['#344996','#88A500','rgb(204,206,205)'],
                 title : {
                     text: $scope.title,
-                    left:'center'
+                    left:'center',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
                 legend: {
                     data:['汽车','全部A股','绝对差额'],
-                    y:"bottom"
-                },
+                    y:"bottom",
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
+                    },
 
                 xAxis : [
                     {
                         data : $scope.timeSim,
                         axisLabel:{
                             interval:4,
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
                         }
                     }
                 ],
                 yAxis :[{
                         name:$scope.title.substr(0,$scope.title.length-6),
+                        nameTextStyle:{
+                            color:"#d6d6d6"
+                        },
                         type:'value',
+                        axisLabel:{
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        },
                 },
                     {
                         name:'绝对差额',
+                        nameTextStyle:{
+                            color:"#d6d6d6"
+                        },
                         type:'value',
+                        axisLabel:{
+                            show: true,
+                            textStyle: {
+                                color: '#d6d6d6'
+                            }
+                        }
                     }
                 ],
                 series : [
@@ -651,11 +700,17 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                 color:['#344996','#88A500','rgb(204,206,205)'],
                 title : {
                     text: $scope.title,
-                    left:'center'
+                    left:'center',
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
                 legend: {
-                    data:['汽车','全部A股','绝对差额'],
-                    y:"bottom"
+                    data:['汽车','全部A股','比值'],
+                    y:"bottom",
+                    textStyle: {
+                        color: '#d6d6d6'
+                    }
                 },
 
                 xAxis : [
@@ -663,16 +718,29 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
                         data : $scope.timeSim,
                         axisLabel:{
                             interval:4,
+                            color:"#d6d6d6"
                         }
                     }
                 ],
                 yAxis :[{
                     name:$scope.title.substr(0,$scope.title.length-6),
+                    nameTextStyle:{
+                        color:"#d6d6d6"
+                    },
                     type:'value',
+                    axisLabel:{
+                        color:"#d6d6d6"
+                    }
                 },
                     {
                         name:'比值',
+                        nameTextStyle:{
+                            color:"#d6d6d6"
+                        },
                         type:'value',
+                        axisLabel:{
+                            color:"#d6d6d6"
+                        }
                     }
                 ],
                 series : [
@@ -732,16 +800,20 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
         };
 
         $scope.changeDifference=function () {
+            var myChart = echarts.init(document.getElementById('test'));
             $scope.createData();
             $scope.drawTable();
             switch ($scope.difference){
                 case '无':
+                    myChart.clear();
                     $scope.drawChart1();
                     break;
                 case '绝对差额':
+                    myChart.clear();
                     $scope.drawChart2();
                     break;
                 case '比值':
+                    myChart.clear();
                     $scope.drawChart3();
                     break;
             }
@@ -750,7 +822,7 @@ angular.module('myApp.macroIndustryDisplay.hylsbj', [
         $scope.drawTable=function () {
           var str="";
           str+="<tr>\n" +
-              "  <th></th>\n" +
+              "  <th>时间</th>\n" +
               "  <th>汽车</th>\n" +
               "  <th>全部A股</th>\n" +
               "  <th>绝对差额</th>\n" +

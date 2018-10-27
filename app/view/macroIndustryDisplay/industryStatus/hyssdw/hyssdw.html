@@ -1,14 +1,32 @@
+<!--跟随导航栏-->
+<div class="navBar">
+    <hr class="vertical_line">
+    <li class="active">
+        <img class="icon_active" src="view/resource/4行业地位/行业上市地位1.png" style="display: initial"/><a class="nav_item active" ui-sref="macroIndustryDisplay.hyssdw">行业上市地位</a>
 
-<div style="margin-left: 22%;width: 50%;margin-top: 3%">
-<div style="display: inline-block;padding: 5px 0px 0px 15px;background-color: #E5F0FF;height: 40px;width: 100%;">
-    <label>市场</label>
-    <select  ng-model="market" ng-change="changeMarket()">
-        <option value="全部">全部</option>
-        <option value="沪深A股">沪深A股</option>
-        <option value="新三板做市">新三板做市</option>
+    </li>
+
+
+    <li>
+        <img class="icon_active" src="view/resource/4行业地位/行业历史比较以及市场表现对比1.png"/><a class="nav_item" ui-sref="macroIndustryDisplay.hylsbj">行业历史比较</a>
+
+    </li>
+    <li>
+        <img class="icon_active" src="view/resource/4行业地位/行业历史比较以及市场表现对比1.png"/><a class="nav_item" ui-sref="macroIndustryDisplay.scbxdb">市场表现对比</a>
+
+    </li>
+</div>
+<img src="view/resource/4行业地位/线条.png" style="margin-left: 5%">
+<div style="margin-left: 27%;width: 50%;margin-top: -88.4%">
+<div style="display: inline-block;padding: 5px 0px 0px 15px;height: 40px;width: 100%;">
+    <label style="color: #d6d6d6;font-size: 16px">市场</label>
+    <select ng-model="market" ng-change="changeMarket()">
+        <option  value="全部">全部</option>
+        <option  value="沪深A股">沪深A股</option>
+        <option  value="新三板做市">新三板做市</option>
     </select>
 
-    <label style="margin-left: 20px">Y轴</label>
+    <label style="margin-left: 20px;color: #d6d6d6;font-size: 16px">Y轴</label>
     <select ng-model="Y" ng-change="changeY()">
         <option value="PE-TTM">PE-TTM</option>
         <option value="PE-本年预测">PE-本年预测</option>
@@ -16,7 +34,7 @@
         <option value="PS-TTM"> PS-TTM</option>
     </select>
 
-    <label style="margin-left: 20px">X轴</label>
+    <label style="margin-left: 20px;color: #d6d6d6;font-size: 16px">X轴</label>
     <select ng-model="X" ng-change="changeX()">
         <option value="ROE-TTM">ROE-TTM</option>
         <option value="ROA-TTM">ROA-TTM</option>
@@ -24,24 +42,24 @@
         <option value="营收同比">营收同比</option>
     </select>
 
-    <label style="margin-left: 20px">面积</label>
+    <label style="margin-left: 20px;color: #d6d6d6;font-size: 16px">面积</label>
     <select ng-model="area" ng-change="changeArea()">
         <option value="总市值">总市值</option>
         <option value="营业收入">营业收入</option>
         <option value="资产总计">资产总计</option>
     </select>
 </div>
-<div style="width:100%;height: 400px;background-color: white">
-<div id="test" style="height:400px"></div>
-    <div style="width: 100%;height: 70px;background-color: white">
-    <p>注：图形中剔除Y轴或X轴估值为负值的行业</p>
+<div style="width:100%">
+<div id="test" style="height:500px;width: 125%;margin-top: -2%;margin-left: -2%"></div>
+    <div style="width: 100%;height: 70px;margin-left: 75%;margin-top: -4%">
+    <p style="color: #d6d6d6;font-size: 12px">注：图形中剔除Y轴或X轴估值为负值的行业</p>
     </div>
 </div>
 
 </div>
 
-<div style="margin-left: 22%;width: 50%;background-color: white;margin-top: 2%">
-    <table id="table">
+<div style="margin-left: 27%;width: 59%;margin-top: -3.7%">
+    <table id="table"  border="0">
 
     </table>
 </div>
