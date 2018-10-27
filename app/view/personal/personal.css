@@ -53,3 +53,21 @@
     margin: 10px;
     border-radius: 10px;
 }
+
+.div-inline{
+    display: inline;
+}
+
+.credit-btn{
+    position: relative;
+    height: 20px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 0;
+    background: lightskyblue;
+    color: #fff;
+    border: 0;
+    outline: none;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .175);
+}

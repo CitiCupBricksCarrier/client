@@ -1,0 +1,44 @@
+
+
+<nav class="david-navbar david-navbar-bottom" role="navigation" style="background: rgba(0,0,0,0.5)">
+    <div>
+        <div>
+            <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="citi-icon/citi-white.svg" alt="花旗"></a>
+        </div>
+        <div>
+            <ul class="david-navbar-right">
+                <li ui-sref="home"><a>首页</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="position:absolute; display: block; height: 80%; width: 400px; margin-top: 200px; margin-left: 5%; z-index: 1">
+    <p style="color: white; font-size: 40px">花旗产业链金融平台</p>
+    <p style="color: white; font-size: 20px">给您提供高速快捷的自动化分析服务</p>
+</div>
+
+
+<div class="login-block">
+    <div id="login-right-block">
+        <div id="login-cell" style="background: url('https://citicup.greatnju.com/loginBackground/loginBackground1.png') no-repeat center; z-index: 2">
+            <div style="margin-left: 300px">
+                <p class="login-big-font">用户注册</p>
+                <input ng-model="username" class="phone-num login-input" placeholder="请输入用户名（手机号）" type="text">
+                <span class="tips username_mes"></span>
+                <input ng-model="nickname" class="nick-name login-input" placeholder="请输入昵称" type="text">
+                <span class="tips nickname_mes"></span>
+                <input ng-model="password" class="password-first login-input" placeholder="请输入密码（6-16位）" type="password">
+                <span class="tips password_mes"></span>
+                <input ng-model="confirm" class="password-sure  login-input" placeholder="再次输入确认密码" type="password">
+                <span class="tips password_sure"></span>
+                <button ng-click="login()" class="login-btn">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://citicup.greatnju.com/CitiE2E.js"></script>
+<link rel="stylesheet" href="view/register/register.css">

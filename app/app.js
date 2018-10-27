@@ -16,7 +16,8 @@ angular.module('myApp', [
     'myApp.microIndustryChain',
     'myApp.macroIndustryList',
     'myApp.macroIndustryDisplay',
-    'myApp.industryFactorAnalyze'
+    'myApp.industryFactorAnalyze',
+    'myApp.register'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -57,6 +58,12 @@ angular.module('myApp', [
             url:'/industryFactorAnalyze',
             templateUrl: 'view/industryFactorAnalyze/industryFactorAnalyze.html',
             controller: 'IndustryFactorAnalyzeCtrl'
+        })
+
+        .state('register',{
+            url:'/register',
+            templateUrl:'view/register/register.html',
+            controller: 'RegisterCtrl'
         })
     })
 
