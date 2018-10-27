@@ -25,7 +25,6 @@
     /*transform: translateX(-1.5px);*/
     transform: translateX(-29px);
     list-style: none;
-    text-shadow:0 0 5px rgba(255,255,255,0.5);
 }
 .navBar li .icon_active{
     width: 60px;
@@ -39,6 +38,7 @@
 }
 .navBar .nav_item.active{
     color: rgba(135,150,250, 0.8);
+    text-shadow:0 0 5px rgba(255,255,255,0.5);
 }
 .navBar .vertical_line{
     position: absolute;

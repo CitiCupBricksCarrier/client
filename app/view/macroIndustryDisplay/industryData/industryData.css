@@ -16,7 +16,7 @@
 .navBar li.active{
     margin: 100px 0 100px 0;
     /*transition: margin 0.5s;*/
-    font-size: 25px;
+    font-size: 22px;
     color: rgba(135,150,250, 0.8);
     /*font-weight: bold;*/
     /*transform: translateX(-1.5px);*/
@@ -35,6 +35,7 @@
 }
 .navBar .nav_item.active{
     color: rgba(135,150,250, 0.8);
+    text-shadow:0 0 5px rgba(255,255,255,0.5);
 }
 .navBar .vertical_line{
     position: absolute;
@@ -46,6 +47,7 @@
     top: 50%;
     transform: translateY(-50%);
     margin: 0px;
+    border: 0;
 }
 /*二级列表*/
 .navBar li ul{
@@ -65,4 +67,5 @@
 }
 .navBar .nav2_item.active {
     color: rgba(135,150,250, 0.8);
+    text-shadow:0 0 5px rgba(255,255,255,0.5);
 }
