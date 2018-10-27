@@ -8,6 +8,7 @@ angular.module('myApp.microIndustryChain.createChainView', [])
         //DOM对象化
         let topElement = document.getElementById("topElement");
         let displayDiv = document.getElementById("displayDiv");
+        let displayDivContainer = document.getElementById("displayDivContainer");
         let canvas = document.getElementById("canvas");
         let context = canvas.getContext("2d");
         let nodeDiv = document.getElementById("nodeDiv");
@@ -509,11 +510,12 @@ angular.module('myApp.microIndustryChain.createChainView', [])
                 else if ($(e.target).attr("id")[0] == 'A') {
                     if (e.button == 0) {
                         mouseDownAnchorID = $(e.target).attr("id");
-                        anchorBeginPositionCacheX = window.event.clientX - displayDiv.offsetLeft + displayDiv.scrollLeft;
-                        anchorBeginPositionCacheY = window.event.clientY - displayDiv.offsetTop + displayDiv.scrollTop;
+                        anchorBeginPositionCacheX = window.event.clientX - (displayDivContainer.offsetLeft + 20) + displayDiv.scrollLeft;
+                        anchorBeginPositionCacheY = window.event.clientY - (displayDivContainer.offsetTop + 20) + displayDiv.scrollTop;
                         connectionBeginNodeCache = $(e.target).parent().attr("id");
                         connectionBeginNodeStock = $scope.nodeList[connectionBeginNodeCache].nodeStock;
                         canDragAnchor = true;
+                        console.log(window.event.clientX + "  " + displayDivContainer.offsetLeft + "  " + displayDivContainer.paddingLeft + "  " + displayDiv.scrollLeft)
                     }
                     else if (e.button == 2) {
                     }
@@ -535,8 +537,8 @@ angular.module('myApp.microIndustryChain.createChainView', [])
                 drawArrow(context,
                     anchorBeginPositionCacheX,
                     anchorBeginPositionCacheY,
-                    window.event.clientX - displayDiv.offsetLeft + displayDiv.scrollLeft,
-                    window.event.clientY - displayDiv.offsetTop + displayDiv.scrollTop,
+                    window.event.clientX - (displayDivContainer.offsetLeft + 20) + displayDiv.scrollLeft,
+                    window.event.clientY - (displayDivContainer.offsetTop + 20) + displayDiv.scrollTop,
                     30, 12, 2, '#000');
             }
         };
@@ -609,7 +611,7 @@ angular.module('myApp.microIndustryChain.createChainView', [])
          *网格背景的实现
          */
         (function initializeNetBackground() {
-            netContext.lineWidth=1;
+            netContext.lineWidth = 1;
             netContext.beginPath();
             for (let i = step; i < netBackground.width; i += step) {
                 netContext.moveTo(i, 0);
