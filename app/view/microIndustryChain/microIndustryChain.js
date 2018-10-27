@@ -60,14 +60,14 @@ angular.module('myApp.microIndustryChain', [
 
 
         $scope.clickDiscoverTab = function () {
-            $('#discoverTab').addClass('active');
-            $('#mineTab').removeClass('active');
+            $('#discoverTab').addClass('tabs-li-selected');
+            $('#mineTab').removeClass('tabs-li-selected');
         };
 
         $scope.clickMineTab = function () {
             if($scope.haslogined) {
-                $('#mineTab').addClass('active');
-                $('#discoverTab').removeClass('active');
+                $('#mineTab').addClass('tabs-li-selected');
+                $('#discoverTab').removeClass('tabs-li-selected');
             }
             else{
                 $state.go('login')

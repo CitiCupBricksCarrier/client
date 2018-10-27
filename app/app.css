@@ -97,3 +97,31 @@
     border-bottom: 1px solid #777777;
 }
 
+
+
+.tabs-choice{
+    float: left;
+    width: 50%;
+}
+.nav-bar-tabs li{
+    padding-left: 20px;
+    display: inline;
+    cursor: pointer;
+    font-size: 15px;
+
+}
+.a-normal{
+    color: grey;
+}
+.a-normal:focus,.a-normal:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.tabs-li-selected{
+    color: white;
+}
+.nav-bar-tabs{
+    padding:20px 15%;
+
+}

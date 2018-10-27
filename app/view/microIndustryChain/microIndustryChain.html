@@ -1,17 +1,38 @@
-<david-nav></david-nav>
+<nav class="david-navbar" role="navigation">
+    <div>
+        <div>
+            <a ui-sref="home" class="navbar-brand"><img class="nav-icon" src="citi-icon/citi-white.svg" alt="花旗"></a>
+        </div>
+        <div class="tabs-choice">
+            <ul class="nav-bar-tabs">
+                <li>
+                    <a id="discoverTab" ng-click="clickDiscoverTab()" class="a-normal tabs-li-selected" ui-sref="microIndustryChain.discoverChainView">发现产业链</a>
+                </li>
+                <li>
+                    <a id = "mineTab" ng-click="clickMineTab()" class ="a-normal" ui-sref="microIndustryChain.mineChainView">我的产业链</a>
+                </li>
+            </ul>
+        </div>
 
+        <div>
+            <ul class="david-navbar-right">
+                <li ui-sref="personal" ng-show="haslogined"><a>个人中心</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <br>
 
 <!--<a ui-sref="microIndustryChain.industryFactorAnalyze">行业因子分析</a>-->
-<div class="tabbable">
-    <ul class="nav nav-tabs">
-        <li class="active" id="discoverTab" ng-click="clickDiscoverTab()">
-            <a ui-sref="microIndustryChain.discoverChainView">发现产业链</a>
-        </li>
-        <li id="mineTab" ng-click="clickMineTab()">
-            <a ui-sref="microIndustryChain.mineChainView">我的产业链</a>
-        </li>
-    </ul>
-</div>
+<!--<div class="tabbable">-->
+    <!--<ul class="nav nav-tabs">-->
+        <!--<li class="active" id="discoverTab" ng-click="clickDiscoverTab()">-->
+            <!--<a ui-sref="microIndustryChain.discoverChainView">发现产业链</a>-->
+        <!--</li>-->
+        <!--<li id="mineTab" ng-click="clickMineTab()">-->
+            <!--<a ui-sref="microIndustryChain.mineChainView">我的产业链</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
 
 <ui-view></ui-view>
