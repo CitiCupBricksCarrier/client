@@ -2,13 +2,13 @@ table{
     width: 100%;
     background-color:rgba(0,0,0,0); /* IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂，但解析为透明 */
     color: #d6d6d6;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 table th{
     font-weight: 900;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     color: #d6d6d6;
     height: 40px;
     min-width: 75px;
