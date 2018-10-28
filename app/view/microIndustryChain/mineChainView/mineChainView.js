@@ -1,12 +1,10 @@
-angular.module('myApp.microIndustryChain.mineChainView', [
+angular.module('myApp.microIndustryChain.mineChainView', [])
 
-])
-
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider) {
 
     })
 
-    .controller('MineChainViewCtrl',function($scope, $route, $http, $stateParams, $state, $window) {
+    .controller('MineChainViewCtrl', function ($scope, $route, $http, $stateParams, $state, $window) {
         $http({
             method: 'post',
             url: urlHead + 'getSession',
@@ -14,10 +12,10 @@ angular.module('myApp.microIndustryChain.mineChainView', [
             withCredentials: true
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
-            if(response.data != "null"){
+            if (response.data != "null") {
                 $scope.haslogined = true;
             }
-            else{
+            else {
                 $scope.haslogined = false;
                 $state.go('login');
             }
@@ -34,10 +32,11 @@ angular.module('myApp.microIndustryChain.mineChainView', [
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
             $scope.ownGraphList = response.data;
+            console.log('graphList');
+            console.log(response.data)
         }, function () {
             console.error("get graph list error");
         });
-
 
 
         $scope.addNewGraph = function () {
