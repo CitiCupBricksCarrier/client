@@ -362,6 +362,9 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             return dateTime;
         }
 
+
+        $scope.commentList = [];
+
         /**
          * 得到当前围观产业链的ID
          */
@@ -397,7 +400,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
          */
         var sub = document.getElementById("subm");
         sub.onclick = function submit() {
-            // console.log("ss");
+            console.log("ssss");
             var inputText = $('.text').val();
             // inputText = inputText.replace(/\n|\r\n/g,"<br/>");
             // $('#info-show ul').append(reply(AnalyticEmotion(inputText)));
@@ -512,82 +515,82 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             });
         };
 
-        /**
-         * 点赞评论事件
-         *
-         */
-        $scope.like_comment = function (comment_detail) {
-            var data = {
-                "graphid": graphid_current,
-                "time": comment_detail.time,
-                "username": comment_detail.author
-            }
-            var result = JSON.stringify(data);
-
-            $http({
-                url: urlHead + 'commentUp',
-                method: 'post',
-                // contentType: "application/json",
-                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                withCredentials: true,
-                params: {
-                    "data": result
-                }
-            }).then(function successCallBack(response) {
-                console.log(response.data)
-                var data = response.data;
-                console.log(data);
-                if (data.retmessage == "success") {
-                    // var deleted_index = $scope.commentList.indexOf(comment_detail);
-                    // $scope.commentList.splice(deleted_index,1);
-                    // console.log($scope.commentList);
-                    comment_detail.up++;
-                    // console.log($scope.commentList);
-
-                }
-            }, function errorCallBack(response) {
-                console.log("erreor");
-            });
-        };
-
-        /**
-         * 踩评论事件
-         *
-         */
-        $scope.step_comment = function (comment_detail) {
-            var data = {
-                "graphid": graphid_current,
-                "time": comment_detail.time,
-                "username": comment_detail.author
-            }
-            var result = JSON.stringify(data);
-
-            $http({
-                url: urlHead + 'commentDown',
-                method: 'post',
-                // contentType: "application/json",
-                // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                withCredentials: true,
-                params: {
-                    "data": result
-                }
-            }).then(function successCallBack(response) {
-                console.log(response.data)
-                var data = response.data;
-                console.log(data);
-                if (data.retmessage == "success") {
-                    // var deleted_index = $scope.commentList.indexOf(comment_detail);
-                    // $scope.commentList.splice(deleted_index,1);
-                    // console.log($scope.commentList);
-                    comment_detail.down++;
-                    // console.log($scope.commentList);
-
-                }
-            }, function errorCallBack(response) {
-                console.log("erreor");
-            });
-
-        };
+        // /**
+        //  * 点赞评论事件
+        //  *
+        //  */
+        // $scope.like_comment = function (comment_detail) {
+        //     var data = {
+        //         "graphid": graphid_current,
+        //         "time": comment_detail.time,
+        //         "username": comment_detail.author
+        //     }
+        //     var result = JSON.stringify(data);
+        //
+        //     $http({
+        //         url: urlHead + 'commentUp',
+        //         method: 'post',
+        //         // contentType: "application/json",
+        //         // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        //         withCredentials: true,
+        //         params: {
+        //             "data": result
+        //         }
+        //     }).then(function successCallBack(response) {
+        //         console.log(response.data)
+        //         var data = response.data;
+        //         console.log(data);
+        //         if (data.retmessage == "success") {
+        //             // var deleted_index = $scope.commentList.indexOf(comment_detail);
+        //             // $scope.commentList.splice(deleted_index,1);
+        //             // console.log($scope.commentList);
+        //             comment_detail.up++;
+        //             // console.log($scope.commentList);
+        //
+        //         }
+        //     }, function errorCallBack(response) {
+        //         console.log("erreor");
+        //     });
+        // };
+        //
+        // /**
+        //  * 踩评论事件
+        //  *
+        //  */
+        // $scope.step_comment = function (comment_detail) {
+        //     var data = {
+        //         "graphid": graphid_current,
+        //         "time": comment_detail.time,
+        //         "username": comment_detail.author
+        //     }
+        //     var result = JSON.stringify(data);
+        //
+        //     $http({
+        //         url: urlHead + 'commentDown',
+        //         method: 'post',
+        //         // contentType: "application/json",
+        //         // headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        //         withCredentials: true,
+        //         params: {
+        //             "data": result
+        //         }
+        //     }).then(function successCallBack(response) {
+        //         console.log(response.data)
+        //         var data = response.data;
+        //         console.log(data);
+        //         if (data.retmessage == "success") {
+        //             // var deleted_index = $scope.commentList.indexOf(comment_detail);
+        //             // $scope.commentList.splice(deleted_index,1);
+        //             // console.log($scope.commentList);
+        //             comment_detail.down++;
+        //             // console.log($scope.commentList);
+        //
+        //         }
+        //     }, function errorCallBack(response) {
+        //         console.log("erreor");
+        //     });
+        //
+        // };
 
 
         $scope.showPublicOpinion = function (name,stkId) {
