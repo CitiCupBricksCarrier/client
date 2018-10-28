@@ -25,10 +25,10 @@
                     <img src="view/microIndustryChain/createChainView/icon/保存.png"> 保存
                 </button>
                 <button id="previewBtn" class="btn btn-default topToolBarBigBtn"
-                        ui-sref="microIndustryChain.previewChainView({'graphid':graphID, 'nodeIDList':nodeIDList, 'nodeList':nodeList, 'nodeDisplayList':nodeDisplayList, 'connectionList':connectionList})"
+                       ng-click="editArticle()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
-                        title="预览作品" data-content="以阅读者的视角【查看】此产业链">
-                    <img src="view/microIndustryChain/createChainView/icon/预览.png"> 预览
+                        title="文章编辑" data-content="编辑产业链的属文">
+                    <img src="view/microIndustryChain/createChainView/icon/预览.png"> 文章
                 </button>
                 <button id="downloadBtn" class="btn btn-default topToolBarBigBtn" ng-click="takeScreenshot()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
@@ -310,6 +310,17 @@
     </select>
     <input ng-init="infectTime = 10" ng-model="infectTime" id="time-slider" type="range" min="10" max="100" step="10">
     <p>第 {{infectTime}} 天</p>
+</div>
+
+<div id="articleEdit" style="width: 525px;height: 750px;position: absolute;left: 50px;top: 50px">
+    <div id="articleMove" style="height: 6%;width:100%; position: absolute;left: 0px;top: 0px;z-index: 102;">
+        <p id="article-close">×</p>
+    </div>
+    <div class="atricle-box">
+        <!-- <div class = "side"></div> -->
+        <!-- <textarea class="page" ></textarea>  -->
+        <div class="article-page" contenteditable="true"><h1>标题</h1><p>正文</p></div>
+    </div>
 </div>
 
 <script src="view/microIndustryChain/createChainView/bootstrap-contextmenu.js"></script>
