@@ -1,5 +1,5 @@
 angular.module('myApp.microIndustryChain.peAnalysis', [])
-    .controller('PeAnalysisCtrl', function ($scope, items,$uibModalInstance) {
+    .controller('PeAnalysisCtrl', function ($scope, items, $uibModalInstance) {
 
         $scope.id = items.id;
         $scope.name = items.name;
@@ -7,10 +7,32 @@ angular.module('myApp.microIndustryChain.peAnalysis', [])
         $scope.render = false;
         $scope.historyList = [{}, {}, {}];
         $scope.lineChart;
+        $scope.buttonGroupHide = true;
 
         console.log("id: " + $scope.id);
 
+        let page = 1;
+        let pending = false;
+
+
+        let getPeRank = function () {
+            pending = true;
+            $.get(urlHead + 'PEValuation/getPERank', {page: page}, res => {
+
+                let data = JSON.parse(res);
+                $scope.data.peRank = $scope.data.peRank.concat(data);
+                page++;
+                if (data.length === 20) {
+                    pending = false;
+                }
+                $scope.$apply();
+            })
+        }
+
         items.scope.modalInstance.rendered.then(function () {
+            $scope.lineChart = echarts.init(document.getElementById('lineChart'))
+            initLineChart($scope.lineChart)
+            getPeHistory();
 
 
             $.get(urlHead + 'PEValuation/demo', {
@@ -20,13 +42,29 @@ angular.module('myApp.microIndustryChain.peAnalysis', [])
                 $scope.data = JSON.parse(res);
                 let now = new Date();
                 $scope.data.date = now.getMonth() + 1 + "-" + now.getDate();
-                document.getElementById("spinner").click();
+                $scope.$apply();
+                let rankContainer = document.getElementById('rankContainer');
+
+
+                rankContainer.onscroll = function () {
+                    let leftLength = $scope.data.peRank.length * 50 - rankContainer.clientHeight - rankContainer.scrollTop;
+                    if (leftLength < 1000 && !pending) {
+                        getPeRank();
+                    }
+                }
             });
+
+
+        });
+
+        let getPeHistory = function () {
             $.get(urlHead + 'PEValuation/getHistoryPE', {
                 stkcd: $scope.id,
                 timeInterval: '两年',
             }, res => {
                 $scope.historyList[0] = JSON.parse(res);
+                $scope.lineChart.hideLoading();
+                $scope.buttonGroupHide = false;
                 document.getElementById('defaultYear').click();
             });
             $.get(urlHead + 'PEValuation/getHistoryPE', {
@@ -41,18 +79,19 @@ angular.module('myApp.microIndustryChain.peAnalysis', [])
             }, res => {
                 $scope.historyList[2] = JSON.parse(res);
             })
-        });
+
+        }
+
 
         $scope.ok = function () {
             $uibModalInstance.close();
         };
 
         $scope.getHistory = function (index) {
-            console.log('get History');
-            console.log($scope.historyList);
-            $scope.lineChart = echarts.init(document.getElementById('lineChart'))
-            initLineChart($scope.lineChart)
+
+
             refreshLinchartData($scope.lineChart, $scope.historyList[index]);
+            // $scope.apply();
         }
 
 
@@ -66,10 +105,10 @@ function initLineChart(linechart) {
                 return [pt[0], '10%'];
             }
         },
-        title: {
-            left: 'center',
-            text: '大数据量面积图',
-        },
+        // title: {
+        //     left: 'center',
+        //     text: '大数据量面积图',
+        // },
         xAxis: {
             type: 'category',
             boundaryGap: false,
@@ -95,6 +134,7 @@ function initLineChart(linechart) {
         ]
     };
     linechart.setOption(option);
+    linechart.showLoading();
 }
 
 function refreshLinchartData(chart, data) {

@@ -259,7 +259,7 @@ a {
 
 .node{
     position: absolute;
-    z-index: 1;
+    z-index: 5;
     display: flex;
     width: 100px;
     height: 50px;

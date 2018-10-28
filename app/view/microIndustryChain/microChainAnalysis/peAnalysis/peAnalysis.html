@@ -60,16 +60,16 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" style="height: 50px">
                         <div class="col-lg-8" style="margin-top: 5px">历史PE走势图</div>
-                        <div class="btn-group" data-toggle="buttons" style="float: right">
-                            <label id="defaultYear" class="btn btn-default transparent-btn" style="outline: none" ng-click="getHistory(0)">
-                                <input  type="radio" name="options" id="option1" >近两年
-                            </label>
-                            <label class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(1)">
-                                <input type="radio" name="options" id="option2" ng-click="getHistory(1)"> 近一年
-                            </label>
-                            <label class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(2)">
-                                <input type="radio" name="options" id="option3" ng-click="getHistory(2)"> 近半年
-                            </label>
+                        <div class="btn-group" data-toggle="buttons" style="float: right" ng-hide="buttonGroupHide">
+                            <div  id="defaultYear" class="btn btn-default transparent-btn" style="outline: none" ng-click="getHistory(0)">
+                                <input  type="radio" name="options" id="twoYears" >近两年
+                            </div>
+                            <div  class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(1)">
+                                <input type="radio" name="options" id="oneYear"> 近一年
+                            </div>
+                            <div  class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(2)">
+                                <input type="radio" name="options" id="halfYear" > 近半年
+                            </div>
                         </div>
 
                     </div>
@@ -88,7 +88,7 @@
                     <span class="col-sm-8 col-sm-offset-1">名称</span>
                     <div class="col-sm-2">PE</div>
                 </div>
-                <div class="rank-container">
+                <div id="rankContainer" class="rank-container">
                     <div ng-repeat="item in data.peRank" class="row rank-item">
 
 
