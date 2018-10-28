@@ -116,7 +116,7 @@
                 <div class = "recharge-btn-div">
                     <a id="modal-358089" href="#modal-container-358089" role="button" class="btn recharge" data-toggle="modal">充值积分</a>
 
-                    <div class="modal fade" id="modal-container-358089" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div  class="modal fade" id="modal-container-358089" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -127,23 +127,23 @@
                                 </div>
                                 <div class="modal-body">
                                     <h5>请选择积分充值数量</h5>
-                                    <form>
+                                    <form id = "creditsChoice">
                                         <div>
-                                            <input type="radio" name = "credit" value="sdsa">100
+                                            <input type="radio" name = "credit" value="100">100
                                         </div>
                                         <div>
-                                            <input type="radio" name = "credit" value="sdsa">200
+                                            <input type="radio" name = "credit" value="200">200
                                         </div>
                                         <div>
-                                            <input type="radio" name = "credit" value="sdsa">500
+                                            <input type="radio" name = "credit" value="500">500
                                         </div>
                                         <div>
-                                            <input type="radio" name = "credit" value="sdsa">1000
+                                            <input type="radio" name = "credit" value="1000">1000
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">确认</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button ng-click="charge()" type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
                                 </div>
                             </div>
 
