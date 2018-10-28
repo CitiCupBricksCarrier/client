@@ -166,7 +166,14 @@ angular.module('myApp.microIndustryChain.createChainView', [])
         };
 
         $scope.addNewNode = function () {//
-            addNode(addNodeNameInput.value, addNodeStockInput.value, addNodeRoleInput.value, addNodeColorInput.value);
+            let color = document.getElementById('newNodeColorSelect').value;
+            console.log(color);
+            if (color==='? undefined:undefined ?') {
+                color = $scope.colorList[Math.floor(Math.random() * $scope.colorList.length)];
+                console.log(color);
+            }
+            console.log(color);
+            addNode(addNodeNameInput.value, addNodeStockInput.value,"", color);
             $scope.isAddingNode = false;
         };
 

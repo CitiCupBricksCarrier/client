@@ -1,28 +1,95 @@
-.graphListBlock{
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    position: relative;
-    width: 100%;
+.graphListBlock {
+    /*display: flex;*/
+    /*flex-flow: row;*/
+    /*flex-wrap: wrap;*/
+    /*position: relative;*/
+    width: 70%;
+    margin: 30px auto auto;
 }
-@media screen and (max-width:767px){
+
+@media screen and (max-width: 767px) {
     .graphListBlock {
         width: 767px;
     }
 }
 
-.graphCell{
+.graphCell {
     display: block;
     position: relative;
     width: 200px;
-    height: 200px;
+    height: 280px;
     margin-left: 40px;
     margin-top: 20px;
     margin-bottom: 20px;
-    background: whitesmoke;
+    background: white;
     cursor: pointer;
     transition: background .2s;
+    -webkit-box-shadow: 0 0 10px #a3a3a3;
+    -moz-box-shadow: 0 0 10px #a3a3a3;
+    box-shadow: 0 0 10px #a3a3a3;
+    padding: 25px;
 }
-.graphCell:hover{
-    background: #EEEEEE;
+
+.graphCell:hover {
+    /*background: #EEEEEE;*/
+    -webkit-box-shadow: 0 0 10px 5px #a3a3a3;
+    -moz-box-shadow: 0 0 10px 5px #a3a3a3;
+    box-shadow: 0 0 10px 5px #a3a3a3;
+}
+
+#addGraphBtn {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    color: #6577d2;
+    border: 2px solid #6577d2;
+    text-align: center;
+    background-color: transparent;
+}
+
+#addGraphBtn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #6577d2;
+    border: 2px solid #6577d2;
+}
+
+.graphContainer {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+html, body {
+
+    background-color: #E9E9E9
+}
+
+.top-tool {
+
+    margin: 40px;
+}
+
+.graph-cover{
+    width: 150px;
+    height: 150px;
+}
+
+.graph-title {
+    color: #878787;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.graph-time {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #a3a3a3;
+}
+
+.graph-select{
+    float: right;
+    width: 150px;
+    height: 30px;
 }

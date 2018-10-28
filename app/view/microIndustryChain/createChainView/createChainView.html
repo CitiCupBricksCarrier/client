@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <div id="displayDivContainer"  class="display-div-container">
+        <div id="displayDivContainer" class="display-div-container">
             <div id="displayDiv">
                 <canvas id="netBackground" style="left: 0; top: 0;"></canvas>
                 <canvas id="connectionBackground" style="left: 0; top: 0;"></canvas>
@@ -127,8 +127,8 @@
 
     <button class="back-menu">
 
-          <img src="view/microIndustryChain/createChainView/icon/back.png">
-          <div class="back-menu-text" ui-sref="microIndustryChain.mineChainView"> 返回我的产业链</div>
+        <img src="view/microIndustryChain/createChainView/icon/back.png">
+        <div class="back-menu-text" ui-sref="microIndustryChain.mineChainView"> 返回我的产业链</div>
 
     </button>
 
@@ -194,10 +194,12 @@
         </div>
         <div>
             <p>标记颜色</p>
-            <div id="addNodeCP" class="input-group">
-                <input id="addNodeColorInput" class="form-control" type="text" value="#000000"
-                       style="width: 80%; height: 34px">
-                <span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>
+            <div>
+                <select id="newNodeColorSelect" ng-model="color" style="width: 100%;margin-bottom: 30px">
+                    <option ng-repeat="x in colorList" value="{{x}}" style="color: {{x}}">
+                        {{x}}
+                    </option>
+                </select>
             </div>
         </div>
     </div>
@@ -242,9 +244,6 @@
                         {{x}}
                     </option>
                 </select>
-                <!--<input id="editNodeColorInput" class="form-control" type="text" value="#000000"-->
-                <!--style="width: 80%; height: 34px">-->
-                <!--<span class="input-group-addon" style="display: inline-block; width: 20%; height: 34px"><i></i></span>-->
             </div>
         </div>
     </div>
