@@ -1,5 +1,5 @@
 angular.module('myApp.microIndustryChain.previewChainView', [
-    'ngAnimate', 'ui.bootstrap','myApp.microIndustryChain.analysis'
+    'ngAnimate', 'ui.bootstrap', 'myApp.microIndustryChain.analysis'
 ])
 
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -88,7 +88,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
 
-            console.log(1,response);
+            console.log(1, response);
             let partialNodeArray = response.data.nodeList,
                 partialConnectionArray = response.data.connectionList;
 
@@ -136,6 +136,8 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             node.style.height = 60 + "px";
             node.style.padding = "15px 30px 0 30px";
             node.style.backgroundColor = color;
+            nodeName.style.color = "white";
+            nodeName.style.fontSize = "14px";
             nodeName.id = "nodeName";
             nodeName.innerText = name;
             nodeAnchorTop.className = "node-anchor-top";
@@ -164,6 +166,10 @@ angular.module('myApp.microIndustryChain.previewChainView', [
 
             nodeDiv.appendChild(node);
 
+            node.onclick = function () {
+                console.log('click');
+                $scope.showPublicOpinion(name, stock);
+            }
 
             refreshNodeDisplayList();
         };
@@ -258,9 +264,9 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                 node.appendChild(nodeName);
 
                 nodeDiv.appendChild(node);
-                node.onclick=function () {
-                    let item=$scope.nodeList[nodeIDCache]
-                    $scope.showPublicOpinion(item.nodeName,item.nodeStock);
+                node.onclick = function () {
+                    let item = $scope.nodeList[nodeIDCache]
+                    $scope.showPublicOpinion(item.nodeName, item.nodeStock);
                 }
             }
         })();
@@ -593,26 +599,24 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         // };
 
 
-        $scope.showPublicOpinion = function (name,stkId) {
+        $scope.showPublicOpinion = function (name, stkId) {
 
 
             $scope.modalInstance = $uibModal.open({
                 templateUrl: '/view/microIndustryChain/microChainAnalysis/analysis.html',//模态框的页面内容,这里的url是可以自己定义的,也就意味着什么都可以写
                 controller: 'AnalysisCtrl',//这是模态框的控制器,是用来控制模态框的
                 appendTo: angular.element(document.getElementById('nodeDiv')),
-                windowTopClass:'smDialog',
+                windowTopClass: 'smDialog',
                 resolve: {//这是一个入参,这个很重要,它可以把主控制器中的参数传到模态框控制器中
                     items: function () {//items是一个回调函数
                         return {
-                            name:name,
-                            id:stkId ,
+                            name: name,
+                            id: stkId,
                         }//这个值会被模态框的控制器获取到
                     },
 
                 }
             });
-
-
 
 
         };
@@ -664,8 +668,8 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         // });
 
         //返回顶部按钮实现代码
-        document.getElementById("gotop").onclick = function(){
-            scrollTo(0,0);
+        document.getElementById("gotop").onclick = function () {
+            scrollTo(0, 0);
         }
 
     });
