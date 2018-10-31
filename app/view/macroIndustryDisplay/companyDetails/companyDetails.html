@@ -2,127 +2,219 @@
 
 
 <div class="container">
-    <h2>公司信息</h2>
-
-    <!--<a href="" ng-click="goBack()">返回行业基本情况</a>-->
-    <!--<div class="sidebar">-->
-    <!--<div class="sidebar-inner">-->
-    <!--<ul class="menu-root">-->
-    <!--<li>-->
-    <!--<a>基本信息</a>-->
-    <!--</li>-->
-    <!--<li>-->
-    <!---->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <div style="clear: both;"></div>
-    <div id="similarRecommendChart" style="width: 600px;height: 600px;float: left"></div>
-    <div style="margin-left: 40px;color:rgba(200,200,200, 0.8);">
-        <h3 >行业相似分析</h3>
-        <p>该图中心点为当前公司，连接该节点的就是该公司所涉及行业，行业又连接了在当前行业下和根公司最为相似的公司结点（相似度算法计算所得）。
-        </p>
-        <p>将鼠标移至公司结点上，可查看当前公司行业情况；将鼠标移至行业结点，可查看所有相似公司的情况。</p>
-        <P>单击任意公司结点可以进入任意公司详情界面。</P>
-        <P>图表上方可筛选查看某些特定行业。</P>
+    <!--<a ng-click="goBack()" style="float: left;">返回行业基本情况</a>-->
+    <div class="iconAndName_container">
+        <img class="companyIcon" src="view/resource/公文包图标.png"/>
+        <div class="compName mainFontColor">{{companyDetails.compName}}</div>
     </div>
-    <div style="clear: both;"></div>
 
-    <h3>公司介绍</h3>
-    <table>
-        <tr>
-            <td class="td_name">公司中文名称</td><td class="td_value" colspan="5">{{companyDetails.compName}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">公司英文名称</td><td class="td_value" colspan="5">{{companyDetails.compNameEng}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">公司曾用名</td><td class="td_value" colspan="5">{{companyDetails.compPrename}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">公司简介</td><td class="td_value" colspan="5">{{companyDetails.briefing}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">公司代码</td><td class="td_value">{{companyDetails.stkcd}}</td>
-            <td class="td_name">公司属性</td><td class="td_value">{{companyDetails.nature}}</td>
-            <td class="td_name">是否上市</td><td class="td_value">{{companyDetails.listingOrNot}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">成立日期</td><td class="td_value">{{companyDetails.foundDate}}</td>
-            <td class="td_name">员工总数</td><td class="td_value">{{companyDetails.employee}}</td>
-            <td class="td_name"></td><td class="td_value"></td>
-        </tr>
-    </table>
-    <h3>经营范围</h3>
-    <table>
-        <tr>
-            <td class="td_name">经营范围</td><td class="td_value">{{companyDetails.business}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">主营产品类型</td><td class="td_value">{{companyDetails.majorProductType}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">主营产品名称</td><td class="td_value">{{companyDetails.majorProductName}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">主要产品及业务</td><td class="td_value">{{companyDetails.mainProduct}}</td>
-        </tr>
-    </table>
-    <h3>地址</h3>
-    <table>
-        <tr>
-            <td class="td_name">所属行政区</td><td class="td_value">{{companyDetails.administrativeDivision}}</td>
-            <td class="td_name">省份</td><td class="td_value">{{companyDetails.province}}</td>
-            <td class="td_name">城市</td><td class="td_value">{{companyDetails.city}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">注册地址</td><td class="td_value" colspan="5">{{companyDetails.address}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">办公地址</td><td class="td_value" colspan="5">{{companyDetails.office}}</td>
-        </tr>
-    </table>
-    <h3>联系方式</h3>
-    <table>
-        <tr>
-            <td class="td_name">邮政编码</td><td class="td_value">{{companyDetails.zipCode}}</td>
-            <td class="td_name">公司电话</td><td class="td_value">{{companyDetails.phone}}</td>
-            <td class="td_name">公司传真</td><td class="td_value">{{companyDetails.fax}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">Email</td><td class="td_value">{{companyDetails.email}}</td>
-            <td class="td_name">公司网址</td><td class="td_value" colspan="3">{{companyDetails.website}}</td>
-        </tr>
-    </table>
-    <h3>其他</h3>
-    <table>
-        <tr>
-            <td class="td_name">记账本位币</td><td class="td_value">{{companyDetails.reportCur}}</td>
-            <td class="td_name">统一社会信用代码</td><td class="td_value">{{companyDetails.registerNumber}}</td>
-            <td class="td_name">组织机构代码</td><td class="td_value">{{companyDetails.organizationCode}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">信息披露人</td><td class="td_value">{{companyDetails.disclose}}</td>
-            <td class="td_name"></td><td class="td_value"></td>
-            <td class="td_name"></td><td class="td_value"></td>
-        </tr>
-    </table>
-    <h3>主要人员</h3>
-    <table>
-        <tr>
-            <td class="td_name">董事长</td><td class="td_value">{{companyDetails.boardChairmen}}</td>
-            <td class="td_name">总经理</td><td class="td_value">{{companyDetails.CEO}}</td>
-            <td class="td_name">董事会秘书</td><td class="td_value">{{companyDetails.discloser}}</td>
-        </tr>
-        <tr>
-            <td class="td_name">证券事务代表</td><td class="td_value">{{companyDetails.sar}}</td>
-            <td class="td_name">公司独立董事（现任）</td><td class="td_value">{{companyDetails.crtinDPDirector}}</td>
-            <td class="td_name">公司独立董事（历任）</td><td class="td_value">{{companyDetails.frminDPDirector}}</td>
-        </tr>
-    </table>
+    <div clas="clearfix"></div>
+    <div class="detail_container">
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司英文名称</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.compNameEng}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司代码</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.stkcd}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司属性</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.nature}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">是否上市</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.listingOrNot}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">成立日期</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.foundDate}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">注册资本</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.regCapital}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">法定代表人</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.chairman}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">会计年结日</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.fiscalDate}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司曾用名</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.compPrename}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司简介</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.briefing}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">经营范围</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.business}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">主要产品及业务</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.mainProduct}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">主营产品类型</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.majorProductType}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">主营产品名称</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.majorProductName}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">员工总数</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.employee}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">记账本位币</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.reportCur}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">统一社会信用代码</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.registerNumber}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">组织机构代码</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.organizationCode}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">信息披露人</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.disclose}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">董事长</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.boardChairmen}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">总经理</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.CEO}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">董事会秘书</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.discloser}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">证券事务代表</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.sar}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司独立董事（现任）</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.crtinDPDirector}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司独立董事（历任）</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.frminDPDirector}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">所属行政区</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.administrativeDivision}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">省份</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.province}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">城市</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.city}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">注册地址</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.address}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">办公地址</div>
+        </div>
+        <div>
+            <div class="item_value mainFontColor mainFontSize">
+                <span>&emsp;</span>
+                {{companyDetails.office}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">邮政编码</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.zipCode}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司电话</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.phone}}
+            </div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司传真</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.fax}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">Email</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.email}}</div>
+        </div>
+        <div>
+            <div class="item_name purpleFontColor mainFontSize">公司网址</div>
+            <div class="item_value mainFontColor mainFontSize">{{companyDetails.website}}</div>
+        </div>
+    </div>
+
+    <div class="chart_container">
+        <div id="similarRecommendChart" style="width: 600px;height: 550px;"></div>
+        <div class="aboutChart"></div>
+        <div class="briefOfChart mainFontColor" style="display: none;">
+            <p>该图中心点为当前公司，连接该节点的就是该公司所涉及行业，行业又连接了在当前行业下和根公司最为相似的公司结点（相似度算法计算所得）</p>
+            <p>将鼠标移至公司结点上，可查看当前公司行业情况；将鼠标移至行业结点，可查看所有相似公司的情况</p>
+            <P>单击任意公司结点可以进入任意公司详情界面</P>
+            <P>图表上方可筛选查看某些特定行业</P>
+        </div>
+    </div>
+
+    <div clas="clearfix"></div>
+
+    <!--<div style="margin-left: 40px;color:rgba(200,200,200, 0.8);">-->
+        <!--<h3 >行业相似分析</h3>-->
+    <!--</div>-->
 </div>
 
 <link rel="stylesheet" href="view/macroIndustryDisplay/companyDetails/companyDetails.css"/>
-<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>-->

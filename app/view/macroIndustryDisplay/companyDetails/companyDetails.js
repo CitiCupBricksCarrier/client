@@ -55,6 +55,20 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             history.back()
         }
 
+        //显示行业分析简介
+        $('.chart_container .aboutChart').mouseenter(function (e) {
+            $('.chart_container .briefOfChart').show();
+        })
+        $('.chart_container .aboutChart').mouseleave(function (e) {
+            $('.chart_container .briefOfChart').hide();
+        })
+        $('.chart_container .briefOfChart').mouseenter(function (e) {
+            $('.chart_container .briefOfChart').show();
+        })
+        $('.chart_container .briefOfChart').mouseleave(function (e) {
+            $('.chart_container .briefOfChart').hide();
+        })
+
         /**
          * ------------------------------
          * ------------------------------
@@ -323,7 +337,8 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
         }
 
         function transformNodes() {
-            let node_root = chart_node(companyList[0].id,companyList[0].name+"_"+companyList[0].stkcd,150,companyList[0].x,companyList[0].y,companyList[0].category_index);
+            let node_root = chart_node(companyList[0].id,companyList[0].name,150,companyList[0].x,companyList[0].y,companyList[0].category_index);
+            // let node_root = chart_node(companyList[0].id,companyList[0].name+"_"+companyList[0].stkcd,150,companyList[0].x,companyList[0].y,companyList[0].category_index);
             nodeList.push(node_root);
             for(let i = 0;i<industryList.length;i++){
                 let node_category = chart_node(industryList[i].id,industryList[i].name,100,industryList[i].x,industryList[i].y,categoryList.indexOf(industryList[i].name));
@@ -331,7 +346,8 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             }
             for(let i = 0;i<companyList.length;i++){
                if(i!=0){
-                    let node_leaf = chart_node(companyList[i].id,companyList[i].name+"_"+companyList[i].stkcd,50,companyList[i].x,companyList[i].y,companyList[i].category_index);
+                    let node_leaf = chart_node(companyList[i].id,companyList[i].name,50,companyList[i].x,companyList[i].y,companyList[i].category_index);
+                    // let node_leaf = chart_node(companyList[i].id,companyList[i].name+"_"+companyList[i].stkcd,50,companyList[i].x,companyList[i].y,companyList[i].category_index);
                     nodeList.push(node_leaf);
                }
             }
@@ -437,7 +453,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                         return a.name;
                     }),
                     textStyle: {
-                        color: 'rgba(200,200,200, 0.8)'
+                        color: '#c3c3c3'
                     }
                 }],
                 animationDuration: 1500,
@@ -453,7 +469,7 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
                         focusNodeAdjacency: true,
                         itemStyle: {
                             normal: {
-                                borderColor: '#fff',
+                                borderColor: '#c3c3c3',
                                 borderWidth: 1,
                                 shadowBlur: 10,
                                 shadowColor: 'rgba(0, 0, 0, 0.3)'
@@ -483,7 +499,15 @@ angular.module('myApp.macroIndustryDisplay.companyDetails', [
             }
 
             myChart.on('click', function (params) {
-                let stkcd = params.name.split("_")[1];
+                // let stkcd = params.name.split("_")[1];
+                // let stkcd = companyList.indexOf(params.name);
+                let stkcd = null;
+                for(var i = 0; i < companyList.length; i++){
+                    var tempNode = companyList[i];
+                    if(tempNode.name == params.name){
+                        stkcd = tempNode.stkcd;
+                    }
+                }
                 if(stkcd!=null){
                     $state.go('macroIndustryDisplay.companyDetails',{stkcd_toShow:stkcd});
                 }
