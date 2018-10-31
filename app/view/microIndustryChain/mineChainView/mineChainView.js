@@ -32,8 +32,9 @@ angular.module('myApp.microIndustryChain.mineChainView', [])
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
             $scope.ownGraphList = response.data;
-            console.log('graphList');
-            console.log(response.data)
+            for (let item of $scope.ownGraphList) {
+                item.cover = "view/microIndustryChain/mineChainView/cover" + (Math.ceil(Math.random() * 7) +1) + ".png";
+            }
         }, function () {
             console.error("get graph list error");
         });

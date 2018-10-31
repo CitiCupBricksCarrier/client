@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/peAnalysis/peAnalysis.css">
 
-<div class="modal-header">
-    <h4 class="modal-title" style="text-align: center">对公司“{{name}}”进行PE分析</h4>
-</div>
-<div class="modal-body">
 
-    <div class="spinner"  ng-hide="render">
+<div class="modal-body">
+    <div class="pe-tittle">
+        PE分析
+    </div>
+    <div class="spinner" ng-hide="render">
         <div class="spinner-container container1">
             <div class="circle1"></div>
             <div class="circle2"></div>
@@ -28,15 +28,14 @@
     </div>
 
 
-    <div class="row" ng-hide="!render">
+    <div class="row" ng-hide="!render" style="padding: 30px">
         <div class="col-lg-8">
             <div>
                 <div class="row small-font">
                     <div class="col-md-8">
                         <span>最新PE </span>
-                        <span class="gray-font">{{data.date}}</span>
                     </div>
-                    <span class="col-md-4 small-font gray-font">估值时间 {{data.timeToMarket}}</span>
+                    <span class="col-md-4 small-font gray-font">估值时间 {{data.valuationTime}}</span>
                 </div>
                 <div class="row large-font" style="margin-top: 3px">
                     <span class="col-md-8">{{data.pe}}</span>
@@ -61,20 +60,21 @@
                     <div class="panel-heading" style="height: 50px">
                         <div class="col-lg-8" style="margin-top: 5px">历史PE走势图</div>
                         <div class="btn-group" data-toggle="buttons" style="float: right" ng-hide="buttonGroupHide">
-                            <div  id="defaultYear" class="btn btn-default transparent-btn" style="outline: none" ng-click="getHistory(0)">
-                                <input  type="radio" name="options" id="twoYears" >近两年
+                            <div id="defaultYear" class="btn btn-default transparent-btn" style="outline: none"
+                                 ng-click="getHistory(0)">
+                                <input type="radio" name="options" id="twoYears">近两年
                             </div>
-                            <div  class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(1)">
+                            <div class="btn btn-default transparent-btn" style="outline: none" ng-click="getHistory(1)">
                                 <input type="radio" name="options" id="oneYear"> 近一年
                             </div>
-                            <div  class="btn btn-default transparent-btn" style="outline: none"  ng-click="getHistory(2)">
-                                <input type="radio" name="options" id="halfYear" > 近半年
+                            <div class="btn btn-default transparent-btn" style="outline: none" ng-click="getHistory(2)">
+                                <input type="radio" name="options" id="halfYear"> 近半年
                             </div>
                         </div>
 
                     </div>
                     <div class="panel-body">
-                       <div id="lineChart" style="height: 400px; width: 700px"></div>
+                        <div id="lineChart" style="height: 400px; width: 700px"></div>
                     </div>
                 </div>
 
@@ -82,11 +82,11 @@
         </div>
 
         <div class="col-lg-4">
-            <h3 style="text-align: center">估值排行</h3>
+            <div style="text-align: center;font-size: 20px">估值排行</div>
             <div>
-                <div class="row" style="margin-bottom: 20px">
-                    <span class="col-sm-8 col-sm-offset-1">名称</span>
-                    <div class="col-sm-2">PE</div>
+                <div class="row" style="margin-bottom: 10px">
+                    <span class="col-sm-8 col-sm-offset-1" style="font-size: 16px">名称</span>
+                    <span class="col-sm-2" style="font-size: 16px">PE</span>
                 </div>
                 <div id="rankContainer" class="rank-container">
                     <div ng-repeat="item in data.peRank" class="row rank-item">
@@ -137,6 +137,4 @@
     </div>
 
 </div>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-</div>
+

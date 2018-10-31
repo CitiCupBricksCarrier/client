@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/financialContrast/contrastTable.css">
-<div class="modal-header">
-    <h4 class="modal-title" style="text-align: center"> {{title}}</h4>
-</div>
-<div class="modal-body" id="body">
+<div class="modal-body" id="body" style="padding: 30px">
+    <div class="contrast-table-tittle">{{title}}</div>
 
     <div class="spinner"  ng-hide="render">
         <div class="spinner-container container1">
@@ -42,7 +40,4 @@
     </table>
 
 
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">确认</button>
 </div>

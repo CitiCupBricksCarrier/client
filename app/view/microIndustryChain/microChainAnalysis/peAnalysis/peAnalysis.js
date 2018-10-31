@@ -48,7 +48,7 @@ angular.module('myApp.microIndustryChain.peAnalysis', [])
 
                 rankContainer.onscroll = function () {
                     let leftLength = $scope.data.peRank.length * 50 - rankContainer.clientHeight - rankContainer.scrollTop;
-                    if (leftLength < 1000 && !pending) {
+                    if (leftLength < 1200 && !pending) {
                         getPeRank();
                     }
                 }

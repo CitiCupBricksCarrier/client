@@ -15,9 +15,7 @@ angular.module('myApp.microIndustryChain.analysis', [
 
         let methods = ["opinion", "pe", "financial"]
 
-        $scope.confirm = function () {
-
-            let index = methods.indexOf($scope.method);
+        $scope.confirm = function (index) {
 
             $uibModalInstance.close();
             $scope.modalInstance = $uibModal.open({
