@@ -111,17 +111,23 @@ angular.module('myApp.industryFactorAnalyze', [
             // console.log($('.ratio_container .input_number'))
             var ratioList = [];
             var total = 0;
-            $('.ratio_container .input_number').each(function () {
+            var hasNull = false;
+            $('.ratioItem_container .input_number').each(function () {
+            // $('.ratio_container .input_number').each(function () {
                 // console.log($(this).val())
                 if($(this).val() > 0){
                     ratioList.push(parseInt($(this).val()));
                     total += parseInt($(this).val());
                 }
                 else{
+                    hasNull = true;
                     return;
                 }
-            })
-            // console.log(total)
+            });
+            if(hasNull){
+                return;
+            }
+            console.log(total)
             //处理ratio
             for(var i = 0; i < ratioList.length; i++){
                 ratioList[i] = ratioList[i]/total * 100;
@@ -133,12 +139,89 @@ angular.module('myApp.industryFactorAnalyze', [
             $scope.toShowResult=true;
         }
 
-
         /**
          * 页面加载完毕时
          */
         $().ready(function () {
             // console.log($('.list_container li'))
+            /**
+             * 各个item的监听
+             */
+            //推荐指标
+            $('.item_recommend').click(function () {
+                if($(this).hasClass('active')){
+                    $(this).removeClass('active');
+                    $('.item_index[name='+$(this).attr('name')+']').removeClass('active');      //同步
+                }
+                else{
+                    $(this).addClass('active');
+                    $('.item_index[name='+$(this).attr('name')+']').addClass('active');
+                }
+                //更新已选列表
+                index_selected_list = [];
+                var selectedIndexItems = $('.item_index.active');
+                for(var i = 0; i < selectedIndexItems.length; i++){
+                    var temp = selectedIndexItems[i];
+                    index_selected_list.push($(temp).attr('name'));
+                }
+                // console.log(index_selected_list)
+                $scope.index_selected_list = index_selected_list;
+                $scope.index_selected = index_selected_list.toString();
+                $scope.$apply();
+
+                //分析按钮的可用设置
+                if(index_selected_list.length > 0){
+                    $('.btn_analyze').attr('disabled', false);
+                }
+                else{
+                    $('.btn_analyze').attr('disabled', true);
+                }
+            });
+            //全部指标
+            $scope.clickIndexItem = function ($event) {
+                var item_index = $event.target;
+                // console.log(item_index)
+                if($(item_index).hasClass('active')){
+                    $(item_index).removeClass('active');
+                    $('.item_recommend[name='+$(item_index).attr('name')+']').removeClass('active');      //同步
+                }
+                else{
+                    $(item_index).addClass('active');
+                    $('.item_recommend[name='+$(item_index).attr('name')+']').addClass('active');
+                }
+                //更新已选列表
+                index_selected_list = [];
+                var selectedIndexItems = $('.item_index.active');
+                for(var i = 0; i < selectedIndexItems.length; i++){
+                    var temp = selectedIndexItems[i];
+                    index_selected_list.push($(temp).attr('name'));
+                }
+                // console.log(index_selected_list)
+                $scope.index_selected_list = index_selected_list;
+                $scope.index_selected = index_selected_list.toString();
+
+                //分析按钮的可用设置
+                if(index_selected_list.length > 0){
+                    $('.btn_analyze').attr('disabled', false);
+                }
+                else{
+                    $('.btn_analyze').attr('disabled', true);
+                }
+            };
+            //方法
+            $('.item_method').click(function () {
+                if($(this).hasClass('active')){
+                    return;
+                }
+                else{
+                    $('.item_method.active').removeClass('active');
+                    $(this).addClass('active');
+                }
+                //更新已选列表
+                $scope.method_selected = $(this).attr('name');
+                $scope.$apply();
+            });
+
             /**
              * 监听复选框(指标)
              */
@@ -220,7 +303,8 @@ angular.module('myApp.industryFactorAnalyze', [
                 // $scope.$apply();        //应用更改
             })
 
-            setDefaultIndexAndMethod();
+            // setDefaultIndexAndMethod();
+            setTimeout(setDefaultIndexAndMethod, 200);
 
             // $scope.$apply();        //应用更改
         })
@@ -230,17 +314,26 @@ angular.module('myApp.industryFactorAnalyze', [
          * 设置默认指标和方法
          */
         function setDefaultIndexAndMethod() {
-            $('.part .index_container .section .list_container li').each(function () {
-                // console.log($(this).children('a').text().replace(/^\s+|\s+$/g,""))
-                if($(this).children('a').text().replace(/^\s+|\s+$/g,"") == index_default){
-                    $(this).children('.checkBox').prop('checked', true);
-                    index_selected_list = [index_default];
-                    $scope.index_selected_list = [index_default];
-                    $scope.index_selected = index_selected_list.toString();
-                }
-            })
-            $($('.part .method_container .section .list_container .checkBox')[1]).prop('checked', true);
+            $('.item_recommend[name='+index_default+']').addClass('active');
+            $('.item_index[name='+index_default+']').addClass('active');
+            index_selected_list = [index_default];
+            $scope.index_selected_list = [index_default];
+            $scope.index_selected = index_selected_list.toString();
+
+            $('.item_method[name='+method_default+']').addClass('active');
             $scope.method_selected = method_default;
+
+            // $('.part .index_container .section .list_container li').each(function () {
+            //     // console.log($(this).children('a').text().replace(/^\s+|\s+$/g,""))
+            //     if($(this).children('a').text().replace(/^\s+|\s+$/g,"") == index_default){
+            //         $(this).children('.checkBox').prop('checked', true);
+            //         index_selected_list = [index_default];
+            //         $scope.index_selected_list = [index_default];
+            //         $scope.index_selected = index_selected_list.toString();
+            //     }
+            // })
+            // $($('.part .method_container .section .list_container .checkBox')[1]).prop('checked', true);
+            // $scope.method_selected = method_default;
 
             // $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
 
@@ -380,11 +473,11 @@ angular.module('myApp.industryFactorAnalyze', [
             });
         }
 
-        initICOriginalChart();
-        initICSeriesChart();
-        initICQQCharts();
-        initICHeatMapChart();
-        initICValueChart();
+        // initICOriginalChart();
+        // initICSeriesChart();
+        // initICQQCharts();
+        // initICHeatMapChart();
+        // initICValueChart();
         /**
          * -----------------------------------------------------------------
          * -----------------------------------------------------------------
