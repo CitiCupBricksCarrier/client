@@ -55,6 +55,7 @@ angular.module('myApp.login', [
 
             var datas = {
               "username": $scope.username,
+                "ori":$scope.password,
               "password": encrypted_password,
               "bizToken": bizToken
             };
