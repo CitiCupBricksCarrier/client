@@ -204,7 +204,7 @@ angular.module('myApp.industryFactorAnalyze', [
                     $('.btn_analyze').attr('disabled', true);
                 }
 
-                $scope.$apply();        //应用更改
+                // $scope.$apply();        //应用更改
 
             })
 
@@ -217,10 +217,12 @@ angular.module('myApp.industryFactorAnalyze', [
 
                 $scope.method_selected = $(this).parent().text().replace(/^\s+|\s+$/g,"");
                 // console.log($scope.method_selected)
-                $scope.$apply();        //应用更改
+                // $scope.$apply();        //应用更改
             })
 
             setDefaultIndexAndMethod();
+
+            // $scope.$apply();        //应用更改
         })
 
 
@@ -242,7 +244,7 @@ angular.module('myApp.industryFactorAnalyze', [
 
             // $('.part .method_container .section .list_container .checkBox:last').attr('disabled', true);
 
-            $scope.$apply();
+            // $scope.$apply();
         }
 
         /**
@@ -376,5 +378,429 @@ angular.module('myApp.industryFactorAnalyze', [
 
                 return '';
             });
+        }
+
+        initICOriginalChart();
+        initICSeriesChart();
+        initICQQCharts();
+        initICHeatMapChart();
+        initICValueChart();
+        /**
+         * -----------------------------------------------------------------
+         * -----------------------------------------------------------------
+         * eCharts
+         */
+        //IC原始数据图
+        function initICOriginalChart() {
+            var xData = ['xx1','xx2','xx3'];
+            var y0Data = [1,2,3];
+            var y1Data = [3,2,1];
+            var factorName = '指标';
+
+            var dom = document.getElementById("ICOriginalChart");
+            var myChart = echarts.init(dom);
+            var option;
+            option = {
+                title:{
+                    text: 'IC原始数据',
+                    left: 'center'
+                },
+                legend:{
+                    data:[factorName, '股价'],
+                    top: 'bottom'
+                },
+                tooltip:{
+                    trigger: 'axis',
+                    axisPointer:{
+                        show: true,
+                        type : 'cross',
+                        lineStyle: {
+                            type : 'dashed',
+                            width : 1
+                        }
+                    }
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataZoom : {show: true},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                xAxis : [
+                    {
+                        // name: '公司名称',
+                        // nameGap: 30,
+                        type : 'category',
+                        data: xData
+                    }
+                ],
+                yAxis: [
+                    {
+                        name: factorName,
+                        type: 'value',
+                        scale: true,
+                        boundaryGap : ['10%', '10%'],
+                    },
+                    {
+                        name: '股价',
+                        type: 'value',
+                        scale: true,
+                        boundaryGap : ['10%', '10%'],
+                    }
+                ],
+                series: [
+                    {
+                        name: factorName,
+                        type: 'scatter',
+                        yAxisIndex: 0,
+                        data: y0Data
+                    },
+                    {
+                        name: '股价',
+                        type: 'scatter',
+                        yAxisIndex: 1,
+                        data: y1Data
+                    }
+                ]
+            }
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+        //IC值序列图
+        function initICSeriesChart() {
+            var xData = ['2016-10-06','2016-12-08','2017-5-06'];
+            var y0Data = [1,2.5,3];
+            var y1Data = [3,1.5,1];
+
+            var dom = document.getElementById("ICSeriesChart");
+            var myChart = echarts.init(dom);
+            var option;
+            option = {
+                title:{
+                    text: 'IC值序列',
+                    left: 'center'
+                },
+                legend:{
+                    data:['IC', '1 month moving avg'],
+                    top: 'bottom'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer:{
+                        show: true,
+                        type : 'cross',
+                        lineStyle: {
+                            type : 'dashed',
+                            width : 1
+                        }
+                    },
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataZoom : {show: true},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                xAxis : [
+                    {
+                        name: '日期',
+                        type : 'category',
+                        data: xData,
+                        scale: true,
+                        boundaryGap: false
+                    }
+                ],
+                yAxis: [
+                    {
+                        name: 'IC',
+                        type: 'value',
+                        boundaryGap : ['10%', '10%'],
+                    }
+                ],
+                series: [
+                    {
+                        name: 'IC',
+                        type: 'line',
+                        smooth: false,
+                        data: y0Data,
+                        symbol: 'none'
+                    },
+                    {
+                        name: '1 month moving avg',
+                        type: 'line',
+                        smooth: false,
+                        data: y1Data,
+                        symbol: 'none'
+                    }
+                ]
+            }
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+        //IC_QQ图
+        function initICQQCharts() {
+            var data = [[0,0],[1,1],[2,2.5],[3,3],[4,3.5]];
+            var myRegression = ecStat.regression('linear', data);
+
+            var dom = document.getElementById("ICQQChart");
+            var myChart = echarts.init(dom);
+            var option;
+            option = {
+                title:{
+                    text: '1 Period IC Normal Dist. Q-Q',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer:{
+                        show: true,
+                        type : 'cross',
+                        lineStyle: {
+                            type : 'dashed',
+                            width : 1
+                        }
+                    },
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataZoom : {show: true},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                xAxis : [
+                    {
+                        name: 'Normal Distribution Quantile',
+                        nameLocation: 'center',
+                        nameGap: 30,
+                        type : 'value',
+                        boundaryGap : ['5%', '5%'],
+                        axisLine:{
+                            onZero: false,
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        name: 'Observed Quantile',
+                        nameLocation: 'center',
+                        nameRotate: 90,
+                        nameGap: 35,
+                        type: 'value',
+                        boundaryGap : ['5%', '5%'],
+                        axisLine:{
+                            onZero: false,
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        type: 'scatter',
+                        data: data,
+                    },
+                    {
+                        type: 'line',
+                        smooth: true,
+                        data: myRegression.points,
+                        symbol: 'none',
+                        markPoint: {
+                            itemStyle: {
+                                normal: {
+                                    color: 'transparent'
+                                }
+                            },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'left',
+                                    formatter: myRegression.expression,
+                                    textStyle: {
+                                        color: '#333',
+                                        fontSize: 14
+                                    }
+                                }
+                            },
+                            data: [{
+                                coord: myRegression.points[myRegression.points.length - 1]
+                            }]
+                        }
+                    }
+                ]
+            }
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+        //IC热力图
+        function initICHeatMapChart() {
+            var xData = [1,2,3,4];
+            var yData = [2016,2015,2014,2013];
+            var data = [[0,0,1],[1,0,1],[2,0,2],[3,0,4],[0,1,2],[1,1,5],[2,1,0],[3,1,3],[0,2,1],[1,2,1],[2,2,2],[3,2,4],[0,3,6],[1,3,4],[2,3,1],[3,3,8]];
+
+            var dom = document.getElementById("ICHeatMapChart");
+            var myChart = echarts.init(dom);
+            var option;
+            option = {
+                title: {
+                    text: '1 Period IC Normal Dist. Q-Q',
+                    left: 'center'
+                },
+                tooltip: {
+                    position: 'top'
+                },
+                grid: {
+                    height: '50%',
+                    y: '10%'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: xData,
+                    splitArea: {
+                        show: true
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    data: yData,
+                    splitArea: {
+                        show: true
+                    }
+                },
+                visualMap: {
+                    min: 0,
+                    max: 10,
+                    calculable: true,
+                    orient: 'horizontal',
+                    left: 'center',
+                },
+                series: [{
+                    name: 'IC',
+                    type: 'heatmap',
+                    data: data,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+        //ICValue图
+        function initICValueChart() {
+            var icName = 'IC-mean';
+            var icValue = 0.07;
+            var markLineData = [0.02, 0.05, 0.1];
+
+            var dom = document.getElementById("ICValueChart");
+            var myChart = echarts.init(dom);
+            var option;
+            option = {
+                title:{
+                    text: 'IC 值',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    axisPointer:{
+                        show: true,
+                        type : 'cross',
+                        lineStyle: {
+                            type : 'dashed',
+                            width : 1
+                        }
+                    },
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataZoom : {show: true},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : [icName]
+                    }
+                ],
+                yAxis: [
+                    {
+                        name: '值',
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        type: 'bar',
+                        data: [icValue],
+                        barWidth: 65,
+                        markLine:{
+                            data: [
+                                {
+                                    yAxis: 0.02,
+                                    color: '#c3c3c3',
+                                },
+                                {
+                                    yAxis: 0.05,
+                                    color: '#c3c3c3',
+                                },
+                                {
+                                    yAxis: 0.1
+                                }
+                            ]
+                        },
+                        markArea:{
+                            label:{
+                                normal:{
+                                    show: false,
+                                }
+                            },
+                            tooltip:{
+                                formatter: '{b}'
+                            },
+                            itemStyle: {
+                                normal:{
+                                    color: 'transparent'
+                                },
+                            },
+                            data:[
+                                [
+                                    {
+                                        name: '0.02<x<=0.05: 您所选择的指标和行业股票的收益率之间相关性较弱',
+                                        yAxis: 0.02
+                                    },
+                                    {
+                                        yAxis: 0.05
+                                    },
+                                ]
+                            ]
+                        }
+                    }
+                ]
+            }
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
         }
     });
