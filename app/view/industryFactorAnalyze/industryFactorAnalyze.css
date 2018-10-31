@@ -79,11 +79,16 @@
     margin: 15px 15px 15px 15px;
     border: 1px solid rgb(208,208,208);
     border-radius: 5px;
-    min-width: 250px;
+    /*min-width: 250px;*/
+    width: 280px;
     font-size: 16px;
     padding: 14px;
     background-color: white;
     color: inherit;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     vertical-align: middle;
     display: inline-block;
@@ -95,8 +100,13 @@
     background-color: rgb(101,119,210);
     color: white;
 }
+.part .section .item_index.long{
+    width: 590px;
+}
+
 .part .indexItem_container{
-    width: 80%;
+    /*width: calc(310px * 3);*/
+    width: 930px;
     margin: 30px auto;
 }
 

@@ -309,10 +309,22 @@ angular.module('myApp.industryFactorAnalyze', [
 
             // setDefaultIndexAndMethod();
             setTimeout(setDefaultIndexAndMethod, 200);
+            setTimeout(realyReady, 200);
 
             // $scope.$apply();        //应用更改
         })
 
+        /**
+         * 由ready函数延时执行，给时间加载完毕
+         */
+        function realyReady() {
+            $('.item_index').each(function () {
+                if($(this)[0].scrollWidth > $(this).width()+28){
+                    // console.log($(this).attr('name'));
+                    $(this).addClass('long')
+                }
+            });
+        }
 
         /**
          * 设置默认指标和方法
@@ -326,6 +338,7 @@ angular.module('myApp.industryFactorAnalyze', [
 
             $('.item_method[name='+method_default+']').addClass('active');
             $scope.method_selected = method_default;
+
 
             // $('.part .index_container .section .list_container li').each(function () {
             //     // console.log($(this).children('a').text().replace(/^\s+|\s+$/g,""))
