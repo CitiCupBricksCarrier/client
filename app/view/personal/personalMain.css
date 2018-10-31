@@ -4,7 +4,7 @@
 }
 body{
     background-color:#f6f6f6;
-    background-image: url("http://img1.imgtn.bdimg.com/it/u=657618428,1087662113&fm=26&gp=0.jpg") ;
+    /*background-image: url("http://img1.imgtn.bdimg.com/it/u=657618428,1087662113&fm=26&gp=0.jpg") ;*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
@@ -177,4 +177,10 @@ body{
 }
 .recharge-btn-div{
     display:inline;
+}
+.citi-account,.citi-password{
+    margin-left: 10px;
+}
+.citiDiv{
+    margin-left: 20px;
 }

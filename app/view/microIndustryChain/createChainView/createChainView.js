@@ -406,6 +406,62 @@ angular.module('myApp.microIndustryChain.createChainView', [])
             }, function () {
                 console.error("Link Failed");
             });
+
+            var article_title = $('div#article-mes h1').html();
+            var article_content_html = $("#article-mes").html();
+            var myDate = new Date();
+            var yearNow = myDate.getFullYear().toString();
+            var monthNow = myDate.getMonth().toString();
+            var dateNow = myDate.getDate().toString();
+            var hourNow = myDate.getHours();
+            var minuteNow = myDate.getMinutes();
+            var secNow = myDate.getSeconds();
+
+            var dateNow = yearNow+monthNow+dateNow+hourNow+minuteNow+secNow;
+            // console.log(dateNow)
+            var article_id = dateNow;
+            var graphid = $scope.graphID;
+            var username ="";
+            $http({
+                url: urlHead + 'getUserDetail',
+                method: 'post',
+                // contentType: "application/json",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                params:{
+                    id:userid
+                },
+                withCredentials: true
+            }).then(function successCallBack(response) {
+                // console.log(response.data)
+                var data = response.data;
+                username = data.name;
+            }, function errorCallBack(response) {
+                console.log("erreor");
+            });
+            if(username != ""){
+                $http({
+                    url: urlHead + 'newArcticle',
+                    method: 'post',
+                    // contentType: "application/json",
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    params:{
+                        id:article_id,
+                        graphid:graphid,
+                        author:username,
+                        title:article_title,
+                        text:article_content_html
+                    },
+                    withCredentials: true
+                }).then(function successCallBack(response) {
+
+                }, function errorCallBack(response) {
+                    console.log("erreor");
+                });
+
+            }
+
+
+
         };
 
 
@@ -974,5 +1030,6 @@ angular.module('myApp.microIndustryChain.createChainView', [])
         var mover = new Mover(document.getElementById("articleMove"));
 
 
+        // console.log()
 
     });

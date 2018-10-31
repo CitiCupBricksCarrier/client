@@ -16,7 +16,7 @@
     </div>
     <div class = "person-info">
         <div class = "user-head">
-            <img  class = "user-img" src ="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3110099200,3513335820&fm=26&gp=0.jpg" >
+            <img  class = "user-img" src ="view/personal/user.svg" >
         </div>
         <div class = "info-contain">
             <div class = "info-title">
@@ -26,14 +26,14 @@
                 <h3 class = "info-type">
                     账号
                 </h3>
-                <div class = "info-detail-unchange">1332601525</div>
+                <div class = "info-detail-unchange">{{personDetail.uid}}</div>
             </div>
             <div class = "info-item" >
                 <h3 class = "info-type">
                     昵称
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "冰哥牛逼" readonly="readonly">
+                    <input id = "personalNickName" class = "info-input" value = {{personDetail.name}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -41,7 +41,7 @@
                     性别
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "男" readonly="readonly">
+                    <input id = "personalSex"class = "info-input" value = {{personDetail.sex}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -49,7 +49,7 @@
                     真实姓名
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "周益冰" readonly="readonly">
+                    <input id = "personalRealName"class = "info-input" value = {{personDetail.phonenum}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -57,7 +57,7 @@
                     生日
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "2018-01-01" readonly="readonly">
+                    <input  id = "personalBirth" class = "info-input" value = {{personDetail.birthday}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -65,7 +65,7 @@
                     证件号码
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "55564681364135" readonly="readonly">
+                    <input id = "personalIdNum" class = "info-input" value = {{personDetail.idnum}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -73,7 +73,7 @@
                     职业
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "全栈工程师" readonly="readonly">
+                    <input  id = "personalOccupation" class = "info-input" value = {{personDetail.occupation}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -81,7 +81,7 @@
                     工作单位
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "微软" readonly="readonly">
+                    <input  id = "personalOrganization"class = "info-input" value = {{personDetail.organization}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -89,7 +89,7 @@
                     联系方式
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "15896589657" readonly="readonly">
+                    <input  id = "personalContactNum" class = "info-input" value = {{personDetail.contactnum}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -97,7 +97,7 @@
                     地址
                 </h3>
                 <div class = "info-detail">
-                    <input class = "info-input" value = "南京大学鼓楼校区陶园二舍" readonly="readonly">
+                    <input  id = "personalAddress" class = "info-input" value = {{personDetail.address}} readonly="readonly">
                 </div>
             </div>
             <div class = "info-item" >
@@ -105,14 +105,14 @@
                     个人描述
                 </h3>
                 <div class = "info-detail-txtarea">
-                    <textArea class = "info-textArea " readonly="readonly">年轻不拽,世界怎能精彩? 天生我材必有用,千金散尽还复来。</textArea>
+                    <textArea  id = "personalSummary" class = "info-textArea " readonly="readonly">{{personDetail.summary}}</textArea>
                 </div>
             </div>
             <div class = "info-item" >
                 <h3 class = "info-type">
                     积分剩余
                 </h3>
-                <div class = "info-detail-unchange">1000</div>
+                <div class = "info-detail-unchange">{{personDetail.credit}}</div>
                 <div class = "recharge-btn-div">
                     <a id="modal-358089" href="#modal-container-358089" role="button" class="btn recharge" data-toggle="modal">充值积分</a>
 
@@ -157,7 +157,7 @@
         </div>
         <div class = "button-div">
             <button id = "modify">修改</button>
-            <button id = "save">保存</button>
+            <button id = "save" ng-click="saveDetail()">保存</button>
         </div>
     </div>
     <div class="bankAccount-info">
@@ -169,7 +169,54 @@
                 <h3 class = "info-type">
                     账号
                 </h3>
-                <div class = "info-detail-unchange" ui-sref="personal">未绑定</div>
+                <div ng-hide=" personDetail.citinum != '' " style="display: inline;">
+                    <div class = "info-detail-unchange"   ng-click="">未绑定</div>
+                    <a id="modal-358088" href="#modal-container-358088" role="button" class="btn recharge" data-toggle="modal">绑定</a>
+
+                    <div  class="modal fade" id="modal-container-358088" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" >
+                                        花旗账户绑定
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="citiDiv">
+                                        <!--<div class="info-item">-->
+                                            <h3 class="info-type">
+                                                账户
+                                            </h3>
+                                            <div class="info-detail info-modify citi-account">
+                                                <input  ng-model="citiAccount" class="info-input" value="">
+                                            </div>
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="citiDiv">
+                                        <!--<div class="info-item">-->
+                                            <h3 class="info-type">
+                                                密码
+                                            </h3>
+                                            <div class="info-detail info-modify citi-password">
+                                                <input ng-model="citiPassword" type="password" class="info-input" value="">
+                                            </div>
+                                        <!--</div>-->
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button ng-click="blindAccount()" type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div ng-show="personDetail.citinum != ''" class = "info-detail-unchange"  ui-sref="personal">{{personDetail.citinum}}</div>
             </div>
         </div>
     </div>

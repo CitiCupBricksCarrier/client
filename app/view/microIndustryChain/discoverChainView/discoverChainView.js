@@ -38,4 +38,17 @@ angular.module('myApp.microIndustryChain.discoverChainView', [
             console.error("get graph list error");
         });
 
+        $http({
+            url: urlHead + 'getAllArctiles',
+            method: 'post',
+            // contentType: "application/json",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            withCredentials: true
+        }).then(function successCallBack(response) {
+            // console.log(2323,response.data)
+            $scope.allArticleList = response.data;
+        }, function errorCallBack(response) {
+            console.log("erreor");
+        });
+
     });
