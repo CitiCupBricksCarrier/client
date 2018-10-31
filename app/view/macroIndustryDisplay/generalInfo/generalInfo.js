@@ -129,13 +129,13 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                 method: 'post',
                 url: urlHead+'generalInfo/companyList'
             }).then(function successCallBack(response) {
-                // console.log(response);
+                console.log(response);
                 // return response.data;
 
                 var initialData = response.data;
                 propArr = ['保险', '玻璃', '车身及外观设备', '传动设备', '电气仪器仪表', '电子元件', '发动机设备',
                     '纺织品', '行车软件', '行驶底盘设备', '合成材料', '机械',
-                    '轮胎', '汽车及零配件销售', '汽车零售', '石油', '橡胶', '整车制造', '制动设备', '专用设备', '转向设备'];
+                    '轮胎', '汽车及零配件经销', '汽车零售', '石油', '橡胶', '整车制造', '制动设备', '专用设备', '转向设备'];
                 dataArr = [];
                 // console.log(initialData)
                 for(var i in initialData){

@@ -264,6 +264,54 @@
     left: 1004px;
     top: 182px;
 }
+.briefAndList_container.part_icon01{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon02{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon03{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon04{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon05{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon06{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon07{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
+.briefAndList_container.part_icon08{
+    position: absolute;
+    /*left: 930px;*/
+    left: 1004px;
+    top: 166px;
+}
 /*对各部件的触发div*/
 .part_toTouch{
     cursor: pointer;
