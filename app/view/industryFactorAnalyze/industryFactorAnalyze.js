@@ -76,6 +76,7 @@ angular.module('myApp.industryFactorAnalyze', [
             if(index_selected_list.length == 1){        //普通方法
                 analyze_single(index_selected_list[0], $scope.method_selected);
                 $scope.RESULT = '正在分析...';
+                $scope.toShowAnalyzeDetail = false;
                 $scope.toShowResult=true;
             }
             else if(index_selected_list.length > 1){        //复合因子
@@ -138,6 +139,7 @@ angular.module('myApp.industryFactorAnalyze', [
             analyze_multi(index_selected_list,$scope.method_selected , ratioList);
 
             $scope.RESULT = '正在分析...';
+            $scope.toShowAnalyzeDetail = false;
             $scope.toShowResult=true;
         }
 
