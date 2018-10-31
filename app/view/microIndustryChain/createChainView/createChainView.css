@@ -587,3 +587,47 @@ html, body {
     line-height: 18px;
     margin-top: 5px;
 }
+
+
+/*文章编辑css*/
+#articleEdit{
+    display: none;
+    background: #fff;
+    box-shadow: 0 4px 5px rgba(75, 75, 75, 0.2);
+    z-index: 101;
+}
+#article-close{
+    float:right;
+    font-size: 20px;
+    margin:-1px 1px;
+    cursor: pointer;
+    font-size: 30px;
+}
+.atricle-box{
+    position: absolute;
+    height: 97%;
+    width: 100%;
+    margin-top: 3%;
+}
+.article-page{
+    width: 100%;
+    padding: 5%;
+    /*        margin-top: 8%;*/
+    /*margin-left: 2%;*/
+    /*margin-right: 2%;*/
+    overflow-y: auto;
+    height: 97%;
+    size: A4 portrait;
+
+    outline: 0;
+    /*  font-family: "Roboto", -apple-system, "San Francisco", "Segoe UI", "Helvetica Neue", sans-serif;
+      font-size: 12pt;*/
+    /*-webkit-user-modify: read-write-plaintext-only;*/
+    resize: none;
+}
+.article-page::-webkit-scrollbar {
+    display: none;
+}
+.article-page p{
+    margin: 1px auto;
+}

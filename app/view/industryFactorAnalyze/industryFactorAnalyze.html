@@ -1,89 +1,131 @@
 <david-nav></david-nav>
 
 <div class="container">
-    <div id="index" class="part" style="margin-top: 10%">
+    <div id="index" class="part" style="margin-top: 100px;">
         <h1>Step1.选择指标</h1>
-        已选指标：<label>{{index_selected}}</label>
-        <div style="position: relative;margin-top: 5%">
+        <div class="selected_container">已选指标：<label>{{index_selected}}</label></div>
+        <div style="position: relative;">
             <div class="index_container">
                 <div class="section">
-                    <h4>推荐指标</h4>
+                    <div class="title_recommend">
+                        <img src="view/industryFactorAnalyze/pic_industryFactorAnalyze/赞.png"/>
+                        <h4>推荐指标</h4>
+                    </div>
                     <div class="list_container recommend" >
-                        <li style="border: 1px solid #c0c0c0;border-left-style: none;border-top-style: none;border-bottm-style: none;border-right-style: none;" ng-repeat="item in index_recommend">
-                            <!--<input type="checkbox" class="checkBox" ng-click="checkBoxOnChange_index(item)"/>-->
-                            <input type="checkbox" class="checkBox"/>
-                            <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
-                        </li>
+                        <!--<li style="border: 1px solid #c0c0c0;border-left-style: none;border-top-style: none;border-bottm-style: none;border-right-style: none;" ng-repeat="item in index_recommend">-->
+                            <!--&lt;!&ndash;<input type="checkbox" class="checkBox" ng-click="checkBoxOnChange_index(item)"/>&ndash;&gt;-->
+                            <!--<input type="checkbox" class="checkBox"/>-->
+                            <!--<a ng-click="clickToShowDescription_index(item)">{{item}}</a>-->
+                        <!--</li>-->
+                    </div>
+                    <div>
+                        <div class="item_recommend" name="安全性-存货周转率" style="background-color: rgb(76,186,228);">
+                            <img src="view/industryFactorAnalyze/pic_industryFactorAnalyze/安全.png"/>
+                            <div>安全性-存货周转率</div>
+                        </div>
+                        <div class="item_recommend" name="成长-ROE变动" style="background-color: rgb(84,222,228);">
+                            <img src="view/industryFactorAnalyze/pic_industryFactorAnalyze/分析.png"/>
+                            <div>成长-ROE变动</div>
+                        </div>
+                        <div class="item_recommend" name="估值类-股息率" style="background-color: rgb(87,221,185);">
+                            <img src="view/industryFactorAnalyze/pic_industryFactorAnalyze/钱.png"/>
+                            <div>估值类-股息率</div>
+                        </div>
                     </div>
                 </div>
-                <div class="section">
+                <div class="section" style="background-color: rgb(248,248,248);">
+                    <img src="view/industryFactorAnalyze/pic_industryFactorAnalyze/全部.png"/>
                     <h4>全部指标</h4>
                     <div class="list_container all">
-                        <li style="border: 1px solid #c0c0c0;border-left-style: none;border-top-style: none;border-bottm-style: none;border-right-style: none;" ng-repeat="item in index_selectable">
-                            <input type="checkbox" class="checkBox"/>
-                            <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
-                        </li>
-                        <li ng-show="false" ng-repeat="item in index_unselectable">
-                            <input type="checkbox" class="checkBox" disabled/>
-                            <a ng-click="clickToShowDescription_index(item)">{{item}}</a>
-                        </li>
+                        <!--<li style="border: 1px solid #c0c0c0;border-left-style: none;border-top-style: none;border-bottm-style: none;border-right-style: none;" ng-repeat="item in index_selectable">-->
+                            <!--<input type="checkbox" class="checkBox"/>-->
+                            <!--<a ng-click="clickToShowDescription_index(item)">{{item}}</a>-->
+                        <!--</li>-->
+                        <!--<li ng-show="false" ng-repeat="item in index_unselectable">-->
+                            <!--<input type="checkbox" class="checkBox" disabled/>-->
+                            <!--<a ng-click="clickToShowDescription_index(item)">{{item}}</a>-->
+                        <!--</li>-->
+                        <div class="indexItem_container">
+                            <div class="clearfix"></div>
+                            <div class="item_index" ng-repeat="item in index_selectable" name="{{item}}" ng-click="clickIndexItem($event)">{{item}}</div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="description_container">
-                <p >{{description_toShow}}</p>
-                <div ng-show="numIsShow">最近选择：<label>{{num_toShow}}</label>人</div>
-            </div>
+            <!--<div class="description_container">-->
+                <!--<p >{{description_toShow}}</p>-->
+                <!--<div ng-show="numIsShow">最近选择：<label>{{num_toShow}}</label>人</div>-->
+            <!--</div>-->
         </div>
     </div>
 
-    <div id="method" class="part" style="margin-top: 25%">
+    <div id="method" class="part">
         <h1>Step2.选择方法</h1>
-        已选方法：<label>{{method_selected}}</label>
-        <div style="position: relative;margin-top: 5%">
+        <div class="selected_container">已选方法：<label>{{method_selected}}</label></div>
+        <div style="position: relative;margin-top: 30px;">
             <div class="method_container">
                 <div class="section">
-                    <h4>全部方法</h4>
-                    <div class="list_container recommend">
-                        <table>
-                            <tr ng-repeat="item in method_list" ng-dblclick="clickToShowDescription_method(item)">
-                                <th>
-                                    <input type="checkbox" class="checkBox"/>
-                                    {{item.name}}
-                                </th>
-                                <td>
-                                    {{item.description}}
-                                </td>
-                            </tr>
-                        </table>
+                    <!--<h4>全部方法</h4>-->
+                    <div class="item_method" name="IC-MEAN" style="background-color: rgb(65,150,240);">
+                        <h4>IC-MEAN</h4>
+                        <p>衡量您所选择的因子的选股能力，越大，则说明您选择的因子在您选择股票时越有效</p>
                     </div>
+                    <div class="item_method" name="IC-IR" style="background-color: rgb(181,225,172);">
+                        <h4>IC-IR</h4>
+                        <p>衡量您所选的因子的选股能力和稳定性，越大，则说明您选择的因子选股能力越强、越稳定</p>
+                    </div>
+                    <div class="item_method" name="IC-T" style="background-color: rgb(249,193,112);">
+                        <h4>IC-T</h4>
+                        <p>衡量您所选的因子对收益率是否有影响，越接近于0，则影响越弱</p>
+                    </div>
+                    <div class="item_method" name="多空收益" style="background-color: rgb(118,229,233);">
+                        <h4>多空收益</h4>
+                        <p>探究您选择的因子对整个行业收益率的影响</p>
+                    </div>
+                    <!--<div class="list_container recommend">-->
+                        <!--<table>-->
+                            <!--<tr ng-repeat="item in method_list" ng-dblclick="clickToShowDescription_method(item)">-->
+                                <!--<th>-->
+                                    <!--<input type="checkbox" class="checkBox"/>-->
+                                    <!--{{item.name}}-->
+                                <!--</th>-->
+                                <!--<td>-->
+                                    <!--{{item.description}}-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
     </div>
 
-    <div style="margin-top: 25%">
+    <div>
         <button class="btn_analyze" ng-click="clickToAnalyze()">进行分析</button>
     </div>
     <div ng-show="toShowRatio" class="ratio_container">
-        <h4>请输入各指标的权重</h4>
-        <h5>各指标权重总和为100，如果不符合将会自动计算调整</h5>
-        <div ng-repeat="item in index_selected_list">
-            <label>{{item}}：</label>
-            <input class="input_number" type="number" min="0" max="100"/>
+        <h3>请输入各指标的权重</h3>
+        <h4>各指标权重总和为100，如果不符合将会自动计算调整</h4>
+        <div class="ratioItem_container">
+            <div class="item_ratio" ng-repeat="item in index_selected_list">
+                {{item}}：<input class="input_number" type="number" min="0" max="100" required/>
+            </div>
         </div>
-        <button class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
+        <div>
+            <button type="submit" class="btn_sureToAnalyze" ng-click="clickSureToAnalyze()">确认</button>
+        </div>
     </div>
 
-    <div class="resultAndDetail">
+    <div class="resultAndDetail" ng-show="toShowResult">
         <div class="analyzeResult">
-            <h2>分析结果：</h2>
-            <span id="resultSpan" style="font-size: 26px" ng-show="toShowResult">{{RESULT}}</span>
+            <div class="title_result">分析结果</div>
+            <div id="resultSpan" class="item_result">{{RESULT}}</div>
         </div>
         <div class="analyzeDetail" ng-show="toShowAnalyzeDetail">
-            <h2>分析过程</h2>
-            <div ng-switch="detailOfMethodToShow">
+            分析过程
+            <div ng-switch="detailOfMethodToShow" style="margin-top: 25px;">
                 <div ng-switch-when="IC-mean">
                     <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/IC-mean.png"/>
                 </div>
@@ -100,5 +142,11 @@
             </div>
         </div>
     </div>
+
+    <!--<div id="ICOriginalChart" style="width: 700px; height: 400px;"></div>-->
+    <!--<div id="ICSeriesChart" style="width: 700px; height: 400px;"></div>-->
+    <!--<div id="ICQQChart" style="width: 700px; height: 400px;"></div>-->
+    <!--<div id="ICHeatMapChart" style="width: 700px; height: 400px;"></div>-->
+    <!--<div id="ICValueChart" style="width: 700px; height: 400px;"></div>-->
 </div>
 <link rel="stylesheet" href="view/industryFactorAnalyze/industryFactorAnalyze.css"/>

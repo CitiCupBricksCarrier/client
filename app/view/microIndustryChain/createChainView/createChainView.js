@@ -367,6 +367,7 @@ angular.module('myApp.microIndustryChain.createChainView', [])
             });
         };
 
+
         $scope.save = function () {
             let nodeListArray = [],
                 connectionListArray = [];
@@ -920,5 +921,58 @@ angular.module('myApp.microIndustryChain.createChainView', [])
             ctx.lineWidth = width;
             ctx.stroke();
         };
+
+
+        $scope.editArticle = function (){
+            document.getElementById("articleEdit").style.display = "block";
+        }
+
+        document.getElementById("article-close").onclick = function(){
+            document.getElementById("articleEdit").style.display = "none";
+        }
+        function Mover(articleMove) {
+            this.obj = articleMove;
+            this.startx = 0;
+            this.starty;
+            this.startLeft;
+            this.startTop;
+            this.articleEditDiv = articleMove.parentNode;
+            var that = this;
+            this.isDown = false;
+            this.movedown = function (e) {
+                e = e ? e : window.event;
+                if (!window.captureEvents) {
+                    this.setCapture();
+                }
+                that.isDown = true;
+                that.startx = e.clientX;
+                that.starty = e.clientY;
+
+                that.startLeft = parseInt(that.articleEditDiv.style.left);
+                that.startTop = parseInt(that.articleEditDiv.style.top);
+            }
+            this.move = function (e) {
+                e = e ? e : window.event;
+                if (that.isDown) {
+                    that.articleEditDiv.style.left = e.clientX - (that.startx - that.startLeft) + "px";
+                    that.articleEditDiv.style.top = e.clientY - (that.starty - that.startTop) + "px";
+                }
+            }
+            this.moveup = function () {
+                that.isDown = false;
+                if (!window.captureEvents) {
+                    this.releaseCapture();
+                } //事件捕获仅支持ie
+            }
+            this.obj.onmousedown = this.movedown;
+            this.obj.onmousemove = this.move;
+            this.obj.onmouseup = this.moveup;
+
+            //非ie浏览器
+            document.addEventListener("mousemove", this.move, true);
+        }
+        var mover = new Mover(document.getElementById("articleMove"));
+
+
 
     });

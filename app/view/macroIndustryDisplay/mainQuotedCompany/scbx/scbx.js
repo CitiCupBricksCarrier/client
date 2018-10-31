@@ -173,18 +173,30 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
         });
 
         $scope.calMax=function (array) {
-            var max=0;
+            var array2=[];
             for(var i=0;i<array.length;i++){
-                if(Number(array[i])>max) max=array[i];
+                if(array[i]!=null&&array[i]!='--'){
+                    array2.push(array[i]);
+                }
+            }
+            var max=Number.NEGATIVE_INFINITY;
+            for(var i=0;i<array2.length;i++){
+                if(Number(array2[i])>max) max=array2[i];
             }
             if(max=='0')return '--';
             else return Number(max).toFixed(2);
         };
 
         $scope.calMin=function (array) {
-            var min=Number.POSITIVE_INFINITY;
+            var array2=[];
             for(var i=0;i<array.length;i++){
-                if(Number(array[i])<min) min=array[i];
+                if(array[i]!=null&&array[i]!='--'){
+                    array2.push(array[i]);
+                }
+            }
+            var min=Number.POSITIVE_INFINITY;
+            for(var i=0;i<array2.length;i++){
+                if(Number(array2[i])<min) min=array2[i];
             }
 
             if(min==Number.POSITIVE_INFINITY)return '--';
@@ -192,12 +204,18 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
         };
 
         $scope.calAvg=function (array) {
-            var vag=0,sum=0;
+            var array2=[];
             for(var i=0;i<array.length;i++){
-                if(array[i]!='--'&&array[i]!=null) sum+=Number(array[i]);
+                if(array[i]!=null&&array[i]!='--'){
+                    array2.push(array[i]);
+                }
+            }
+            var vag=0,sum=0;
+            for(var i=0;i<array2.length;i++){
+              sum+=Number(array2[i]);
             }
 
-            vag=(sum/(array.length)).toFixed(2);
+            vag=(sum/(array2.length)).toFixed(2);
 
             if(Number.isNaN(sum)) return'--';
             else return vag;
@@ -209,22 +227,22 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
         };
 
         $scope.calMid=function (array) {
-            var array2=array;
+            var array2=[];
+            for(var i=0;i<array.length;i++){
+                if(array[i]!=null&&array[i]!='--'){
+                    array2.push(array[i]);
+                }
+            }
 
             var result=array2.sort($scope.sortNumber);
 
-            if(result[result.length/2-1]=='--'||result[result.length/2-1]==null){
-                if(Number.isNaN(result[result.length/2])) return'--';
-                return result[result.length/2];
-            }
-            else if(result[result.length/2=='--']||result[result.length/2==null]){
-                if(Number.isNaN(result[result.length/2-1])) return'--';
-                return result[result.length/2-1];
+            if(result.length%2==1){
+               return result[Math.round(result.length/2)-1];
             }
             else{
-                if(Number.isNaN(((Number(result[result.length/2-1])+Number(result[result.length/2]))/2))) return'--';
-                else return ((Number(result[result.length/2-1])+Number(result[result.length/2]))/2).toFixed(2);
+                return ((Number(result[Math.round(result.length/2)-1])+Number(result[Math.round(result.length/2)]))/2).toFixed(2);
             }
+
 
         };
 
@@ -355,17 +373,60 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                         case '最高值':
                             str += "<tr><td></td><td></td><td>最高值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                if($scope.chosenIndexs[j]!=3)
-                                    str += "<td>" + $scope.calMax($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
-                                else {
-                                    str += "<td>" + $scope.calMax($scope.Data.fucknew) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.thwk) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.thmth) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.thyear) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.nearamth) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.nearthrmth) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.nearsixmth) + "</td>";
-                                    str += "<td>" + $scope.calMax($scope.Data.nearayear) + "</td>";
+                                if($scope.chosenIndexs[j]!=3){
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMax($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+
+                                            break;
+                                        case '沪深A股':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,23)
+                                            str += "<td>" + $scope.calMax(tempArray) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(23,38)
+                                            str += "<td>" + $scope.calMax(tempArray) + "</td>";
+
+                                            break;
+                                    }
+                                }
+                                    else {
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMax($scope.Data.fucknew) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thwk) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thmth) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thyear) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearamth) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearthrmth) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearsixmth) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearayear) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calMax($scope.Data.fucknew.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thwk.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thyear.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearamth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearthrmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearsixmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearayear.slice(0,23)) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calMax($scope.Data.fucknew.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thwk.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.thyear.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearamth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearthrmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearsixmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMax($scope.Data.nearayear.slice(23,38)) + "</td>";
+
+                                            break;
+                                    }
+
                                 }
 
                             }
@@ -374,17 +435,60 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                         case '最低值':
                             str += "<tr><td></td><td></td><td>最低值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                if ($scope.chosenIndexs[j] != 3)
-                                    str += "<td>" + $scope.calMin($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                if ($scope.chosenIndexs[j] != 3){
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMin($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+
+                                            break;
+                                        case '沪深A股':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,23)
+                                            str += "<td>" + $scope.calMin(tempArray) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(23,38)
+                                            str += "<td>" + $scope.calMin(tempArray) + "</td>";
+
+                                            break;
+                                    }
+                                }
                                 else {
-                                    str += "<td>" + $scope.calMin($scope.Data.fucknew) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.thwk) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.thmth) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.thyear) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.nearamth) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.nearthrmth) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.nearsixmth) + "</td>";
-                                    str += "<td>" + $scope.calMin($scope.Data.nearayear) + "</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMin($scope.Data.fucknew) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thwk) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thmth) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thyear) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearamth) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearthrmth) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearsixmth) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearayear) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calMin($scope.Data.fucknew.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thwk.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thyear.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearamth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearthrmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearsixmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearayear.slice(0,23)) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calMin($scope.Data.fucknew.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thwk.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.thyear.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearamth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearthrmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearsixmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMin($scope.Data.nearayear.slice(23,38)) + "</td>";
+
+                                            break;
+                                    }
+
                                 }
                             }
                             str += "</tr>";
@@ -392,17 +496,60 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                         case '中位值':
                             str += "<tr><td></td><td></td><td>中位值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                if ($scope.chosenIndexs[j] != 3)
-                                    str += "<td>" + $scope.calMid($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                if ($scope.chosenIndexs[j] != 3){
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMid($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+
+                                            break;
+                                        case '沪深A股':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,23)
+                                            str += "<td>" + $scope.calMid(tempArray) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(23,38)
+                                            str += "<td>" + $scope.calMid(tempArray) + "</td>";
+
+                                            break;
+                                    }
+                                }
                                 else {
-                                    str += "<td>" + $scope.calMid($scope.Data.fucknew) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.thwk) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.thmth) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.thyear) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.nearamth) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.nearthrmth) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.nearsixmth) + "</td>";
-                                    str += "<td>" + $scope.calMid($scope.Data.nearayear) + "</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMid($scope.Data.fucknew) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thwk) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thmth) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thyear) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearamth) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearthrmth) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearsixmth) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearayear) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calMid($scope.Data.fucknew.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thwk.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thyear.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearamth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearthrmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearsixmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearayear.slice(0,23)) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calMid($scope.Data.fucknew.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thwk.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.thyear.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearamth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearthrmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearsixmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calMid($scope.Data.nearayear.slice(23,38)) + "</td>";
+
+                                            break;
+                                    }
+
                                 }
                             }
                             str += "</tr>";
@@ -410,17 +557,60 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                         case '平均值':
                             str += "<tr><td></td><td></td><td>平均值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                if ($scope.chosenIndexs[j] != 3)
-                                    str += "<td>" + $scope.calAvg($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                if ($scope.chosenIndexs[j] != 3){
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calAvg($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+
+                                            break;
+                                        case '沪深A股':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,23)
+                                            str += "<td>" + $scope.calAvg(tempArray) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            var tempArray=$scope.Data[indexs[$scope.chosenIndexs[j]]].slice(23,38)
+                                            str += "<td>" + $scope.calAvg(tempArray) + "</td>";
+
+                                            break;
+                                    }
+                                }
                                 else {
-                                    str += "<td>" + $scope.calAvg($scope.Data.fucknew) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.thwk) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.thmth) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.thyear) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.nearamth) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.nearthrmth) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.nearsixmth) + "</td>";
-                                    str += "<td>" + $scope.calAvg($scope.Data.nearayear) + "</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calAvg($scope.Data.fucknew) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thwk) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thmth) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thyear) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearamth) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearthrmth) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearsixmth) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearayear) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calAvg($scope.Data.fucknew.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thwk.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thyear.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearamth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearthrmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearsixmth.slice(0,23)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearayear.slice(0,23)) + "</td>";
+
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calAvg($scope.Data.fucknew.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thwk.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.thyear.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearamth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearthrmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearsixmth.slice(23,38)) + "</td>";
+                                            str += "<td>" + $scope.calAvg($scope.Data.nearayear.slice(23,38)) + "</td>";
+
+                                            break;
+                                    }
+
                                 }
                             }
                             str += "</tr>";
@@ -493,14 +683,46 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                                 if ($scope.chosenIndexs[j] != 3)
                                     str += "<td>" + $scope.Data[indexs[$scope.chosenIndexs[j]]][i] + "</td>";
                                 else {
-                                    str += "<td>" + $scope.Data.fucknew[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thwk[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thyear[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearamth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearthrmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearsixmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearayear[i] + "</td>";
+                                    if($scope.Data.fucknew[i]!=null)
+                                        str += "<td>" + $scope.Data.fucknew[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thwk[i]!=null)
+                                        str += "<td>" + $scope.Data.thwk[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thmth[i]!=null)
+                                        str += "<td>" + $scope.Data.thmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thyear[i]!=null)
+                                        str += "<td>" + $scope.Data.thyear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearamth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearamth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearthrmth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearthrmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearsixmth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearsixmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearayear[i]!=null)
+                                        str += "<td>" + $scope.Data.nearayear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
                                 }
                             }
 
@@ -517,14 +739,46 @@ angular.module('myApp.macroIndustryDisplay.scbx', [
                                 if ($scope.chosenIndexs[j] != 3)
                                     str += "<td>" + $scope.Data[indexs[$scope.chosenIndexs[j]]][i] + "</td>";
                                 else {
-                                    str += "<td>" + $scope.Data.fucknew[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thwk[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.thyear[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearamth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearthrmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearsixmth[i] + "</td>";
-                                    str += "<td>" + $scope.Data.nearayear[i] + "</td>";
+                                    if($scope.Data.fucknew[i]!=null)
+                                        str += "<td>" + $scope.Data.fucknew[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thwk[i]!=null)
+                                        str += "<td>" + $scope.Data.thwk[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thmth[i]!=null)
+                                        str += "<td>" + $scope.Data.thmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.thyear[i]!=null)
+                                        str += "<td>" + $scope.Data.thyear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearamth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearamth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearthrmth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearthrmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearsixmth[i]!=null)
+                                        str += "<td>" + $scope.Data.nearsixmth[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
+                                    if($scope.Data.nearayear[i]!=null)
+                                        str += "<td>" + $scope.Data.nearayear[i] + "</td>";
+                                    else{
+                                        str += "<td>" + "--"+ "</td>";
+                                    }
                                 }
                             }
                             str += "</tr>";

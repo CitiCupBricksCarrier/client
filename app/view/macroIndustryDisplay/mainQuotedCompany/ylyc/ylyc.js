@@ -174,14 +174,21 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
 
         $scope.calMaxSingle=function (array) {
             var max=Number.NEGATIVE_INFINITY;
+            var array2=[];
             for(var i=0;i<array.length;i++){
-                if(Number(array[i])>max) max=array[i];
+                if(array[i]!=null&&array[i]!='--'){
+                    array2.push(array[i]);
+                }
+            }
+            for(var i=0;i<array2.length;i++){
+                if(Number(array2[i])>max) max=array2[i];
             }
             if(max=='0'||max==Number.NEGATIVE_INFINITY) return '--';
             else return Number(max).toFixed(2);
         };
 
         $scope.calMaxMany=function (array) {
+
 
             var max17=Number.NEGATIVE_INFINITY,max18=Number.NEGATIVE_INFINITY,max19=Number.NEGATIVE_INFINITY;
             for(var i=0;i<array.length/3;i++){
@@ -190,7 +197,7 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
                 if(array[(i+1)*3-1]!='/'&&Number(array[(i+1)*3-1])>max19) max19=array[(i+1)*3-1];
 
             }
-            return [Number(max17).toFixed(2),Number(max18).toFixed(2),max19==Number.NEGATIVE_INFINITY?'--':Number(max19).toFixed(2)];
+            return [max17==Number.NEGATIVE_INFINITY?'--':Number(max17).toFixed(2),max18==Number.NEGATIVE_INFINITY?'--':Number(max18).toFixed(2),max19==Number.NEGATIVE_INFINITY?'--':Number(max19).toFixed(2)];
         };
 
         $scope.calMinSingle=function (array) {
@@ -212,17 +219,23 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
 
             }
 
-            return [Number(min17).toFixed(2),Number(min18).toFixed(2),min19==Number.POSITIVE_INFINITY?'--':Number(min19).toFixed(2)];
+            return [min17==Number.POSITIVE_INFINITY?'--':Number(min17).toFixed(2),min18==Number.POSITIVE_INFINITY?'--':Number(min18).toFixed(2),min19==Number.POSITIVE_INFINITY?'--':Number(min19).toFixed(2)];
 
         };
 
         $scope.calAvgSingle=function (array) {
             var vag=0,sum=0;
+            var array2=[];
             for(var i=0;i<array.length;i++){
-                if(array[i]!='--') sum+=Number(array[i]);
+                if(array[i]!=null&&array[i]!='--'){
+                    array2.push(array[i]);
+                }
+            }
+            for(var i=0;i<array2.length;i++){
+                sum+=Number(array2[i]);
             }
 
-            vag=(sum/(array.length)).toFixed(2);
+            vag=(sum/(array2.length)).toFixed(2);
 
             if(Number.isNaN(sum)) return'--';
             else return vag;
@@ -232,12 +245,11 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
         $scope.calAvgMany=function (array) {
             var vag17=0,vag18=0,vag19=0,sum17=0,sum18=0,sum19=0;
             for(var i=0;i<array.length/3;i++){
-                if(array[(i+1)*3-3]!='/'&&array[(i+1)*3-3]!='--') sum17+=Number(array[(i+1)*3-3]);
-                if(array[(i+1)*3-2]!='/'&&array[(i+1)*3-2]!='--') sum18+=Number(array[(i+1)*3-2]);
-                if(array[(i+1)*3-1]!='/'&&array[(i+1)*3-1]!='--') sum19+=Number(array[(i+1)*3-1]);
+                if(array[(i+1)*3-3]!='/'&&array[(i+1)*3-3]!='--'&&array[(i+1)*3-3]!=null) sum17+=Number(array[(i+1)*3-3]);
+                if(array[(i+1)*3-2]!='/'&&array[(i+1)*3-2]!='--'&&array[(i+1)*3-2]!=null) sum18+=Number(array[(i+1)*3-2]);
+                if(array[(i+1)*3-1]!='/'&&array[(i+1)*3-1]!='--'&&array[(i+1)*3-1]!=null) sum19+=Number(array[(i+1)*3-1]);
 
             }
-
             vag17=(sum17/(array.length/3)).toFixed(2);
             vag18=(sum18/(array.length/3)).toFixed(2);
             vag19=(sum19/(array.length/3)).toFixed(2);
@@ -271,49 +283,17 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
         $scope.calMidMany=function(array){
             var array17=[],array18=[],array19=[];
             for(var i=0;i<array.length/3;i++){
-                array19.push(array[(i+1)*4-1]);
-                array18.push(array[(i+1)*4-2]);
-                array17.push(array[(i+1)*4-3]);
-
+                if(array[i+3]!='--'&&array[i+3]!='/'&&array[i+3]!=null){
+                    array17.push(array[i+3]);
+                }
+                if(array[i+3]!='--'&&array[i+2]!='/'&&array[i+3]!=null){
+                    array18.push(array[i+2]);
+                }
+                if(array[i+3]!='--'&&array[i+1]!='/'&&array[i+3]!=null){
+                    array19.push(array[i+1]);
+                }
             }
-            array17=array17.sort($scope.sortNumber);
-            array18=array18.sort($scope.sortNumber);
-            array19=array19.sort($scope.sortNumber);
-
-            var result17,result18,result19=0;
-            if(array17[(array.length/3/2)-1]=='--'){
-                result17=array17[array.length/3/2];
-            }
-            else if(array17[(array.length/3/2)]=='--'){
-                result17=array17[array.length/3/2-1];
-            }
-            else{
-                result17=((Number(array17[(array.length/3/2)-1])+Number(array17[array.length/3/2]))/2).toFixed(2);
-
-            }
-
-            if(array18[(array.length/3/2)-1]=='--'){
-                result18=array18[array.length/3/2];
-            }
-            else if(array18[(array.length/3/2)]=='--'){
-                result18=array18[array.length/3/2-1];
-            }
-            else{
-                result18=((Number(array18[(array.length/3/2)-1])+Number(array18[array.length/3/2]))/2).toFixed(2);
-
-            }
-
-            if(array19[(array.length/3/2)-1]=='--'){
-                result19=array19[array.length/3/2];
-            }
-            else if(array19[(array.length/3/2)]=='--'){
-                result19=array19[array.length/3/2-1];
-            }
-            else{
-                result19=((Number(array19[(array.length/3/2)-1])+Number(array19[array.length/3/2]))/2).toFixed(2);
-
-            }
-                return[result17,result18,result19];
+                return[$scope.calMidSingle(array17),$scope.calMidSingle(array18),$scope.calMidSingle(array19)];
         };
 
         $scope.changeMarket=function(){
@@ -352,29 +332,66 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
                         case '最高值':
                             str += "<tr><td></td><td></td><td>最高值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                switch ($scope.market){
+                                    case '全部':
+                                        str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                        break;
+                                    case '沪深A股':
+                                        str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                        break;
+                                    case '新三板做市':
+                                        str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                        break;
+                                }
                             }
                             str += "</tr>";
                             break;
                         case '最低值':
                             str += "<tr><td></td><td></td><td>最低值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
-                            }
+                                switch ($scope.market){
+                                    case '全部':
+                                        str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                        break;
+                                    case '沪深A股':
+                                        str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                        break;
+                                    case '新三板做市':
+                                        str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                        break;
+                                }                            }
                             str += "</tr>";
                             break;
                         case '中位值':
                             str += "<tr><td></td><td></td><td>中位值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
-                            }
+                                switch ($scope.market){
+                                    case '全部':
+                                        str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                        break;
+                                    case '沪深A股':
+                                        str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                        break;
+                                    case '新三板做市':
+                                        str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                        break;
+                                }                            }
                             str += "</tr>";
                             break;
                         case '平均值':
                             str += "<tr><td></td><td></td><td>平均值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
-                                str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
-                            }
+                                switch ($scope.market){
+                                    case '全部':
+                                        str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                        break;
+                                    case '沪深A股':
+                                        str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                        break;
+                                    case '新三板做市':
+                                        str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                        break;
+                                }                            }
                             str += "</tr>";
                             break;
                     }
@@ -452,12 +469,34 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
                             str += "<tr><td></td><td></td><td>最高值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
                                 if($scope.chosenIndexs[j]==1||$scope.chosenIndexs[j]==2||$scope.chosenIndexs[j]==3) {
-                                    str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calMaxSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                            break;
+                                    }
                                 }
                                 else {
-                                    str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
-                                    str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
-                                    str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";                                            break;
+                                        case '沪深A股':
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[0]+"</td>";
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[1]+"</td>";
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[2]+"</td>";                                            break;
+                                        case '新三板做市':
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[0]+"</td>";
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[1]+"</td>";
+                                            str+="<td>"+$scope.calMaxMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[2]+"</td>";                                            break;
+                                    }
+
 
                                 }
                             }
@@ -467,12 +506,33 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
                             str += "<tr><td></td><td></td><td>最低值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
                                 if($scope.chosenIndexs[j]==1||$scope.chosenIndexs[j]==2||$scope.chosenIndexs[j]==3) {
-                                    str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
-                                }
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calMinSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                            break;
+                                    }                                }
                                 else {
-                                    str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
-                                    str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
-                                    str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";                                            break;
+                                        case '沪深A股':
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[0]+"</td>";
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[1]+"</td>";
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[2]+"</td>";                                            break;
+                                        case '新三板做市':
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[0]+"</td>";
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[1]+"</td>";
+                                            str+="<td>"+$scope.calMinMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[2]+"</td>";                                            break;
+                                    }
+
 
                                 }                            }
                             str += "</tr>";
@@ -481,12 +541,34 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
                             str += "<tr><td></td><td></td><td>中位值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
                                 if($scope.chosenIndexs[j]==1||$scope.chosenIndexs[j]==2||$scope.chosenIndexs[j]==3) {
-                                    str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calMidSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                            break;
+                                    }
                                 }
                                 else {
-                                    str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
-                                    str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
-                                    str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";                                            break;
+                                        case '沪深A股':
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[0]+"</td>";
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[1]+"</td>";
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[2]+"</td>";                                            break;
+                                        case '新三板做市':
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[0]+"</td>";
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[1]+"</td>";
+                                            str+="<td>"+$scope.calMidMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[2]+"</td>";                                            break;
+                                    }
+
 
                                 }                            }
                             str += "</tr>";
@@ -495,12 +577,34 @@ angular.module('myApp.macroIndustryDisplay.ylyc', [
                             str += "<tr><td></td><td></td><td>平均值</td>";
                             for (var j = 0; j < $scope.chosenIndexs.length; j++) {
                                 if($scope.chosenIndexs[j]==1||$scope.chosenIndexs[j]==2||$scope.chosenIndexs[j]==3) {
-                                    str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]]) + "</td>";
+                                            break;
+                                        case '沪深A股':
+                                            str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,24)) + "</td>";
+                                            break;
+                                        case '新三板做市':
+                                            str += "<td>" + $scope.calAvgSingle($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(24,38)) + "</td>";
+                                            break;
+                                    }
                                 }
                                 else {
-                                    str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
-                                    str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
-                                    str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";
+                                    switch ($scope.market){
+                                        case '全部':
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[0]+"</td>";
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[1]+"</td>";
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]])[2]+"</td>";                                            break;
+                                        case '沪深A股':
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[0]+"</td>";
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[1]+"</td>";
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(0,72))[2]+"</td>";                                            break;
+                                        case '新三板做市':
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[0]+"</td>";
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[1]+"</td>";
+                                            str+="<td>"+$scope.calAvgMany($scope.Data[indexs[$scope.chosenIndexs[j]]].slice(72,112))[2]+"</td>";                                            break;
+                                    }
+
 
                                 }                            }
                             str += "</tr>";
