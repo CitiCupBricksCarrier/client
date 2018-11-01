@@ -1,9 +1,51 @@
-.smDialog .modal-dialog{
-    margin: 20% auto;
-    width: 30%!important;
+.smDialog .modal-dialog {
+    margin: 15% auto;
+    width: 30% !important;
+    min-width: 750px;
+}
+.container{
+
 }
 
-label{
+.button-container {
+    width: 578px;
+    height: 300px;
+    margin: 50px auto auto;
+}
+
+.button-title{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+
+.square-button {
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
+    color: white;
+    border: transparent 0px solid;
+    margin: 20px;
+    outline: none;
+}
+
+.first-button {
+    background-image: url("1.png");
+}
+
+.second-button {
+    background-image: url("2.png");
+}
+
+.third-button {
+    background-image: url("3.png");
+}
+
+label {
     margin-left: 15px;
     margin-right: 50px;
 }
+

@@ -37,7 +37,7 @@
                 </button>
             </div>
             <div class="topToolBarBigBlockCell" style="width: 25%;min-width: 230px">
-                <button id="publishBtn" class="btn btn-default topToolBarBigBtn"
+                <button id="publishBtn" class="btn btn-default topToolBarBigBtn" ng-click="save()"
                         data-popover="popover" data-trigger="hover" data-placement="bottom"
                         title="发布到社区" data-content="将您的作品【发布】到社区，赚取阅读赏金">
                     <img src="view/microIndustryChain/createChainView/icon/发布.png"> 发布
@@ -125,10 +125,10 @@
 
     </div>
 
-    <button class="back-menu">
+    <button class="back-menu" ui-sref="microIndustryChain.mineChainView">
 
         <img src="view/microIndustryChain/createChainView/icon/back.png">
-        <div class="back-menu-text" ui-sref="microIndustryChain.mineChainView"> 返回我的产业链</div>
+        <div class="back-menu-text" > 返回我的产业链</div>
 
     </button>
 
@@ -318,7 +318,7 @@
     <div class="atricle-box">
         <!-- <div class = "side"></div> -->
         <!-- <textarea class="page" ></textarea>  -->
-        <div class="article-page" contenteditable="true"><h1>标题</h1><p>正文</p></div>
+        <div id="article-mes" class="article-page" contenteditable="true"><h1>标题</h1><p>正文</p></div>
     </div>
 </div>
 

@@ -6,3 +6,22 @@
 #pieChart{
     height: 350px;
 }
+
+.specific-button {
+    background-color: rgb(101, 119, 210);
+    color: white;
+    font-size: 16px;
+}
+
+.specific-button:hover{
+    background-color: rgb(101, 119, 210);
+    color: white;
+    font-size: 16px;
+}
+
+.public-opinion-tittle{
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+}

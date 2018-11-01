@@ -3,50 +3,50 @@
 
 
     <div class="graphContainer">
-        <div ui-sref="microIndustryChain.previewChainView({'graphid':graph.graphid})" class="graphCell" ng-repeat="graph in allGraphList | limitTo:4">
+        <div ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class="graphCell" ng-repeat="article in allArticleList | limitTo:4">
             <div>
                 <img  src="view/microIndustryChain/mineChainView/cover.png"  class="graph-cover">
             </div>
             <div class="graph-title">
-                关于XX政策的汽车产业链模型详细分析2
+                {{article.title}}
             </div>
             <div class="graph-mes">
                 <div class = "graph-author">
-                    周益冰
+                    {{article.author}}
                 </div>
                 <div class="graph-time">
-                    {{graph.graphid.substring(2,6)}}-{{graph.graphid.substring(6,8)}}-{{graph.graphid.substring(8,10)}} {{graph.graphid.substring(10,12)}}:{{graph.graphid.substring(12,14)}}
+                    {{article.time.substring(0,4)}}-{{article.time.substring(4,6)}}-{{article.time.substring(6,8)}} {{article.time.substring(8,10)}}:{{article.time.substring(10,12)}}
                 </div>
             </div>
             <div>
                 <div class="graph-view-num">
                     <img src="view/microIndustryChain/discoverChainView/images/浏览.png">
-                    123233
+                    {{article.watchnum}}
                 </div>
                 <div class="graph-like-num">
                     <img src="view/microIndustryChain/discoverChainView/images/点赞.png">
-                    12321
+                    {{article.up}}
                 </div>
             </div>
         </div>
     </div>
-    <div class="graphLiContainer">
+    <div  class="graphLiContainer">
         <div class="graphList">
-            <div  ui-sref="microIndustryChain.previewChainView({'graphid':graph.graphid})" class = "graphLiDiv" ng-repeat="graph in allGraphList" >
+            <div  ng-if="$index>3" ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class = "graphLiDiv" ng-repeat="article in allArticleList" >
                 <div class="graph-li-title graph-li-con">
-                    关于XX政策的汽车产业链模型详细分析2
+                    {{article.title}}
                 </div>
                 <div class="graph-li-author graph-li-con">
-                    周益冰
+                    {{article.author}}
                 </div>
                 <div class="graph-li-time graph-li-con">
-                    {{graph.graphid.substring(2,6)}}-{{graph.graphid.substring(6,8)}}-{{graph.graphid.substring(8,10)}} {{graph.graphid.substring(10,12)}}:{{graph.graphid.substring(12,14)}}
+                    {{article.time.substring(0,4)}}-{{article.time.substring(4,6)}}-{{article.time.substring(6,8)}} {{article.time.substring(8,10)}}:{{article.time.substring(10,12)}}
                 </div>
                 <div class="graph-li-view graph-li-con">
                     <img style="width:18px" src="view/microIndustryChain/discoverChainView/images/浏览.png">
-                    11111
+                    {{article.watchnum}}
                 </div>
-            </div>>
+            </div>
         </div>
     </div>
 

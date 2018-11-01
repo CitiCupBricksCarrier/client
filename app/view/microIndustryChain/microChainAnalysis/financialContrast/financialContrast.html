@@ -1,24 +1,22 @@
 <link rel="stylesheet" href="view/microIndustryChain/microChainAnalysis/financialContrast/financialContrast.css">
-<div class="modal-header">
-    <h4 class="modal-title" style="text-align: center">对公司“{{name}}”进行财务对比分析</h4>
-</div>
-<div class="modal-body">
-
-    <div class="row">
-        <label class="col-lg-2 col-lg-offset-1">选择竞争公司：</label>
+<div class="modal-body" style="padding: 30px 30px 50px;">
+    <div class="financial-title">财务分析</div>
+    <div  style="padding: 20px">
+        <label >选择竞争公司：</label>
         <span>
             <input ng-change="changeKeyValue(searchField)" ng-model="searchField"
                    style='width:300px'
                    ng-click='hidden=!hidden' value="{{searchField}}"/></input>
-            <select ng-hide="hidden" id="companyjiaSelect" style='width:300px' ng-change="change(x)" ng-model="x">
+            <select  ng-hide="hidden" id="companyjiaSelect" style='width:300px;margin: 20px 0 0 152px'
+                    ng-change="change(x)" ng-model="x">
                 <option ng-repeat="data in datas">{{data.compname}}({{data.stkcd}})</option>
             </select>
 
         </span>
 
     </div>
-    <div class="row" style="margin-top: 10px">
-        <label class="col-lg-2 col-lg-offset-1"> 选择时间：</label>
+    <div style="padding: 20px">
+        <label> 选择时间：</label>
         <select ng-model="time">
             <option ng-repeat="data in timeList">{{data}}</option>
         </select>
@@ -28,5 +26,5 @@
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="confirm()">对比</button>
+    <button class="btn specific-button" type="button" ng-click="confirm()">对比</button>
 </div>

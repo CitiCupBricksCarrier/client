@@ -621,55 +621,130 @@ angular.module('myApp.microIndustryChain.previewChainView', [
 
         };
 
-        // $(function(){
-        //     $("#praise").click(function(){
-        //         var praise_img = $("#praise-img");
-        //         var text_box = $("#add-num");
-        //         var praise_txt = $("#praise-txt");
-        //         var num=parseInt(praise_txt.text());
-        //         if(praise_img.attr("src") == ("view/microIndustryChain/previewChainView/images/yizan.png")){
-        //             $(this).html("<img src='view/microIndustryChain/previewChainView/images/zan.png' id='praise-img' class='animation' />");
-        //             praise_txt.removeClass("hover");
-        //             text_box.show().html("<em class='add-animation'>-1</em>");
-        //             $(".add-animation").removeClass("hover");
-        //             num -=1;
-        //             praise_txt.text(num)
-        //         }else{
-        //             $(this).html("<img src='view/microIndustryChain/previewChainView/images/yizan.png' id='praise-img' class='animation' />");
-        //             praise_txt.addClass("hover");
-        //             text_box.show().html("<em class='add-animation'>+1</em>");
-        //             $(".add-animation").addClass("hover");
-        //             num +=1;
-        //             praise_txt.text(num)
-        //         }
-        //     });
-        // });
-        //
-        // jQuery(document).ready(function($) {
-        //     //打开窗口
-        //     $('.reward').on('click', function (event) {
-        //         event.preventDefault();
-        //         $('.cd-popup').addClass('is-visible');
-        //         //$(".dialog-addquxiao").hide()
-        //     });
-        //     //关闭窗口
-        //     $('.cd-popup').on('click', function (event) {
-        //         if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
-        //             event.preventDefault();
-        //             $(this).removeClass('is-visible');
-        //         }
-        //     });
-        //     //ESC关闭
-        //     $(document).keyup(function (event) {
-        //         if (event.which == '27') {
-        //             $('.cd-popup').removeClass('is-visible');
-        //         }
-        //     });
-        // });
+
+
 
         //返回顶部按钮实现代码
         document.getElementById("gotop").onclick = function () {
             scrollTo(0, 0);
+        }
+
+        $scope.articleiId =$stateParams.articleid;
+        var article_id = $scope.articleiId;
+        $scope.graphId =$stateParams.graphid;
+        var graph_id = $scope.graphId;
+        var articleAuthor = "";
+
+        $http({
+            method: 'post',
+            url: urlHead + 'getSingleArctile',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            params:{
+                id:article_id,
+                graphid:graph_id
+            },
+            withCredentials: true
+            //cache: true, //避免多次请求后台数据
+        }).then(function (response) {
+            $scope.articleDetail = response.data;
+            articleAuthor = $scope.articleDetail.author;
+            $("#ar-content").html( $scope.articleDetail.text);
+
+
+            var ar_name = "";
+            $http({
+                url: urlHead + 'getUserDetail',
+                method: 'post',
+                // contentType: "application/json",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                params:{
+                    id:$scope.articleDetail.author
+                },
+                withCredentials: true
+            }).then(function successCallBack(response) {
+                var data = response.data;
+                ar_name = data.name;
+                $scope.arNam = ar_name;
+            }, function errorCallBack(response) {
+                console.log("erreor");
+            });
+
+        }, function () {
+            console.error("r");
+            console.log(111)
+        });
+
+
+        $http({
+            url: urlHead + 'increaseArticlesBrowse',
+            method: 'post',
+            // contentType: "application/json",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            params:{
+                id:article_id,
+                graphid:graph_id
+
+            },
+            withCredentials: true
+        }).then(function successCallBack(response) {
+            // console.log(response.data)
+            var data = response.data;
+        }, function errorCallBack(response) {
+            console.log("erreor");
+        });
+
+
+        $scope.praiseArticle = function () {
+            $http({
+                url: urlHead + 'likeArcticle',
+                method: 'post',
+                // contentType: "application/json",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                params:{
+                    id:article_id,
+                    graphid:graph_id,
+                    // author:articleAuthor
+                },
+                withCredentials: true
+            }).then(function successCallBack(response) {
+                // console.log(response.data)
+                var data = response.data;
+                alert("点赞成功")
+                $scope.articleDetail.up++;
+
+            }, function errorCallBack(response) {
+                console.log("erreor");
+            });
+        }
+
+        $scope.reward = function () {
+
+            // console.log()
+            if($('#creditsChoice input[name="credit"]:checked ').val()==null){
+
+            }else{
+                var credits_re = parseInt($('#creditsChoice input[name="credit"]:checked ').val());
+                $http({
+                    url: urlHead + 'motivateAuthor',
+                    method: 'post',
+                    // contentType: "application/json",
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    params:{
+                        motivater:username,
+                        author:$scope.articleDetail.author,
+                        credits:credits_re,
+                    },
+                    withCredentials: true
+                }).then(function successCallBack(response) {
+                    // console.log(response.data)
+                    var data = response.data;
+                    alert(data.retmessage)
+                }, function errorCallBack(response) {
+                    console.log("erreor");
+                });
+
+            }
+
         }
 
     });

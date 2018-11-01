@@ -77,10 +77,16 @@ angular.module('myApp.register', [
                        name:name,
                        password:password
                     }
-                }).then(function (response) {
-                    console.log(11,response);
+                }).then(function successCallBack(response) {
+                    // console.log(11,response);
+                    var data = response.data;
+                    if(data.retmessage =="success"){
+                        if(confirm("注册成功")){
+                            $state.go("login");
+                        }
+                    }
 
-                }, function () {
+                }, function errorCallBack() {
                     console.error("signup Failed");
                 });
 
@@ -89,7 +95,6 @@ angular.module('myApp.register', [
                 alert("请完善信息");
             }
         };
-
 
 
 
