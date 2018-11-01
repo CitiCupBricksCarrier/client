@@ -407,8 +407,6 @@ angular.module('myApp.microIndustryChain.createChainView', [])
                 console.error("Link Failed");
             });
 
-            var article_title = $('div#article-mes h1').html();
-            var article_content_html = $("#article-mes").html();
             var myDate = new Date();
             var yearNow = myDate.getFullYear().toString();
             var monthNow = myDate.getMonth().toString();
@@ -422,43 +420,67 @@ angular.module('myApp.microIndustryChain.createChainView', [])
             var article_id = dateNow;
             var graphid = $scope.graphID;
             var username ="";
+            var userid = "";
+
             $http({
-                url: urlHead + 'getUserDetail',
+                url: urlHead + 'getSession',
                 method: 'post',
                 // contentType: "application/json",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                params:{
-                    id:userid
-                },
                 withCredentials: true
             }).then(function successCallBack(response) {
-                // console.log(response.data)
                 var data = response.data;
-                username = data.name;
+                userid = data;
+                if(userid!=""){
+                    $http({
+                        url: urlHead + 'getUserDetail',
+                        method: 'post',
+                        // contentType: "application/json",
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                        params:{
+                            id:userid
+                        },
+                        withCredentials: true
+                    }).then(function successCallBack(response) {
+                        // console.log(response.data)
+                        var data = response.data;
+                        username = data.name;
+                        if(username != ""){
+                            var article_title = $('div#article-mes h1').html();
+                            var article_content_html = $("#article-mes").html();
+                            $http({
+                                url: urlHead + 'newArcticle',
+                                method: 'post',
+                                // contentType: "application/json",
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                                params:{
+                                    id:article_id,
+                                    graphid:graphid,
+                                    author:username,
+                                    title:article_title,
+                                    text:article_content_html
+                                },
+                                withCredentials: true
+                            }).then(function successCallBack(response) {
+
+                            }, function errorCallBack(response) {
+                                console.log("erreor");
+                            });
+
+                        }
+
+
+                    }, function errorCallBack(response) {
+                        console.log("erreor");
+                    });
+                }
+
+
             }, function errorCallBack(response) {
                 console.log("erreor");
             });
-            if(username != ""){
-                $http({
-                    url: urlHead + 'newArcticle',
-                    method: 'post',
-                    // contentType: "application/json",
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                    params:{
-                        id:article_id,
-                        graphid:graphid,
-                        author:username,
-                        title:article_title,
-                        text:article_content_html
-                    },
-                    withCredentials: true
-                }).then(function successCallBack(response) {
 
-                }, function errorCallBack(response) {
-                    console.log("erreor");
-                });
 
-            }
 
 
 
