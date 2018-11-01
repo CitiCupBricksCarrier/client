@@ -442,6 +442,21 @@ angular.module('myApp.industryFactorAnalyze', [
                 $scope.toShowAnalyzeDetail = true;     //显示分析详情
                 $scope.detailOfMethodToShow = $scope.method_selected;       //要显示的方法
 
+                //显示图表部分
+                $scope.toShowCharts = true;
+                getScatterChart(index_selected_list[0]);        //散点图IC和多空收益都显示
+                //IC
+                if($scope.method_selected.indexOf('IC') >= 0){
+                    getICSeriesAndHeatMapChart(index_selected_list[0]);
+                    var ICValue = parseFloat($scope.RESULT.substring($scope.RESULT.indexOf('值为：')+3));
+                    console.log($scope.RESULT.substring($scope.RESULT.indexOf('值为：')+3))
+                    $scope.toShowICValueChart = true;
+                    initICValueChart($scope.method_selected, ICValue);
+                }else{      //多空收益
+                    $scope.toShowRsSequenceChart = true;
+                    getRsSequenceChart(index_selected_list[0]);
+                }
+
                 $scope.$apply;
             },function errorCallBack(response) {
                 console.error('分析失败');
@@ -490,29 +505,116 @@ angular.module('myApp.industryFactorAnalyze', [
             });
         }
 
-        // initICOriginalChart();
+        /**
+         * 获取echarts数据、初始化、控制显示等
+         */
+        $scope.toShowCharts = false;
+        $scope.toShowOriginalChart = false;
+        $scope.toShowICSeriesChart = false;
+        $scope.toShowICQQChart = false;
+        $scope.toShowICHeatMapChart = false;
+        $scope.toShowICValueChart = false;
+        $scope.toShowRsSequenceChart = false;
+
+        // getScatterChart('安全性-存货周转率');
+        //获取散点图
+        function getScatterChart(index) {
+            $http({
+                method: 'post',
+                url: urlHead+'CorrelationAnalysis/ScatterChart',
+                params: {
+                    // index: index_selected_list[0]
+                    index: index
+                },
+                // transformRequest: angular.identity,     //使用angular传参认证
+            }).then(function successCallBack(response) {
+                console.log(response.data);
+                var data = response.data;
+                $scope.toShowOriginalChart = true;
+                initOriginalChart('安全性-存货周转率', data.xAxis, data.yIndex, data.yPrice);
+            },function errorCallBack(response) {
+                console.error('获取散点图失败');
+            });
+        }
+        // getICSeriesAndHeatMapChart('安全性-存货周转率');
+        //获取IC序列图和热力图
+        function getICSeriesAndHeatMapChart(index) {
+            $http({
+                method: 'post',
+                url: urlHead+'CorrelationAnalysis/IcRelevantChart',
+                params: {
+                    // index: index_selected_list[0]
+                    index: index
+                },
+                // transformRequest: angular.identity,     //使用angular传参认证
+            }).then(function successCallBack(response) {
+                console.log(response.data);
+                var originalChart = response.data.OriginalChart;
+                var heatMapChart = response.data.ThermodynamicChart;
+                $scope.IC_mean = response.data.mean.toFixed(4);
+                $scope.IC_std = response.data.std.toFixed(4);
+
+                $scope.toShowICSeriesChart = true;
+                $scope.toShowICHeatMapChart = true;
+                initICSeriesChart(originalChart.xAxis, originalChart.yAxis);
+                initICHeatMapChart(heatMapChart.xAxis, heatMapChart.yAxis, heatMapChart.dataArray);
+            },function errorCallBack(response) {
+                console.error('获取IC序列图和热力图失败');
+            });
+        }
+        // getRsSequenceChart('安全性-存货周转率');
+        //获取多空收益
+        function getRsSequenceChart(index) {
+            $http({
+                method: 'post',
+                url: urlHead+'CorrelationAnalysis/RsSequenceDiagram',
+                params: {
+                    // index: index_selected_list[0]
+                    index: index
+                },
+                // transformRequest: angular.identity,     //使用angular传参认证
+            }).then(function successCallBack(response) {
+                console.log(response.data);
+                var data = response.data;
+                $scope.toShowRsSequenceChart = true;
+                initRsSequenceChart(data.xAxis, data.yAxis);
+            },function errorCallBack(response) {
+                console.error('获取多空收益序列图失败');
+            });
+        }
+        // console.log($scope.method_selected)
+        // if($scope.method_selected.indexOf('IC') >= 0){
+        //     var ICValue = parseFloat($scope.RESULT.substring($scope.RESULT.indexOf('值为：')));
+        //     initICValueChart($scope.method_selected, ICValue);
+        // }
+
+        // initOriginalChart();
         // initICSeriesChart();
         // initICQQCharts();
         // initICHeatMapChart();
-        // initICValueChart();
+        // initICValueChart('IC-mean', 0.27);
         /**
          * -----------------------------------------------------------------
          * -----------------------------------------------------------------
          * eCharts
          */
         //IC原始数据图
-        function initICOriginalChart() {
-            var xData = ['xx1','xx2','xx3'];
-            var y0Data = [1,2,3];
-            var y1Data = [3,2,1];
-            var factorName = '指标';
+        function initOriginalChart(factor, xAxis, yPrice, yIndex) {
+            // var xData = ['xx1','xx2','xx3'];
+            // var y0Data = [1,2,3];
+            // var y1Data = [3,2,1];
+            // var factorName = '指标';
+            var xData = xAxis;
+            var y0Data = yIndex;
+            var y1Data = yPrice;
+            var factorName = factor;
 
-            var dom = document.getElementById("ICOriginalChart");
+            var dom = document.getElementById("originalChart");
             var myChart = echarts.init(dom);
             var option;
             option = {
                 title:{
-                    text: 'IC原始数据',
+                    text: '原始数据',
                     left: 'center'
                 },
                 legend:{
@@ -581,10 +683,13 @@ angular.module('myApp.industryFactorAnalyze', [
             }
         }
         //IC值序列图
-        function initICSeriesChart() {
-            var xData = ['2016-10-06','2016-12-08','2017-5-06'];
-            var y0Data = [1,2.5,3];
-            var y1Data = [3,1.5,1];
+        function initICSeriesChart(xAxis, yAxis) {
+            // var xData = ['2016-10-06','2016-12-08','2017-5-06'];
+            // var y0Data = [1,2.5,3];
+            // var y1Data = [3,1.5,1];
+
+            var xData = xAxis;
+            var y0Data = yAxis;
 
             var dom = document.getElementById("ICSeriesChart");
             var myChart = echarts.init(dom);
@@ -594,10 +699,10 @@ angular.module('myApp.industryFactorAnalyze', [
                     text: 'IC值序列',
                     left: 'center'
                 },
-                legend:{
-                    data:['IC', '1 month moving avg'],
-                    top: 'bottom'
-                },
+                // legend:{
+                //     data:['IC', '1 month moving avg'],
+                //     top: 'bottom'
+                // },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer:{
@@ -642,13 +747,13 @@ angular.module('myApp.industryFactorAnalyze', [
                         data: y0Data,
                         symbol: 'none'
                     },
-                    {
-                        name: '1 month moving avg',
-                        type: 'line',
-                        smooth: false,
-                        data: y1Data,
-                        symbol: 'none'
-                    }
+                    // {
+                    //     name: '1 month moving avg',
+                    //     type: 'line',
+                    //     smooth: false,
+                    //     data: y1Data,
+                    //     symbol: 'none'
+                    // }
                 ]
             }
             if (option && typeof option === "object") {
@@ -752,17 +857,22 @@ angular.module('myApp.industryFactorAnalyze', [
             }
         }
         //IC热力图
-        function initICHeatMapChart() {
-            var xData = [1,2,3,4];
-            var yData = [2016,2015,2014,2013];
-            var data = [[0,0,1],[1,0,1],[2,0,2],[3,0,4],[0,1,2],[1,1,5],[2,1,0],[3,1,3],[0,2,1],[1,2,1],[2,2,2],[3,2,4],[0,3,6],[1,3,4],[2,3,1],[3,3,8]];
+        function initICHeatMapChart(xAxis, yAxis, dataArray) {
+            // var xData = [1,2,3,4];
+            // var yData = [2016,2015,2014,2013];
+            // var data = [[0,0,1],[1,0,1],[2,0,2],[3,0,4],[0,1,2],[1,1,5],[2,1,0],[3,1,3],[0,2,1],[1,2,1],[2,2,2],[3,2,4],[0,3,6],[1,3,4],[2,3,1],[3,3,8]];
+            var xData = xAxis;
+            var yData = yAxis;
+            var data = dataArray.map(function (item) {
+                return [item.x, item.y, item.value];
+            });
 
             var dom = document.getElementById("ICHeatMapChart");
             var myChart = echarts.init(dom);
             var option;
             option = {
                 title: {
-                    text: '1 Period IC Normal Dist. Q-Q',
+                    text: 'IC热力图',
                     left: 'center'
                 },
                 tooltip: {
@@ -788,7 +898,7 @@ angular.module('myApp.industryFactorAnalyze', [
                 },
                 visualMap: {
                     min: 0,
-                    max: 10,
+                    max: 1,
                     calculable: true,
                     orient: 'horizontal',
                     left: 'center',
@@ -799,8 +909,12 @@ angular.module('myApp.industryFactorAnalyze', [
                     data: data,
                     label: {
                         normal: {
-                            show: true
-                        }
+                            show: true,
+                            formatter: function (item) {
+                                // console.log(item);
+                                return item.value[2].toFixed(3);        //保留3位
+                            }
+                        },
                     },
                     itemStyle: {
                         emphasis: {
@@ -815,10 +929,30 @@ angular.module('myApp.industryFactorAnalyze', [
             }
         }
         //ICValue图
-        function initICValueChart() {
-            var icName = 'IC-mean';
-            var icValue = 0.07;
-            var markLineData = [0.02, 0.05, 0.1];
+        function initICValueChart(name, value) {
+            // var icName = 'IC-mean';
+            // var icValue = 0.07;
+            var icName = name;
+            var icValue = value;
+            var markLineData = [0.02, 0.05, 0.1];       //默认是IC-mean的
+            var markAreaDesc = ['您所选择的指标和行业股票的收益率之间几乎没有相关性',
+                '您所选择的指标和行业股票的收益率之间相关性较弱',
+                '您所选择的指标和行业股票的收益率之间有相关性',
+                '您所选择的指标和行业股票的收益率之间有较强的相关性'];
+            if(name == 'IC-IR'){
+                markLineData = [0.2, 0.5, 0.7];
+                markAreaDesc = ['您所选择的指标和行业股票的收益率之间几乎没有相关性',
+                    '您所选择的指标和行业股票的收益率之间相关性较弱，且相关性不太稳定',
+                    '您所选择的指标和行业股票的收益率之间有相关性，且相关性较稳定',
+                    '您所选择的指标和行业股票的收益率之间有较强的相关性，且相关性稳定'];
+            }
+            else if(name == 'IC-T'){
+                markLineData = [0.2, 0.5, 0.7];
+                markAreaDesc = ['您所选择的指标和行业股票的收益率之间有较显著的相关性',
+                    '您所选择的指标和行业股票的收益率之间有相关性',
+                    '您所选择的指标和行业股票的收益率之间相关性较不显著',
+                    '您所选择的指标和行业股票的收益率之间几乎没有相关性'];
+            }
 
             var dom = document.getElementById("ICValueChart");
             var myChart = echarts.init(dom);
@@ -857,7 +991,8 @@ angular.module('myApp.industryFactorAnalyze', [
                 yAxis: [
                     {
                         name: '值',
-                        type: 'value'
+                        type: 'value',
+                        max: 1
                     }
                 ],
                 series: [
@@ -865,18 +1000,41 @@ angular.module('myApp.industryFactorAnalyze', [
                         type: 'bar',
                         data: [icValue],
                         barWidth: 65,
+                        label: {
+                            normal:{
+                                show: true
+                            }
+                        },
                         markLine:{
+                            lineStyle:{
+                                normal:{
+                                    color: '#c3c3c3'
+                                }
+                            },
                             data: [
                                 {
-                                    yAxis: 0.02,
-                                    color: '#c3c3c3',
+                                    yAxis: markLineData[0],
+                                    lineStyle:{
+                                        normal:{
+                                            color: 'rgb(181,225,172)'
+                                        }
+                                    },
                                 },
                                 {
-                                    yAxis: 0.05,
-                                    color: '#c3c3c3',
+                                    yAxis: markLineData[1],
+                                    lineStyle:{
+                                        normal:{
+                                            color: 'rgb(249,193,112)',
+                                        }
+                                    },
                                 },
                                 {
-                                    yAxis: 0.1
+                                    yAxis: markLineData[2],
+                                    lineStyle:{
+                                        normal:{
+                                            color: 'rgb(118,229,233)',
+                                        }
+                                    },
                                 }
                             ]
                         },
@@ -897,15 +1055,115 @@ angular.module('myApp.industryFactorAnalyze', [
                             data:[
                                 [
                                     {
-                                        name: '0.02<x<=0.05: 您所选择的指标和行业股票的收益率之间相关性较弱',
-                                        yAxis: 0.02
+                                        name: 'x<='+markLineData[0]+': '+markAreaDesc[0],
+                                        yAxis: 0
                                     },
                                     {
-                                        yAxis: 0.05
+                                        yAxis: markLineData[0]
+                                    },
+                                ],
+                                [
+                                    {
+                                        name: markLineData[0]+'<x<='+markLineData[1]+': '+markAreaDesc[1],
+                                        yAxis: markLineData[0]
+                                    },
+                                    {
+                                        yAxis: markLineData[1]
+                                    },
+                                ],
+                                [
+                                    {
+                                        name: markLineData[1]+'<x<='+markLineData[2]+': '+markAreaDesc[2],
+                                        yAxis: markLineData[1]
+                                    },
+                                    {
+                                        yAxis: markLineData[2]
+                                    },
+                                ],
+                                [
+                                    {
+                                        name: 'x>'+markLineData[2]+': '+markAreaDesc[3],
+                                        // type: 'min',
+                                        yAxis: markLineData[2]
+                                    },
+                                    {
+                                        yAxis: 1
                                     },
                                 ]
                             ]
                         }
+                    }
+                ]
+            }
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+        //初始化多空收益序列图
+        function initRsSequenceChart(xAxis, yAxis) {
+            var xData = xAxis;
+            var yData = yAxis;
+            // var data = [[0,0],[1,1],[2,2.5],[3,3],[4,3.5]];
+
+            var dom = document.getElementById("RsSequenceChart");
+            var myChart = echarts.init(dom);
+            var option;
+            option = {
+                title:{
+                    text: '多空收益',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer:{
+                        show: true,
+                        type : 'cross',
+                        lineStyle: {
+                            type : 'dashed',
+                            width : 1
+                        }
+                    },
+                    // formatter: function (item) {
+                    //     console.log(item);
+                    //     return item[0].value.toFixed(4);
+                    // }
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataZoom : {show: true},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                xAxis : [
+                    {
+                        // name: 'Normal Distribution Quantile',
+                        // nameLocation: 'center',
+                        // nameGap: 30,
+                        type : 'category',
+                        data: xData
+                    }
+                ],
+                yAxis: [
+                    {
+                        // name: 'Observed Quantile',
+                        // nameLocation: 'center',
+                        // nameRotate: 90,
+                        // nameGap: 35,
+                        type: 'value',
+                        boundaryGap : ['5%', '5%'],
+                        // axisLine:{
+                        //     onZero: false,
+                        // }
+                    }
+                ],
+                series: [
+                    {
+                        type: 'line',
+                        smooth: false,
+                        data: yData,
                     }
                 ]
             }

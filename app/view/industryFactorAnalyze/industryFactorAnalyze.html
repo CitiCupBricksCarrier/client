@@ -68,8 +68,8 @@
             <div class="method_container">
                 <div class="section">
                     <!--<h4>全部方法</h4>-->
-                    <div class="item_method" name="IC-MEAN" style="background-color: rgb(65,150,240);">
-                        <h4>IC-MEAN</h4>
+                    <div class="item_method" name="IC-mean" style="background-color: rgb(65,150,240);">
+                        <h4>IC-mean</h4>
                         <p>衡量您所选择的因子的选股能力，越大，则说明您选择的因子在您选择股票时越有效</p>
                     </div>
                     <div class="item_method" name="IC-IR" style="background-color: rgb(181,225,172);">
@@ -137,16 +137,21 @@
                 </div>
                 <div ng-switch-when="多空收益">
                     <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/多空收益1.png"/>
+                    <br/>
                     <img class="img_method" src="view/industryFactorAnalyze/pic_industryFactorAnalyze/多空收益2.png"/>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--<div id="ICOriginalChart" style="width: 700px; height: 400px;"></div>-->
-    <!--<div id="ICSeriesChart" style="width: 700px; height: 400px;"></div>-->
-    <!--<div id="ICQQChart" style="width: 700px; height: 400px;"></div>-->
-    <!--<div id="ICHeatMapChart" style="width: 700px; height: 400px;"></div>-->
-    <!--<div id="ICValueChart" style="width: 700px; height: 400px;"></div>-->
+    <div ng-show="toShowCharts">
+        <div ng-show="toShowICValueChart" id="ICValueChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowOriginalChart" id="originalChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowICSeriesChart"><label>IC-mean:{{IC_mean}}&emsp;</label><label>&emsp;IC-std:{{IC_std}}</label></div>
+        <div ng-show="toShowICSeriesChart" id="ICSeriesChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowICQQChart" id="ICQQChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowICHeatMapChart" id="ICHeatMapChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowRsSequenceChart" id="RsSequenceChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+    </div>
 </div>
 <link rel="stylesheet" href="view/industryFactorAnalyze/industryFactorAnalyze.css"/>

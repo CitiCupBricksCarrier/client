@@ -204,6 +204,9 @@
 .resultAndDetail .analyzeDetail{
     font-size: 18px;
 }
+.resultAndDetail .img_method{
+    max-width: 80%;
+}
 
 a{
     cursor: pointer;
