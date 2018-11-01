@@ -11,6 +11,22 @@
 .part{
     position: relative;
 }
+/*指标的介绍*/
+.index_description{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    color: #c3c3c3;
+    font-size: 12px;
+    width: 300px;
+
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #535353;
+    border-radius: 6px;
+    background-color: rgba(43,43,43,0.9);
+    z-index: 10;
+}
 .part .index_container{
     /*display: inline-block;*/
 

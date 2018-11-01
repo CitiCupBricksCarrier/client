@@ -1,6 +1,11 @@
 <david-nav></david-nav>
 
 <div class="container">
+    <div class="index_description">
+        {{description_toShow}}
+        <!--对流动资产周转率的补充说明,是衡量企业销售能力及存货管理水平的综合性指标-->
+    </div>
+
     <div id="index" class="part" style="margin-top: 100px;">
         <h1>Step1.选择指标</h1>
         <div class="selected_container">已选指标：<label>{{index_selected}}</label></div>
@@ -32,6 +37,7 @@
                             <div>估值类-股息率</div>
                         </div>
                     </div>
+                    <p style="margin-top: 50px;">TIP: 悬停查看详细信息</p>
                 </div>
                 <div class="section" style="background-color: rgb(248,248,248);">
                     <img src="view/industryFactorAnalyze/pic_industryFactorAnalyze/全部.png"/>
@@ -156,5 +162,6 @@
         <div ng-show="toShowICHeatMapChart" id="ICHeatMapChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
         <div ng-show="toShowRsSequenceChart" id="RsSequenceChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
     </div>
+
 </div>
 <link rel="stylesheet" href="view/industryFactorAnalyze/industryFactorAnalyze.css"/>

@@ -330,12 +330,61 @@ angular.module('myApp.industryFactorAnalyze', [
          * 由ready函数延时执行，给时间加载完毕
          */
         function realyReady() {
+            //调整过长的item_index
             $('.item_index').each(function () {
-                if($(this)[0].scrollWidth > $(this).width()+28){
+                if ($(this)[0].scrollWidth > $(this).width() + 28) {
                     // console.log($(this).attr('name'));
                     $(this).addClass('long')
                 }
             });
+
+            //添加指标的监听，显示指标介绍
+            var timer;
+            var index_toShowDescription;
+            $('.item_recommend').mousemove(showIndexDescription);
+            $('.item_index').mousemove(showIndexDescription);
+            function showIndexDescription(e) {
+                index_toShowDescription = $(this).attr('name');
+                clearTimeout(timer);
+                timer = null;
+                timer = setTimeout(function () {
+                    $scope.description_toShow = getDescriptionAndNum(index_toShowDescription).description;
+                    $('.index_description').css('left', e.clientX);
+                    $('.index_description').css('top', e.clientY);
+                    $('.index_description').show();
+                    $scope.$apply();
+                }, 500);
+            }
+            $('.item_recommend').hover(function () {
+                //
+            }, function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    $('.index_description').hide();
+                }, 200);
+            });
+            $('.item_index').hover(function () {
+                //
+            }, function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    $('.index_description').hide();
+                }, 200);
+            });
+            //移到详情上时持续显示
+            $('.index_description').hover(function () {
+                clearTimeout(timer);
+                $('.index_description').show();
+            }, function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    $('.index_description').hide();
+                }, 200);
+            });
+
+            // $('.item_recommend').mouseout(function () {
+            //     clearTimeout(timer);
+            // });
         }
 
         /**
