@@ -460,16 +460,15 @@ angular.module('myApp.microIndustryChain.createChainView', [])
                                 title:article_title,
                                 text:article_content_html
                             }
+                            data_s = JSON.stringify(data_s);
 
                             $http({
                                 url: urlHead + 'newArcticle',
                                 method: 'post',
-                                contentType: "multipart/form-data",
-                                //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                                 data:{
-                                    data:data_s
+                                    data: data_s
                                 },
-                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                                 transformRequest: function(obj) {
                                     var str = [];
                                     for (var p in obj) {
