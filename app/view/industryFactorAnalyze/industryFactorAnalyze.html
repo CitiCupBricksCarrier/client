@@ -145,13 +145,16 @@
     </div>
 
     <div ng-show="toShowCharts">
-        <div ng-show="toShowICValueChart" id="ICValueChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
-        <div ng-show="toShowOriginalChart" id="originalChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
-        <div ng-show="toShowICSeriesChart"><label>IC-mean:{{IC_mean}}&emsp;</label><label>&emsp;IC-std:{{IC_std}}</label></div>
-        <div ng-show="toShowICSeriesChart" id="ICSeriesChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
-        <div ng-show="toShowICQQChart" id="ICQQChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
-        <div ng-show="toShowICHeatMapChart" id="ICHeatMapChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
-        <div ng-show="toShowRsSequenceChart" id="RsSequenceChart" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowICValueChart" id="ICValueChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+    </div>
+    <div ng-show="toShowCharts" ng-repeat="(index, item) in index_selected_list">
+        <h3>{{item}}</h3>
+        <div ng-show="toShowOriginalChart" id="originalChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowICSeriesChart"><label>IC-mean:{{IC_mean[index]}}&emsp;</label><label>&emsp;IC-std:{{IC_std[index]}}</label></div>
+        <div ng-show="toShowICSeriesChart" id="ICSeriesChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <!--<div ng-show="toShowICQQChart" id="ICQQChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>-->
+        <div ng-show="toShowICHeatMapChart" id="ICHeatMapChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
+        <div ng-show="toShowRsSequenceChart" id="RsSequenceChart{{index}}" style="width: 700px; height: 400px; margin: 30px auto;"></div>
     </div>
 </div>
 <link rel="stylesheet" href="view/industryFactorAnalyze/industryFactorAnalyze.css"/>

@@ -84,6 +84,18 @@ angular.module('myApp.industryFactorAnalyze', [
                 $scope.toShowRatio = true;
             }
 
+            //初始化图表部分
+            $scope.toShowCharts = false;
+            $scope.toShowOriginalChart = false;
+            $scope.toShowICSeriesChart = false;
+            $scope.toShowICQQChart = false;
+            $scope.toShowICHeatMapChart = false;
+            $scope.toShowICValueChart = false;
+            $scope.toShowRsSequenceChart = false;
+
+            $scope.IC_mean = [];
+            $scope.IC_std = [];
+
             // switch ($scope.method_selected){
             //     case 'IC-mean':
             //         $scope.RESULT='您所选择的指标和行业股票的收益率之间有较强的相关性。';
@@ -444,17 +456,17 @@ angular.module('myApp.industryFactorAnalyze', [
 
                 //显示图表部分
                 $scope.toShowCharts = true;
-                getScatterChart(index_selected_list[0]);        //散点图IC和多空收益都显示
+                getScatterChart(index_selected_list[0], 0);        //散点图IC和多空收益都显示
                 //IC
                 if($scope.method_selected.indexOf('IC') >= 0){
-                    getICSeriesAndHeatMapChart(index_selected_list[0]);
+                    getICSeriesAndHeatMapChart(index_selected_list[0], 0);
                     var ICValue = parseFloat($scope.RESULT.substring($scope.RESULT.indexOf('值为：')+3));
                     console.log($scope.RESULT.substring($scope.RESULT.indexOf('值为：')+3))
                     $scope.toShowICValueChart = true;
                     initICValueChart($scope.method_selected, ICValue);
                 }else{      //多空收益
                     $scope.toShowRsSequenceChart = true;
-                    getRsSequenceChart(index_selected_list[0]);
+                    getRsSequenceChart(index_selected_list[0], 0);
                 }
 
                 $scope.$apply;
@@ -495,6 +507,26 @@ angular.module('myApp.industryFactorAnalyze', [
                 $scope.toShowAnalyzeDetail = true;     //显示分析详情
                 $scope.detailOfMethodToShow = $scope.method_selected;       //要显示的方法
 
+                //显示图表部分
+                $scope.toShowCharts = true;
+
+                for(var i = 0;i < index_selected_list.length; i++){
+                    if($scope.method_selected.indexOf('IC') >= 0){
+                        getScatterChart(index_selected_list[i], i);        //散点图IC和多空收益都显示
+                        getICSeriesAndHeatMapChart(index_selected_list[i], i);
+                    }else{      //多空收益
+                        $scope.toShowRsSequenceChart = true;
+                        getRsSequenceChart(index_selected_list[i], i);
+                    }
+                }
+                //IC
+                if($scope.method_selected.indexOf('IC') >= 0){
+                    var ICValue = parseFloat($scope.RESULT.substring($scope.RESULT.indexOf('值为：')+3));
+                    console.log($scope.RESULT.substring($scope.RESULT.indexOf('值为：')+3))
+                    $scope.toShowICValueChart = true;
+                    initICValueChart($scope.method_selected, ICValue);
+                }
+
                 $scope.$apply;
             },function errorCallBack(response) {
                 console.error('分析失败');
@@ -516,9 +548,12 @@ angular.module('myApp.industryFactorAnalyze', [
         $scope.toShowICValueChart = false;
         $scope.toShowRsSequenceChart = false;
 
+        $scope.IC_mean = [];
+        $scope.IC_std = [];
+
         // getScatterChart('安全性-存货周转率');
         //获取散点图
-        function getScatterChart(index) {
+        function getScatterChart(index, chartIndex) {
             $http({
                 method: 'post',
                 url: urlHead+'CorrelationAnalysis/ScatterChart',
@@ -531,14 +566,14 @@ angular.module('myApp.industryFactorAnalyze', [
                 console.log(response.data);
                 var data = response.data;
                 $scope.toShowOriginalChart = true;
-                initOriginalChart('安全性-存货周转率', data.xAxis, data.yIndex, data.yPrice);
+                initOriginalChart(index, data.xAxis, data.yIndex, data.yPrice, chartIndex);
             },function errorCallBack(response) {
                 console.error('获取散点图失败');
             });
         }
         // getICSeriesAndHeatMapChart('安全性-存货周转率');
         //获取IC序列图和热力图
-        function getICSeriesAndHeatMapChart(index) {
+        function getICSeriesAndHeatMapChart(index, chartIndex) {
             $http({
                 method: 'post',
                 url: urlHead+'CorrelationAnalysis/IcRelevantChart',
@@ -551,20 +586,22 @@ angular.module('myApp.industryFactorAnalyze', [
                 console.log(response.data);
                 var originalChart = response.data.OriginalChart;
                 var heatMapChart = response.data.ThermodynamicChart;
-                $scope.IC_mean = response.data.mean.toFixed(4);
-                $scope.IC_std = response.data.std.toFixed(4);
 
                 $scope.toShowICSeriesChart = true;
                 $scope.toShowICHeatMapChart = true;
-                initICSeriesChart(originalChart.xAxis, originalChart.yAxis);
-                initICHeatMapChart(heatMapChart.xAxis, heatMapChart.yAxis, heatMapChart.dataArray);
+
+                $scope.IC_mean.push(response.data.mean.toFixed(4));
+                $scope.IC_std.push(response.data.std.toFixed(4));
+
+                initICSeriesChart(originalChart.xAxis, originalChart.yAxis, chartIndex);
+                initICHeatMapChart(heatMapChart.xAxis, heatMapChart.yAxis, heatMapChart.dataArray, chartIndex);
             },function errorCallBack(response) {
                 console.error('获取IC序列图和热力图失败');
             });
         }
         // getRsSequenceChart('安全性-存货周转率');
         //获取多空收益
-        function getRsSequenceChart(index) {
+        function getRsSequenceChart(index, chartIndex) {
             $http({
                 method: 'post',
                 url: urlHead+'CorrelationAnalysis/RsSequenceDiagram',
@@ -577,7 +614,7 @@ angular.module('myApp.industryFactorAnalyze', [
                 console.log(response.data);
                 var data = response.data;
                 $scope.toShowRsSequenceChart = true;
-                initRsSequenceChart(data.xAxis, data.yAxis);
+                initRsSequenceChart(data.xAxis, data.yAxis, chartIndex);
             },function errorCallBack(response) {
                 console.error('获取多空收益序列图失败');
             });
@@ -599,7 +636,7 @@ angular.module('myApp.industryFactorAnalyze', [
          * eCharts
          */
         //IC原始数据图
-        function initOriginalChart(factor, xAxis, yPrice, yIndex) {
+        function initOriginalChart(factor, xAxis, yPrice, yIndex, chartIndex) {
             // var xData = ['xx1','xx2','xx3'];
             // var y0Data = [1,2,3];
             // var y1Data = [3,2,1];
@@ -609,7 +646,8 @@ angular.module('myApp.industryFactorAnalyze', [
             var y1Data = yPrice;
             var factorName = factor;
 
-            var dom = document.getElementById("originalChart");
+            var dom = document.getElementById("originalChart"+chartIndex);
+            // console.log(dom)
             var myChart = echarts.init(dom);
             var option;
             option = {
@@ -683,7 +721,7 @@ angular.module('myApp.industryFactorAnalyze', [
             }
         }
         //IC值序列图
-        function initICSeriesChart(xAxis, yAxis) {
+        function initICSeriesChart(xAxis, yAxis, chartIndex) {
             // var xData = ['2016-10-06','2016-12-08','2017-5-06'];
             // var y0Data = [1,2.5,3];
             // var y1Data = [3,1.5,1];
@@ -691,7 +729,7 @@ angular.module('myApp.industryFactorAnalyze', [
             var xData = xAxis;
             var y0Data = yAxis;
 
-            var dom = document.getElementById("ICSeriesChart");
+            var dom = document.getElementById("ICSeriesChart"+chartIndex);
             var myChart = echarts.init(dom);
             var option;
             option = {
@@ -857,7 +895,7 @@ angular.module('myApp.industryFactorAnalyze', [
             }
         }
         //IC热力图
-        function initICHeatMapChart(xAxis, yAxis, dataArray) {
+        function initICHeatMapChart(xAxis, yAxis, dataArray, chartIndex) {
             // var xData = [1,2,3,4];
             // var yData = [2016,2015,2014,2013];
             // var data = [[0,0,1],[1,0,1],[2,0,2],[3,0,4],[0,1,2],[1,1,5],[2,1,0],[3,1,3],[0,2,1],[1,2,1],[2,2,2],[3,2,4],[0,3,6],[1,3,4],[2,3,1],[3,3,8]];
@@ -867,7 +905,7 @@ angular.module('myApp.industryFactorAnalyze', [
                 return [item.x, item.y, item.value];
             });
 
-            var dom = document.getElementById("ICHeatMapChart");
+            var dom = document.getElementById("ICHeatMapChart"+chartIndex);
             var myChart = echarts.init(dom);
             var option;
             option = {
@@ -1100,12 +1138,12 @@ angular.module('myApp.industryFactorAnalyze', [
             }
         }
         //初始化多空收益序列图
-        function initRsSequenceChart(xAxis, yAxis) {
+        function initRsSequenceChart(xAxis, yAxis, chartIndex) {
             var xData = xAxis;
             var yData = yAxis;
             // var data = [[0,0],[1,1],[2,2.5],[3,3],[4,3.5]];
 
-            var dom = document.getElementById("RsSequenceChart");
+            var dom = document.getElementById("RsSequenceChart"+chartIndex);
             var myChart = echarts.init(dom);
             var option;
             option = {
