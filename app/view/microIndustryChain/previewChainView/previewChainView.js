@@ -647,7 +647,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             //cache: true, //避免多次请求后台数据
         }).then(function (response) {
             $scope.articleDetail = response.data;
-            articleAuthor = articleDetail.author;
+            articleAuthor = $scope.articleDetail.author;
         }, function () {
             console.error("r");
         });

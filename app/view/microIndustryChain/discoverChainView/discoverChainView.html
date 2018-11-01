@@ -3,7 +3,7 @@
 
 
     <div class="graphContainer">
-        <div ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphd})" class="graphCell" ng-repeat="article in allArticleList | limitTo:4">
+        <div ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class="graphCell" ng-repeat="article in allArticleList | limitTo:4">
             <div>
                 <img  src="view/microIndustryChain/mineChainView/cover.png"  class="graph-cover">
             </div>
@@ -29,10 +29,10 @@
                 </div>
             </div>
         </div>
-    </div>i
+    </div>
     <div  class="graphLiContainer">
         <div class="graphList">
-            <div  ng-if="$index>3" ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphId})" class = "graphLiDiv" ng-repeat="article in allArticleList" >
+            <div  ng-if="$index>3" ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class = "graphLiDiv" ng-repeat="article in allArticleList" >
                 <div class="graph-li-title graph-li-con">
                     {{article.title}}
                 </div>
