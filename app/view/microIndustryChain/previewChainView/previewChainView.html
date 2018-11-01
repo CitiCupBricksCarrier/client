@@ -96,9 +96,9 @@
             <div class="head-title">
                 <h1>{{articleDetail.title}}</h1></div>
             <div class="head-detail">
-                <p>浏览 {{articleDetail.watchNum}}</p>
-                <p>评论 {{commentList.size()}}</p>
-                <p>赞同 {{commentList.up}}</p>
+                <p>浏览 {{articleDetail.watchnum}}</p>
+                <p>评论 {{commentList.length}}</p>
+                <p>赞同 {{articleDetail.up}}</p>
                 <div class="clear"></div>
             </div>
         </div>
@@ -157,7 +157,10 @@
                     <!--詹东东介绍，当前的创新ICT技术，在整个汽车产业的上中下游都发挥着重要作用！对于新能源汽车的整车制造商来说，信息化的平台将大大驱动业务的发展，包括汽车零部件 标准化、信息化处理、物流、信息流、业务流、资金流的全面整合同步，以数字化工厂、智能工厂、全球化布局等能力推动汽车定制化生产，精益生产和柔性化生产，实现人车环境互联发展。-->
                     <!--以中企通信ICT技术为例，通过MPLS专用网络、云计算、信息安全与数据中心托管等解决方案，将汽车整车制造厂如小康股份、中车以及一些新势力造车企业的业务提供制造过程与企业运营的横向、产业间与上下游供应生态的纵向，以及用户至研发的端到端数据连接平台、计算平台与信息安全保障平台，通过平台、技术、运营、服务等 方式实现高效战略布局，减少中间的的弯路和复杂环节。-->
                 <!--</p>-->
-                {{articleDetail.text}}
+                <div id ="ar-content">
+                
+                </div>
+
                 <div class="support">
                     <!--<div class="praise ">-->
                     <!--<span id="praise" data-content="给作者点赞"><img src="view/microIndustryChain/previewChainView/images/zan.png" id="praise-img" /></span>-->

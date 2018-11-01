@@ -648,6 +648,7 @@ angular.module('myApp.microIndustryChain.previewChainView', [
         }).then(function (response) {
             $scope.articleDetail = response.data;
             articleAuthor = $scope.articleDetail.author;
+            $("#ar-content").html( $scope.articleDetail.text);
         }, function () {
             console.error("r");
         });

@@ -142,6 +142,10 @@ body {
     background-color:white;
 }
 
+#ar-content{
+    margin: 5px;
+}
+
 .article-tip{
     color:rgb(152,145,199);
     padding:10px 0 0px 5%;
