@@ -649,8 +649,29 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             $scope.articleDetail = response.data;
             articleAuthor = $scope.articleDetail.author;
             $("#ar-content").html( $scope.articleDetail.text);
+
+
+            var ar_name = "";
+            $http({
+                url: urlHead + 'getUserDetail',
+                method: 'post',
+                // contentType: "application/json",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                params:{
+                    id:$scope.articleDetail.author
+                },
+                withCredentials: true
+            }).then(function successCallBack(response) {
+                var data = response.data;
+                ar_name = data.name;
+                $scope.arNam = ar_name;
+            }, function errorCallBack(response) {
+                console.log("erreor");
+            });
+
         }, function () {
             console.error("r");
+            console.log(111)
         });
 
 
@@ -688,7 +709,9 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             }).then(function successCallBack(response) {
                 // console.log(response.data)
                 var data = response.data;
+                alert("点赞成功")
                 $scope.articleDetail.up++;
+
             }, function errorCallBack(response) {
                 console.log("erreor");
             });
@@ -708,13 +731,14 @@ angular.module('myApp.microIndustryChain.previewChainView', [
                     headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                     params:{
                         motivater:username,
-                        author:articleAuthor,
+                        author:$scope.articleDetail.author,
                         credits:credits_re,
                     },
                     withCredentials: true
                 }).then(function successCallBack(response) {
                     // console.log(response.data)
                     var data = response.data;
+                    alert(data.retmessage)
                 }, function errorCallBack(response) {
                     console.log("erreor");
                 });

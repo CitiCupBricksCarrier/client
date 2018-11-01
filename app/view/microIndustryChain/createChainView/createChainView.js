@@ -456,7 +456,7 @@ angular.module('myApp.microIndustryChain.createChainView', [])
                                 params:{
                                     id:article_id,
                                     graphid:graphid,
-                                    author:username,
+                                    author:userid,
                                     title:article_title,
                                     text:article_content_html
                                 },
