@@ -146,6 +146,9 @@ body {
 #ar-content{
     margin: 5px;
 }
+#ar-content h1{
+    text-align: center;
+}
 
 .article-tip{
     color:rgb(152,145,199);

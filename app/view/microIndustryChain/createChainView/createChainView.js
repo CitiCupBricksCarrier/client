@@ -448,20 +448,38 @@ angular.module('myApp.microIndustryChain.createChainView', [])
                         if(username != ""){
                             var article_title = $('div#article-mes h1').html();
                             var article_content_html = $("#article-mes").html();
+                            // for (var i = 0;i<article_content_html.length;i++){
+                            //     console.log(article_content_html[i].inner)
+                            // }
+                            // console.log(article_content_html)
+
+                            var data_s = {
+                                id:article_id,
+                                graphid:graphid,
+                                author:userid,
+                                title:article_title,
+                                text:article_content_html
+                            }
+
                             $http({
                                 url: urlHead + 'newArcticle',
                                 method: 'post',
-                                // contentType: "application/json",
-                                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                                params:{
-                                    id:article_id,
-                                    graphid:graphid,
-                                    author:userid,
-                                    title:article_title,
-                                    text:article_content_html
+                                contentType: "multipart/form-data",
+                                //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                                data:{
+                                    data:data_s
                                 },
-                                withCredentials: true
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                transformRequest: function(obj) {
+                                    var str = [];
+                                    for (var p in obj) {
+                                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                    }
+                                    return str.join("&");
+                                }
                             }).then(function successCallBack(response) {
+
+                                $state.go('microIndustryChain.previewChainView',{'articleid':article_id,'graphid':graphid})
 
                             }, function errorCallBack(response) {
                                 console.log("erreor");
