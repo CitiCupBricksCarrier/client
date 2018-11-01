@@ -57,6 +57,14 @@
             <div class="line_container part_003"><img class="wholeView cover part_003" src="view/resource/003-展开.png" style="opacity: 1;"/></div>
             <div class="line_container part_002"><img class="wholeView cover part_002" src="view/resource/002-展开.png" style="opacity: 1;"/></div>
             <div class="line_container part_001"><img class="wholeView cover part_001" src="view/resource/001-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon01"><img class="wholeView cover part_icon01" src="view/resource/icon01-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon02"><img class="wholeView cover part_icon02" src="view/resource/icon02-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon03"><img class="wholeView cover part_icon03" src="view/resource/icon03-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon04"><img class="wholeView cover part_icon04" src="view/resource/icon04-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon05"><img class="wholeView cover part_icon05" src="view/resource/icon05-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon06"><img class="wholeView cover part_icon06" src="view/resource/icon06-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon07"><img class="wholeView cover part_icon07" src="view/resource/icon07-展开.png" style="opacity: 1;"/></div>
+            <div class="line_container part_icon08"><img class="wholeView cover part_icon08" src="view/resource/icon08-展开.png" style="opacity: 1;"/></div>
 
             <!--用于点击空白部分弹回-->
             <div id="part_000" name="空白部分" class="part_toTouch part_000" style="opacity: 0;"></div>
@@ -228,6 +236,96 @@
                     </tr>
                 </table>
             </div>
+            <div class="briefAndList_container part_icon01">
+                <div><label class="brief">
+                    汽车及零配件经销属于汽车贸易服务业，主要包括汽车销售、汽车零配件和用品供应、汽车检测维修等。而汽车配件是构成汽车整体的各单元及服务于汽车的产品，具体包含发动机配件、传动系配件、制动系配件、转向系配件、行驶系配件、电器仪表系配件、汽车灯具、电动工具等。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon02">
+                <div><label class="brief">
+                    汽车零售是指汽车经销商对汽车等产品进行货币交易并取得销售收入的交易行为，是消费者支出的重要组成部分，并能通过该指标很好地反映出消费者对经济前景的信心指数，是国内宏观经济发展的重要预警信号。在国内市场竞争激烈的背景下，汽车销售应重视对全流程的跟踪及服务，以增强客户对品牌的认可度。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon03">
+                <div><label class="brief">
+                    行车软件指安装于车内的汽车服务软件，包含行车记录仪、GPS导航仪、车载蓝牙、车载空气净化器、定位追踪器、及能源产品等。其上游涉及软件原料，包含镜头、屏幕、主版、存储卡等；中游为软件制造及研发生产领域；下游销售渠道为4S店、汽配城、数码城、电商平台等。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon04">
+                <div><label class="brief">
+                    机动车辆保险是财产保险的一种，它是以机动车辆本身及机动车辆的第三者责任为保险标的一种运输工具保险，是属于财产保险中的一种新兴保险。随着汽车保有量的上升，汽车保险也随之迅速发展，为汽车工业发展发挥了积极作用。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon05">
+                <div><label class="brief">
+                    电子元器件行业包括电子器件、电子元件两大细分行业。电子器件包含电子真空器件、光电子器件等；电子元件包含印刷电路板、电子敏感元件及传感器等。近年我国电子工业持续高速增长，带动电子元器件产业的强劲发展。我国已经成为扬声器、铝电解电容器、显像管、印制电路板、半导体分立器件等电子元器件的世界生产基地。电子元器件正在向超微化、片式化、模块化、数字化、多功能化、智能化、绿色化、高频、高速、高可靠和低功耗方向发展。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon06">
+                <div><label class="brief">
+                    在汽车零部件生产过程中普遍使用着各种不同的非标组装设备和检测设备。在以大批量生产为特点的汽车零部件制造业，数以万计的专用组装设备和检测设备备应用于不同工序中以及产品的检测中。如单机多型号汽车拉索检测设备、汽车拉索多工位自动检测设备、汽车刹车钳盘启动扭矩检测设备等。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon07">
+                <div><label class="brief">
+                    整车改造指根据需要，将汽车制造厂家生产的原形车进行外部造型、内部造型以及机械性能的改动。其本质是试图将最基本的汽车通过增加、修改或者彻底更换零件，来达到提高汽车性能、美化汽车外观的目的。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="briefAndList_container part_icon08">
+                <div><label class="brief">
+                    石油工业是开采石油、油质岩、天然气以及对其进行炼制加工的工业部门。它包括油、气地质勘探，油、气田开发，油、气开采，石油炼制，油、气运输和储运等单位。石油、天然气的发现和利用，已有几千年的历史，但形成一门工业，只有100多年。石油作为高质量的能源，多用途的宝贵化工原料，进入20世纪以来，在国民经济各部门被迅速广泛地利用，引起了世界消费能源结构的巨大变化。
+                </label></div>
+                <div><img class="img_xgqy" src="view/resource/相关企业.png"/></div>
+                <table class="companyTable">
+                    <tr ng-repeat="row in list_toShow[0]">
+                        <td ng-repeat="item in row track by $index"><a ng-click="showCompanyPreview(item)">{{item.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+
+
             <!--<img class="wholeView cover part_001" src="view/resource/001-展开.png" style="opacity: 1;"/>-->
             <div class="touchDescription"><img src="view/resource/轻触部件.png"/></div>
             <!--<div class="companyList" style="display: none;">-->
@@ -261,14 +359,14 @@
             <div id="part_003" name="车身及外观设备+合成材料" class="part_toTouch part_003" style="opacity: 0;"></div>
             <div id="part_002" name="纺织品" class="part_toTouch part_002" style="opacity: 0;"></div>
             <div id="part_001" name="转向设备+电气仪器仪表" class="part_toTouch part_001" style="opacity: 0;"></div>
-            <div id="part_icon01" name="" class="part_toTouch part_icon01" style="opacity: 0;"></div>
-            <div id="part_icon02" name="" class="part_toTouch part_icon02" style="opacity: 0;"></div>
-            <div id="part_icon03" name="" class="part_toTouch part_icon03" style="opacity: 0;"></div>
-            <div id="part_icon04" name="" class="part_toTouch part_icon04" style="opacity: 0;"></div>
-            <div id="part_icon05" name="" class="part_toTouch part_icon05" style="opacity: 0;"></div>
-            <div id="part_icon06" name="" class="part_toTouch part_icon06" style="opacity: 0;"></div>
-            <div id="part_icon07" name="" class="part_toTouch part_icon07" style="opacity: 0;"></div>
-            <div id="part_icon08" name="" class="part_toTouch part_icon08" style="opacity: 0;"></div>
+            <div id="part_icon01" name="汽车及零配件经销" class="part_toTouch part_icon01" style="opacity: 0;"></div>
+            <div id="part_icon02" name="汽车零售" class="part_toTouch part_icon02" style="opacity: 0;"></div>
+            <div id="part_icon03" name="行车软件" class="part_toTouch part_icon03" style="opacity: 0;"></div>
+            <div id="part_icon04" name="保险" class="part_toTouch part_icon04" style="opacity: 0;"></div>
+            <div id="part_icon05" name="电子元件" class="part_toTouch part_icon05" style="opacity: 0;"></div>
+            <div id="part_icon06" name="专用设备" class="part_toTouch part_icon06" style="opacity: 0;"></div>
+            <div id="part_icon07" name="整车制造" class="part_toTouch part_icon07" style="opacity: 0;"></div>
+            <div id="part_icon08" name="石油" class="part_toTouch part_icon08" style="opacity: 0;"></div>
         </div>
         <!--<div id="luntai" class="nameAndList">-->
             <!--<label class="name_part">轮胎</label>-->
