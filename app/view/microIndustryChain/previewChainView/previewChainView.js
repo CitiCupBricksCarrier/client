@@ -688,9 +688,39 @@ angular.module('myApp.microIndustryChain.previewChainView', [
             }).then(function successCallBack(response) {
                 // console.log(response.data)
                 var data = response.data;
+                $scope.articleDetail.up++;
             }, function errorCallBack(response) {
                 console.log("erreor");
             });
+        }
+
+        $scope.reward = function () {
+
+            // console.log()
+            if($('#creditsChoice input[name="credit"]:checked ').val()==null){
+
+            }else{
+                var credits_re = parseInt($('#creditsChoice input[name="credit"]:checked ').val());
+                $http({
+                    url: urlHead + 'motivateAuthor',
+                    method: 'post',
+                    // contentType: "application/json",
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    params:{
+                        motivater:username,
+                        author:articleAuthor,
+                        credits:credits_re,
+                    },
+                    withCredentials: true
+                }).then(function successCallBack(response) {
+                    // console.log(response.data)
+                    var data = response.data;
+                }, function errorCallBack(response) {
+                    console.log("erreor");
+                });
+
+            }
+
         }
 
     });

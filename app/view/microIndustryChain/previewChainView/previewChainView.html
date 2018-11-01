@@ -107,10 +107,46 @@
                 <img src = "view/microIndustryChain/previewChainView/images/zan.png" class="head-praise-img">
                 <span >{{articleDetail.up}}</span>
             </div>
-            <div class="head-reward" >
+            <div class="head-reward"  id="modal-358089" href="#modal-container-358089" role="button"  data-toggle="modal">
                 <img src = "view/microIndustryChain/previewChainView/images/reward.png" class="head-reward-img">
-                <span >0</span>
+                <span ></span>
             </div>
+            <div  class="modal fade" id="modal-container-358089" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                打赏作者
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <h5>请选择打赏数量</h5>
+                            <form id = "creditsChoice">
+                                <div>
+                                    <input type="radio" name = "credit" value="5">5
+                                </div>
+                                <div>
+                                    <input type="radio" name = "credit" value="10">10
+                                </div>
+                                <div>
+                                    <input type="radio" name = "credit" value="50">50
+                                </div>
+                                <div>
+                                    <input type="radio" name = "credit" value="100">100
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button ng-click="reward()" type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
@@ -172,9 +208,9 @@
                         <span id="praise-txt">{{articleDetail.up}}</span>
                         <!--<span id="add-num"><em>+1</em></span>-->
                     </div>
-                    <div class="reward ">
+                    <div class="reward " href="#modal-container-358089" role="button"  data-toggle="modal">
                         <span id="reward" data-content="给作者打赏"><img src="view/microIndustryChain/previewChainView/images/reward.png" id="reward-img" /></span>
-                        <span id="reward-txt">0</span>
+                        <span id="reward-txt"></span>
                     </div>
                     <div class="gotop ">
                         <span id="gotop" data-content="返回上层"><img src="view/microIndustryChain/previewChainView/images/gotop.png" id="gotop-img" /></span>

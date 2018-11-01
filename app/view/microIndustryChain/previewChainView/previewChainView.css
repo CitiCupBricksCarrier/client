@@ -61,6 +61,7 @@ body {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     float: left;
+    cursor: pointer;
 }
 .head-praise-img,.head-reward-img{
     width:40px;
@@ -636,3 +637,12 @@ a {
 /*.cd-popup-close{ position: absolute;right:10px;top:10px; z-index: 10;width:auto;height:1.25rem; display: block;font-size:14px;}*/
 
 
+.modal-body h5, form {
+    display: inline;
+    padding: 20px;
+}
+
+.modal-body form div {
+    display: inline;
+    margin: 15px;
+}
