@@ -1,6 +1,8 @@
 
 <div class="graphListBlock">
 
+        <input type="text" class="search-input" placeholder="请在此搜索" ng-model="searchKey">
+
 
     <div class="graphContainer">
         <div ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class="graphCell" ng-repeat="article in allArticleList | limitTo:4">
@@ -32,7 +34,7 @@
     </div>
     <div  class="graphLiContainer">
         <div class="graphList">
-            <div  ng-if="$index>3" ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class = "graphLiDiv" ng-repeat="article in allArticleList" >
+            <div  ui-sref="microIndustryChain.previewChainView({'articleid':article.id,'graphid':article.graphid})" class = "graphLiDiv" ng-repeat="article in allArticleList | filter:{title:searchKey}" >
                 <div class="graph-li-title graph-li-con">
                     {{article.title}}
                 </div>
