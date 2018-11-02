@@ -3,7 +3,8 @@
     top: 0;
     /*background: radial-gradient(ellipse closest-corner at 55% 45%, rgb(92,92,92), rgb(62,62,62));*/
     /*background: url(../../view/resource/背景.png) no-repeat;*/
-    background: url(../../view/resource/新背景.jpg) no-repeat;
+    /*background: url(../../view/resource/新背景.jpg) no-repeat;*/
+    background: url("https://citicup.greatnju.com/macro/pic_common/新背景.jpg") no-repeat;
     /*-webkit-background-size: 100%;*/
     /*background-size: 100%;*/
     -webkit-background-size: 100vw 100vh;
