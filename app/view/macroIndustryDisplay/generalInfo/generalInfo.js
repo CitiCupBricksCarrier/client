@@ -244,6 +244,13 @@ angular.module('myApp.macroIndustryDisplay.generalInfo', [
                     toScrollPart(false);
                 }
             }
+            $scope.$on("$destroy", function() {
+                //清除配置,不然scroll会重复请求
+                document.onmousewheel = function(event){
+                }
+                document.onkeydown = function(event){
+                }
+            });
 
             //翻页函数
             function toScrollPart(isDown) {
