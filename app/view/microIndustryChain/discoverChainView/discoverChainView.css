@@ -86,12 +86,12 @@ html, body {
 }
 
 .graph-time {
-    display: inline;
+    /*display: inline;*/
     /*margin-top: 15px;*/
     font-size: 12px;
     /*padding-top: 15px;*/
     color: #a3a3a3;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 .graph-author{
     display: inline;
@@ -163,9 +163,14 @@ html, body {
     margin-left: 10px;
     color: #3e3e3e;
     font-size: 16px;
+    position: absolute;
+    width: 25%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .graph-li-author{
-    margin-left: 20%;
+    margin-left: 50%;
     color: #9d9d9d;
     font-size: 14px;
 }
@@ -184,3 +189,6 @@ html, body {
     /*padding-top: 50%;*/
     /*margin-top: 50%;*/
 }
+/*.title-text{*/
+    /*display: inline;*/
+/*}*/
